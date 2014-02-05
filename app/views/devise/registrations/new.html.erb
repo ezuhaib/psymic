@@ -1,0 +1,26 @@
+<h2>Join Psymic
+<span class="float-right"><%= link_to "Already Member?" , new_user_session_path , class:"btn btn-default"%></span></h2>
+</br>
+
+<div class="alert alert-info">
+Welcome to Project Psymic. Creating a new Account will only take a few minutes.</br>
+<i>All fields are mandatory</i>
+</div>
+
+<%= bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name) , style: :horizontal , left: "col-lg-3" , right: "col-lg-9" , html: {autocomplete: :off}) do |f| %>
+
+  <%= f.text_field :username, :autofocus => true , class:"form-control", placeholder:"Usernames cannot be changed later"%>
+  <%= f.select :gender , {'Female'=>'female','Male'=>'male'} , :prompt => "Select Gender" %>
+  <%= f.text_field :dob , "data-behaviour"=>"datepicker" , label: "Birth Date" , placeholder: "yyyy/mm/dd" %>
+
+  <div class="form-group">
+  <%= f.label :country , class: "control-label col-lg-3" %>
+  <div class="col-lg-9"><%= f.country_select :country , nil , {prompt: "Select Country"}, {class:"form-control"}  %></div></div>
+
+  <%= f.text_area :body , label: "Introduction", placeholder:"Write what best describes your profession and primary skills." , size: "24x5"  %>
+  <%= f.email_field :email , class:"form-control" , placeholder: "Must be Valid" %>
+  <%= f.password_field :password , class:"form-control"%>
+  <%= f.password_field :password_confirmation , label: "Retype Password" , class:"form-control"%>
+  <%= f.form_group do %><%= f.submit "Sign up" ,class:"btn btn-primary" %><% end %>
+
+<% end %>

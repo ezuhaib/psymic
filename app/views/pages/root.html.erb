@@ -1,0 +1,40 @@
+<div class="col-md-9 center-xsm"><h2>Welcome to Psymic </h2>
+<p class="text-med text-300">Psymic is a global support group and an online compilation of human behaviours and their analyses, termed as “mindlogs”.</p></div>
+<div id="counter" class="col-md-3 hidden-xs hidden-sm">So far</br><span><%= @mindlogs.count %></span></br>entries</div>
+<div id="banner">
+	<%= image_tag 'observations.png'  , class:"col-md-3 col-sm-6 col-xs-8 center-xs"%>
+	<%= image_tag 'hypotheses.png', class:"col-md-3 col-sm-6 col-xs-8 center-xs"%>
+	<%= image_tag 'think.png' , class:"col-md-3 col-sm-6 col-xs-8 center-xs"%>
+	<%= image_tag 'cope.png' , class:"col-md-3 col-sm-6 col-xs-8 center-xs" %>
+</div>
+</br>
+<div class="col-md-6 col-xs-12">
+<h3>Featured Mindlogs
+
+<% if can? :create , @mindlog %>
+<%= link_to " " , new_mindlog_path , class:"glyphicon glyphicon-plus float-right btn btn-themed btn-sm" %>
+<% end %>
+</h3>
+
+<table class="table table-striped">
+<% @mindlogs.each do |m| %>
+	<tr>
+		<td class="link-black"><%= link_to m.title , m %></td>
+	</tr>
+<% end %>
+</table>
+
+</div>
+
+<div id="mascot" class="col-md-6 col-xs-12">
+<%= link_to (image_tag "psymic-mascot.jpg" , class:"img-responsive"), page_path(:contribute) %>
+</div>
+
+<%= content_for :r2 do %>
+<b>trending tags</b>
+<ul id="tag_list">
+	<% ActsAsTaggableOn::Tag.all.each do |tag| %>
+		<li><%= link_to "##{tag.name}" , '#' , class:"tag" %></li>
+<% end %>
+</ul>
+<% end %>

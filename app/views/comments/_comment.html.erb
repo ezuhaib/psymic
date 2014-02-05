@@ -1,0 +1,8 @@
+<%= content_tag_for(:div , comment) do %>
+<div class="miniresource">
+<%= comment.body %> <%= link_to comment.user.username , comment.user %>
+<% if can? :destroy , comment %>
+<span class="delete_button" ><%= link_to image_tag("gray_cross_mini.png") , comment , :remote=> true, :method=> :delete, :confirm=> 'Are you sure?' %></span>
+ <% end %>
+<% end %>
+</div>

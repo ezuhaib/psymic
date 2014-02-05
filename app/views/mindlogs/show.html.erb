@@ -1,0 +1,55 @@
+<%# Body of Mindlog %>
+<div id="mindlog_box" class="row bg-dark">
+	<div id="magic"></div>
+	<h2 class="compact"><%= @mindlog.title %></h2>
+	<p><%= @mindlog.description %></p>
+</div>
+<div id="status_box" class="row"><b>Status: </b><%= @mindlog.status %></div>
+
+<%# Like box and Response Form %>
+<div id="like_and_respond">
+<div id="experience_box" class="col-md-2 mar-vert-10 col-sm-inv-6r"><%= render 'like_box' %></div>
+<div id="response_box" class="mar-vert-10 border-light text-center visible-sm visible-xs col-xs-6"><%= render 'response_box' %></div>
+<div id="response_form" class="col-md-10"><%= render 'responses/form' %></div>
+</div>
+
+<%# Responses Counters and sorters etc %>
+<div id="mindlog_responses" class="bg-white pull-left">
+<div id="responses_links" class="col-md-2 text-right">
+	<div class="hidden-sm hidden-xs"><div id="responses_count"><%= @mindlog.responses.count %></div><span>Responses</span></div>
+	<div id="list1"><ul>
+		<li><%= link_to "All", mindlog_path %></li>
+		<li><%= link_to "Explanations", "#{mindlog_path}?only=explanations" %></li>
+		<li><%= link_to "Solutions", "#{mindlog_path}?only=solutions" %></li>
+		<li><%= link_to "Critiques", "#{mindlog_path}?only=critiques" %></li>
+		<li><%= link_to "Stories", "#{mindlog_path}?only=stories" %></li>
+	</ul></div>
+</div>
+
+<%# THE Responses %>
+<div class="row col-md-10">
+	<div id="responses" ><%= render 'responses' %><%= "No responses yet." if @responses.empty? %></div></div>
+</div>
+
+<%# Rightbar Content %>
+<% content_for :r2 do %>
+<ul id="mindlog_links">
+	<li class="text-dark">By <%= link_to @mindlog.user.username , @mindlog.user %></li>
+	<li class="text-small text-dark"><%= @mindlog.created_at.strftime("%d %B %Y") %></li>
+	<li class="divider"></li>
+	<% if can? :update , @mindlog %><li><%= link_to 'Edit', edit_mindlog_path(@mindlog)%></li><% end %>
+	<% if can? :destroy , @mindlog %><li><%= link_to 'Delete', @mindlog , :method=> :delete, :confirm=> 'Are you sure?'%></li><% end %>
+	<% if can? :report , @mindlog %><li><%= link_to 'Report', report_mindlog_path(@mindlog) , remote: true %></li><% end %>
+	<% if current_user && @mindlog.subscriptions.pluck(:user_id).include?(current_user.id) %>
+		<% if can? :unsubscribe , @mindlog %><li><%= link_to 'Unwatch', unsubscribe_mindlog_path(@mindlog)%></li><% end %>
+	<% else %>
+		 <% if can? :subscribe , @mindlog %><li><%= link_to 'Watch', subscribe_mindlog_path(@mindlog)%></li><% end %>
+	<% end %>
+</ul>
+
+<ul id="tag_list">
+	<% @mindlog.topic_list.each do |t| %>
+	<li><%= link_to "##{t}" , tag_path(t) %></li>
+	<% end %>
+</ul>
+<% end %>

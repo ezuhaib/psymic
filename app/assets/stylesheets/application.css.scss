@@ -1,0 +1,1125 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap-datepicker
+ *= require_tree .
+ *= require_self
+ */
+
+/*this will take cae of the page-shift problem */
+
+$font-family-sans-serif: Open Sans, sans-serif;
+$font-family-base: $font-family-sans-serif;
+$font-size-base: 16px;
+$theme-color: #FF285F;
+$theme-color-light: #FFA8BE;
+$input-border-focus: $theme-color;
+$link-color: $theme-color;
+$link-color-hover: #c03;
+
+@import "bootstrap";
+@import "bootstrap/variables";
+
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    background: #E8E8E8 ;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    color: #000;
+}
+
+.container{
+    padding-top: 8px;
+}
+
+#top-menu-spacer{
+    height: 40px;
+}
+
+#top-streak{
+    width:100%;
+    height: 8px;
+    background-color: #4C4C4C;
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+}
+
+#top-menu{
+    width: 100%;
+    background-color: #4C4C4C;
+    height: 40px;
+    position: fixed;
+    top:0px;
+    text-align: center;
+    z-index: 10000;
+}
+
+#menu_link{
+    position: absolute;
+    left: 0px;
+}
+
+#header {
+    height: 100px;
+}
+
+.hidden {
+    display: none;
+}
+
+pre {
+    background-color: #eee;
+    padding: 10px;
+    font-size: 16px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+div {
+    &.field, &.actions {
+        margin-bottom: 10px;
+    }
+}
+
+#notice {
+    color: green;
+}
+
+.field_with_errors {
+    padding: 2px;
+    background-color: red;
+    display: table;
+}
+
+#error_explanation {
+    width: 450px;
+    background-color: #900;
+    text-align: left;
+    padding: 3px;
+    padding-left: 10px;
+    color: #ccc;
+    font-size: 14px;
+    margin: 15px;
+}
+
+#error_explanation h2 {
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+    color: #fff;
+}
+
+.flash {
+    width: 500px;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: black;
+}
+
+#green.flash {
+    background-color: green;
+}
+
+/******************
+FONTS
+*******************/
+
+td#tags {
+    padding-right: 15px;
+    color: #09c;
+    width: 50px;
+    font-weight: bold;
+}
+
+#breadcrumb {
+    color: #ccc;
+    font-size: 16px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+#breadcrumb * {
+    color: #ccc;
+}
+
+#breadcrumb a:hover {
+    color: #fff;
+}
+
+span .blue {
+    color: #09c;
+}
+
+.comment {
+    border-bottom: solid 1px #bbb;
+    margin-top: 5px;
+}
+
+.miniresource span * {
+    color: #999;
+}
+
+.miniresource span *:hover {
+    color: #000;
+}
+
+.miniresource p {}
+
+.miniresource #tagline {}
+
+/****************************
+RELATED TO BOXES
+*****************************/
+
+#mindlog_responses{
+    width:100%;
+}
+
+.spacer-60{
+    height: 60px;
+    width: 1px;
+}
+
+#mindlogs_search{margin-top: -10px;margin-bottom: 15px;}
+#mindlogs_header{
+    height: 60px;
+    background-color: #222;
+    border-bottom: 4px solid $theme-color;
+}
+
+#mindlogs_header_text {color: #fff;font-size: 35px;text-transform: uppercase;letter-spacing: 7px;line-height: 60px;}
+#mindlogs_header_text:hover{color: #999;}
+#mindlogs_header .btn {font-size: 18px;margin-top: 8px;}
+
+
+#mindlog_box{
+    padding: 5px 30px 15px 30px;
+}
+
+.mindlog_body{
+    padding-top: 12px !important;
+}
+
+.mindlog_stats{
+    font-size: 35px;
+    color: #339900;
+}
+
+.mindlog_responses_count{
+    color: #999999;
+    font-size: 20px;
+    margin-top: -10px;
+}
+
+.mindlog_tag_list{
+    
+    list-style: none;    
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.mindlog_tag_list li{
+    display: inline;
+    margin-right: 5px;
+}
+
+.mindlog_bottom_line{
+    font-size: 16px;
+    margin-top: -4px;
+    margin-bottom: 4px;
+}
+
+.cursor-default {
+cursor:default;
+}
+
+.mindlog_responses_count span{
+    font-size: 14px;
+}
+
+#responses_count{
+    font-size: 250%;
+    margin-bottom: -10px;
+}
+
+#responses_count span{
+    font-size: 100%;
+}
+
+#responses_links{
+    border-right: 1px solid #eee;
+}
+
+#list1 { }
+#list1 ul { list-style:none; padding:10px 0; }
+#list1 ul li { font-size:80%; text-transform:uppercase; }
+#list1 ul li a { text-decoration:none; color:#888; }
+#list1 ul li a:hover { color: $theme-color; }
+
+#toolbox {
+    background-color: #E8E8E8;
+    padding: 8px 8px 20px 8px;
+    text-align: center;
+}
+
+#toolbox h1 {
+    text-transform: uppercase;
+    color: #999;
+}
+
+#toolbox img {
+    padding: 3px;
+}
+
+#tags {
+    text-align: right;
+    padding-right: 15px;
+}
+
+#tags a {
+    font-size: 30px;
+    line-height: 1;
+    color: #666;
+}
+
+.rating{
+    min-width: 50px;
+    height: 75px;
+    vertical-align: top;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.rating_number {
+    font-size: 25px;
+    line-height: 0.8;
+    font-weight: bold;
+    color: #333;
+}
+
+.type-explanation{
+    background-color: #FFFFB3;
+}
+
+.type-solution{
+    background-color: #CED6FF;
+}
+
+.type-critique{
+    background-color: #FFB9CB;
+}
+
+.type-general , .type-story{
+    background-color: #FFF0F4;
+}
+
+#solution_body {
+    background-color: #EAEDFF;
+}
+
+.comment_box {
+    float: left;
+    border-top: 1px solid #bbb;
+    margin-top: 10px;
+}
+
+#new_comment{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.comment {
+    padding-bottom: 8px;
+    color: #999;
+}
+
+#status_box {
+    color: #fff;
+    background: $theme-color;
+    padding: 4px 30px 4px 30px;
+}
+
+.new_notification .number , .circled_number {
+    float: left;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-image: image-url("red_circle.png");
+    text-align: center;
+    color: white;
+}
+
+#notifications_count , #notifications_count_black {
+}
+
+.black_count , #notifications_count_black {
+    background-image: image-url("black_circle.png");
+}
+
+#notifications_count:hover {
+    background-image: image-url("black_circle.png");
+}
+
+#subscriptions_list a {
+    color: #666;
+}
+
+#subscriptions_list a:hover {
+    color: #000;
+}
+
+#redbox .smalltext {
+    color: #E6829B;
+}
+
+#redbox_right_links a {
+    font-size: 24px;
+    line-height: 27px;
+}
+
+#new_feedback{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#redbox a{
+    color: #E6829B;
+}
+
+#redbox a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#response_form{
+    padding: 15px 0;
+}
+
+#like_and_respond{
+    border-bottom: 1px solid #ddd;
+}
+
+#response_body{
+    resize:none;
+}
+
+td#response_entry{
+    width: 100%;
+}
+
+.delete_button img{
+    height: 18px;
+    vertical-align: middle;
+}
+
+#user_button{
+    background-color: #999999;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#user_button:hover{
+    background-color: #666666;
+    cursor: pointer;
+}
+
+.tag{
+    font-weight: 700;
+    font-size: 90%;
+}
+
+#experience_box{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: right;
+    border-right: 1px solid #eee;
+}
+
+#experience_count{
+    display: inline;
+    font-size:50px;
+    line-height:0.8;
+}
+
+#pagination{
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+
+#mindlog_links{
+    list-style: none;
+    margin-top: 10px;
+}
+
+#mindlog_links a{
+    color: #aaa;
+}
+
+#mindlog_links a:hover{
+    color: $theme-color;
+}
+
+#primary_links{
+    list-style: none;
+}
+
+#primary_links a{
+    color: #666;
+    font-size: 24px;
+    float: right;
+    clear: both;
+}
+
+#secondary_links{
+    position: absolute;
+    bottom: 55px;
+    right: 15px;
+    list-style: none;
+}
+
+#secondary_links a{
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.4;
+    float: right;
+    clear: both;
+}
+
+#primary_links a:hover{
+    color: $theme-color;
+}
+
+/*********************************
+SIDR Related Styles
+todo move to sidr stylesheet
+todo reduce reliance on !important
+**********************************/
+
+.sidr ul li span.sidr-class-badge{
+    @extend .badge;
+}
+
+.sidr ul li a#sidr-id-welcome_line{
+    font-size: 110%;
+    text-transform: uppercase;
+}
+
+.bg-themed,.sidr-class-bg-themed {
+    background-color: $theme-color !important;
+    color: #fff;
+}
+
+.bg-themed-light{
+    background-color: $theme-color-light !important;
+}
+
+.sidr-class-divider{
+    display: none !important;
+}
+
+.sidr-class-btn{
+    display: none;
+}
+
+.sidr ul li a{
+    font-size: 90%;
+    color: $theme-color;
+}
+
+.sidr-class-hide{
+    display: none !important;
+}
+
+.sidr ul.sidr-class-dropdown-menu li a{
+    text-transform: uppercase;
+    color: #fff;
+}
+
+//sidebar width to be dealt with in media queries section
+#sidebar {
+    height: 100%;
+    padding:15px;
+}
+
+#banner{
+    width: 100%;
+    padding: 0 15px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    float: left;
+}
+
+#banner img{
+    background-color: $theme-color;
+    border: 2px #fff solid;
+}
+
+#mascot{
+    float: right;
+    padding: 0px;
+}
+
+#footer{
+    position: fixed;
+    bottom: 0px;
+    height: 40px;
+    font-size: 15px;
+    vertical-align: middle;
+    background-color: $theme-color;
+    right: 0px;
+    z-index: 1000;
+    width: 100%;
+    padding: 10px;
+}
+
+#footer_text{
+    position: absolute;
+    bottom: 18px;
+    right: 10px;
+    z-index: 2000;
+    text-align: right;
+    color: #FFA8BE;
+}
+
+#footer_b{
+    height: 40px;
+    background: image-url("footer_black.png");
+    color: #fff;
+    text-align: center;
+    font-size: 90%;
+    bottom: 0px;
+    padding: 10px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+#footer_b p{
+    opacity: 1.0;
+}
+
+body,html,.container,#semi_container{
+height: 100%;
+}
+
+#content{
+    height: auto !important;
+    height: 100%;
+    min-height: 100%;
+    float: left;
+    padding-bottom: 40px; 
+}
+
+#counter{
+    margin: 20px auto;
+    font-size: 120%;
+    text-align: center;
+    color: #888;
+}
+
+#counter span{
+    color: $theme-color;
+    font-weight: 300;
+    font-size: 280%;
+    line-height: 1;
+}
+
+#tag_list{
+    list-style: none;
+}
+
+/****************************
+BOOTSTRAP HACKS
+*****************************/
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+img{vertical-align: inherit}
+a{transition: all 0.3s linear;-moz-transition: all 0.3s linear;-webkit-transition: all 0.3s linear;-o-transition: all 0.3s linear;}
+a:focus{outline: none;}
+a:hover{text-decoration: none;}
+p{margin-bottom: 5px;}
+.btn-themed {@include button-variant(#fff, $theme-color , $theme-color);}
+
+.green-focus *:focus {
+  border-color: #5CB85C;
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #5CB85C;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #5CB85C;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #5CB85C;
+}
+
+.link-inverted a{ 
+    color: #fff;
+    background-color: #999;
+    padding: 1px 5px;
+}
+
+.link-inverted a:hover{
+    color: #fff;
+    background-color: #666;
+}
+
+ul{
+    margin-bottom: 0;
+}
+
+/****************************
+CLASSES
+*****************************/
+
+/* For use with h1,h2,h3 */
+.compact{
+    margin-top: 8px;
+}
+
+.no-margin{
+    margin:0;
+}
+
+.center{
+    float: none;
+     margin-left: auto;
+     margin-right: auto;
+     display: table;
+}
+
+.nopadding{
+    padding: 0px;
+}
+
+.pad-lat-0{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.pad-10{
+    padding: 10px;
+}
+
+.pad-vert-5{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.pad-top-20{
+    padding-top: 20px;
+}
+
+.pad-top-5{
+    padding-top: 5px;
+}
+
+.h-compact{
+    line-height: 0.8;
+    padding-bottom: 5px;
+}
+
+.box a{
+    color: #333;
+}
+
+.border-light{
+    border: thin solid #ccc;
+}
+
+.border-dark{
+    border: 3px solid #444;
+}
+
+.bg-white{
+    background-color: #fff;
+}
+
+.box-light{
+    background-color: #aaa;
+    color: #000;
+}
+
+.bg-dark{
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.bg-dark a{
+    color: #ccc;
+}
+
+.float-right{
+    float: right;
+}
+
+.float-left{
+    float: left;
+} 
+
+.text-justify{
+    text-align: justify;
+}
+
+.text-small {
+    font-size: 80%;
+}
+
+.text-med{
+    font-size:140%;
+}
+
+.text-lg{
+    font-size: 28px;
+}
+
+.text-300{
+    font-weight: 300;
+}
+
+.text-red, .text-red a{
+    color: #c03;
+}
+
+.text-middle{
+    vertical-align: middle;
+}
+
+.text-themed {
+    color: $theme-color
+}
+
+.text-red a:hover{
+    color: #c09;
+}
+
+.text-light {
+    color: #aaa;
+}
+
+.text-dark, .text-dark a{
+    color: #555;
+}
+
+.text-dark a:hover{
+    color: $theme-color;
+}
+
+.text-light a {
+    color: #888;
+}
+
+.text-light a:hover{
+    color: $theme-color;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+.margin-top-20{
+    margin-top: 20px;
+}
+
+.margin-top-30{
+    margin-top: 30px;
+}
+
+.mar-top-0{
+    margin-top: 0px;
+}
+
+.mar-bottom-10{
+    margin-bottom: 10px;
+}
+
+.mar-vert-10{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mar-vert-20{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.mar-vert-5{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.mar-5{
+    margin: 5px;
+}
+
+.red-number , .red-number a{
+    font-size: 50px;
+    font-weight: 700;
+    color: #c03;
+}
+
+.row-modified{
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.label a{
+    color: #fff;
+}
+
+.label a:hover{
+    color: #ccc;
+}
+
+.link-black a{
+    color: #000;
+} 
+
+.divider{
+    border-bottom: 1px solid #ccc;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.ol {
+    counter-reset: my-badass-counter;
+}
+
+.ol-themed dt {
+    position: relative;
+    font-size: 18px;
+    padding: 4px 0 10px 0;
+    counter-increment: my-badass-counter;
+}
+.ol-themed dt:before {
+    content: counter(my-badass-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font: bold 50px/1 Sans-Serif;
+    color: $theme-color;
+}
+.ol-themed dd {
+    margin: 0 0 20px 0;
+}   
+.ol-themed dt, .ol-themed dd {
+    padding-left: 50px;
+}
+
+.test-width{
+    width:100%;
+    height: 30px;
+    background-color: $theme-color;
+    float: left;
+    margin-left: -30px;
+    margin-right: -30px;
+}
+
+dd , dt{
+    margin-top: 10px;
+}
+
+
+/********************
+TYPEAHEAD
+********************/
+.twitter-typeahead .tt-query,
+.twitter-typeahead .tt-hint {
+  margin-bottom: 0;
+}
+
+.tt-dropdown-menu {
+    width: 100%;
+    display: block;
+  min-width: 160px;
+  margin-top: 2px;
+  padding: 5px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,.2);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
+}
+
+.tt-suggestion {
+  display: block;
+  padding: 3px 20px;
+}
+
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #0081c2;
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0)
+}
+
+.tt-suggestion.tt-cursor a {
+  color: #fff;
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+
+.twitter-typeahead .tt-hint {
+    width: 100%;
+    padding: 6px 12px;
+    line-height: 1.428571429;
+    border: 1px solid transparent;
+    border-radius:4px;
+}
+
+.twitter-typeahead {
+     width: 100%;
+     float: left;
+}
+
+/****************************************
+MEDIA QUERIES AND RESPONSIVE DESIGN
+Todo: Integrate Mixins and variables
+****************************************/
+/* generic */
+.fixed-8{
+    position: fixed;
+    z-index: 10000;
+}
+
+/* xs */
+@media (max-width: $screen-xs-max) {
+    .pull-left-xs {
+        float: left;
+    }
+    .pull-right-xs {
+        float: right;
+    }
+    *[class*='col-xs-inv-']{
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+    }
+    .col-xs-inv-3{width: 25%;}
+    .col-xs-inv-4{width: 33.4%;}
+    .col-xs-inv-5{width: 41.7%;}
+    .col-xs-inv-6{width: 50%;}
+    .center-xs{float: none;margin-left: auto;margin-right: auto;display: table;}
+}
+
+/* sm */
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    .pull-left-sm {
+        float: left;
+    }
+    .pull-right-sm {
+        float: right;
+    }
+}
+
+/* xs , sm */
+@media (max-width: $screen-sm-max) {
+    *[class*='col-sm-inv-'] {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+    }
+
+    /* CLASSES */
+    h1{font-size: 30px}
+    .text-med{font-size: 115%}
+    .container{padding: 0}
+    .center-xsm{text-align: center;}
+    .col-sm-inv-3{width: 25%;}
+    .col-sm-inv-4{width: 33.4%;}
+    .col-sm-inv-5{width: 41.7%;}
+    .col-sm-inv-6{width: 50%;}
+    .col-sm-inv-6r{width:49%;margin-right:1%;}
+
+    /* DIVS */
+    #tag_list li {display: inline; margin-right: 4px;}
+    #right {margin: 0; text-align:center;}
+    #footer_b{height: auto;width:100%;left: 0px;}
+    #content{padding-bottom: 0}
+    #right{padding-bottom: 60px}
+}
+
+/* md */
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+    
+    #sidebar{
+        position: fixed;
+        width: 157px;
+    }
+
+    .fixed-8{
+        width:597px;
+    }
+}
+
+/* lg */
+@media (min-width: $screen-lg-min) {
+    
+    #sidebar{
+        position: fixed;
+        width: 190px;
+    }
+    
+    .fixed-8{
+        width:730px;
+    }
+}
+
+/* md, lg */
+@media (min-width: $screen-md-min){
+    
+    .pad-x2-md{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .pad-x4-md{
+        padding-left: 60px;
+        padding-right: 60px;   
+    }
+}

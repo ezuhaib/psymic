@@ -1,0 +1,19 @@
+<div class="bg-dark row">
+	
+	<div class="col-xs-12">
+		<%= image_tag 'icon-lab.png' , class:"col-sm-2 row hidden-xs pad-top-20" %>
+		<div class="col-sm-10">
+			<h2>Backstage</h2>
+			<p>Welcome to the Psymic Backstage. Here administrative issues are discussed. This section is visible only to Psymic power users.</p></br>
+		</div>
+	</div>
+</div>
+
+
+<%= bootstrap_form_for @feedback , html:{class:"form col-xs-12"} do |f| %>
+<span class= "col-sm-10"><%= f.text_area :body , size:'30x3' , placeholder:"Content posted here is visible only to Psymic Administeration" , hide_label:true , class:"bg-themed-light" %></span>
+<%= f.hidden_field :nature , value: "backstage" %>
+<span class="col-sm-2"><%= f.submit :Submit %></span>
+<% end %>
+
+<%= render 'feedbacks/list' %>

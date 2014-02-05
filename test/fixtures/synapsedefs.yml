@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  synapse: MyString
+  class: MyString
+  def: MyText
+
+two:
+  synapse: MyString
+  class: MyString
+  def: MyText

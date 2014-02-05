@@ -1,0 +1,19 @@
+<div class="col-lg-12">
+
+<h1>user:<span class="text-red"><%= link_to @user.username , @user %></span>
+<% if can? :update , @user %><span class="float-right">
+<%= link_to 'Edit' , edit_profile_path , class: "btn btn-default" %>
+<%= link_to 'Settings' , edit_user_registration_path , class: "btn btn-default" %>
+</span><% end %></h1>
+
+<div class="box bg-white">
+<p class="text-small text-light"><%= distance_of_time_in_words(Time.now,@user.dob, true,{:highest_measure_only=>true}) %> old <%= @user.gender %> from <%= @user.country %></p>
+<p class="col-lg-9"><%= @user.body %></p>
+</div>
+
+<div class="col-lg-12 box bg-white">
+<div class="float-left text-center pad-10 mar-5 border-light"><h1 class="red-number"><%= link_to @user.mindlogs.count , mindlogs_user_path(@user) %></h1> mindlogs</div>
+<div class="float-left text-center pad-10 mar-5 border-light"><h1 class="red-number"><%= @user.responses.count %></h1> responses</div>
+</div>
+
+</div>

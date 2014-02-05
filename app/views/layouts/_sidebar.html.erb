@@ -1,0 +1,64 @@
+<div id="sidebar" class="hidden-xs hidden-sm">
+
+<%# Logo %>
+<%= link_to (image_tag 'psymic-grey-alpha.png' , class:"img-responsive row col-md-10 pull-right") , '/' %>
+
+<%# Button %>
+
+<div id="links_wrapper">
+<div id="collapsing_button" class="pull-right pull-right-xs">			
+	
+	<% if current_user %>
+
+		<%   @notifications_count = Notification.where(:user_id=>current_user.id).pluck(:counter).sum %>
+		<% @subscriptions_count = current_user.subscriptions.where(counter:1).count %>
+		<div class="dropdown center margin-top-10">
+  		<button class="btn dropdown-toggle btn-themed" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    		@<%= current_user.username %><span class="caret"></span>
+  		</button>
+ 			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+	    	<li class="hidden"><%= link_to "Welcome #{current_user.username}",current_user, class:"welcome_line" %></li>
+		    <li role="presentation">
+	  	    <%= link_to notifications_path do %>Notifications <span class="badge bg-themed"><%= @notifications_count %></span><% end %>
+	    	</li>
+
+	    	<li role="presentation">
+	      	<%= link_to subscriptions_path do %>Watchlist <span class="badge bg-themed"><%= @subscriptions_count %></span><% end %>
+	    	</li>
+	    	<li role="presentation" class="divider"></span></li>
+	    	<li role="presentation" class="hide"><%= link_to "Profile" , current_user %></li>
+	    	<li role="presentation"><%= link_to "Admin", admin_root_path %></li>
+	    	<li role="presentation"><%= link_to "Logout", destroy_user_session_path , :method=>:delete %></li>
+  		</ul>
+		</div>
+
+	<% else %>
+		
+		<div class="btn-group center">
+   		<%= link_to "Join" , new_user_registration_path ,class:"btn btn-danger"%>
+   		<%= link_to "Log in" , new_user_session_path,class:"btn btn-danger"%>
+		</div>
+	<% end %>
+
+</div>
+
+<%# Primary Links %>
+<ul id="primary_links">
+	<li><%= link_to "Mindlogs" , mindlogs_path %></li>
+	<% if can? :backstage , Feedback%><li><%= link_to "Backstage" , admin_backstage_path %></li><% end %>
+	<li><%= link_to "Meta" , feedbacks_path %></li>
+</ul>
+
+<%# Secondary %>
+<ul id="secondary_links">
+	<li><%= link_to "What is it?" , page_path("introduction") %></li>
+	<li><%= link_to "How can I help?" , page_path("contribute") %></li>
+	<li><%= link_to "Can you help me?" , page_path("get-helped") %></li>
+	<li><%= link_to "Frequently Asked Q's" , page_path('faqs') %></li>
+</ul>
+
+<%# Footer %>
+<div id="footer" class="hidden-sm hidden-xs"></div>
+<div id="footer_text"><span>All rights reserved</span></div>
+</div>
+</div>

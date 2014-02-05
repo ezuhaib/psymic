@@ -1,0 +1,3 @@
+$('#response-<%= @response.id %> .rating_container').fadeOut(400, function(){
+$(this).html('<%= escape_javascript(render partial:'responses/rating', locals: {:response => @response}) %>').fadeIn(400);
+});

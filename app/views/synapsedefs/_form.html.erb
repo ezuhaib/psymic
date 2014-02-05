@@ -1,0 +1,29 @@
+<%= form_for(@synapsedef) do |f| %>
+  <% if @synapsedef.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@synapsedef.errors.count, "error") %> prohibited this synapsedef from being saved:</h2>
+
+      <ul>
+      <% @synapsedef.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :synapse %><br />
+    <%= f.text_field :synapse %>
+  </div>
+  <div class="field">
+    <%= f.label :class %><br />
+    <%= f.text_field :class %>
+  </div>
+  <div class="field">
+    <%= f.label :def %><br />
+    <%= f.text_area :def %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

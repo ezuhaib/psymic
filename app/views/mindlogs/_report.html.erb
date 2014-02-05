@@ -1,0 +1,23 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Flagging <%= link_to @mindlog.title , @mindlog%></h4>
+      </div>
+      <div class="modal-body">
+        <p>Flagging helps make the content over this website better</p>
+        <%= form_tag report_mindlog_path(@mindlog) do %>
+        <% Flag.all.each do |f| %>
+          <%= radio_button_tag 'flag' , f.id %>
+          <%= label_tag 'flag' , f.title %></br>
+        <% end %>
+              <div class="modal-footer">
+            <%= submit_tag :Report , class:"btn btn-danger" %><% end %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

@@ -1,0 +1,14 @@
+<% @offer.mark_as_read! :for => current_user %>
+</br>
+<p id="notice"><%= notice %></p>
+
+<p class="lead">
+  <%= link_to @offer.user.username, @offer.user %> offered some help!
+</p>
+
+<p>
+  <b>They say they are skilled at:</b> <%= @offer.body %>
+</p>
+
+<% @commentable = @offer %>
+<%= render template: "comments/show" %>

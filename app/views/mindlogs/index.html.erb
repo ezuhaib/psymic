@@ -1,0 +1,81 @@
+<%# HEADER %>
+<div id="mindlogs_header" class="row fixed-8 col-xs-12">
+	<%= link_to mindlogs_path , id:"mindlogs_header_text" do %>
+	<span class="glyphicon glyphicon-leaf"></span>
+	 Mindlogs
+	 <%= link_to "W R I T E" , new_mindlog_path , class:"btn btn-success btn-sm pull-right" %>
+	<% end %>
+</div>
+<div class="spacer-60"></div>
+</br>
+
+
+
+<%# SEARCH BOX %>
+<%= form_tag mindlogs_path , method: :get , id:"mindlogs_search" do %>
+	<div class="input-group">
+		<%= text_field_tag :query, params[:query], class: "form-control col-xs-12" , id:"mindlog_search" , placeholder:"type to search" %>
+		<span class= "input-group-btn"><%= submit_tag "Search" , class:"btn btn-themed" %></span>
+	</div>
+<% end %>
+
+<%# THE ENTRIES %>
+<table class="table table-striped">
+	<% @mindlogs.with_details.each do |m,details| %> 
+	<tr>
+
+		<td class="mindlog_stats text-center cursor-default">
+			<span title="Users who said they have experienced this"><%= "%02d" % m.users.count %></span>
+			<div class="mindlog_responses_count" title="Responses to this Mindlog"><%= m.responses.count %> <span class="glyphicon glyphicon-comment"></span></div>
+		</td>
+
+		<td class="text-lg mindlog_body">
+			<%= if details.any? then details[:highlight][:title].html_safe else m.title end %>
+			<div class="mindlog_bottom_line text-light">
+				<%= distance_of_time_in_words(Time.now,m.created_at, true, :highest_measure_only=> true) %>
+				by <%= link_to m.user.username , m.user %>
+			</div>
+			<ul class="mindlog_tag_list link-inverted">
+				<% m.topics.limit(5).each do |t| %>
+					<li><%= link_to "##{t}" , tag_path(t) %></li>
+				<% end %>
+			</ul>
+		</td>
+
+	</tr>
+	<% end %>
+</table>
+
+
+
+<script>
+var mindlogs = new Bloodhound({
+  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.title); },
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  remote: "/mindlogs/autocomplete?query=%QUERY"
+});
+var tags = new Bloodhound({
+  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  remote: "/mindlogs/autocomplete_tags?query=%QUERY"
+});
+
+mindlogs.initialize();
+tags.initialize();
+
+
+
+	$("#mindlog_search").typeahead({
+		minLength: 2,
+		highlight: true,
+		autoselect: true
+	},{
+		name: "mindlog",
+		displayKey: "title",
+		source: mindlogs.ttAdapter()
+	},{
+		name: "tags",
+		displayKey: "name",
+		source: tags.ttAdapter(),
+	});
+</script>

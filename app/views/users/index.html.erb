@@ -1,0 +1,14 @@
+<h1>Users List</h1>
+
+<table class="table table-striped">
+<th>Username</th>
+<th>Special Role(s)</th>
+<th>Joined</th>
+<% @users.each do |u| %>
+<tr>
+<td><%= link_to u.username, u %></td>
+<td><%= u.roles.map(&:title).join(",") %></td>
+<td><%= distance_of_time_in_words(Time.now,u.created_at,true,{highest_measure_only:true}) %> ago</td>
+</tr>
+<% end %>
+</table>

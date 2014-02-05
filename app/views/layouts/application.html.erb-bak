@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cerebron</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag "application" %>
+ <script type="text/javascript"><%= yield :js %>
+ $( document ).ready(function(){
+ 	 $('.selectpicker').selectpicker();
+ 	   	 $('#sidebar').hcSticky({
+ 	 		top: 8
+ 	 }
+ 	 	);
+ });
+
+ </script>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div id = "top-streak"></div>
+<div id="wrapper">
+
+	<div id="sidebar" class="col-lg-2">
+	<%= link_to (image_tag 'psymic-logo.png' , :alt=>'Psymic logo' , :class=>"img-responsive") , '/' %>
+		<%= render "layouts/user_box" %>
+		<%= yield :sh%> <!-- subheader here -->
+	</div>
+
+	<div id="content" class="col-lg-offset-2 col-lg-12">
+		<% if flash[:notice] %>
+		<script type="text/javascript">
+			noty({
+				text: "<%= flash[:notice] %>",
+				type: 'alert'
+			});
+		</script>
+		<% end %>
+
+		<% if flash[:alert] %>
+		<script type="text/javascript">
+			noty({
+				text: "<%= flash[:alert] %>",
+				type: 'error'
+			});
+		</script>
+		<% end %>
+
+		<% if flash[:success] %>
+		<script type="text/javascript">
+			noty({
+				text: "<%= flash[:success] %>",
+				type: 'success'
+			});
+		</script>
+		<% end %>
+
+		<% if flash[:error] %>
+		<script type="text/javascript">
+			noty({
+				text: "<%= flash[:error] %>",
+				type: 'error'
+			});
+		</script>
+		<% end %>
+
+		
+		<%= yield :c %> <!-- single column content here -->
+		<div class="col-lg-9 pad-lat-0">
+			<%= yield :h %>
+			<div class="bg-white col-lg-12 float-left"><%= yield %></div>
+		</div>
+		<div id="right" class="col-lg-3"><%= yield :r2 %><!-- rightbar here --></div>
+		</div><!-- end div content -->
+
+		<div class="row">
+	</div>
+
+	</div>
+</body>
+
+</html>

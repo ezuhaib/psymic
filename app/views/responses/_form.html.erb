@@ -1,0 +1,17 @@
+<% # This form is fully ajax-ready but remote is disabled currently. %>
+
+<%= form_for [@response.mindlog , @response] , html:{class:"form clearfix"} do |f| %>
+	
+	<div class="col-md-9">
+		<%= f.text_area :body , :size=>'30x3', :class=>"form-control", placeholder:"Your input over this is welcome..." %>
+	</div>
+	
+	<%= f.hidden_field :mindlog_id %>
+
+	<div class="col-md-3">
+		<%= f.select :nature, ["general","explanation","solution","critique","story"] , {}, :class=>"selectpicker form-control" ,"data-style"=>"btn-themed"  %>
+		</br>
+		<%= f.submit :Post, :class=>"form-control btn-themed", style:"margin-top: 8px;" %>
+	</div>
+	
+<% end %>

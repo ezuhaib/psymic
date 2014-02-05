@@ -1,0 +1,18 @@
+<div class="col-xs-12 pad-x2-md">
+	<h1>Can you help me?</h1>
+
+	<p class="lead">Yup!</p>
+
+	<p>If you know what support groups are, you know what Psymic is. Just walk-in with your troubles, share them, and walk-out with a mind feeling less burdened from feelings unshared, and a mind possibly better equipped to handle those troubles.</p>
+
+	<p>All you have to do is to post mindlogs about how you feel. Don't worry about posting conventions, share however you wish to share. Psymic will enhance your posting for you.</p>
+
+	<p>Generally, our focus would be to help you deal with whatever you went through. Secondarily, you would be asked further details of the events so that we may better record the circumstances that lead to the event, for you and others.</p>
+
+	</br>
+	<% if can? :create , Mindlog %>
+		<%= link_to "Let's go" , new_mindlog_path , class:"btn btn-lg btn-success" %>
+	<% end %>
+
+</div>
+
