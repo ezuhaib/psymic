@@ -1,0 +1,18 @@
+<h1>My Subscriptions
+<span class="float-right"><%= button_to "Mark all as Read" , clear_subscriptions_path , class:"btn btn-primary" %></span>
+</h1>
+</br>
+<p>You are subscribed to <%= @subscriptions.count %> items, out of which <%= @subscriptions.where(counter:1).count %> have new updates.</p>
+
+<table class="table table-striped">
+<% @subscriptions.each do |s| %>
+  <tr>
+		<td><% if s.counter >= 1 %><div class="badge"><%= s.counter %></div><% end %></td>
+		<td><%= link_to s.subscribable.title, polymorphic_path(s.subscribable)  %>
+		<span class="smalltext">Subscribed <%= distance_of_time_in_words(Time.now,s.created_at,true,{:highest_measure_only=>true}) %> ago</span>
+		</td>
+		<td><% if can? :destroy , s %>
+		<%= button_to 'Unsubscribe', s , :method=> :delete, :confirm=> 'Are you sure?' , class:"btn btn-danger btn-sm" %><% end %></td>
+  		</tr>
+<% end %>
+</table>

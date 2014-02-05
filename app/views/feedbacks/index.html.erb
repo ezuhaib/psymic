@@ -1,0 +1,18 @@
+<div class="bg-dark row">
+	
+	<div class="col-xs-12">
+		<%= image_tag 'icon-open.png' , class:"col-sm-2 hidden-xs pad-top-20" %>
+		<div class="col-sm-10">
+			<h2>Psymic Meta</h2>
+			<p>Public feedback related to Psymic, feature requests, bug reports, and anything else aimed at making Psymic better.</p></br>
+		</div>
+	</div>
+</div>
+
+<%= form_for(@feedback, html: {class:"form green-focus col-xs-12"}) do |f| %>
+<div class="col-md-9"><%= f.text_area :body , size: '30x3' , placeholder:"Please tag your feedback appropriately via the select box on right", class:'form-control mar-bottom-10' , style:'background-color: #E9FFE1'%></div>
+<div class="col-md-3"><%= f.select :nature , Feedback.natures, {} , class: 'selectpicker form-control', "data-style"=>"btn-default" %>
+</br><%= f.submit :submit , class: 'btn btn-success form-control' , style:"margin-top: 8px;"%></div>
+<% end %>
+
+<%= render 'list' %>		

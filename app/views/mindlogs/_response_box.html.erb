@@ -1,0 +1,2 @@
+<span style="font-size:55px; line-height:0.8; color:#900;"><%= @mindlog.responses.count %></span>
+<%= link_to (image_tag "icon_respond.png" , :title=>"respond to this mindlog", onclick:"$('#response_form').fadeToggle();event.preventDefault();") , mindlog_responses_path(@mindlog) %>	

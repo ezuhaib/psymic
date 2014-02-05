@@ -1,0 +1,8 @@
+<table class="table table-striped">
+<% @mindlogs.each do |mindlog| %>
+<tr>
+		<td class="col-lg-9"><%= link_to mindlog.title, mindlog %></td>
+		<td class="col-lg-3 text-right">by <%= link_to mindlog.user.username, mindlog.user %></td>
+ </tr>
+<% end %>
+</table>

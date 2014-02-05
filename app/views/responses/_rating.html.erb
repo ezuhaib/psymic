@@ -1,0 +1,23 @@
+	<div class="rating_container">
+
+	<% if response.users.include? current_user %>
+	<% @value = true if response.votes.find_by_user_id(current_user).value == 1%>
+	
+	<div class="upvote">
+	<%= link_to (image_tag @value ? 'upvote-active.png' : 'upvote-inactive.png' , :alt=>'upvote') , vote_mindlog_response_path(response.mindlog, response)+'?q=up' , :remote=> true %>
+	</div>
+
+	<div class="rating_number"><%= response.votes.pluck(:value).sum %></div>
+	
+	<div class="downvote">
+	<%= link_to (image_tag @value ? 'downvote-inactive.png' : 'downvote-active.png' , :alt=>'downvote') , vote_mindlog_response_path(response.mindlog, response)+'?q=down' , :remote=> true %>
+	</div>
+
+	<% else %>
+
+	<div class="upvote"><%= link_to (image_tag 'upvote-inactive.png' , :alt=>'upvote') , vote_mindlog_response_path(response.mindlog, response)+'?q=up' , :remote=> true %></div>
+	<div class="rating_number"><%= response.votes.pluck(:value).sum %></div>
+	<div class="downvote"><%= link_to (image_tag 'downvote-inactive.png' , :alt=>'downvote') , vote_mindlog_response_path(response.mindlog, response)+'?q=down' , :remote=> true %></div>
+
+	<% end %>
+	</div>

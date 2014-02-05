@@ -1,0 +1,17 @@
+<div class="comment_box">
+
+<div class="comments-list">
+<%= render partial:'comments/comment', collection: @commentable.comments %>
+</div>
+
+<% if can? :create , @commentable.comments.new %>
+<%= form_for @commentable.comments.new, remote: true do |f| %>
+    <span class="row col-sm-10"><%= f.text_area :body , :size=>'45x1' , :class=>'form-control' , style:"resize: none" %></span>
+    <%= f.hidden_field :commentable_type %>
+    <%= f.hidden_field :commentable_id %>
+    <span class="col-sm-2"><%= f.submit :Comment , :class=>"btn btn-default btn-sm" %></span>
+<% end %>
+
+<% else %>
+<p>Please <%= link_to "Login", new_user_session_path %> to comment.</p>
+<% end %>

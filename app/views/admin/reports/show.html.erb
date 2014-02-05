@@ -1,0 +1,27 @@
+<h1>Community Report</h1>
+<b class='col-lg-1'>Type</b>
+<span class='col-lg-11'>Mindlog</span>
+
+<b class='col-lg-1'>Title</b>
+<span class='col-lg-11'><%= @reportable.title %></span>
+
+<table class="table">
+
+<tr>
+	<th class="col-lg-5">Issue</th>
+	<th class="col-lg-7">Incidences</th>
+</tr>
+
+<% Flag.all.each do |flag| %>
+
+<% @incidences = @reportable.reports.where("flag_id = ?",flag.id).count %>
+<% if @incidences > 0 %>
+
+<tr>
+	<td><%= flag.title %></td>
+	<td><%= @incidences %></td>
+</tr>
+
+<% end %>
+<% end %>
+</table>

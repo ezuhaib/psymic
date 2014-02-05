@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cerebron</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+ 	<script type="text/javascript"><%= yield(:js) %>
+ 	  
+        $( document ).ready(function(){
+        	$('.selectpicker').selectpicker();
+        	$('#menu_link').sidr({source: '#links_wrapper'});
+        });
+
+        $(".pagination a").live("click",function(){
+        	$(".pagination").html("<%= escape_javascript(image_tag "loading_mini.gif") %>")})
+
+	</script>
+  	<%= csrf_meta_tags %>
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div id = "top-streak" class="hidden-xs hidden-sm"></div>
+<div id="top-menu-spacer" class=" hidden-md hidden-lg tout"><div id = "top-menu">
+	<%= link_to image_tag("icon-menu.png") , '#' , class:"btn btn-sm" , id:"menu_link"%> 
+	<%= link_to image_tag("psymic-mini.png"), root_path %>
+</div></div>
+<div class="container">
+	<div id="sidebar_container" class="col-md-2"><%= render 'layouts/sidebar' %></div>
+	<div id="semi_container" class="col-md-8">
+		<%= render partial: "alerts" %>
+		<div id="content" class="bg-white col-xs-12"><%= yield %>
+		<div id="footer_b" class="fixed-8">We need developers, psychologists and editors. Please join our cause.</div>
+		</div>
+	</div>
+	<div id="right" class="col-md-2 col-xs-12"><%= yield :r2 %></div>
+
+</div>
+</body>
+
+</html>

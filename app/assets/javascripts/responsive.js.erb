@@ -1,0 +1,30 @@
+// Supplements bootstrap in creating layouts for phones and tablets
+// todo: test extensively to make sure fallback coding isn't required
+// Created for psymic by ezuhaib
+
+$(document).ready(function(){responsiveActions()});
+$(window).resize(function(){responsiveActions()});
+
+function responsiveActions(){
+	if ($(".tout").css("display") != "none"){
+		if(typeof $x == 'undefined'){
+	
+			$x = 1;
+			$prev = $("#collapsing_button button").html();
+			$("#collapsing_button button").html('<%= image_tag "icon-settings-3.png" %>');
+			$("#moveable").detach().prependTo("#destiny");
+			$("#response_form").hide();
+			$prevRows = $("textarea").attr('rows')
+			$("textarea").attr('rows',3);
+	}}
+
+	//the following gets executed only when returning from sm or xs layout
+	else if(typeof $prev != 'undefined') {
+		$("#collapsing_button button").html($prev);
+		$("#moveable").detach().prependTo("#right");
+		$("#response_form").show();	
+		$("textarea").attr('rows',$prevRows);
+		$x = undefined
+		$prev = undefined
+	}
+}

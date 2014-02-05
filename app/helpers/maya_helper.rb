@@ -1,0 +1,2 @@
+module MayaHelper
+end

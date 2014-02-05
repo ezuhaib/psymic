@@ -1,0 +1,26 @@
+<div class="col-xs-12 pad-x2-md">
+<h1>How can I help?</h1>
+<p class="lead">Psymic is a baby, in serious need of enthusiasts who take the project forward. We are especially in need of...</p>
+<dl class="ol-themed">
+<dt>Programmers</dt><dd>This project is based on <i>Ruby on Rails</i>, so we need RoR developers, so that the project may be pushed from current alpha to a rather finished product. The technical bottlenecks have to be cleared before anything else.</dd>
+<dt>Designers</dt><dd>We need people who can help with web design in any way.</dd>
+<dt>Artists</dt><dd>Those who can help draw comics based on the the preliminary Psymic mascot.</dd>
+<dt>Marketers</dt><dd>People with basic experience in social marketing could help popularize Psymic.</dd>
+<dt>Editors</dt><dd>Those willing to moderate postings at psymic.</dd>
+<dt>Psychologists or Psychology nerds</dt><dd>People who could add scientific or close-to-science explanations and critiques to things people report.</dd>
+<dt>Financers</dt><dd>Psymic has no source of funds yet, and since Project Psymic wouldn't ever be commercialized, we need funds to sustain.</dd>
+<dt>Core Contributors</dt><dd>Those who could help plan for Psymic, polish it's working philosophy and lead the whole project.</dd>
+<dt>Users</dt><dd>Psymic needs users the most... So <%= link_to 'join now', new_user_registration_path %>, if you haven't already.</dd>
+</dl>
+
+<%# todo Reduce logic in view %>
+</br><h3>Let us know what you can help us with</h3>
+<% if current_user and !current_user.offer %>
+	<%= render 'offers/form' %>
+<% elsif current_user %>
+	<%= render 'offers/interaction' %>
+<% else %>
+	<p>Please <%= link_to "create an account" , new_user_registration_path %> first and then return here.</p>
+<% end %></br>
+
+</div>

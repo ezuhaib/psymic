@@ -1,0 +1,16 @@
+<%= content_for :c do %>
+<h2>Mindlogs by <span class="text-red"><%= link_to @user.username , @user %></span></h2>
+<% end %>
+
+</br>
+<p>The user has published a total of <%= @mindlogs.count %> mindlogs.</p>
+<table class="table table-striped">
+<th>Title</th>
+<th>When?</th>
+<% @mindlogs.each do |m| %>
+	<tr>
+	<td><%= link_to m.title, m %></td>
+	<td><%= distance_of_time_in_words(Time.now,m.created_at,true,highest_measure_only:true) %> ago</td>
+	</tr>
+<% end %>
+</table>

@@ -1,0 +1,22 @@
+<table class="col-sm-12">
+<tr id="commentable-<%= response.id %>">
+<td class="rating">
+<%= render partial: "responses/rating" , locals: {:response => response} %>
+</td>
+
+<td id="response_entry">
+<div class="pad-10 mar-vert-5 type-<%= response.nature %>"><%= response.body %>
+
+
+<div class="text-light">
+by <%= link_to response.user.username,response.user%>
+<% if can? :update , response %> <%= link_to '', edit_mindlog_response_path(response.mindlog,response) , class:"glyphicon glyphicon-pencil" %><% end %>
+<% if can? :destroy , response %> <%= link_to '', [response.mindlog, response] , :remote=> true , :method=> :delete, class:"glyphicon glyphicon-trash" , :confirm=> 'Are you sure?' , :remote=>true %></span><% end %>
+ <% if can? :read , Comment %><%= link_to '' , get_comments(response) , :remote=> true , class:"glyphicon glyphicon-comment" %> <%= response.comments.count %></div><% end %>
+</div>
+
+<div class="comment-js"></div>
+</td>
+
+</tr>
+</table>

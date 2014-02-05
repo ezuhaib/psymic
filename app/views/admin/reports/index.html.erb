@@ -1,0 +1,20 @@
+<h2>Community Reports</h2>
+<p>Psymic is a small community so far. It largely relies on public reportings to maintain quality control. Please keep a check over these reports.</p>
+
+<table class="table">
+
+  <tr>
+  	<th class="col-lg-9">Mindlog title</th>
+  	<th class="col-lg-3">Pending Reports</th>
+  </tr>
+
+<% @mindlogs.each do |mindlog| %>
+
+  <tr>
+	<td><%= link_to mindlog.title , admin_report_path('mindlog',mindlog.id) %></td>
+	<td><%= mindlog.reports_counter %></td>
+  </tr>
+
+<% end %>
+</table>
+<br />

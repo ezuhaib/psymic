@@ -1,0 +1,11 @@
+<h2>Flagging</h2>
+<h1><%= link_to @mindlog.title , @mindlog%></h1>
+<p>Flagging helps make the content over this website better</p>
+<%= form_tag report_mindlog_path(@mindlog) do %>
+<% Flag.all.each do |f| %>
+<%= radio_button_tag 'flag' , f.id %>
+<%= label_tag 'flag' , f.title %>
+</br>
+<% end %>
+<%= submit_tag :Report %>
+<% end %>
