@@ -27,6 +27,8 @@ group :development do
 	gem 'better_errors'
   	gem 'binding_of_caller'
   	gem 'meta_request'
+  	gem 'quiet_assets'
+  	gem 'rack-mini-profiler'
 end
 
 # Gems used only for assets and not required
