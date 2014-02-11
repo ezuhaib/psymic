@@ -1,4 +1,4 @@
-Cerebron::Application.routes.draw do
+Psymic::Application.routes.draw do
 
   resources :offers
   resources :feedbacks do

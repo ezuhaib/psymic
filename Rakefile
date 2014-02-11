@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Cerebron::Application.load_tasks
+Psymic::Application.load_tasks
