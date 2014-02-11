@@ -1,0 +1,1494 @@
+
+---
+comments:
+  columns:
+  - id
+  - body
+  - user_id
+  - commentable_type
+  - commentable_id
+  - created_at
+  - updated_at
+  records: 
+  - - 9
+    - This comment should be destroyed soon.
+    - 3
+    - Mlexplanation
+    - 1
+    - '2013-10-06 15:24:48.443716'
+    - '2013-10-06 15:24:48.443716'
+  - - 12
+    - When I tried to contact lorem ipsum dolor sit amet and I could’t. Then I killed
+      the cat and fed it to the dog. The dog was obliged.
+    - 3
+    - Mlexplanation
+    - 3
+    - '2013-10-06 15:33:06.016176'
+    - '2013-10-06 15:33:06.016176'
+  - - 22
+    - I kill the king when the nation needs him the most
+    - 2
+    - Response
+    - 84
+    - '2013-10-20 17:20:12.322903'
+    - '2013-10-20 17:20:12.322903'
+  - - 30
+    - I kill the king when the nation needs him the most
+    - 2
+    - Response
+    - 84
+    - '2013-10-20 17:35:12.723403'
+    - '2013-10-20 17:35:12.723403'
+  - - 31
+    - I play when I cannot I kill the king when the nation needs him the most. I kill
+      the king when the nation needs him the most.I kill the king when the nation
+      needs him the most.I kill the king when the nation needs him the most.
+    - 2
+    - Response
+    - 84
+    - '2013-10-20 17:35:24.654085'
+    - '2013-10-20 17:35:24.654085'
+  - - 55
+    - Yes I like this.
+    - 2
+    - Response
+    - 84
+    - '2014-01-24 14:17:26.214227'
+    - '2014-01-24 14:17:26.214227'
+  - - 62
+    - Lets see if this comment works fine.
+    - 2
+    - Feedback
+    - 6
+    - '2014-01-27 18:14:03.458122'
+    - '2014-01-27 18:14:03.458122'
+  - - 63
+    - Lets see if this comment works fine.
+    - 2
+    - Feedback
+    - 6
+    - '2014-01-27 18:14:13.431693'
+    - '2014-01-27 18:14:13.431693'
+  - - 65
+    - Yup... here it comes.
+    - 2
+    - Feedback
+    - 6
+    - '2014-01-27 18:21:56.417174'
+    - '2014-01-27 18:21:56.417174'
+  - - 66
+    - Perfect.
+    - 2
+    - Feedback
+    - 6
+    - '2014-01-27 18:22:50.178249'
+    - '2014-01-27 18:22:50.178249'
+  - - 67
+    - Here goes a sample comment.
+    - 2
+    - Feedback
+    - 11
+    - '2014-01-31 19:49:49.133532'
+    - '2014-01-31 19:49:49.133532'
+  - - 68
+    - And along comes another...
+    - 2
+    - Feedback
+    - 11
+    - '2014-01-31 20:14:04.312764'
+    - '2014-01-31 20:14:04.312764'
+  - - 69
+    - I believe you are a precious asset to psymic.
+    - 2
+    - Offer
+    - 5
+    - '2014-01-31 21:07:05.355709'
+    - '2014-01-31 21:07:05.355709'
+  - - 70
+    - Seeing if this form works well for us.
+    - 2
+    - ''
+    - 
+    - '2014-01-31 21:37:22.044618'
+    - '2014-01-31 21:37:22.044618'
+  - - 71
+    - No this isn't working fine.
+    - 2
+    - ''
+    - 
+    - '2014-01-31 21:37:39.784632'
+    - '2014-01-31 21:37:39.784632'
+  - - 72
+    - No this isn't working fine.
+    - 2
+    - ''
+    - 
+    - '2014-01-31 21:37:41.132709'
+    - '2014-01-31 21:37:41.132709'
+  - - 73
+    - why not?
+    - 2
+    - ''
+    - 
+    - '2014-01-31 21:37:55.937556'
+    - '2014-01-31 21:37:55.937556'
+  - - 74
+    - Trying my luck over this one.
+    - 2
+    - ''
+    - 
+    - '2014-01-31 21:44:51.532327'
+    - '2014-01-31 21:44:51.532327'
+  - - 75
+    - Trying my luck over this one.
+    - 2
+    - ''
+    - 
+    - '2014-01-31 21:44:52.046356'
+    - '2014-01-31 21:44:52.046356'
+  - - 77
+    - Ipsum.
+    - 2
+    - Offer
+    - 5
+    - '2014-01-31 21:57:08.361471'
+    - '2014-01-31 21:57:08.361471'
+  - - 78
+    - Here goes another.
+    - 2
+    - Offer
+    - 5
+    - '2014-01-31 21:58:28.928079'
+    - '2014-01-31 21:58:28.928079'
+  - - 80
+    - here it goes
+    - 2
+    - Offer
+    - 5
+    - '2014-01-31 22:01:29.059382'
+    - '2014-01-31 22:01:29.059382'
+  - - 82
+    - yupeeeeeeeeee
+    - 2
+    - Offer
+    - 5
+    - '2014-01-31 22:06:22.700178'
+    - '2014-01-31 22:06:22.700178'
+  - - 83
+    - oh wow! :D
+    - 2
+    - Offer
+    - 5
+    - '2014-01-31 22:06:32.660747'
+    - '2014-01-31 22:06:32.660747'
+  - - 84
+    - working perfectly now.
+    - 2
+    - Offer
+    - 5
+    - '2014-01-31 22:18:30.276793'
+    - '2014-01-31 22:18:30.276793'
+  - - 85
+    - yes, it's going on pretty well.
+    - 2
+    - Offer
+    - 5
+    - '2014-01-31 22:27:18.956031'
+    - '2014-01-31 22:27:18.956031'
+  - - 86
+    - yeeeeesssssssssss
+    - 2
+    - Offer
+    - 5
+    - '2014-01-31 23:00:15.855103'
+    - '2014-01-31 23:00:15.855103'
+  - - 87
+    - is it working well?
+    - 2
+    - Response
+    - 132
+    - '2014-01-31 23:29:21.639957'
+    - '2014-01-31 23:29:21.639957'
+  - - 88
+    - still working,wow
+    - 2
+    - Offer
+    - 5
+    - '2014-01-31 23:40:18.406521'
+    - '2014-01-31 23:40:18.406521'
+  - - 89
+    - working wow
+    - 2
+    - Offer
+    - 5
+    - '2014-01-31 23:40:56.274687'
+    - '2014-01-31 23:40:56.274687'
+  - - 90
+    - Lorem ipsum
+    - 2
+    - Response
+    - 132
+    - '2014-01-31 23:42:56.988592'
+    - '2014-01-31 23:42:56.988592'
+  - - 91
+    - works fine?
+    - 2
+    - Response
+    - 132
+    - '2014-02-01 00:10:07.273839'
+    - '2014-02-01 00:10:07.273839'
+  - - 92
+    - not clearing forms
+    - 2
+    - Response
+    - 132
+    - '2014-02-01 00:17:44.125969'
+    - '2014-02-01 00:17:44.125969'
+  - - 93
+    - I can comment too. :)
+    - 2
+    - Offer
+    - 5
+    - '2014-02-01 07:38:50.557373'
+    - '2014-02-01 07:38:50.557373'
+  - - 94
+    - I can comment too. :)
+    - 2
+    - Offer
+    - 5
+    - '2014-02-01 07:38:53.119520'
+    - '2014-02-01 07:38:53.119520'
+  - - 95
+    - This is the working.
+    - 2
+    - Offer
+    - 5
+    - '2014-02-01 08:46:27.851643'
+    - '2014-02-01 08:46:27.851643'
+  - - 96
+    - In ajax.
+    - 2
+    - Offer
+    - 5
+    - '2014-02-01 08:47:27.101032'
+    - '2014-02-01 08:47:27.101032'
+  - - 97
+    - Now full ajax.
+    - 2
+    - Offer
+    - 5
+    - '2014-02-01 08:47:56.436710'
+    - '2014-02-01 08:47:56.436710'
+  - - 98
+    - Chechoooha.
+    - 2
+    - Offer
+    - 5
+    - '2014-02-01 08:52:02.971811'
+    - '2014-02-01 08:52:02.971811'
+
+---
+roles:
+  columns:
+  - id
+  - title
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - admin
+    - '2013-10-06 14:21:27.492314'
+    - '2013-10-06 14:21:27.492314'
+  - - 2
+    - moderator
+    - '2013-10-06 14:22:12.670898'
+    - '2013-10-06 14:22:12.670898'
+
+---
+roles_users:
+  columns:
+  - role_id
+  - user_id
+  records: 
+  - - 1
+    - 2
+
+---
+SQLITEADMIN_QUERIES:
+  columns:
+  - ID
+  - NAME
+  - SQL
+  records: 
+  - - 1
+    - mlexplanations_INDEX_BACKUP_1381090127
+    - ! "CREATE INDEX [index_mlexplanations_on_mindlog_id] ON [mlexplanations](\r\n[mindlog_id]
+      \ ASC\r\n);"
+
+---
+flags:
+  columns:
+  - id
+  - title
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Content Grammatically incorrect
+    - '2013-10-06 16:11:30.902008'
+    - '2013-10-06 16:11:30.902008'
+  - - 2
+    - Irrelevant to Psymic
+    - '2013-10-06 16:12:09.603221'
+    - '2013-10-06 16:12:09.603221'
+  - - 3
+    - Inappropriate way of expression
+    - '2013-10-06 16:12:38.180856'
+    - '2013-10-06 16:12:38.180856'
+  - - 4
+    - Spam
+    - '2013-10-06 16:13:01.932214'
+    - '2013-10-06 16:13:01.932214'
+  - - 5
+    - Repetition (Of? Add in comments)
+    - '2013-10-06 16:13:33.117998'
+    - '2013-10-06 16:13:33.117998'
+  - - 6
+    - Pliagrized
+    - '2013-10-06 16:14:11.471192'
+    - '2013-10-06 16:14:11.471192'
+
+---
+notifications:
+  columns:
+  - id
+  - user_id
+  - counter
+  - created_at
+  - updated_at
+  - text
+  - tag
+  - scope
+  records: 
+  - - 14
+    - 2
+    - 0
+    - '2013-10-10 09:58:00.922691'
+    - '2013-10-10 12:29:35.995900'
+    - <span class='number'>2</span> new explanations for <a href="mindlogs/7">I play
+      when I cannot</a>
+    - new_notification
+    - mindlogs/7
+  - - 15
+    - 2
+    - 0
+    - '2013-10-10 10:44:40.686829'
+    - '2013-10-10 11:34:15.310967'
+    - New explanation for <a href="mindlogs/10">I have fun talking with people</a>
+    - new_notification
+    - mindlogs/10
+  - - 16
+    - 2
+    - 0
+    - '2013-10-10 15:36:49.197931'
+    - '2014-01-24 14:32:55.853399'
+    - New explanation for I play when I cannot
+    - new_explanation
+    - mindlogs/7
+  - - 17
+    - 2
+    - 0
+    - '2014-01-24 14:38:38.745012'
+    - '2014-01-24 14:38:48.234554'
+    - New solution for I play when I cannot
+    - new_solution
+    - mindlogs/7
+  - - 18
+    - 2
+    - 0
+    - '2014-01-24 14:41:42.720535'
+    - '2014-01-24 14:45:41.397186'
+    - <span class='number'>2</span> new explanations for I play when I cannot
+    - new_general
+    - mindlogs/7
+  - - 19
+    - 2
+    - 0
+    - '2014-01-24 15:03:18.472647'
+    - '2014-02-02 11:57:18.152439'
+    - <span class='badge'>13</span> new responses to I play when I cannot
+    - new_response
+    - mindlogs/7
+  - - 20
+    - 2
+    - 0
+    - '2014-01-24 15:34:16.070896'
+    - '2014-01-24 15:34:29.618671'
+    - <span class='badge'>2</span> new responses to <a href="mindlogs/8">Not replies
+      when I sleep</a>
+    - new_response
+    - mindlogs/8
+  - - 21
+    - 2
+    - 0
+    - '2014-01-24 15:37:13.823063'
+    - '2014-01-24 15:37:28.330892'
+    - New response to <a href="mindlogs/10">I have fun talking with people</a>
+    - new_response
+    - mindlogs/10
+
+---
+likes:
+  columns:
+  - id
+  - user_id
+  - created_at
+  - updated_at
+  - likeable_type
+  - likeable_id
+  records: 
+  - - 137
+    - 2
+    - '2013-11-13 11:32:59.435158'
+    - '2013-11-13 11:32:59.435158'
+    - Mindlog
+    - 11
+  - - 138
+    - 2
+    - '2013-11-13 13:39:02.612617'
+    - '2013-11-13 13:39:02.612617'
+    - Mindlog
+    - 8
+
+---
+tags:
+  columns:
+  - id
+  - name
+  records: 
+  - - 1
+    - pakistan
+  - - 2
+    - playing
+  - - 3
+    - self
+  - - 7
+    - america
+  - - 8
+    - sleep
+  - - 9
+    - ocpd
+  - - 10
+    - maya
+  - - 11
+    - fun
+  - - 12
+    - social
+  - - 13
+    - interactivity
+  - - 14
+    - explosions
+  - - 15
+    - deferred gratification
+  - - 16
+    - world
+  - - 17
+    - politics
+  - - 18
+    - philosophy
+  - - 19
+    - asia
+  - - 20
+    - religion
+  - - 21
+    - hoarding
+  - - 22
+    - procrastination
+  - - 23
+    - life
+  - - 24
+    - troubles
+  - - 25
+    - staring
+  - - 26
+    - anger
+  - - 27
+    - rage
+
+---
+taggings:
+  columns:
+  - id
+  - tag_id
+  - taggable_id
+  - taggable_type
+  - tagger_id
+  - tagger_type
+  - context
+  - created_at
+  records: 
+  - - 10
+    - 3
+    - 7
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2013-10-20 15:19:54.696078'
+  - - 13
+    - 1
+    - 7
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2013-10-20 15:38:14.830002'
+  - - 17
+    - 8
+    - 8
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2013-11-12 17:12:23.865235'
+  - - 18
+    - 9
+    - 8
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2013-11-12 17:12:23.871236'
+  - - 19
+    - 10
+    - 8
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2013-11-12 17:12:23.875236'
+  - - 20
+    - 11
+    - 10
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2013-11-12 17:12:55.927069'
+  - - 21
+    - 12
+    - 10
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2013-11-12 17:12:55.931069'
+  - - 22
+    - 13
+    - 10
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2013-11-12 17:12:55.935070'
+  - - 23
+    - 14
+    - 11
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2013-11-12 17:13:25.170742'
+  - - 25
+    - 16
+    - 11
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 15:01:42.917763'
+  - - 26
+    - 17
+    - 11
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 15:01:42.924764'
+  - - 27
+    - 18
+    - 11
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 15:01:42.929764'
+  - - 28
+    - 19
+    - 11
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 15:01:42.934764'
+  - - 29
+    - 20
+    - 11
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 15:01:42.939764'
+  - - 30
+    - 21
+    - 11
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 15:01:42.944765'
+  - - 31
+    - 22
+    - 11
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 15:01:42.951765'
+  - - 32
+    - 23
+    - 12
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 16:44:45.051361'
+  - - 33
+    - 24
+    - 12
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 16:44:45.054361'
+  - - 34
+    - 25
+    - 13
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 16:47:57.092345'
+  - - 35
+    - 26
+    - 14
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 16:48:25.749984'
+  - - 36
+    - 27
+    - 14
+    - Mindlog
+    - 
+    - 
+    - topics
+    - '2014-01-28 16:48:25.751984'
+
+---
+subscriptions:
+  columns:
+  - id
+  - user_id
+  - subscribable_type
+  - subscribable_id
+  - created_at
+  - updated_at
+  - counter
+  records: 
+  - - 3
+    - 2
+    - Mindlog
+    - 8
+    - '2013-10-08 15:51:02.795440'
+    - '2014-01-24 15:36:20.975040'
+    - 0
+  - - 4
+    - 2
+    - Mindlog
+    - 10
+    - '2013-10-08 16:03:56.093670'
+    - '2014-01-24 15:37:13.821063'
+    - 1
+  - - 18
+    - 2
+    - Mindlog
+    - 7
+    - '2014-01-04 17:22:27.550885'
+    - '2014-01-31 23:28:59.514691'
+    - 71
+
+---
+reports:
+  columns:
+  - id
+  - flag_id
+  - user_id
+  - reportable_type
+  - reportable_id
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - 4
+    - 2
+    - Mindlog
+    - 7
+    - '2013-11-13 19:03:21.831621'
+    - '2013-11-13 19:03:21.831621'
+  - - 2
+    - 6
+    - 2
+    - Mindlog
+    - 7
+    - '2013-11-13 19:14:43.500610'
+    - '2013-11-13 19:14:43.500610'
+  - - 3
+    - 1
+    - 2
+    - Mindlog
+    - 7
+    - '2013-11-13 20:57:13.151350'
+    - '2013-11-13 20:57:13.151350'
+  - - 4
+    - 3
+    - 2
+    - Mindlog
+    - 7
+    - '2014-01-19 16:11:42.526838'
+    - '2014-01-19 16:11:42.526838'
+  - - 5
+    - 2
+    - 2
+    - Mindlog
+    - 14
+    - '2014-02-01 11:28:45.044858'
+    - '2014-02-01 11:28:45.044858'
+  - - 6
+    - 5
+    - 2
+    - Mindlog
+    - 12
+    - '2014-02-01 11:31:42.406002'
+    - '2014-02-01 11:31:42.406002'
+
+---
+votes:
+  columns:
+  - id
+  - response_id
+  - user_id
+  - created_at
+  - updated_at
+  - value
+  records: 
+  - - 11
+    - 84
+    - 2
+    - '2014-01-24 07:23:08.053457'
+    - '2014-01-24 07:23:08.053457'
+    - 1
+  - - 13
+    - 67
+    - 2
+    - '2014-01-24 07:23:16.727072'
+    - '2014-01-24 07:23:16.727072'
+    - 1
+  - - 25
+    - 100
+    - 3
+    - '2014-01-24 20:29:16.126053'
+    - '2014-01-24 20:29:16.126053'
+    - 1
+  - - 26
+    - 82
+    - 3
+    - '2014-01-24 20:46:20.755743'
+    - '2014-01-24 20:46:20.755743'
+    - 1
+  - - 44
+    - 100
+    - 2
+    - '2014-01-24 21:08:06.594025'
+    - '2014-01-24 21:08:06.594025'
+    - -1
+  - - 45
+    - 101
+    - 2
+    - '2014-01-24 21:08:08.481628'
+    - '2014-01-24 21:08:08.481628'
+    - 1
+  - - 46
+    - 82
+    - 2
+    - '2014-01-24 21:08:22.927253'
+    - '2014-01-24 21:08:22.927253'
+    - 1
+  - - 49
+    - 123
+    - 2
+    - '2014-01-29 16:19:08.042611'
+    - '2014-01-29 16:19:08.042611'
+    - 1
+  - - 51
+    - 128
+    - 2
+    - '2014-01-29 16:19:32.997039'
+    - '2014-01-29 16:19:32.997039'
+    - 1
+  - - 52
+    - 125
+    - 2
+    - '2014-01-29 19:30:53.478685'
+    - '2014-01-29 19:30:53.478685'
+    - 1
+  - - 53
+    - 132
+    - 2
+    - '2014-01-31 23:28:59.503690'
+    - '2014-01-31 23:28:59.503690'
+    - -1
+
+---
+responses:
+  columns:
+  - id
+  - body
+  - mindlog_id
+  - created_at
+  - updated_at
+  - user_id
+  - rating
+  - last_commenter
+  - nature
+  records: 
+  - - 15
+    - ! 'She would not disturb me whenever I''m asleep especially if I am asleep after
+      long hours of work. '
+    - 8
+    - '2013-10-08 15:51:11.360930'
+    - '2013-10-08 15:51:11.360930'
+    - 2
+    - 
+    - 
+    - 
+  - - 16
+    - ! 'She would not disturb me whenever I''m asleep especially if I am asleep after
+      long hours of work. '
+    - 8
+    - '2013-10-08 15:51:28.499911'
+    - '2013-10-08 15:51:28.499911'
+    - 2
+    - 
+    - 
+    - 
+  - - 17
+    - ! 'She would not disturb me whenever I''m asleep especially if I am asleep after
+      long hours of work. '
+    - 8
+    - '2013-10-08 17:24:46.979125'
+    - '2013-10-08 17:24:46.979125'
+    - 2
+    - 
+    - 
+    - 
+  - - 39
+    - ':scope=>hsh[:scope]'
+    - 8
+    - '2013-10-10 09:24:52.576964'
+    - '2013-10-10 09:24:52.576964'
+    - 2
+    - 
+    - 
+    - 
+  - - 40
+    - ! '@alt = Liquid::Template.parse(hsh[:alt]).render'
+    - 8
+    - '2013-10-10 09:33:32.561706'
+    - '2013-10-10 09:33:32.561706'
+    - 2
+    - 
+    - 
+    - 
+  - - 42
+    - ! 'Then I killed the cat and fed it to the dog. The dog was obliged. '
+    - 11
+    - '2013-10-10 09:35:21.300925'
+    - '2013-10-10 09:35:21.300925'
+    - 2
+    - 
+    - 
+    - 
+  - - 60
+    - ! 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor
+      sit amet. '
+    - 10
+    - '2013-10-10 10:44:40.673828'
+    - '2013-10-10 10:44:40.673828'
+    - 2
+    - 
+    - 
+    - 
+  - - 61
+    - ! 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor
+      sit amet. '
+    - 10
+    - '2013-10-10 10:46:34.176320'
+    - '2013-10-10 10:46:34.176320'
+    - 2
+    - 
+    - 
+    - 
+  - - 62
+    - ! 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor
+      sit amet. '
+    - 10
+    - '2013-10-10 11:27:57.519359'
+    - '2013-10-10 11:27:57.519359'
+    - 2
+    - 
+    - 
+    - 
+  - - 63
+    - ! 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor
+      sit amet. '
+    - 10
+    - '2013-10-10 11:29:36.789037'
+    - '2013-10-10 11:29:36.789037'
+    - 2
+    - 
+    - 
+    - 
+  - - 64
+    - ! '"class = new_notification"'
+    - 10
+    - '2013-10-10 11:32:48.379995'
+    - '2013-10-10 11:32:48.379995'
+    - 2
+    - 
+    - 
+    - 
+  - - 65
+    - ! '"class = new_notification"'
+    - 10
+    - '2013-10-10 11:34:09.586640'
+    - '2013-10-10 11:34:09.586640'
+    - 2
+    - 
+    - 
+    - 
+  - - 67
+    - I kill the king when the nation needs him the most. I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most.I
+      kill the king when the nation needs him the most.
+    - 7
+    - '2013-10-15 09:17:48.099601'
+    - '2013-10-15 09:17:48.099601'
+    - 2
+    - 
+    - 
+    - explanation
+  - - 82
+    - I kill the king when the nation needs him the most. I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most.I
+      kill the king when the nation needs him the most.
+    - 7
+    - '2013-10-19 23:01:38.196115'
+    - '2014-01-24 21:08:22.927253'
+    - 2
+    - 2
+    - 
+    - solution
+  - - 84
+    - ! "I play when I cannot\r\nI kill the king when the nation needs him the most.
+      I kill the king when the nation needs him the most.I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most. "
+    - 7
+    - '2013-10-19 23:05:38.808877'
+    - '2014-01-24 14:17:26.225228'
+    - 2
+    - 
+    - 
+    - story
+  - - 93
+    - This is a critical post.
+    - 11
+    - '2013-11-13 08:28:31.842128'
+    - '2013-11-13 08:28:31.842128'
+    - 2
+    - 
+    - 
+    - critique
+  - - 94
+    - ! 'A general hen I tried to contact lorem ipsum dolor sit amet and I could’t.
+      Then I killed the cat and fed it to the dog. The dog was obliged. '
+    - 11
+    - '2013-11-13 08:28:57.221579'
+    - '2013-11-13 08:28:57.221579'
+    - 2
+    - 
+    - 
+    - solution
+  - - 95
+    - ! 'hen I tried to contact lorem ipsum dolor sit amet and I could’t. Then I killed
+      the cat and fed it to the dog. The dog was obliged. '
+    - 11
+    - '2013-11-13 08:29:11.588401'
+    - '2013-11-13 08:29:11.588401'
+    - 2
+    - 
+    - 
+    - general
+  - - 96
+    - A critical post yet again.
+    - 11
+    - '2013-11-13 08:29:32.265584'
+    - '2013-11-13 08:29:32.265584'
+    - 2
+    - 
+    - 
+    - critique
+  - - 97
+    - A single lined stuff.
+    - 11
+    - '2013-11-13 08:30:24.921596'
+    - '2013-11-13 08:30:24.921596'
+    - 2
+    - 
+    - 
+    - story
+  - - 100
+    - This aint no new explanation.
+    - 7
+    - '2014-01-24 14:32:41.582583'
+    - '2014-01-24 21:08:06.594025'
+    - 2
+    - 0
+    - 
+    - solution
+  - - 107
+    - This is a boogie robot.
+    - 8
+    - '2014-01-24 15:34:16.047895'
+    - '2014-01-24 15:34:16.047895'
+    - 2
+    - 
+    - 
+    - critique
+  - - 108
+    - This is a boogie robot.
+    - 8
+    - '2014-01-24 15:34:19.102069'
+    - '2014-01-24 15:34:19.102069'
+    - 2
+    - 
+    - 
+    - general
+  - - 109
+    - This is a boogie robot.
+    - 10
+    - '2014-01-24 15:37:13.817062'
+    - '2014-01-24 15:37:13.817062'
+    - 2
+    - 
+    - 
+    - general
+  - - 110
+    - ! 'I kill the king when the nation needs him the most. I kill the king when
+      the nation needs him the most.I kill the king when the nation needs him the
+      most.I kill the king when the nation needs him the most. '
+    - 7
+    - '2014-01-25 11:28:51.478919'
+    - '2014-01-25 11:28:51.478919'
+    - 2
+    - 
+    - 
+    - critique
+  - - 113
+    - I kill the king when the nation needs him the most. I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most.I
+      kill the king when the nation needs him the most.
+    - 7
+    - '2014-01-26 12:31:36.826052'
+    - '2014-01-26 12:31:36.826052'
+    - 2
+    - 
+    - 
+    - general
+  - - 114
+    - I kill the king when the nation needs him the most. I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most.I
+      kill the king when the nation needs him the most.
+    - 7
+    - '2014-01-26 12:31:43.271421'
+    - '2014-01-26 12:31:43.271421'
+    - 2
+    - 
+    - 
+    - solution
+  - - 115
+    - I kill the king when the nation needs him the most. I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most.I
+      kill the king when the nation needs him the most.
+    - 7
+    - '2014-01-26 14:30:03.980558'
+    - '2014-01-26 14:30:03.980558'
+    - 2
+    - 
+    - 
+    - general
+  - - 116
+    - I kill the king when the nation needs him the most. I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most.I
+      kill the king when the nation needs him the most.
+    - 7
+    - '2014-01-26 14:30:22.795634'
+    - '2014-01-26 14:30:22.795634'
+    - 2
+    - 
+    - 
+    - general
+  - - 117
+    - I kill the king when the nation needs him the most. I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most.I
+      kill the king when the nation needs him the most.
+    - 7
+    - '2014-01-26 14:30:26.709858'
+    - '2014-01-26 14:30:26.709858'
+    - 2
+    - 
+    - 
+    - general
+  - - 118
+    - I kill the king when the nation needs him the most. I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most.I
+      kill the king when the nation needs him the most.
+    - 7
+    - '2014-01-26 14:30:37.829494'
+    - '2014-01-26 14:30:37.829494'
+    - 2
+    - 
+    - 
+    - story
+  - - 120
+    - I kill the king when the nation needs him the most. I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most.I
+      kill the king when the nation needs him the most.
+    - 7
+    - '2014-01-26 14:30:56.398556'
+    - '2014-01-26 14:30:56.398556'
+    - 2
+    - 
+    - 
+    - general
+  - - 121
+    - I kill the king when the nation needs him the most. I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most.I
+      kill the king when the nation needs him the most.
+    - 7
+    - '2014-01-26 14:31:03.110940'
+    - '2014-01-26 14:31:03.110940'
+    - 2
+    - 
+    - 
+    - critique
+  - - 122
+    - gem 'kaminari-bootstrap', '~> 3.0.1'
+    - 7
+    - '2014-01-26 14:39:42.369640'
+    - '2014-01-26 14:39:42.369640'
+    - 2
+    - 
+    - 
+    - general
+  - - 123
+    - ! "\r\n0\r\ndownvote\r\nI kill the king when the nation needs him the most.
+      I kill the king when the nation needs him the most.I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most."
+    - 7
+    - '2014-01-26 14:39:53.973304'
+    - '2014-01-29 16:19:08.046611'
+    - 2
+    - 1
+    - 
+    - general
+  - - 131
+    - I kill the king when the nation needs him the most.I kill the king when the
+      nation needs him the most.
+    - 7
+    - '2014-01-29 19:32:16.268420'
+    - '2014-01-29 19:32:16.268420'
+    - 2
+    - 
+    - 
+    - story
+  - - 132
+    - I kill the king when the nation needs him the most.I kill the king when the
+      nation needs him the most.
+    - 7
+    - '2014-01-29 19:33:54.298027'
+    - '2014-01-31 23:28:59.508691'
+    - 2
+    - -1
+    - 
+    - explanation
+
+---
+users:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  - created_at
+  - updated_at
+  - username
+  - gender
+  - dob
+  - body
+  - country
+  records: 
+  - - 2
+    - ezuhaib@gmaila.com
+    - $2a$10$0juN2XleTIXjlcnaei58GeKKXAMXk40vrpO.fsYdr8HHjFYCwxkQK
+    - 
+    - 
+    - 
+    - 28
+    - '2014-02-11 00:45:10.151566'
+    - '2014-01-29 21:04:41.757604'
+    - 127.0.0.1
+    - 127.0.0.1
+    - '2013-10-06 07:40:03.073764'
+    - '2014-02-11 00:45:10.154568'
+    - ezuhaib
+    - male
+    - '1989-03-28'
+    - Lorem ipsum dolor sit amet killed the king for the sake of likes but then lorem
+      ipsum. Lorem ipsum dolor sit amet killed the king for the sake of likes but
+      then lorem ipsum.Lorem ipsum dolor sit amet killed the king for the sake of
+      likes but then lorem ipsum.
+    - Pakistan
+  - - 3
+    - awais.plus@gmail.com
+    - $2a$10$2bpSYCNe2SIE6zcXpOUeIuu/0XC5Jj4RRwHHroluz1Qn7kw9ARH3S
+    - 
+    - 
+    - 
+    - 6
+    - '2014-02-01 15:51:13.247838'
+    - '2014-01-25 11:04:30.384075'
+    - 127.0.0.1
+    - 127.0.0.1
+    - '2013-10-06 14:32:08.452975'
+    - '2014-02-01 15:51:13.248838'
+    - awais
+    - 
+    - 
+    - 
+    - 
+
+---
+feedbacks:
+  columns:
+  - id
+  - user_id
+  - body
+  - nature
+  - created_at
+  - updated_at
+  records: 
+  - - 4
+    - 2
+    - Here comes some feedback for psymic to enjoy.
+    - general
+    - '2014-01-27 17:05:02.739287'
+    - '2014-01-27 17:05:02.739287'
+  - - 7
+    - 2
+    - I don't know if this shall be submitted.
+    - issue
+    - '2014-01-31 14:06:42.654182'
+    - '2014-01-31 14:06:42.654182'
+  - - 9
+    - 2
+    - Lets see if this gets through.
+    - backstage
+    - '2014-01-31 14:40:51.307386'
+    - '2014-01-31 14:40:51.307386'
+  - - 10
+    - 2
+    - ! "Discussions related to Psymic as a website or it’s philosophy, feature requests,
+      bug reports, and anything else aimed at making Psymic better. But I don't know
+      why it works better tha lorem ipsum. \r\n"
+    - suggestion
+    - '2014-01-31 19:28:12.804387'
+    - '2014-01-31 19:28:12.804387'
+  - - 11
+    - 2
+    - I think the website is very very slow here in Zimbabwe.
+    - issue
+    - '2014-01-31 19:44:11.830240'
+    - '2014-01-31 19:44:11.830240'
+  - - 12
+    - 2
+    - Welcome to the Psymic Backstage. Here administrative issues are discussed. This
+      section is visible only to Psymic power users.
+    - backstage
+    - '2014-01-31 20:43:49.948896'
+    - '2014-01-31 20:43:49.948896'
+  - - 13
+    - 2
+    - Discussions related to Psymic as a website or it’s philosophy, feature requests,
+      bug reports, and anything else aimed at making Psymic better. But I don't know
+      why it works better tha lorem ipsum.
+    - backstage
+    - '2014-01-31 20:44:11.871150'
+    - '2014-01-31 20:44:11.871150'
+  - - 14
+    - 2
+    - I think the website is very very slow here in Zimbabwe.
+    - backstage
+    - '2014-01-31 20:44:33.562391'
+    - '2014-01-31 20:44:33.562391'
+  - - 15
+    - 2
+    - I cant believe its still working.
+    - general
+    - '2014-02-01 02:27:03.556783'
+    - '2014-02-01 02:27:03.556783'
+
+---
+mindlogs:
+  columns:
+  - id
+  - title
+  - description
+  - created_at
+  - updated_at
+  - user_id
+  - status
+  - reports_counter
+  records: 
+  - - 7
+    - I play when I cannot
+    - I kill the king when the nation needs him the most. I kill the king when the
+      nation needs him the most.I kill the king when the nation needs him the most.I
+      kill the king when the nation needs him the most.
+    - '2012-10-19 05:14:55.172509'
+    - '2014-01-19 16:11:42.530839'
+    - 2
+    - This is a known but unnamed concept.
+    - 3
+  - - 8
+    - Not replies when I sleep
+    - She would not disturb me whenever I'm asleep especially if I am asleep after
+      long hours of work.
+    - '2012-10-19 19:36:47.572874'
+    - '2013-11-12 17:12:23.578219'
+    - 2
+    - 
+    - 
+  - - 10
+    - I have fun talking with people
+    - Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+      amet.
+    - '2012-10-21 21:02:13.997609'
+    - '2013-11-12 17:12:55.908068'
+    - 2
+    - 
+    - 
+  - - 11
+    - The world blows up when not ready
+    - When I tried to contact lorem ipsum dolor sit amet and I could’t. Then I killed
+      the cat and fed it to the dog. The dog was obliged. When I tried to contact
+      lorem ipsum dolor sit amet and I could’t. Then I killed the cat and fed it to
+      the dog. The dog was obliged.
+    - '2013-10-06 15:34:39.295511'
+    - '2014-01-28 15:01:42.635747'
+    - 3
+    - 
+    - 
+  - - 12
+    - Life gets busy when lorem
+    - Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+      amet.
+    - '2014-01-28 16:44:45.042360'
+    - '2014-02-01 11:31:42.412003'
+    - 2
+    - 
+    - 1
+  - - 13
+    - People stare at me when I do something wrong
+    - Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+      amet.
+    - '2014-01-28 16:47:57.085345'
+    - '2014-01-28 16:47:57.085345'
+    - 2
+    - 
+    - 
+  - - 14
+    - I delete my files when angry
+    - Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+      amet.Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet. Lorem ipsum dolor
+      sit amet.
+    - '2014-01-28 16:48:25.742984'
+    - '2014-02-01 11:28:45.054858'
+    - 2
+    - 
+    - 1
+
+---
+offers:
+  columns:
+  - id
+  - user_id
+  - body
+  - created_at
+  - updated_at
+  records: 
+  - - 5
+    - 2
+    - Killing your king offers no solace indeed.
+    - '2014-01-31 07:54:25.994820'
+    - '2014-02-01 08:40:01.452542'
+  - - 6
+    - 3
+    - I can lorem ipsum dolor sit amet very creatively using dreamweaver and lorems
+      the amet sit. Those who could help plan for Psymic, polish it's working philosophy
+      and lead the whole project.
+    - '2014-02-01 15:53:43.453429'
+    - '2014-02-01 15:53:43.453429'
+
+---
+read_marks:
+  columns:
+  - id
+  - readable_id
+  - user_id
+  - readable_type
+  - timestamp
+  records: 
+  - - 1
+    - 5
+    - 2
+    - Offer
+    - '2014-01-31 07:54:25.994820'

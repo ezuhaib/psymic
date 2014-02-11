@@ -1,54 +1,60 @@
+#source 'http://tokyo-m.rubygems.org'
+#source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
-gem "rake", "~> 10.1.0"
-gem 'webrick', '~> 1.3.1'
+# Baseline
+gem 'rails', '3.2.16'
+gem 'rake'
+gem 'jbuilder'
+gem 'pg'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Unix-only gems
+platforms :ruby do
+	gem 'unicorn'
+end
 
-gem 'sqlite3'
-gem 'win32console'
+# Windows-only gems
+platforms :mswin, :mingw do
+	gem 'win32console'
+end
+
+# Development tools
+group :development do
+	gem 'webrick'
+	gem 'sqlite3'
+	gem 'yaml_db'
+	gem 'capistrano'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-	gem 'jquery-ui-rails'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
 end
 
-gem 'searchkick'
-gem 'unread'
+# Simple CSS and JS includes
 gem 'jquery-rails'
 gem 'bootstrap_form'
-gem 'devise'
-gem 'cancan'
-gem 'liquid'
+gem 'jquery-ui-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
+
+# Authentication and Authorization
+gem 'devise'
+gem 'cancan'
+
+# Gems introducing new Models
 gem 'acts-as-taggable-on'
+gem 'unread'
+
+# Usability and UI
+gem 'liquid'
 gem 'dotiw'
 gem 'country_select'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
+# Search engine
+gem 'searchkick'
