@@ -1,7 +1,8 @@
-<div id="sidebar" class="hidden-xs hidden-sm">
-
 <%# Logo %>
+
+<div id="logo" class="pull-right">
 <%= link_to (image_tag 'psymic-grey-alpha.png' , class:"img-responsive row col-md-10 pull-right") , '/' %>
+</div>
 
 <%# Button %>
 
@@ -12,7 +13,7 @@
 
 		<%   @notifications_count = Notification.where(:user_id=>current_user.id).pluck(:counter).sum %>
 		<% @subscriptions_count = current_user.subscriptions.where(counter:1).count %>
-		<div class="dropdown center margin-top-10">
+		<div class="dropdown center">
   		<button class="btn dropdown-toggle btn-themed" type="button" id="dropdownMenu1" data-toggle="dropdown">
     		@<%= current_user.username %><span class="caret"></span>
   		</button>
@@ -50,15 +51,11 @@
 </ul>
 
 <%# Secondary %>
-<ul id="secondary_links">
-	<li><%= link_to "What is it?" , page_path("introduction") %></li>
-	<li><%= link_to "How can I help?" , page_path("contribute") %></li>
-	<li><%= link_to "Can you help me?" , page_path("get-helped") %></li>
-	<li><%= link_to "Frequently Asked Q's" , page_path('faqs') %></li>
+<ul class="bottom-links pull-right">
+	<li><%= link_to "Dummy Link" , "#" %></li>
 </ul>
 
 <%# Footer %>
 <div id="footer" class="hidden-sm hidden-xs"></div>
 <div id="footer_text"><span>All rights reserved</span></div>
-</div>
 </div>

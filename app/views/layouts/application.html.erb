@@ -26,14 +26,15 @@
 	<%= link_to image_tag("psymic-mini.png"), root_path %>
 </div></div>
 <div class="container">
-	<div id="sidebar_container" class="col-md-2"><%= render 'layouts/sidebar' %></div>
+	<div class="col-md-2 sidebar_container">
+		<div class="hidden-xs hidden-sm sidebar sidebar-left"><%= render 'layouts/sidebar' %></div></div>
 	<div id="semi_container" class="col-md-8">
 		<%= render partial: "alerts" %>
 		<div id="content" class="bg-white col-xs-12"><%= yield %>
-		<div id="footer_b" class="fixed-8">We need developers, psychologists and editors. Please join our cause.</div>
+		<div id="footer_b">We need developers, psychologists and editors. Please join our cause.</div>
 		</div>
 	</div>
-	<div id="right" class="col-md-2 col-xs-12"><%= yield :r2 %></div>
+	<div class="col-md-2 col-xs-12 sidebar_container"><div class="sidebar sidebar-right"><%= yield :r2 %></div></div>
 
 </div>
 </body>
