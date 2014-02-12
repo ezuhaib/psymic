@@ -75,6 +75,9 @@ body {
     height: 100px;
 }
 
+.sidebar {height:100%;}
+.sidebar_container{padding: 10px 0;}
+
 .hidden {
     display: none;
 }
@@ -194,7 +197,8 @@ RELATED TO BOXES
     width: 1px;
 }
 
-#mindlogs_search{margin-top: -10px;margin-bottom: 15px;}
+#mindlogs_search{margin-top: -10px;margin-bottom: 5px;}
+#sort_options{margin-bottom: 10px}
 #mindlogs_header{
     height: 60px;
     background-color: #222;
@@ -488,20 +492,22 @@ td#response_entry{
     clear: both;
 }
 
-#secondary_links{
+.bottom-links{
     position: absolute;
-    bottom: 55px;
-    right: 15px;
+    bottom: 65px;
     list-style: none;
+    display: block;
 }
 
-#secondary_links a{
+.bottom-links a{
     font-weight: 300;
     font-size: 18px;
     line-height: 1.4;
-    float: right;
-    clear: both;
 }
+
+/* Calling following on default containers has no effect. Only augments positioning for fixed ones */
+.pull-right{right: 0;}
+.pull-left{left: 0;}
 
 #primary_links a:hover{
     color: $theme-color;
@@ -553,10 +559,13 @@ todo reduce reliance on !important
     color: #fff;
 }
 
-//sidebar width to be dealt with in media queries section
-#sidebar {
-    height: 100%;
-    padding:15px;
+#logo{
+    margin-bottom: 10px;
+}
+
+#psymic_list li{
+    padding: 5px 0;
+    font-size: 14px;
 }
 
 #banner{
@@ -1017,12 +1026,6 @@ TYPEAHEAD
 MEDIA QUERIES AND RESPONSIVE DESIGN
 Todo: Integrate Mixins and variables
 ****************************************/
-/* generic */
-.fixed-8{
-    position: fixed;
-    z-index: 10000;
-}
-
 /* xs */
 @media (max-width: $screen-xs-max) {
     .pull-left-xs {
@@ -1078,36 +1081,23 @@ Todo: Integrate Mixins and variables
 
     /* DIVS */
     #tag_list li {display: inline; margin-right: 4px;}
-    #right {margin: 0; text-align:center;}
     #footer_b{height: auto;width:100%;left: 0px;}
     #content{padding-bottom: 0}
-    #right{padding-bottom: 60px}
+    .sidebar-right{margin: 0;text-align:center;padding-bottom: 60px}
 }
 
 /* md */
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-    
-    #sidebar{
-        position: fixed;
-        width: 157px;
-    }
 
-    .fixed-8{
-        width:597px;
-    }
+    #footer_b , #mindlogs_header{width:597px;position: fixed;z-index: 10000;}
+    .sidebar{width:156.65px;position: fixed;z-index: 10000;}
 }
 
 /* lg */
 @media (min-width: $screen-lg-min) {
-    
-    #sidebar{
-        position: fixed;
-        width: 190px;
-    }
-    
-    .fixed-8{
-        width:730px;
-    }
+
+    #footer_b , #mindlogs_header{width:730px;position: fixed;z-index: 10000;}
+    .sidebar{width:190px;position: fixed;z-index: 10000;}
 }
 
 /* md, lg */

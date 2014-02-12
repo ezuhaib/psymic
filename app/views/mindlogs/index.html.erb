@@ -1,5 +1,5 @@
 <%# HEADER %>
-<div id="mindlogs_header" class="row fixed-8 col-xs-12">
+<div id="mindlogs_header" class="row col-xs-12">
 	<%= link_to mindlogs_path , id:"mindlogs_header_text" do %>
 	<span class="glyphicon glyphicon-leaf"></span>
 	 Mindlogs
@@ -9,8 +9,6 @@
 <div class="spacer-60"></div>
 </br>
 
-
-
 <%# SEARCH BOX %>
 <%= form_tag mindlogs_path , method: :get , id:"mindlogs_search" do %>
 	<div class="input-group">
@@ -18,6 +16,13 @@
 		<span class= "input-group-btn"><%= submit_tag "Search" , class:"btn btn-themed" %></span>
 	</div>
 <% end %>
+
+<%# SORT OPTIONS %>
+<div id="sort_options" class="text-light">
+<span><%= link_to "Latest" , mindlogs_path(do: :sort_date) %></span> | 
+<span><%= link_to "Popular" , mindlogs_path(do: :sort_popular) %></span> | 
+<span><%= link_to "Lonely" , mindlogs_path(do: :sort_lonely) %></span>
+</div>
 
 <%# THE ENTRIES %>
 <table class="table table-striped">
@@ -46,8 +51,17 @@
 	<% end %>
 </table>
 
+<%# RIGHT SIDEBAR %>
+<%= content_for :r2 do %>
+	<b>trending tags</b>
+	<ul id="tag_list">
+		<% ActsAsTaggableOn::Tag.all.each do |tag| %>
+			<li><%= link_to "##{tag.name}" , '#' , class:"tag" %></li>
+		<% end %>
+	</ul>
+<% end %>
 
-
+<%# SEARCH AUTOCOMPLETE SCRIPT %>
 <script>
 var mindlogs = new Bloodhound({
   datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.title); },
