@@ -1,6 +1,6 @@
-#source 'http://tokyo-m.rubygems.org'
+source 'http://tokyo-m.rubygems.org'
 #source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
-source 'https://rubygems.org'
+#source 'https://rubygems.org'
 
 # Baseline
 gem 'rails', '3.2.16'
@@ -13,7 +13,6 @@ platforms :ruby do
 	gem 'unicorn'
 end
 
-# Windows-only gems
 platforms :mswin, :mingw do
 	gem 'win32console'
 end
@@ -29,6 +28,7 @@ group :development do
   	gem 'meta_request'
   	gem 'quiet_assets'
   	gem 'rack-mini-profiler'
+  	#gem 'flamegraph'
 end
 
 # Gems used only for assets and not required
