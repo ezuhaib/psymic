@@ -7,6 +7,7 @@ class MindlogsController < ApplicationController
   def index
     if params[:query].present?
       @mindlogs = Mindlog.search(params[:query], page: params[:page], fields: [:title] , highlight:{tag: "<strong>"}, track: true)
+      @has_details = true
     elsif params[:tag]
       @mindlogs = Mindlog.tagged_with(params[:tag])
     else
