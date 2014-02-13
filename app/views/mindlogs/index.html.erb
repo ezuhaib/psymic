@@ -26,28 +26,10 @@
 
 <%# THE ENTRIES %>
 <table class="table table-striped">
-	<% @mindlogs.with_details.each do |m,details| %> 
-	<tr>
-
-		<td class="mindlog_stats text-center cursor-default">
-			<span title="Users who said they have experienced this"><%= "%02d" % m.users.count %></span>
-			<div class="mindlog_responses_count" title="Responses to this Mindlog"><%= m.responses.count %> <span class="glyphicon glyphicon-comment"></span></div>
-		</td>
-
-		<td class="text-lg mindlog_body">
-			<%= if details.any? then details[:highlight][:title].html_safe else m.title end %>
-			<div class="mindlog_bottom_line text-light">
-				<%= distance_of_time_in_words(Time.now,m.created_at, true, :highest_measure_only=> true) %>
-				by <%= link_to m.user.username , m.user %>
-			</div>
-			<ul class="mindlog_tag_list link-inverted">
-				<% m.topics.limit(5).each do |t| %>
-					<li><%= link_to "##{t}" , tag_path(t) %></li>
-				<% end %>
-			</ul>
-		</td>
-
-	</tr>
+	<% if @has_details %>
+		<%= render 'list_highlighted' %>
+	<% else %>
+		<%= render 'list' %>
 	<% end %>
 </table>
 
@@ -56,7 +38,7 @@
 	<b>trending tags</b>
 	<ul id="tag_list">
 		<% ActsAsTaggableOn::Tag.all.each do |tag| %>
-			<li><%= link_to "##{tag.name}" , '#' , class:"tag" %></li>
+			<li><%= link_to "##{tag.name}" , mindlogs_path(tag: tag.name) , class:"tag" %></li>
 		<% end %>
 	</ul>
 <% end %>

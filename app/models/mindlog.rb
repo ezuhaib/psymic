@@ -8,7 +8,7 @@ class Mindlog < ActiveRecord::Base
 	has_many :responses , :dependent => :destroy
 	has_many :reports , :as=> :reportable , :dependent=> :destroy
 	has_many :subscriptions , :as=> :subscribable , :dependent =>:destroy
-  	attr_accessible :description, :title , :tag_list , :status
+  	attr_accessible :description, :title , :topic_list , :status
 	
 	validates :title , :presence => 'true' , :length=> {:in=>10..50}
 	validates :description , :presence => 'true' , :length=> {:minimum=> 40}
