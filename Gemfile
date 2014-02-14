@@ -1,6 +1,6 @@
-source 'http://tokyo-m.rubygems.org'
+#source 'http://tokyo-m.rubygems.org'
 #source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
-#source 'https://rubygems.org'
+source 'https://rubygems.org'
 
 # Baseline
 gem 'rails', '3.2.16'
@@ -22,7 +22,7 @@ group :development do
 	gem 'webrick'
 	gem 'sqlite3'
 	gem 'yaml_db'
-	gem 'capistrano'
+	gem 'capistrano', '~> 2.15.5'
 	#gem 'better_errors'
 	gem 'binding_of_caller'
 	gem 'meta_request'
