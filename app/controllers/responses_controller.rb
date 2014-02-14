@@ -1,4 +1,4 @@
-+class ResponsesController < ApplicationController
+class ResponsesController < ApplicationController
 
 def new
 @mindlog = Mindlog.find_by_id(params[:mindlog_id])
@@ -22,12 +22,12 @@ def create
 
   def destroy
 	@response = Response.find(params[:id])
-  @response.destroy
+  	@response.destroy
 	respond_to do |format|
-	format.html {redirect_to :controller=>'mindlogs' , :action=>'show' , :id=>@response.mindlog_id}
-  format.json
-	format.js #added
-	end	
+		format.html {redirect_to :controller=>'mindlogs' , :action=>'show' , :id=>@response.mindlog_id}
+	  	format.json
+		format.js #added
+	end
   end
 
 	def show
@@ -82,13 +82,12 @@ def create
 	@response = Response.find(params[:id])
 	@remote = "false"
   end
-	
+
 	def update
-	@response = Response.find(params[:id])
-	
-  if @response.update_attributes(params[:response])
-    flash[:notice] = "Successfully updated example."
-    redirect_to @response.mindlog
+		@response = Response.find(params[:id])
+	  	if @response.update_attributes(params[:response])
+	    	flash[:notice] = "Successfully updated example."
+	    	redirect_to @response.mindlog
 		end
 	end
 end
