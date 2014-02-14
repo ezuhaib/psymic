@@ -1,32 +1,13 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require bootstrap-datepicker
- *= require_tree .
- *= require_self
- */
-
-/*this will take cae of the page-shift problem */
-
+$theme-color: #FF285F;
+$theme-color-light: #FFA8BE;
 $font-family-sans-serif: Open Sans, sans-serif;
 $font-family-base: $font-family-sans-serif;
 $font-size-base: 16px;
-$theme-color: #FF285F;
-$theme-color-light: #FFA8BE;
 $input-border-focus: $theme-color;
 $link-color: $theme-color;
 $link-color-hover: #c03;
-
 @import "bootstrap";
 @import "bootstrap/variables";
-
 
 html {
     overflow-y: scroll;
