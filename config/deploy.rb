@@ -1,4 +1,4 @@
-# config/deploy.rb 
+# config/deploy.rb
 
 # Uncomment next line if need bundler. Requires capistrano-bundler
 # require "bundler/capistrano"
@@ -30,7 +30,7 @@ set(:current_revision)  { capture("cd #{current_path}; git rev-parse --short HEA
 set(:latest_revision)   { capture("cd #{current_path}; git rev-parse --short HEAD").strip }
 set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEAD@{1}").strip }
 
-default_environment["RAILS_ENV"] = 'production'
+#default_environment["RAILS_ENV"] = 'production'
 
 # Use our ruby-1.9.3-p0@psymic gemset
 #default_environment["PATH"]         = "--"
