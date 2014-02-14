@@ -16,3 +16,6 @@
 
 #Database configuration
 /config/database.yml*
+
+#Precompiled assets
+/public/assets
