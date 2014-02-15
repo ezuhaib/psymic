@@ -9,12 +9,7 @@
 </div>
 </br>
 <div class="col-md-6 col-xs-12">
-<h3>Featured Mindlogs
-
-<% if can? :create , @mindlog %>
-<%= link_to " " , new_mindlog_path , class:"glyphicon glyphicon-plus float-right btn btn-themed btn-sm" %>
-<% end %>
-</h3>
+<h3>Featured Mindlogs</h3>
 
 <table class="table table-striped">
 <% @mindlogs.each do |m| %>

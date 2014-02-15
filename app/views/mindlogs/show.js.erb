@@ -1,4 +1,4 @@
-$('html,body').animate({scrollTop: $('#mindlog_responses').offset().top}, 250);
+$('html,body').animate({scrollTop: $('#status_box').offset().top}, 250);
 	$("#responses").fadeOut(850,function(){	
 		$(this).html("<%= escape_javascript(render 'responses') %>").fadeIn(850);
 	});

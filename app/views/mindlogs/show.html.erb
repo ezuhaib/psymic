@@ -14,22 +14,26 @@
 </div>
 
 <%# Responses Counters and sorters etc %>
-<div id="mindlog_responses" class="bg-white pull-left">
-<div id="responses_links" class="col-md-2 text-right">
-	<div class="hidden-sm hidden-xs"><div id="responses_count"><%= @mindlog.responses.count %></div><span>Responses</span></div>
-	<div id="list1"><ul>
-		<li><%= link_to "All", mindlog_path %></li>
-		<li><%= link_to "Explanations", "#{mindlog_path}?only=explanations" %></li>
-		<li><%= link_to "Solutions", "#{mindlog_path}?only=solutions" %></li>
-		<li><%= link_to "Critiques", "#{mindlog_path}?only=critiques" %></li>
-		<li><%= link_to "Stories", "#{mindlog_path}?only=stories" %></li>
-	</ul></div>
-</div>
+<% if @responses.empty? %>
+	<%= render 'no_responses' %>
+<% else %>
+	<div id="mindlog_responses" class="bg-white pull-left">
+	<div id="responses_links" class="col-md-2 text-right">
+		<div class="hidden-sm hidden-xs"><div id="responses_count"><%= @mindlog.responses.count %></div><span>Responses</span></div>
+		<div id="list1"><ul>
+			<li><%= link_to "All", mindlog_path %></li>
+			<li><%= link_to "Explanations", "#{mindlog_path}?only=explanations" %></li>
+			<li><%= link_to "Solutions", "#{mindlog_path}?only=solutions" %></li>
+			<li><%= link_to "Critiques", "#{mindlog_path}?only=critiques" %></li>
+			<li><%= link_to "Stories", "#{mindlog_path}?only=stories" %></li>
+		</ul></div>
+	</div>
 
-<%# THE Responses %>
-<div class="row col-md-10">
-	<div id="responses" ><%= render 'responses' %><%= "No responses yet." if @responses.empty? %></div></div>
-</div>
+	<%# THE Responses %>
+	<div class="row col-md-10">
+		<div id="responses" ><%= render 'responses' %></div>
+	</div>
+<% end %>
 
 <%# Rightbar Content %>
 <% content_for :r2 do %>

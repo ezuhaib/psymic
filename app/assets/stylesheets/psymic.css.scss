@@ -1,3 +1,8 @@
+/*PSYMIC CSS STYLES
+todo: split into multiple files. load on relevant pages
+todo: minify
+todo: adhere to standards... make use of ids vs classes smartly*/
+
 $theme-color: #FF285F;
 $theme-color-light: #FFA8BE;
 $font-family-sans-serif: Open Sans, sans-serif;
@@ -147,11 +152,6 @@ span .blue {
     color: #09c;
 }
 
-.comment {
-    border-bottom: solid 1px #bbb;
-    margin-top: 5px;
-}
-
 .miniresource span * {
     color: #999;
 }
@@ -280,21 +280,6 @@ cursor:default;
     color: #666;
 }
 
-.rating{
-    min-width: 50px;
-    height: 75px;
-    vertical-align: top;
-    text-align: center;
-    padding-top: 5px;
-}
-
-.rating_number {
-    font-size: 25px;
-    line-height: 0.8;
-    font-weight: bold;
-    color: #333;
-}
-
 .type-explanation{
     background-color: #FFFFB3;
 }
@@ -308,7 +293,7 @@ cursor:default;
 }
 
 .type-general , .type-story{
-    background-color: #FFF0F4;
+    background-color: #eee;
 }
 
 #solution_body {
@@ -317,8 +302,12 @@ cursor:default;
 
 .comment_box {
     float: left;
-    border-top: 1px solid #bbb;
-    margin-top: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.comment_box a{
+    color: #444;
 }
 
 #new_comment{
@@ -329,6 +318,8 @@ cursor:default;
 .comment {
     padding-bottom: 8px;
     color: #999;
+    border-bottom: solid 1px #ddd;
+    margin-top: 5px;
 }
 
 #status_box {
@@ -404,8 +395,29 @@ cursor:default;
     resize:none;
 }
 
-td#response_entry{
-    width: 100%;
+
+.rating{
+    width: 40px;
+    height: 75px;
+    vertical-align: top;
+    text-align: center;
+    position: absolute;
+    left: -40px;
+    top: -2px;
+}
+
+.rating_number {
+    font-size: 25px;
+    line-height: 0.8;
+    font-weight: bold;
+    color: #333;
+}
+
+.response-entry{
+    padding: 8px 15px 8px 15px;
+    margin-bottom: 17px;
+    margin-left: 55px;
+    position: relative;
 }
 
 .delete_button img{
@@ -447,6 +459,14 @@ td#response_entry{
     margin-top: 22px;
     margin-bottom: 22px;
 }
+
+.pagination > li > a, .pagination > li > span {
+color: #000;
+background-color: #eee;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+    background-color: $theme-color;border:1px solid $theme-color-light;}
 
 #mindlog_links{
     list-style: none;
@@ -893,7 +913,7 @@ CLASSES
     color: #ccc;
 }
 
-.link-black,.link-black a{
+.link-black,.link-black aP{
     color: #000;
 } 
 
