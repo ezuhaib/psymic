@@ -55,9 +55,9 @@ class Ability
       can :create , [Mindlog,Response,Comment]
     end
 
-    #all users authenticted an anonymous:
-    #all users must have access to read Mindlog , because that's the homepage
-    can :read , [Mindlog,Response,Comment,User]
+    # all users authenticted an anonymous:
+    # Anonymous users currently not allowed access to anything
+    #can :read , [Mindlog,Response,Comment,User]
 
   end
 end

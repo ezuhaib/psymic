@@ -1,25 +1,24 @@
-<h2>Welcome to Psymic</h2>
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name),html: {class: "col-sm-12 form-horizontal margin-top-20", role: "form"}) do |f| %>
+<%# USE DURNG ALPHA TESTING %>
+<h2>Testing Accounts Login</h2>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name),html: {class: "form-horizontal margin-top-20", role: "form"}) do |f| %>
 
 <div class="form-group">
-  <%= f.label :login , class:"col-lg-2 control-label"%>
-  <div class="col-lg-6"><%= f.text_field :login, :autofocus => true , :class=>"form-control"%></div>
+<%= f.text_field :login, :autofocus => true , :class=>"form-control" , placeholder:"username" %>
 </div>
 
 <div class="form-group">
-  <%= f.label :password, class:"col-lg-2 control-label" %>
-  <div class="col-lg-6"><%= f.password_field :password , :class=>"form-control"%></div>
+  <%= f.password_field :password , :class=>"form-control", placeholder:"password"%>
 </div>
 
 <div class="form-group">
   <% if devise_mapping.rememberable? -%>
-    <div class="col-lg-6 col-lg-offset-2"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+		<%= f.check_box :remember_me %> <%= f.label :remember_me %>
   <% end %>
 </div>
 
-<div class="col-lg-offset-2 btn-group">
-<%= f.submit "Sign in", :class=>"btn btn-primary" %>
-<%= link_to "Sign up", new_user_registration_path , :class=>"btn btn-default" %>
-<%= link_to "Forgot Password", new_user_password_path , :class=>"btn btn-default" %>
-</div>
+<%= f.submit "Sign in", :class=>"btn btn-success btn-lg" %></br>
+</br>
+<%= link_to "Sign up", new_user_registration_path %></br>
+<%= link_to "Forgot Password", new_user_password_path %>
 <% end %>

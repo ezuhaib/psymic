@@ -13,7 +13,11 @@ class PagesController < ApplicationController
 	end
   
   def root
-    @mindlogs = Mindlog.all
+    if !current_user
+      render "splash" , layout:false
+    else
+      @mindlogs = Mindlog.all
+    end
   end
 
   def offers
