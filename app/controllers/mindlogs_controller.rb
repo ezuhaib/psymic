@@ -2,8 +2,9 @@ class MindlogsController < ApplicationController
 
   # GET /mindlogs
   # GET /mindlogs.json
-	
-	
+
+  
+
   def index
     if params[:query].present?
       @mindlogs = Mindlog.search(params[:query], page: params[:page], fields: [:title] , highlight:{tag: "<strong>"}, track: true)
@@ -174,21 +175,33 @@ class MindlogsController < ApplicationController
 
   def like
     @mindlog = Mindlog.find(params[:id])
-    authorize! :respond , @mindlog
-    @mindlog.users << current_user unless @mindlog.users.include? current_user
-    respond_to do |format|
-      format.html { redirect_to :back }
-      format.js #added
+    if can? :respond , @mindlog
+      @mindlog.users << current_user unless @mindlog.users.include? current_user
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js #added
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @mindlog , error:"Guests cannot Interact" }
+        format.js {render partial: 'shared/no_interact.js.erb'}
+      end
     end
   end
 
     def unlike
     @mindlog = Mindlog.find(params[:id])
-    authorize! :respond , @mindlog
-    @mindlog.users.destroy(current_user)
-    respond_to do |format|
-      format.html { redirect_to :back }
-      format.js #added
+    if can? :respond , @mindlog
+      @mindlog.users.destroy(current_user)
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js #added
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @mindlog , error:"Guests cannot Interact" }
+        format.js {render partial: 'shared/no_interact.js.erb'}
+      end
     end
   end
 

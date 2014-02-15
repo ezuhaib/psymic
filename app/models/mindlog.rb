@@ -12,6 +12,7 @@ class Mindlog < ActiveRecord::Base
 	
 	validates :title , :presence => 'true' , :length=> {:in=>10..50}
 	validates :description , :presence => 'true' , :length=> {:minimum=> 40}
+	validates_presence_of :user_id
 
 	#Topic tags are being included to facilitate faceted browsing and searching through tags
 	def search_data

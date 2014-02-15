@@ -46,7 +46,7 @@ def create
 		if cannot? :vote , @response
 			respond_to do |format|
 			format.html { redirect_to :back }
-			format.js {render partial: 'error.js.erb'}
+			format.js {render partial: 'shared/no_interact.js.erb'}
 			end
 		else
 

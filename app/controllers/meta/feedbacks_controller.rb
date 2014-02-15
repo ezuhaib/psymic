@@ -1,7 +1,9 @@
-class FeedbacksController < ApplicationController
+class Meta::FeedbacksController < ApplicationController
+
   # GET /feedbacks
   # GET /feedbacks.json
   def index
+    authorize! :read , Feedback
     @feedback = Feedback.new
     @feedbacks = Feedback.not_backstage.order("created_at DESC").page(params[:page])
 
@@ -15,7 +17,7 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks/1.json
   def show
     @feedback = Feedback.find(params[:id])
-
+    authorize! :read , @feedback
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @feedback }
@@ -25,6 +27,7 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks/new
   # GET /feedbacks/new.json
   def new
+    authorize! :create , Feedback
     @feedback = Feedback.new
 
     respond_to do |format|
@@ -36,11 +39,13 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks/1/edit
   def edit
     @feedback = Feedback.find(params[:id])
+    authorize! :update , @feedback
   end
 
   # POST /feedbacks
   # POST /feedbacks.json
   def create
+    authorize! :create , Feedback
     @feedback = Feedback.new(params[:feedback])
     @feedback.user = current_user
     authorize! :backstage , @feedback if @feedback.nature == "backstage"
@@ -50,7 +55,7 @@ class FeedbacksController < ApplicationController
           if @feedback.nature == "backstage"
             redirect_to admin_backstage_path, notice: 'Successfully posted to backstage.' 
           else
-            redirect_to feedbacks_path, notice: 'Feedback was successfully created.' 
+            redirect_to meta_feedbacks_path, notice: 'Feedback was successfully created.' 
           end
         }
         format.json { render json: @feedback, status: :created, location: @feedback }
@@ -65,6 +70,7 @@ class FeedbacksController < ApplicationController
   # PUT /feedbacks/1.json
   def update
     @feedback = Feedback.find(params[:id])
+    authorize! :update , @feedback
 
     respond_to do |format|
       if @feedback.update_attributes(params[:feedback])
@@ -81,6 +87,7 @@ class FeedbacksController < ApplicationController
   # DELETE /feedbacks/1.json
   def destroy
     @feedback = Feedback.find(params[:id])
+    authorize! :destroy , @feedback
     @feedback.destroy
 
     respond_to do |format|

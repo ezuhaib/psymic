@@ -1,8 +1,12 @@
 Psymic::Application.routes.draw do
 
   resources :offers
-  resources :feedbacks do
-    resources :comments
+
+  namespace :meta do
+    resources :feedbacks , except: :index do
+      resources :comments
+    end
+    root to: 'feedbacks#index' , as: "feedbacks"
   end
 
   get 'page/:path' , to: 'pages#show' , as: :page
