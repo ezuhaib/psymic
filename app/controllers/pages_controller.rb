@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
 
+  def index
+  end
+
 	def show
 		case params[:path]
 			when 'introduction'	then render 'introduction'
@@ -11,12 +14,12 @@ class PagesController < ApplicationController
 			else raise ActionController::RoutingError.new('Not Found')
 		end
 	end
-  
+
   def root
     if !current_user
       render "splash" , layout:false
     else
-      @mindlogs = Mindlog.all
+      @mindlogs = Mindlog.limit(6).all
     end
   end
 
