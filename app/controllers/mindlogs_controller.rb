@@ -3,9 +3,9 @@ class MindlogsController < ApplicationController
   # GET /mindlogs
   # GET /mindlogs.json
 
-  
-
   def index
+    sleep 3
+    authorize! :read , Mindlog
     if params[:query].present?
       @mindlogs = Mindlog.search(params[:query], page: params[:page], fields: [:title] , highlight:{tag: "<strong>"}, track: true)
       @has_details = true
@@ -14,7 +14,6 @@ class MindlogsController < ApplicationController
     else
       @mindlogs = Mindlog.search("*", page: params[:page] , per:20)
     end
-    authorize! :read , Mindlog
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @mindlogs }
