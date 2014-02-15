@@ -32,6 +32,8 @@ class Ability
 
     user ||= User.new # guest user (not logged in)
 
+    # Special admin roles being used:
+    # :monitor(for searchkick)
     if user.role? "admin"
       can :manage, :all
     elsif user.role? "moderator"

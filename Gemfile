@@ -8,6 +8,10 @@ gem 'rake'
 gem 'jbuilder'
 gem 'pg'
 
+# Analytics
+gem 'rack-mini-profiler'
+gem 'google-analytics-rails'
+
 # Unix-only gems
 platforms :ruby do
 	gem 'unicorn'
@@ -23,12 +27,10 @@ group :development do
 	gem 'sqlite3'
 	gem 'yaml_db'
 	gem 'capistrano', '~> 2.15.5'
-	#gem 'better_errors'
+	gem 'better_errors'
 	gem 'binding_of_caller'
-	gem 'meta_request'
+	gem 'meta_request' #For Rails Panel
 	gem 'quiet_assets'
-	#gem 'rack-mini-profiler'
-	#gem 'flamegraph'
 end
 
 # Gems used only for assets and not required

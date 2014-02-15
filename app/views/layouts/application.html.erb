@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Project Psymic - Pre-alpha</title>
+	<%= analytics_init if Rails.env.production? %>
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
  	<script type="text/javascript"><%= yield(:js) %>
