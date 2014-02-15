@@ -37,12 +37,14 @@ class Ability
     if user.role? "admin"
       can :manage, :all
     elsif user.role? "moderator"
+      can :admin , :all #access to admin/ pages
       can :read , Report
       can :update , :all
       can :destroy, :all
       can :backstage, Feedback
     elsif user.username # authenticated users
       can [:report,:subscribe,:unsubscribe,:respond] , :Mindlog
+      can :read , Feedback
       can :vote , Response
       can [:update,:destroy] , :all do |x|
           x.try(:user) == user

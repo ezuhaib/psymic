@@ -4,6 +4,7 @@ class Admin::PagesController < ApplicationController
   end
 
   def backstage
+  	authorize! :backstage, Feedback
     @feedback = Feedback.new
     @feedbacks = Feedback.backstage.page(params[:page])
   end

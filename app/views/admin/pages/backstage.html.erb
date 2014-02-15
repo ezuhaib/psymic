@@ -10,10 +10,10 @@
 </div>
 
 
-<%= bootstrap_form_for @feedback , html:{class:"form col-xs-12"} do |f| %>
+<%= bootstrap_form_for [:meta,@feedback] , html:{class:"form col-xs-12"} do |f| %>
 <span class= "col-sm-10"><%= f.text_area :body , size:'30x3' , placeholder:"Content posted here is visible only to Psymic Administeration" , hide_label:true , class:"bg-themed-light" %></span>
 <%= f.hidden_field :nature , value: "backstage" %>
 <span class="col-sm-2"><%= f.submit :Submit %></span>
 <% end %>
 
-<%= render 'feedbacks/list' %>
+<%= render 'meta/feedbacks/list' %>

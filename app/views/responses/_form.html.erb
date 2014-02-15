@@ -1,17 +1,24 @@
-<% # This form is fully ajax-ready but remote is disabled currently. %>
+<%# This form is fully ajax-ready but remote is disabled currently due to bugs. %>
 
-<%= form_for [@response.mindlog , @response] , html:{class:"form clearfix"} do |f| %>
-	
-	<div class="col-md-9">
-		<%= f.text_area :body , :size=>'30x3', :class=>"form-control", placeholder:"Your input over this is welcome..." %>
-	</div>
-	
-	<%= f.hidden_field :mindlog_id %>
+<% if can? :respond , @mindlog %>
+	<%= form_for [@response.mindlog , @response] , html:{class:"form clearfix"} do |f| %>
 
-	<div class="col-md-3">
-		<%= f.select :nature, ["general","explanation","solution","critique","story"] , {}, :class=>"selectpicker form-control" ,"data-style"=>"btn-themed"  %>
-		</br>
-		<%= f.submit :Post, :class=>"form-control btn-themed", style:"margin-top: 8px;" %>
+		<div class="col-md-9">
+			<%= f.text_area :body , :size=>'30x3', :class=>"form-control", placeholder:"Your input over this is welcome..." %>
+		</div>
+
+		<%= f.hidden_field :mindlog_id %>
+
+		<div class="col-md-3">
+			<%= f.select :nature, ["general","explanation","solution","critique","story"] , {}, :class=>"selectpicker form-control" ,"data-style"=>"btn-themed"  %>
+			</br>
+			<%= f.submit :Post, :class=>"form-control btn-themed", style:"margin-top: 8px;" %>
+		</div>
+
+	<% end %>
+<% else %>
+<div id="join_mesg" class=" col-md-10 col-md-offset-1 alert alert-warning">
+	<p>Please <%= link_to "Sign in", new_user_session_path %> to respond to this mindlog</p>
+	<p class="text-small">Or if you haven't joined Psymic already, you may <%= link_to "Join" , new_user_registration_path %> now. Join now and be part of the Collaborative coping network.</p>
 	</div>
-	
 <% end %>

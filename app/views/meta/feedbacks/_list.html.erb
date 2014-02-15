@@ -1,0 +1,30 @@
+<table class="table table-striped">
+
+<% @feedbacks.each do |feedback| %>
+  <tr id="commentable-<%= feedback.id %>">
+    
+    <td class="text-right">
+      <span class="label
+        <%= "label-danger" if feedback.nature == "issue" %>
+        <%= "label-default" if feedback.nature == "general" %>
+        <%= "label-primary" if feedback.nature == "suggestion" %>
+        <%= "hidden" if feedback.nature == "backstage"%>
+        "><%= link_to feedback.nature.upcase , [:meta,@feedback] %>
+      </span>
+    </td>
+
+    <td><%= feedback.body %>
+      <div class="text-light">
+        <%= link_to feedback.user.username ,feedback.user %> 
+        <%= link_to '', edit_meta_feedback_path(feedback), class:'glyphicon glyphicon-pencil' %> 
+        <%= link_to '', [:meta,@feedback], method: :delete, data: { confirm: 'Are you sure?' }, class:"glyphicon glyphicon-trash" %> 
+        <%= link_to '', get_comments(feedback) , remote: true , class:"glyphicon glyphicon-comment"%> <%= feedback.comments.count %> 
+        <div class="comment_box"></div>
+      </div>
+      <div class="comments-js"></div>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<div class="text-center"><%= paginate @feedbacks %></div>

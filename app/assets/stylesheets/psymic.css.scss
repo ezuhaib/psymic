@@ -7,7 +7,6 @@ $input-border-focus: $theme-color;
 $link-color: $theme-color;
 $link-color-hover: #c03;
 @import "bootstrap";
-@import "bootstrap/variables";
 
 html {
     overflow-y: scroll;
@@ -540,8 +539,16 @@ todo reduce reliance on !important
     color: #fff;
 }
 
-#logo{
+#logo img{
     margin-bottom: 10px;
+}
+
+#logo img:hover {
+  opacity: 0.9;
+}
+
+#primary_links{
+    margin-right: 4px;
 }
 
 #psymic_list li{
@@ -886,7 +893,7 @@ CLASSES
     color: #ccc;
 }
 
-.link-black a{
+.link-black,.link-black a{
     color: #000;
 } 
 

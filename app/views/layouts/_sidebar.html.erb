@@ -27,27 +27,23 @@
 	      	<%= link_to subscriptions_path do %>Watchlist <span class="badge bg-themed"><%= @subscriptions_count %></span><% end %>
 	    	</li>
 	    	<li role="presentation" class="divider"></span></li>
-	    	<li role="presentation" class="hide"><%= link_to "Profile" , current_user %></li>
-	    	<li role="presentation"><%= link_to "Admin", admin_root_path %></li>
+	    	<li role="presentation"><%= link_to "Profile" , current_user %></li>
+	    	<% if can? :admin , :all %><li role="presentation"><%= link_to "Admin", admin_root_path %></li><% end %>
 	    	<li role="presentation"><%= link_to "Logout", destroy_user_session_path , :method=>:delete %></li>
   		</ul>
 		</div>
-
-	<% else %>
-		
-		<div class="btn-group center">
-   		<%= link_to "Join" , new_user_registration_path ,class:"btn btn-danger"%>
-   		<%= link_to "Log in" , new_user_session_path,class:"btn btn-danger"%>
-		</div>
 	<% end %>
-
 </div>
 
 <%# Primary Links %>
 <ul id="primary_links">
 	<li><%= link_to "Mindlogs" , mindlogs_path %></li>
 	<% if can? :backstage , Feedback%><li><%= link_to "Backstage" , admin_backstage_path %></li><% end %>
-	<li><%= link_to "Meta" , feedbacks_path %></li>
+	<% if can? :read , Feedback%><li><%= link_to "Meta" , meta_feedbacks_path %></li><% end %>
+	<% if !current_user %>
+		<li><%= link_to "Join Psymic" , new_user_registration_path %></li>
+		<li><%= link_to "Log in" , new_user_session_path %></li>
+	<% end %>
 </ul>
 
 <%# Secondary %>

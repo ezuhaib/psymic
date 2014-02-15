@@ -21,7 +21,7 @@ class FeedbacksControllerTest < ActionController::TestCase
       post :create, feedback: { body: @feedback.body, nature: @feedback.nature, user_id: @feedback.user_id }
     end
 
-    assert_redirected_to feedback_path(assigns(:feedback))
+    assert_redirected_to meta_feedback_path(assigns(:feedback))
   end
 
   test "should show feedback" do
@@ -36,7 +36,7 @@ class FeedbacksControllerTest < ActionController::TestCase
 
   test "should update feedback" do
     put :update, id: @feedback, feedback: { body: @feedback.body, nature: @feedback.nature, user_id: @feedback.user_id }
-    assert_redirected_to feedback_path(assigns(:feedback))
+    assert_redirected_to meta_feedback_path(assigns(:feedback))
   end
 
   test "should destroy feedback" do
@@ -44,6 +44,6 @@ class FeedbacksControllerTest < ActionController::TestCase
       delete :destroy, id: @feedback
     end
 
-    assert_redirected_to feedbacks_path
+    assert_redirected_to meta_feedbacks_path
   end
 end

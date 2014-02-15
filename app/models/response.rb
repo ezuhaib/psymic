@@ -11,7 +11,7 @@ class Response < ActiveRecord::Base
   belongs_to :user
 
   after_save :dispatcher
-  validates_presence_of :body
+  validates_presence_of :body , :mindlog_id , :user_id , :nature
 
   def dispatcher()
 
