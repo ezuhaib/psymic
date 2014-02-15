@@ -14,6 +14,7 @@ Psymic::Application.routes.draw do
   get "mindlogs/tags" => "mindlogs#tags", :as => :tags #returns json
   get 'profile' => "users#profile" , as: :profile
   get 'profile/edit' => "users#profile_edit" , as: :edit_profile
+  get 'help' => "pages#index" , as: :help
 
   resources :subscriptions do
     collection do

@@ -38,7 +38,7 @@ body {
     background-color: #4C4C4C;
     position: fixed;
     top: 0px;
-    z-index: 100;
+    z-index: 12000;
 }
 
 #top-menu{
@@ -48,7 +48,7 @@ body {
     position: fixed;
     top:0px;
     text-align: center;
-    z-index: 10000;
+    z-index: 20000;
 }
 
 #menu_link{
@@ -499,8 +499,11 @@ background-color: #eee;
     display: block;
 }
 
+.sidebar-left .bottom-links{
+    font-weight: 700;
+}
+
 .bottom-links a{
-    font-weight: 300;
     font-size: 18px;
     line-height: 1.4;
 }
@@ -610,7 +613,7 @@ todo reduce reliance on !important
 
 #footer_text{
     position: absolute;
-    bottom: 18px;
+    bottom: 25px;
     right: 10px;
     z-index: 2000;
     text-align: right;
@@ -635,6 +638,10 @@ todo reduce reliance on !important
 
 body,html,.container,#semi_container{
 height: 100%;
+}
+
+#semi_container{
+    z-index: 10000;
 }
 
 #content{
@@ -913,7 +920,7 @@ CLASSES
     color: #ccc;
 }
 
-.link-black,.link-black aP{
+.link-black,.link-black a{
     color: #000;
 } 
 
@@ -1089,7 +1096,7 @@ Todo: Integrate Mixins and variables
 
     /* DIVS */
     #tag_list li {display: inline; margin-right: 4px;}
-    #footer_b{height: auto;width:100%;left: 0px;}
+    #footer_b{height: auto;width:100%;left: 0px;position: fixed;z-index: 10000;}
     #content{padding-bottom: 0}
     .sidebar-right{margin: 0;text-align:center;padding-bottom: 60px}
 }
@@ -1098,14 +1105,14 @@ Todo: Integrate Mixins and variables
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
 
     #footer_b , #mindlogs_header{width:597px;position: fixed;z-index: 10000;}
-    .sidebar{width:156.65px;position: fixed;z-index: 10000;}
+    .sidebar{width:156.65px;position: fixed;z-index: 20000;}
 }
 
 /* lg */
 @media (min-width: $screen-lg-min) {
 
     #footer_b , #mindlogs_header{width:730px;position: fixed;z-index: 10000;}
-    .sidebar{width:190px;position: fixed;z-index: 10000;}
+    .sidebar{width:190px;position: fixed;z-index: 20000;}
 }
 
 /* md, lg */
