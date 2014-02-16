@@ -118,6 +118,8 @@ namespace :deploy do
   desc "Stop unicorn"
   task :stop, except: { no_release: true } do
     run "kill -s QUIT `cat /tmp/unicorn.psymic.pid`"
+    run "rm /tmp/unicorn.psymic.pid" #just to be sure
+    run "rm/pids" #to be more sure
   end  
 
   namespace :rollback do

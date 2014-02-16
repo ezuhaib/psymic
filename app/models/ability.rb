@@ -44,7 +44,7 @@ class Ability
       can :backstage, Feedback
     elsif user.username # authenticated users
       can [:report,:subscribe,:unsubscribe,:respond] , :Mindlog
-      can :read , Feedback
+      can :read , [Mindlog,Response,Comment,User,Feedback]
       can :vote , Response
       can [:update,:destroy] , :all do |x|
           x.try(:user) == user
