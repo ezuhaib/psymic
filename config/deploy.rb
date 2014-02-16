@@ -36,6 +36,7 @@ set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEA
 #default_environment["PATH"]         = "--"
 #default_environment["GEM_HOME"]     = "--"
 #default_environment["GEM_PATH"]     = "--"
+ENV["BUNDLE_GEMFILE"] = "#{current_path}/Gemfile"
 
 default_run_options[:shell] = 'bash'
 
