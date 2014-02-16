@@ -1,12 +1,15 @@
 Psymic::Application.routes.draw do
 
+  root :to=> 'pages#root'
+
   resources :offers
 
   namespace :meta do
     resources :feedbacks , except: :index do
       resources :comments
     end
-    root to: 'feedbacks#index' , as: "feedbacks"
+    get '/', to: 'feedbacks#index' , as: "feedbacks"
+    post '/' , to: 'feedbacks#create' , as:"feedbacks"
   end
 
   get 'page/:path' , to: 'pages#show' , as: :page
@@ -80,7 +83,6 @@ Psymic::Application.routes.draw do
 	end
 
 	match 'mindlogs/tag/:tag' => 'mindlogs#tag'
-  root :to=> 'pages#root'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -4,7 +4,6 @@ class Meta::FeedbacksController < ApplicationController
   # GET /feedbacks.json
   def index
     authorize! :read , Feedback
-    @feedback = Feedback.new
     @feedbacks = Feedback.not_backstage.order("created_at DESC").page(params[:page])
 
     respond_to do |format|
@@ -45,22 +44,22 @@ class Meta::FeedbacksController < ApplicationController
   # POST /feedbacks
   # POST /feedbacks.json
   def create
-    authorize! :create , Feedback
     @feedback = Feedback.new(params[:feedback])
-    @feedback.user = current_user
+    @feedback.user_id = current_user.id
     authorize! :backstage , @feedback if @feedback.nature == "backstage"
     respond_to do |format|
-      if @feedback.save
+      if (can? :create , Feedback) && @feedback.save
         format.html {
           if @feedback.nature == "backstage"
-            redirect_to admin_backstage_path, notice: 'Successfully posted to backstage.' 
+            redirect_to admin_backstage_path, notice: 'Successfully posted to backstage.'
           else
-            redirect_to meta_feedbacks_path, notice: 'Feedback was successfully created.' 
+            redirect_to meta_feedbacks_path, notice: 'Feedback was successfully created.'
           end
         }
+
         format.json { render json: @feedback, status: :created, location: @feedback }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to meta_feedbacks_path , alert: @feedback.errors.messages.first }
         format.json { render json: @feedback.errors, status: :unprocessable_entity }
       end
     end

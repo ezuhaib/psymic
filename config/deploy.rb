@@ -71,6 +71,11 @@ namespace :deploy do
     finalize_update
   end
 
+  desc "Reindex Seachkick"
+  task :reindex, except: { no_release: true } do
+    run "cd #{latest_release};bundle exec rake searchkick:reindex CLASS=Mindlog"
+  end
+
   desc "Update the database (overwritten to avoid symlink)"
   task :migrations do
     transaction do
@@ -118,9 +123,13 @@ namespace :deploy do
   desc "Stop unicorn"
   task :stop, except: { no_release: true } do
     run "kill -s QUIT `cat /tmp/unicorn.psymic.pid`"
-    run "rm /tmp/unicorn.psymic.pid" #just to be sure
-    run "rm/pids" #to be more sure
-  end  
+    run "rm tmp/pids" #to be more sure
+  end
+
+  desc "Clean"
+  task :clean do
+    run "rm tmp/pids" #to be more sure
+  end
 
   namespace :rollback do
     desc "Moves the repo back to the previous version of HEAD"

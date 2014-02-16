@@ -37,7 +37,7 @@ class MindlogsController < ApplicationController
   # GET /mindlogs/1.json
   def show
     @mindlog = Mindlog.find(params[:id])
-    @mindlog.status ||= "None yet."
+    @mindlog.status == "None yet." if @mindlog.status.blank?
     authorize! :read , @mindlog
 		@response = @mindlog.responses.new
     if params[:only] == "explanations"
