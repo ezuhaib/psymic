@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     end
 
     def check_testing_key
-      unless [:ocipidi66].include? testing_key
+      unless ["ocipidi66"].include? testing_key
         errors.add(:testing_key, "must be the one provided by Admin")
       end
     end
