@@ -4,7 +4,6 @@ class MindlogsController < ApplicationController
   # GET /mindlogs.json
 
   def index
-    sleep 3
     authorize! :read , Mindlog
     if params[:query].present?
       @mindlogs = Mindlog.search(params[:query], page: params[:page], fields: [:title] , highlight:{tag: "<strong>"}, track: true)
@@ -37,7 +36,7 @@ class MindlogsController < ApplicationController
   # GET /mindlogs/1.json
   def show
     @mindlog = Mindlog.find(params[:id])
-    @mindlog.status == "None yet." if @mindlog.status.blank?
+    @mindlog.status = "None yet." if @mindlog.status.blank?
     authorize! :read , @mindlog
 		@response = @mindlog.responses.new
     if params[:only] == "explanations"

@@ -16,8 +16,8 @@ class CommentsController < ApplicationController
   # GET /comments/1.json
   def show
     @commentable = Comment.get_commentable(params[:type],params[:id])
-    @comments = @commentable.comments
-    authorize! :read , @comments
+    @comments = @commentable.comments.all
+    authorize! :read , @commentable => Comment
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @comment }
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
   # GET /comments/new.json
   def new
     @comment = Comment.new
-    authorize! :create , @comment
+    authorize! :create , @commentable => Comment
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @comment }
@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
   # GET /comments/1/edit
   def edit
     @comment = Comment.find(params[:id])
-    authorize! :update , @comment 
+    authorize! :update , @commentable => Comment
   end
 
   # POST /comments
@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
-    authorize! :create , @comment
+    authorize! :create , @commentable => Comment
     respond_to do |format|
       if @comment.save
         format.html { redirect_to :back, notice: 'Comment was successfully created.' }
@@ -64,7 +64,7 @@ class CommentsController < ApplicationController
   # PUT /comments/1.json
   def update
     @comment = Comment.find(params[:id])
-    authorize! :update, @comment
+    authorize! :update, @commentable => Comment
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
@@ -81,7 +81,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    authorize! :destroy , @comment
+    authorize! :destroy , @commentable => Comment
     respond_to do |format|
       format.html { redirect_to :back }
       format.json { head :no_content }
