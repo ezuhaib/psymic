@@ -38,12 +38,13 @@ class Ability
       can :manage, :all
     elsif user.role? "moderator"
       can :admin , :all #access to admin/ pages
+      can :moderate , Mindlog #allows to set status of mindlog
       can :read , Report
       can :update , :all
       can :destroy, :all
       can :backstage, Feedback
     elsif user.username # authenticated users
-      can [:report,:subscribe,:unsubscribe,:respond] , :Mindlog
+      can [:report,:subscribe,:unsubscribe,:respond] , Mindlog
       can :read , [Mindlog,Response,Comment,User,Feedback]
       can :vote , Response
       can [:update,:destroy] , :all do |x|
@@ -52,7 +53,7 @@ class Ability
       can :update , User do |u|
         u.try(:id) == user.id
       end
-      can :create , [Mindlog,Response,Comment]
+      can :create , [Mindlog,Response,Comment,Feedback]
     end
 
     # all users authenticted an anonymous:

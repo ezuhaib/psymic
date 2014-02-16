@@ -1,40 +1,8 @@
-<%# Not using semantic form builders yet because of poor support for Bootstrap 3 %>
-
-<%= form_for @mindlog , html: {class: "col-sm-12 form-horizontal", role: "form"} do |f| %>
-
-  <% if @mindlog.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@mindlog.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @mindlog.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-<div class="form-group">
-<%= f.label :title, 'Title' , class:"col-lg-2 control-label" %>
-<div class="col-lg-10"><%= f.text_field :title , :class=>"form-control" %></div>
-</div>
-
-<div class="form-group">
-<%= f.label :description, 'Body' , class:"col-lg-2 control-label"%>
-<div class="col-lg-10"><%= f.text_area :description , :size=>'80x5', :class=>"form-control" %></div>
-</div>
-
-<div class="form-group">
-<%= f.label :topic_list, 'Tags' , class:"col-lg-2 control-label" %>
-<div class="col-lg-10"><%= f.text_field :topic_list, :class=>"form-control" %></div>
-</div>
-
-<div class="form-group">
-<%= f.label :status, 'Status' , class:"col-lg-2 control-label"%>
-<div class="col-lg-10"><%= f.text_area :status , :size=>'60x1' , :class=>"form-control"%></div>
-</div>
-
-<div class="col-lg-offset-2 col-lg-10"><%= f.submit @mindlog.new_record? ? 'Add' : 'Update', :class=>"btn btn-primary" %></div>
-
+<%= bootstrap_form_for @mindlog , style: :horizontal do |f| %>
+<%= f.text_field :title , placeholder: "Better be a statement than phrase"%>
+<%= f.text_area :description , label: :Details ,size:'24x4' , placeholder:"Minimum 40 characters." %>
+<%= f.text_field :topic_list , label: :Tags %>
+<% if can? :moderate , @mindlog %><%= f.text_field :status %><% end %>
+<%= f.form_group do %><%= f.submit :Submit , class:"btn btn-themed" %><% end %>
 <% end %>
 

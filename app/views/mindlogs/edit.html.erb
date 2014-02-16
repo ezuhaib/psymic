@@ -1,8 +1,6 @@
-<%= content_for :c do %>
-<div id="redbox" class="col-lg-12">
-<p class="no-margin">Editing</p>
-<h1><%= @mindlog.title %></h1>
-</div>
-<% end %>
-
+<div class="box-themed row">
+<div class="pad-extra">
+<h1><div class="prefix">Editing</div><%= link_to @mindlog.title , @mindlog %></h1>
+</div></div>
+</br>
 <%= render 'form' %>
