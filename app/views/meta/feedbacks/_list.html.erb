@@ -3,7 +3,7 @@
 <% @feedbacks.each do |feedback| %>
   <tr id="commentable-<%= feedback.id %>">
 
-    <td class="text-right">
+    <td class="text-right col-sm-1">
       <span class="label
         <%= "label-danger" if feedback.nature == "issue" %>
         <%= "label-default" if feedback.nature == "general" %>
@@ -13,7 +13,7 @@
       </span>
     </td>
 
-    <td><%= feedback.body %>
+    <td class="col-sm-11"><%= feedback.body %>
       <div class="text-light">
         <%= link_to feedback.user.username ,feedback.user %> 
         <%= link_to '', edit_meta_feedback_path(feedback), class:'glyphicon glyphicon-pencil' %> 
