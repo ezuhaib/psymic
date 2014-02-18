@@ -78,6 +78,9 @@ GEM
     dotiw (1.1.1)
       actionpack (~> 3)
     erubis (2.7.0)
+    exception_notification (4.0.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (2.0.2)
     friendly_id (4.0.10.1)
       activerecord (>= 3.0, < 4.0)
@@ -227,6 +230,7 @@ DEPENDENCIES
   country_select
   devise
   dotiw
+  exception_notification
   friendly_id (~> 4.0.10.1)
   google-analytics-rails
   jbuilder

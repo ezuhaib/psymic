@@ -8,6 +8,7 @@ class WikiPagesController < ApplicationController
 
   # Index is itself a wiki page
   def index
+    authorize! :read, WikiPage
     @wiki_page = WikiPage.find_by_slug(:root)
     render template: 'wiki_pages/show'
   end
