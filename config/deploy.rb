@@ -1,8 +1,7 @@
 # config/deploy.rb
 
 # Uncomment next line if need bundler. Requires capistrano-bundler
-# require "bundler/capistrano"
-
+require "bundler/capistrano"
 set :application,     "psymic"
 set :scm,             :git
 set :repository,      "git@bitbucket.org:ezuhaib/psymic.git"
