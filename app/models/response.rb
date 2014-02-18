@@ -21,7 +21,7 @@ class Response < ActiveRecord::Base
       s.counter += 1
       s.save
 
-    # Notify Mindlog Author 
+    # Notify Mindlog Author
     target = self.mindlog.user_id
     txt = "New response to {{ '#{self.mindlog.title}' | link: 'mindlogs/#{self.mindlog.id}' }}"
     tag = 'new_response'

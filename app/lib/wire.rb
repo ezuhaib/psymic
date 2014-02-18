@@ -23,9 +23,9 @@ module Wire
 
     if target.class == Fixnum
         @old_notification = Notification.where(:user_id=>target,:tag=>tag,:scope=>scope).first
-        @text = Liquid::Template.parse(text).render
+        @text = Liquid::Template.parse(text).render({},filters:[LinkFilter])
         if @old_notification && @old_notification.counter >= 1 && hsh[:alt] #Compound Notification
-          @alt = Liquid::Template.parse(hsh[:alt]).render('count'=> "<span class='badge'>#{@old_notification.counter+1}</span>")
+          @alt = Liquid::Template.parse(hsh[:alt]).render('count'=> "<span class='badge'>#{@old_notification.counter+1}</span>",filters:[LinkFilter])
           @old_notification.update_attributes(:text=>@alt,:counter=>counter = @old_notification.counter + 1)
         elsif @old_notification && @old_notification.counter == 0 && hsh [:alt] #Ovewriting Notification
           @old_notification.update_attributes(:text=>@text,:counter=>counter = @old_notification.counter + 1)

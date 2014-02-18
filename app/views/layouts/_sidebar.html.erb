@@ -7,21 +7,21 @@
 <%# Button %>
 
 <div id="links_wrapper">
-<div id="collapsing_button" class="pull-right pull-right-xs">			
+<div id="collapsing_button" class="pull-right pull-right-xs">
 	
 	<% if current_user %>
 
 		<%   @notifications_count = Notification.where(:user_id=>current_user.id).pluck(:counter).sum %>
 		<% @subscriptions_count = current_user.subscriptions.where(counter:1).count %>
+
 		<div class="dropdown center">
-  		<button class="btn dropdown-toggle btn-themed" type="button" id="dropdownMenu1" data-toggle="dropdown">
+  		<div id="btn_container">
+  			<%= link_to notifications_path do %><span id="notifics" class="badge <%= "bg-red" if @notifications_count > 0%>"><%= @notifications_count %></span><% end %>
+  			<button class="btn dropdown-toggle btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown">
     		@<%= current_user.username %><span class="caret"></span>
-  		</button>
+  			</button>
  			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 	    	<li class="hidden"><%= link_to "Welcome #{current_user.username}",current_user, class:"welcome_line" %></li>
-		    <li role="presentation">
-	  	    <%= link_to notifications_path do %>Notifications <span class="badge bg-themed"><%= @notifications_count %></span><% end %>
-	    	</li>
 
 	    	<li role="presentation">
 	      	<%= link_to subscriptions_path do %>Watchlist <span class="badge bg-themed"><%= @subscriptions_count %></span><% end %>
@@ -30,7 +30,7 @@
 	    	<li role="presentation"><%= link_to "Profile" , current_user %></li>
 	    	<% if can? :admin , :all %><li role="presentation"><%= link_to "Admin", admin_root_path %></li><% end %>
 	    	<li role="presentation"><%= link_to "Logout", destroy_user_session_path , :method=>:delete %></li>
-  		</ul>
+  		</ul></div>
 		</div>
 	<% end %>
 </div>
@@ -48,7 +48,7 @@
 
 <%# Secondary %>
 <ul class="bottom-links pull-right">
-	<li><%= link_to "Help Center" , help_path %></li>
+	<li><%= link_to "Help Center" , wiki_page_path(:help) %></li>
 </ul>
 
 <div id="footer_text"><span>All rights reserved</span></div>
