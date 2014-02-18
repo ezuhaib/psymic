@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :subscriptions
   has_many :feedbacks
+  has_many :wiki_pages
   acts_as_reader
   has_one :offer
   has_and_belongs_to_many :roles

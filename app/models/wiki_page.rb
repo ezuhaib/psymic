@@ -1,6 +1,7 @@
 class WikiPage < ActiveRecord::Base
   attr_accessible :body, :title, :user_id , :slug
   validates_presence_of :body, :title, :user_id
+  belongs_to :user
   before_save :manage_slug
   extend FriendlyId
   friendly_id :slug

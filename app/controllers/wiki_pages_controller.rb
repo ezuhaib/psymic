@@ -23,6 +23,7 @@ class WikiPagesController < ApplicationController
   # GET /wiki_pages/new
   # GET /wiki_pages/new.json
   def new
+    authorize! :create , WikiPage
     @wiki_page = WikiPage.new
     @wiki_page.slug = params[:slug] if params[:slug]
 
@@ -34,11 +35,13 @@ class WikiPagesController < ApplicationController
 
   # GET /wiki_pages/1/edit
   def edit
+  authorize! :update , WikiPage
   end
 
   # POST /wiki_pages
   # POST /wiki_pages.json
   def create
+    authorize! :create , WikiPage
     @wiki_page = WikiPage.new(params[:wiki_page])
     @wiki_page.user_id = current_user.id
 
@@ -56,6 +59,7 @@ class WikiPagesController < ApplicationController
   # PUT /wiki_pages/1
   # PUT /wiki_pages/1.json
   def update
+    authorize! :update , WikiPage
     respond_to do |format|
       if @wiki_page.update_attributes(params[:wiki_page])
         format.html { redirect_to @wiki_page, notice: 'Wiki page was successfully updated.' }
@@ -71,6 +75,7 @@ class WikiPagesController < ApplicationController
   # DELETE /wiki_pages/1.json
   def destroy
     @wiki_page.destroy
+    authorize! :destroy , @wiki_page
 
     respond_to do |format|
       format.html { redirect_to wiki_pages_url }

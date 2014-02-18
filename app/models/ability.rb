@@ -48,7 +48,8 @@ class Ability
       can [:report,:subscribe,:unsubscribe,:respond] , Mindlog
       can :read , [Mindlog,Response,Comment,User,Feedback,WikiPage]
       can :vote , Response
-      can [:update,:destroy] , :all do |x|
+      # for some reason if :all is used below, it authorizes update/destroy on wikipages for all users
+      can [:update,:destroy] , [Mindlog,Response,Comment,Feedback] do |x|
           x.try(:user) == user
       end
       can :update , User do |u|
