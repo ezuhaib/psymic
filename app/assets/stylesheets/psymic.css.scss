@@ -5,7 +5,7 @@ todo: adhere to standards... make use of ids vs classes smartly*/
 
 @import "theme";
 @import "bootstrap";
-
+.jojo{margin-top: 100px;}
 html {
     overflow-y: scroll;
 }
@@ -321,6 +321,11 @@ cursor:default;
     padding: 4px 30px 4px 30px;
 }
 
+#notifics{
+    margin-right: 5px;
+    margin-top: 3px;
+}
+
 .new_notification .number , .circled_number {
     float: left;
     width: 20px;
@@ -357,6 +362,13 @@ h1,h2,h3,h4{
     .prefix{font-size: 70%;}
 }
 
+/* Wiki styling. Should use important because styles defined inline */
+.wiki_content, .wiki_diff, .wiki_history {
+    border: none !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
 
 /* In use on edit mindlog page etc */
 .box-themed{
@@ -759,6 +771,10 @@ CLASSES
     background-color: #fff;
 }
 
+.bg-red{
+    background-color: red;
+}
+
 .box-light{
     background-color: #aaa;
     color: #000;
@@ -841,8 +857,8 @@ CLASSES
     text-align: center;
 }
 
-.margin-top-10{
-    margin-top: 10px;
+.mar-top-10{
+    margin-top: 20px;
 }
 
 .margin-top-20{
@@ -858,7 +874,7 @@ CLASSES
 }
 
 .mar-bottom-10{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .mar-vert-10{

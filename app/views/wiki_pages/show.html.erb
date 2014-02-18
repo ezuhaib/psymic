@@ -1,0 +1,13 @@
+<div class="col-sm-12">
+<h2>
+	<%= @wiki_page.title %>
+	<% if can? :update, WikiPage %>
+		<span class="pull-right"><%= link_to 'Edit', edit_wiki_page_path(@wiki_page),class:"btn btn-default" %></span>
+	<% end %>
+</h2>
+
+<div class="mar-top-10">
+<%= wikify(@wiki_page.body).html_safe %>
+</div>
+
+</div>

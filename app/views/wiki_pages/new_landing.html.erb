@@ -1,0 +1,4 @@
+<div class="col-sm-12">
+<h2>Ouch!!</h2>
+<div class="alert alert-danger">Page <i><%= @title %></i> was not found. <%= link_to "Create it?", "#{new_wiki_page_path}?slug=#{@title}", class:"alert-link" if can? :create , WikiPage %></div>
+</div>

@@ -22,7 +22,7 @@
 </div>
 
 <div id="mascot" class="col-md-6 col-xs-12">
-<%= link_to (image_tag "psymic-mascot.jpg" , class:"img-responsive"), page_path(:contribute) %>
+<%= link_to (image_tag "psymic-mascot.jpg" , class:"img-responsive"), wiki_page_path(:contribute) %>
 </div>
 
 <%= content_for :r2 do %>
@@ -35,10 +35,10 @@
 </ul>
 
 <ul class="bottom-links pull-left hidden-xs hidden-sm">
-	<li><%= link_to "What is it?" , page_path("introduction") %></li>
-	<li><%= link_to "How can I help?" , page_path("contribute") %></li>
-	<li><%= link_to "Can you help me?" , page_path("get-helped") %></li>
-	<li><%= link_to "Frequently Asked Q's" , page_path('faqs') %></li>
+	<li><%= link_to "What is it?" , wiki_page_path("introduction") %></li>
+	<li><%= link_to "How can I help?" , wiki_page_path("contribute") %></li>
+	<li><%= link_to "Can you help me?" , wiki_page_path("get-helped") %></li>
+	<li><%= link_to "Frequently Asked Q's" , wiki_page_path('faqs') %></li>
 </ul>
 
 <% end %>

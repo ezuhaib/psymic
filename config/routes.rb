@@ -1,8 +1,8 @@
 Psymic::Application.routes.draw do
 
-  root :to=> 'pages#root'
+  resources :wiki_pages,:path => :wiki
 
-  resources :offers
+  root :to=> 'pages#root'
 
   namespace :meta do
     resources :feedbacks , except: :index do
@@ -12,12 +12,10 @@ Psymic::Application.routes.draw do
     post '/' , to: 'feedbacks#create' , as:"feedbacks"
   end
 
-  get 'page/:path' , to: 'pages#show' , as: :page
   get 'tags/:tag' , to: 'mindlogs#index' , as: :tag
   get "mindlogs/tags" => "mindlogs#tags", :as => :tags #returns json
   get 'profile' => "users#profile" , as: :profile
   get 'profile/edit' => "users#profile_edit" , as: :edit_profile
-  get 'help' => "pages#index" , as: :help
 
   resources :subscriptions do
     collection do
