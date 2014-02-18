@@ -1,6 +1,6 @@
 Psymic::Application.routes.draw do
 
-  resources :wiki_pages,:path => :wiki
+  resources :wiki_pages
 
   root :to=> 'pages#root'
 
