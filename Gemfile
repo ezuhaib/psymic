@@ -11,6 +11,7 @@ gem 'pg'
 # Analytics
 gem 'rack-mini-profiler'
 gem 'google-analytics-rails'
+gem 'exception_notification'
 
 # Unix-only gems
 platforms :ruby do

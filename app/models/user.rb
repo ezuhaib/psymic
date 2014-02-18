@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  
+
   has_many :mindlogs
   has_many :responses
   has_many :comments
@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :mindlogs, :through => :likes, :source => :likeable, :source_type => 'Mindlog'
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me , :gender , :dob , :body , :country
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     validates :username, :uniqueness => {:case_sensitive => false}
     validates_presence_of :username , :gender , :dob , :country
     validates_size_of :body , in: 80...1500
-    validate :check_testing_key
+    validate :check_testing_key , on: :create
 
     def role?(role)
       self.roles.pluck(:title).include?(role.to_s)
@@ -45,6 +45,11 @@ class User < ActiveRecord::Base
       unless ["ocipidi66"].include? testing_key
         errors.add(:testing_key, "must be the one provided by Admin")
       end
+    end
+
+    # Override Devise::Confirmable#after_confirmation
+    def after_confirmation
+    UserMailer.registration_confirmation(self).deliver
     end
 
 end

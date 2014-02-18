@@ -8,4 +8,8 @@ class PagesController < ApplicationController
     end
   end
 
+  def confirm_email
+  	render layout: "devise"
+  end
+
 end
