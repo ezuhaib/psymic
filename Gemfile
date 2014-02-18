@@ -62,6 +62,7 @@ gem 'dotiw'
 gem 'country_select'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
+gem 'friendly_id', '~> 4.0.10.1'
 
 # Search engine
 gem 'searchkick'

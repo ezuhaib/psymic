@@ -1,0 +1,6 @@
+<%= bootstrap_form_for @wiki_page do |f| %>
+    <%= f.text_field :title %>
+    <%= f.text_area :body , size:"25x12" %>
+    <%= f.text_field :slug , label: "Permalink" , placeholder: "Friendly URL for this page." %>
+    <%= f.form_group do %><%= f.submit :Submit , class: "btn btn-primary" %><% end %>
+<% end %>

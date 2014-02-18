@@ -43,9 +43,10 @@ class Ability
       can :update , :all
       can :destroy, :all
       can :backstage, Feedback
+      can :manage , WikiPage
     elsif user.username # authenticated users
       can [:report,:subscribe,:unsubscribe,:respond] , Mindlog
-      can :read , [Mindlog,Response,Comment,User,Feedback]
+      can :read , [Mindlog,Response,Comment,User,Feedback,WikiPage]
       can :vote , Response
       can [:update,:destroy] , :all do |x|
           x.try(:user) == user

@@ -11,11 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140211001809) do
+ActiveRecord::Schema.define(:version => 20140218092829) do
 
-  create_table "SQLITEADMIN_QUERIES", :primary_key => "ID", :force => true do |t|
-    t.string "NAME", :limit => 100
-    t.text   "SQL"
+  create_table "cargo_wiki_articles", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "author_id"
+    t.boolean  "published",  :default => true
+  end
+
+  create_table "cargo_wiki_users", :force => true do |t|
+    t.string   "username"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "auth_token"
+    t.string   "role"
   end
 
   create_table "comments", :force => true do |t|
@@ -64,10 +77,10 @@ ActiveRecord::Schema.define(:version => 20140211001809) do
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"
     t.integer  "counter"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.string   "text",       :limit => nil
-    t.string   "tag",        :limit => nil
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "text"
+    t.string   "tag"
     t.string   "scope"
   end
 
@@ -99,12 +112,12 @@ ActiveRecord::Schema.define(:version => 20140211001809) do
   create_table "responses", :force => true do |t|
     t.text     "body"
     t.integer  "mindlog_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "user_id"
     t.integer  "rating"
     t.integer  "last_commenter"
-    t.string   "nature",         :limit => nil
+    t.string   "nature"
   end
 
   create_table "roles", :force => true do |t|
@@ -150,14 +163,6 @@ ActiveRecord::Schema.define(:version => 20140211001809) do
     t.integer  "counter"
   end
 
-  create_table "synapsedefs", :force => true do |t|
-    t.string   "synapse"
-    t.string   "class"
-    t.text     "def"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -200,6 +205,18 @@ ActiveRecord::Schema.define(:version => 20140211001809) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
+  create_table "versions", :force => true do |t|
+    t.string   "item_type",      :null => false
+    t.integer  "item_id",        :null => false
+    t.string   "event",          :null => false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+    t.string   "commit_message"
+  end
+
+  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
+
   create_table "votes", :force => true do |t|
     t.integer  "response_id"
     t.integer  "user_id"
@@ -207,5 +224,16 @@ ActiveRecord::Schema.define(:version => 20140211001809) do
     t.datetime "updated_at"
     t.integer  "value"
   end
+
+  create_table "wiki_pages", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "slug"
+  end
+
+  add_index "wiki_pages", ["slug"], :name => "index_wiki_pages_on_slug", :unique => true
 
 end
