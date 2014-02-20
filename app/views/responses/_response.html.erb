@@ -1,19 +1,34 @@
+<% preload_comments ||= false #pass in locals %>
+
 <div id="commentable-<%= response.id %>" class="row">
-<div class="response-entry type-<%= response.nature %>">
-<div class="rating">
-<%= render partial: "responses/rating" , locals: {:response => response} %>
-</div>
-<div><%= response.body %>
 
+	<div class="response-entry type-<%= response.nature %>">
+		<div class="rating">
+			<%= render partial: "responses/rating" , locals: {:response => response} %>
+		</div>
 
-<div class="text-light">
-by <%= link_to response.user.username,response.user%>
-<% if can? :update , response %> <%= link_to '', edit_mindlog_response_path(response.mindlog,response) , class:"glyphicon glyphicon-pencil" %><% end %>
-<% if can? :destroy , response %> <%= link_to '', [response.mindlog, response] ,:method=> :delete, class:"glyphicon glyphicon-trash" , :confirm=> 'Are you sure?'  %></span><% end %>
- <% if can? :read , Comment %><%= link_to '' , get_comments(response) , :remote=> true , class:"glyphicon glyphicon-comment" %> <%= response.comments.count %></div><% end %>
-</div>
+		<div>
+			<%= response.body %>
+			<div class="text-light">
+				by <%= link_to response.user.username,response.user%>
 
-<div class="comments-js"></div>
-</div>
+				<% if can? :update , response %>
+					<%= link_to '', edit_mindlog_response_path(response.mindlog,response) , class:"glyphicon glyphicon-pencil" %>
+				<% end %>
 
+				<% if can? :destroy , response %>
+					<%= link_to '', [response.mindlog, response] ,:method=> :delete, class:"glyphicon glyphicon-trash" , :confirm=> 'Are you sure?'  %>
+				<% end %>
+
+				<% if can? :read , Comment %>
+					<%= link_to '' , get_comments(response) , :remote=> true , class:"glyphicon glyphicon-comment" %> <%= response.comments.count %>
+				<% end %>
+
+			</div>
+
+			<div class="comments-js">
+				<%= render template: "comments/show" , locals: {commentable: @response} if preload_comments == true %>
+			</div>
+		</div>
+	</div>
 </div>
