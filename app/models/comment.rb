@@ -6,7 +6,7 @@ class Comment < ActiveRecord::Base
 
 # To enable comments for a model:
 # 1. MODEL: has_many :comments , as: :commentable
-# 2. VIEW: render template: "comments/show" , locals: {comments: commentable.comments}
+# 2. VIEW: render template: "comments/show" , locals: {commentable:@commentable}
 # 3. For custom view, copy code from above template into your view
 # 4. AJAX LOADING: i) add a .comments-js container where you wish the comments to load.
 # 					ii) wrap the container within another #commentable-id one

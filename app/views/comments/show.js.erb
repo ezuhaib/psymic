@@ -3,5 +3,5 @@ $('#commentable-<%= @commentable.id %> .comment_box').slideUp(1000,function(){$(
 }
 
 else {
-	$('<%= escape_javascript(render file:'comments/show.html.erb') %>').appendTo('#commentable-<%= @commentable.id %> .comments-js').hide().slideDown(1000);
+	$('<%= escape_javascript(render template:'comments/show.html.erb' %>').appendTo('#commentable-<%= @commentable.id %> .comments-js').hide().slideDown(1000);
 }

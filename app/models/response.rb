@@ -4,7 +4,6 @@ class Response < ActiveRecord::Base
 
 	belongs_to :mindlog
   attr_accessible :body, :mindlog_id , :user_id , :rating, :nature
-  #has_and_belongs_to_many :users , :uniq=> true
   has_many :votes
   has_many :users , :through=> :votes
   has_many :comments , :as=> :commentable , :dependent=> :destroy
@@ -27,8 +26,10 @@ class Response < ActiveRecord::Base
     tag = 'new_response'
     scope = "mindlogs/#{self.mindlog_id}"
     alt = "{{count}} new responses to {{ '#{self.mindlog.title}' | link: 'mindlogs/#{self.mindlog.id}' }}"
- 
     notify(target,txt,tag,scope,:alt=>alt)
+
+    # Email Mindlog Author
+    UserMailer.new_response_on_mindlog(self).deliver
     end
   end
 
