@@ -1,55 +1,97 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  has_many :mindlogs
-  has_many :responses
-  has_many :comments
-  has_many :subscriptions
-  has_many :feedbacks
-  has_many :wiki_pages
-  acts_as_reader
-  has_one :offer
-  has_and_belongs_to_many :roles
-  has_many :likes, :dependent => :destroy
-  has_many :mindlogs, :through => :likes, :source => :likeable, :source_type => 'Mindlog'
+################################
+# ATTRIBUTES
+################################
+attr_accessible :username, :email, :password, :password_confirmation, :remember_me , :gender , :dob , :body , :country, :login,:testing_key #temporary... restricts signups
+attr_accessor :login,:testing_key #temporary... restricts signups
 
-  devise :database_authenticatable, :registerable,
+################################
+# RELATIONS
+################################
+has_many :mindlogs
+has_many :responses
+has_many :comments
+has_many :subscriptions
+has_many :feedbacks
+has_many :wiki_pages
+has_and_belongs_to_many :roles
+has_many :likes, :dependent => :destroy
+has_many :mindlogs, :through => :likes, :source => :likeable, :source_type => 'Mindlog'
+
+################################
+# INTEGRATIONS
+################################
+devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+acts_as_reader
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me , :gender , :dob , :body , :country
-  attr_accessor :login,:testing_key #temporary... restricts signups
-  attr_accessible :login,:testing_key #temporary... restricts signups
-  # attr_accessible :title, :body
+def self.find_first_by_auth_conditions(warden_conditions)
+  conditions = warden_conditions.dup
+  if login = conditions.delete(:login)
+    where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+  else
+    where(conditions).first
+  end
+end
 
-      def self.find_first_by_auth_conditions(warden_conditions)
-      conditions = warden_conditions.dup
-      if login = conditions.delete(:login)
-        where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-      else
-        where(conditions).first
+################################
+# VALIDATIONS
+################################
+
+validates :username, :uniqueness => {:case_sensitive => false}
+validates_presence_of :username , :gender , :dob , :country
+validates_size_of :body , in: 80...1500
+validate :check_testing_key , on: :create
+
+def check_testing_key
+  unless ["ocipidi66"].include? testing_key
+    errors.add(:testing_key, "must be the one provided by Admin")
+  end
+end
+
+################################
+# CALLBACKS
+################################
+
+# Override Devise::Confirmable#after_confirmation
+def after_confirmation
+UserMailer.registration_confirmation(self).deliver
+end
+
+################################
+# INSTANCE METHODS
+################################
+def role?(role)
+  self.roles.pluck(:title).include?(role.to_s)
+end
+
+################################
+# OPTIONS
+################################
+serialize :options
+Options = {
+  email_on_new_response:true ,
+  email_on_response_comment:true
+}
+
+def self.options_attr_accessor()
+  Options.keys.each do |method_name|
+    eval "
+      def #{method_name}
+        self.options ||= {}
+        self.options[:#{method_name}] || Options[:#{method_name}]
       end
-    end
-
-    validates :username, :uniqueness => {:case_sensitive => false}
-    validates_presence_of :username , :gender , :dob , :country
-    validates_size_of :body , in: 80...1500
-    validate :check_testing_key , on: :create
-
-    def role?(role)
-      self.roles.pluck(:title).include?(role.to_s)
-    end
-
-    def check_testing_key
-      unless ["ocipidi66"].include? testing_key
-        errors.add(:testing_key, "must be the one provided by Admin")
+      def #{method_name}=(value)
+        self.options ||= {}
+        self.options[:#{method_name}] = value
       end
-    end
+      attr_accessible :#{method_name}
+    "
+  end
+end
 
-    # Override Devise::Confirmable#after_confirmation
-    def after_confirmation
-    UserMailer.registration_confirmation(self).deliver
-    end
+options_attr_accessor
+
 
 end
