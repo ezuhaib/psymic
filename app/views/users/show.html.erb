@@ -3,7 +3,6 @@
 <h1>user:<span class="text-red"><%= link_to @user.username , @user %></span>
 <% if can? :update , @user %><span class="float-right">
 <%= link_to 'Edit' , edit_profile_path , class: "btn btn-default" %>
-<%= link_to 'Settings' , edit_user_registration_path , class: "btn btn-default" %>
 </span><% end %></h1>
 
 <div class="box bg-white">
