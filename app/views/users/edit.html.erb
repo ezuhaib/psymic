@@ -1,4 +1,6 @@
-<h1>Editing Profile<span class="float-right"><%= link_to "Back" , :back , class:"btn btn-default" %></span></h1></br>
+<div class="head">
+	<h2>Editing Profile<span class="pull-right"><%= link_to "Back" , :back , class:"btn btn-primary" %></span></h2>
+</div>
 
 <%= bootstrap_form_for(@user, style: :horizontal , left: "col-lg-3" , right: "col-lg-9")  do |f| %>
 
@@ -10,7 +12,7 @@
 <%= f.label :country , class: "control-label col-lg-3" %>
 <div class="col-lg-9"><%= f.country_select :country , nil , {}, class:"form-control"  %></div></div>
 
-<%= f.text_area :body , label: "Introduction", placeholder:"Write what best describes your profession and primary skills." , size: "24x5"  %>
-<%= f.form_group do %><%= f.submit "Update" %><% end %>
+<%= f.text_area :body , label: "Introduction", placeholder:"Write what best describes your profession and primary skills." , size: "24x4"  %>
+<%= f.form_group do %><%= f.submit "Update" , class:"btn btn-success" %><% end %>
 
 <% end %>

@@ -377,6 +377,8 @@ h1,h2,h3,h4{
     .prefix{font-size: 70%;}
 }
 
+.suffix{margin-top: -10px;margin-bottom: 10px;}
+
 /* Wiki styling. Should use important because styles defined inline */
 .wiki_content, .wiki_diff, .wiki_history {
     border: none !important;
@@ -390,6 +392,7 @@ h1,h2,h3,h4{
 .head a{color: #fff;}
 .head a:hover{color: $theme-color-med;}
 .head{h1,h2,h3{margin-top: 11px;}}
+.head .text-light{color: $theme-color-light;}
 .head-dark{background-color: #333;}
 .head-dark a{color: $theme-color-med;}
 .head-dark a:hover{color: #fff;}
@@ -783,16 +786,8 @@ CLASSES
 }
 
 .bg-dark a{
-    color: #ccc;
+    color: #fff;
 }
-
-.float-right{
-    float: right;
-}
-
-.float-left{
-    float: left;
-} 
 
 .text-justify{
     text-align: justify;
@@ -893,10 +888,14 @@ CLASSES
     margin: 5px;
 }
 
-.red-number , .red-number a{
+.mar-10{
+    margin: 10px;
+}
+
+/* On use on User profile page */
+.big-number , .big-number a{
     font-size: 50px;
     font-weight: 700;
-    color: #c03;
 }
 
 .row-modified{
