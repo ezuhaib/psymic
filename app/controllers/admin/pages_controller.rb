@@ -6,7 +6,7 @@ class Admin::PagesController < ApplicationController
   def backstage
   	authorize! :backstage, Feedback
     @feedback = Feedback.new
-    @feedbacks = Feedback.backstage.page(params[:page])
+    @feedbacks = Feedback.backstage.order("created_at DESC").page(params[:page])
   end
 
 end

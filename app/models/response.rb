@@ -19,6 +19,7 @@ class Response < ActiveRecord::Base
       s.counter || s.counter = 0
       s.counter += 1
       s.save
+    end
 
     # Notify Mindlog Author
     target = self.mindlog.user_id
@@ -29,8 +30,10 @@ class Response < ActiveRecord::Base
     notify(target,txt,tag,scope,:alt=>alt)
 
     # Email Mindlog Author
-    UserMailer.new_response_on_mindlog(self).deliver
+    if self.mindlog.user.email_on_new_response == true
+      UserMailer.new_response_on_mindlog(self).deliver
     end
+
   end
 
 end

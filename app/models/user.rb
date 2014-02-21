@@ -25,6 +25,8 @@ has_many :mindlogs, :through => :likes, :source => :likeable, :source_type => 'M
 devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 acts_as_reader
+extend FriendlyId
+friendly_id :username
 
 def self.find_first_by_auth_conditions(warden_conditions)
   conditions = warden_conditions.dup
