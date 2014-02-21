@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
+  before_filter :fetch_user , only: [:show,:edit,:update,:mindlogs]
+
+  def fetch_user
+    @user = User.find_by_username(params[:id])
+  end
+
   def show
-  	@user = User.find(params[:id])
     authorize! :read , @user
   end
 
@@ -9,14 +14,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	@user = User.find_by_id(params[:id])
     authorize! :update , @user
   end
 
   def update
-  	@user = User.find(params[:id])
     authorize! :update , @user
-    
+
 	  if @user.update_attributes(params[:user])
         redirect_to @user, notice: 'Profile was successfully updated.'
       else
@@ -25,7 +28,6 @@ class UsersController < ApplicationController
   end
 
   def mindlogs
-    @user = User.find(params[:id])
     @mindlogs = @user.mindlogs
   end
 
@@ -35,7 +37,11 @@ class UsersController < ApplicationController
   end
 
   def profile_edit
-    @user = current_user
+    if params[:user]
+      @user = User.find_by_username(params[:user])
+    else
+      @user = current_user
+    end
     authorize! :update , @user
     render :edit
   end

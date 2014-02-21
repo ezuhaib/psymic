@@ -4,12 +4,12 @@
   <tr id="commentable-<%= feedback.id %>">
 
     <td class="text-right col-sm-1">
-      <%= render 'tags' , feedback: feedback %>
+      <%= render 'meta/feedbacks/tags' , feedback: feedback %>
     </td>
 
     <td class="col-sm-11">
       <%= feedback.body %>
-      <%= render 'links' , feedback: feedback %>
+      <%= render 'meta/feedbacks/links' , feedback: feedback %>
       <div class="comments-js"></div>
     </td>
   </tr>
