@@ -1,20 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div class="head head-dark">
+	<h2><%= link_to "META" , meta_feedbacks_path %> > Showing single item</h2>
+</div>
 
-<p>
-  <b>User:</b>
-  <%= @feedback.user_id %>
-</p>
+<div id="commentable-<%= @feedback.id %>">
+<p><%= render 'tags' , feedback: @feedback %></p>
 
-<p>
-  <b>Body:</b>
-  <%= @feedback.body %>
-</p>
+<p><%= @feedback.body %></p>
+<%= render 'links' , feedback: @feedback %>
 
-<p>
-  <b>Nature:</b>
-  <%= @feedback.nature %>
-</p>
-
-
-<%= link_to 'Edit', edit_meta_feedback_path(@feedback) %> |
-<%= link_to 'Back', meta_feedbacks_path %>
+<h3><%= @feedback.comments.count %> Comments</h3>
+<%= render template: "comments/show" , locals: {commentable:@feedback} %>
+</div>

@@ -1,7 +1,8 @@
-<h2>Join Psymic</h2>
+<div class="head">
+  <h2>Join Psymic</h2>
+</div>
 
 <%= bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name) , style: :horizontal , left: "col-lg-3" , right: "col-lg-9" , html: {autocomplete: :off}) do |f| %>
-  <%= f.text_field :testing_key , :autofocus => true , placeholder:"Enter the key provided to you by Admin" %>
   <%= f.text_field :username , class:"form-control", placeholder:"Usernames cannot be changed later" %>
   <%= f.select :gender , {'Female'=>'female','Male'=>'male'} , :prompt => "Select Gender" %>
   <%= f.text_field :dob , "data-behaviour"=>"datepicker" , label: "Birth Date" , placeholder: "yyyy/mm/dd" %>
@@ -10,10 +11,14 @@
   <%= f.label :country , class: "control-label col-lg-3" %>
   <div class="col-lg-9"><%= f.country_select :country , nil , {prompt: "Select Country"}, {class:"form-control"}  %></div></div>
 
-  <%= f.text_area :body , label: "Introduction", placeholder:"Write what best describes your profession and primary skills." , size: "24x5"  %>
-  <%= f.email_field :email , class:"form-control" , placeholder: "Must be Valid" %>
-  <%= f.password_field :password , class:"form-control"%>
-  <%= f.password_field :password_confirmation , label: "Retype Password" , class:"form-control"%>
-  <%= f.form_group do %><%= f.submit "Sign up" ,class:"btn btn-lg btn-success" %><% end %>
+  <%= f.text_area :body , label: "Introduction", placeholder:"Write what best describes your profession and primary skills." , size: "24x3"  %>
+  <%= f.email_field :email , placeholder: "Must be Valid" %>
+  <%= f.password_field :password , placeholder:"At least 8 characters" %>
+  <%= f.password_field :password_confirmation , label: "Retype Password", placeholder:"Just to be sure" %>
+  <%= f.form_group :email_options ,label: { text: "Email options" } do %>
+      <%= f.check_box :email_on_new_response %>
+      <%= f.check_box :email_on_response_comment %></br>
+      <%= f.submit "Sign up" , class:"btn btn-success" %>
+  <% end %>
 
 <% end %>

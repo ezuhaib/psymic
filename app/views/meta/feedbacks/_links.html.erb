@@ -1,0 +1,18 @@
+<div class="text-light">
+  by <%= link_to feedback.user.username ,feedback.user %>
+  <%= feedback.created_at.strftime(" on %d %b %Y ") %>
+
+  <% if can? :update , feedback %>
+    <%= link_to '', edit_meta_feedback_path(feedback), class:'glyphicon glyphicon-pencil' %>
+  <% end %>
+
+  <% if can? :destroy , feedback %>
+  <%= link_to '', [:meta,feedback], method: :delete, data: { confirm: 'Are you sure?' }, class:"glyphicon glyphicon-trash" %>
+  <% end %>
+
+  <% if (can? :read , Comment) && ((feedback.comments.count == 1) || (can? :create , Comment)) %>
+  <%= link_to '', get_comments(feedback) , remote: true , class:"glyphicon glyphicon-comment"%> <%= feedback.comments.count %>
+    <div class="comment_box"></div>
+  <% end %>
+
+</div>

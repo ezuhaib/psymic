@@ -1,29 +1,12 @@
-<%= form_for [:meta,@feedback] do |f| %>
-  <% if @feedback.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
-
-      <ul>
-      <% @feedback.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<% if can? :create , Feedback %>
+  <%= form_for [:meta,feedback], html: {class:"form green-focus col-xs-12"} do |f| %>
+  <div class="col-md-9"><%= f.text_area :body , size: '30x3' , placeholder:"Please tag your feedback appropriately via the select box on right", class:'form-control mar-bottom-10' , style:'background-color: #E9FFE1'%></div>
+  <div class="col-md-3"><%= f.select :nature , Feedback.natures, {} , class: 'selectpicker form-control', "data-style"=>"btn-default" %>
+  </br><%= f.submit :submit , class: 'btn btn-success form-control' , style:"margin-top: 8px;"%></div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </div>
-  <div class="field">
-    <%= f.label :nature %><br />
-    <%= f.text_field :nature %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+<% else %>
+  </br><div id="join_mesg" class=" col-md-10 col-md-offset-1 alert alert-warning">
+    <p>Please <%= link_to "Sign in", new_user_session_path %> to post in Meta.</p>
+    <p class="text-small">Or if you haven't joined Psymic already, you may <%= link_to "Join" , new_user_registration_path %> now. Join now and be part of the Collaborative coping network.</p>
   </div>
 <% end %>
