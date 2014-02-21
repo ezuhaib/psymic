@@ -90,7 +90,7 @@ class Meta::FeedbacksController < ApplicationController
     @feedback.destroy
 
     respond_to do |format|
-      format.html { redirect_to meta_feedbacks_path }
+      format.html { redirect_to meta_feedbacks_path , notice: "Successfully deleted" }
       format.json { head :no_content }
     end
   end

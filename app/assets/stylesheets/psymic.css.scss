@@ -386,19 +386,13 @@ h1,h2,h3,h4{
 }
 
 /* In use on edit mindlog page etc */
-.box-themed{
-    background-color: $theme-color;
-    color: #fff;
-}
-
-.box-themed a{
-    color: #fff;
-    text-decoration: none;
-}
-
-.box-themed a:hover{
-    color: $theme-color-med;
-}
+.head{padding: 5px 30px;margin: 0 -15px 20px -15px;background-color: $theme-color;color: #fff;}
+.head a{color: #fff;}
+.head a:hover{color: $theme-color-med;}
+.head{h1,h2,h3{margin-top: 11px;}}
+.head-dark{background-color: #333;}
+.head-dark a{color: $theme-color-med;}
+.head-dark a:hover{color: #fff;}
 
 #new_feedback{
     margin-top: 15px;
@@ -693,8 +687,7 @@ BOOTSTRAP HACKS
 
 img{vertical-align: inherit}
 a{transition: all 0.3s linear;-moz-transition: all 0.3s linear;-webkit-transition: all 0.3s linear;-o-transition: all 0.3s linear;}
-a:focus{outline: none;}
-a:hover{text-decoration: none;}
+a:active,a:link,a:hover,a:visited,a:focus{text-decoration: none;outline: none;}
 p{margin-bottom: 5px;}
 .btn-themed {@include button-variant(#fff, $theme-color , $theme-color);}
 
@@ -761,10 +754,6 @@ CLASSES
 .h-compact{
     line-height: 0.8;
     padding-bottom: 5px;
-}
-
-.box a{
-    color: #333;
 }
 
 .border-light{

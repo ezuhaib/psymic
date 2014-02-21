@@ -46,7 +46,6 @@ class Ability
       can :manage , WikiPage
     elsif user.username # authenticated users
       can [:report,:subscribe,:unsubscribe,:respond] , Mindlog
-      can :read , [Mindlog,Response,Comment,User,Feedback,WikiPage]
       can :vote , Response
       # for some reason if :all is used below, it authorizes update/destroy on wikipages for all users
       can [:update,:destroy] , [Mindlog,Response,Comment,Feedback] do |x|
@@ -59,8 +58,7 @@ class Ability
     end
 
     # all users authenticted an anonymous:
-    # Anonymous users currently not allowed access to anything
-    #can :read , [Mindlog,Response,Comment,User]
+    can :read , [Mindlog,Response,Comment,User,Feedback,WikiPage]
 
   end
 end

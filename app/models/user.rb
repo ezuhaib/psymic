@@ -41,14 +41,7 @@ end
 
 validates :username, :uniqueness => {:case_sensitive => false}
 validates_presence_of :username , :gender , :dob , :country
-validates_size_of :body , in: 80...1500
-validate :check_testing_key , on: :create
-
-def check_testing_key
-  unless ["ocipidi66"].include? testing_key
-    errors.add(:testing_key, "must be the one provided by Admin")
-  end
-end
+validates_size_of :body , in: 40...1000
 
 ################################
 # CALLBACKS

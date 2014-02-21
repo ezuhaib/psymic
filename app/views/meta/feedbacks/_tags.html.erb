@@ -1,0 +1,7 @@
+  <span class="label
+    <%= "label-danger" if feedback.nature == "issue" %>
+    <%= "label-default" if feedback.nature == "general" %>
+    <%= "label-primary" if feedback.nature == "suggestion" %>
+    <%= "hidden" if feedback.nature == "backstage"%>
+    "><%= link_to feedback.nature.upcase , [:meta,feedback] %>
+  </span>

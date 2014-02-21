@@ -1,6 +1,5 @@
-<h1>Editing feedback</h1>
+<div class="head head-dark"><h1>Editing feedback</h1></div>
 
-<%= render 'form' %>
+<%= render 'form' , feedback:@feedback%>
 
-<%= link_to 'Show', @feedback %> |
-<%= link_to 'Back', meta_feedbacks_path %>
+<%= link_to 'Back to Meta', meta_feedbacks_path %>
