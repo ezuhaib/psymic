@@ -1,12 +1,23 @@
 class UsersController < ApplicationController
   before_filter :fetch_user , only: [:show,:edit,:update,:mindlogs]
+  before_filter :fetch_profile , only: [:avatar,:crop,:profile_edit,:update_avatar]
 
   def fetch_user
     @user = User.find_by_username(params[:id])
   end
 
+  def fetch_profile
+    if params[:username]
+      @user = User.find_by_username(params[:username])
+    else
+      @user = current_user
+    end
+    authorize! :update , @user
+  end
+
   def show
     authorize! :read , @user
+    @mindlogs = @user.mindlogs.limit(5)
   end
 
   def index
@@ -17,14 +28,38 @@ class UsersController < ApplicationController
     authorize! :update , @user
   end
 
+  def avatar
+  end
+
+  def update_avatar
+    if !params[:user]
+      flash[:alert] = 'Please select an image file first'
+      render 'avatar'
+    elsif params[:user][:avatar] && @user.update_attributes(params[:user])
+      redirect_to action: :crop
+    elsif params[:do] == 'crop' && @user.update_attributes(params[:user])
+      redirect_to edit_profile_path , notice:"Avatar successfully updated"
+    else
+      flash[:alert] = 'Some error occured'
+      render 'avatar'
+    end
+  end
+
   def update
     authorize! :update , @user
 
 	  if @user.update_attributes(params[:user])
-        redirect_to @user, notice: 'Profile was successfully updated.'
+        if params[:user] && params[:user][:avatar]
+          redirect_to action: :crop
+        else
+          redirect_to @user, notice: 'Profile was successfully updated.'
+        end
       else
         render action: "edit"
       end
+  end
+
+  def crop
   end
 
   def mindlogs
@@ -32,17 +67,13 @@ class UsersController < ApplicationController
   end
 
   def profile
+    authorize! :authenticate, :psymic
     @user = current_user
+    @mindlogs = @user.mindlogs.limit(5)
     render :show
   end
 
   def profile_edit
-    if params[:user]
-      @user = User.find_by_username(params[:user])
-    else
-      @user = current_user
-    end
-    authorize! :update , @user
     render :edit
   end
 

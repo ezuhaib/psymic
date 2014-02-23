@@ -15,8 +15,10 @@ Psymic::Application.routes.draw do
   get 'tags/:tag' , to: 'mindlogs#index' , as: :tag
   get "mindlogs/tags" => "mindlogs#tags", :as => :tags #returns json
   get 'profile' => "users#profile" , as: :profile
-  get 'profile/edit' => "users#profile_edit" , as: :edit_own_profile
-  get 'profile/edit/:user' => "users#profile_edit" , as: :edit_profile
+  get 'profile/edit' => "users#profile_edit" , as: :edit_profile
+  get 'profile/edit/avatar' => "users#avatar" , as: :edit_avatar
+  put 'profile/edit/avatar' => "users#update_avatar" , as: :update_avatar
+  get 'profile/edit/avatar/crop' => "users#crop" , as: :crop_avatar
 
   resources :subscriptions do
     collection do

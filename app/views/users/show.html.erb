@@ -2,32 +2,42 @@
 	<h1>user:<%= link_to @user.username , @user %>
 		<% if can? :update , @user %>
 			<span class="pull-right">
-				<%= link_to 'Edit' , (@user == current_user ? edit_own_profile_path : edit_profile_path(@user.username)) , class: "btn btn-primary" %>
+				<%= link_to 'Edit' , (@user == current_user ? edit_profile_path : edit_profile_path(username:@user.username)) , class: "btn btn-primary" %>
 			</span>
 		<% end %>
 	</h1>
+</div>
 
-	<p class="text-light suffix">
+<div class="col-sm-3 text-center">
+	<div class="avatar">
+		<%= link_to (image_tag @user.avatar(:thumb)), edit_avatar_path %>
+	</div>
+	<b><%= @user.mindlogs.count %></b> Mindlogs</br>
+	<b><%= @user.responses.count %></b> Responses
+</div>
+
+<div class="col-sm-9 row">
+	<b class="text-light suffix">
 		<%= distance_of_time_in_words(Time.now,@user.dob, true,{:highest_measure_only=>true}) %> old <%= @user.gender %> from <%= @user.country %>
-	</p>
-</div>
+	</b></br></br>
+	<%= @user.body %>
+	<% if can? :manage, :all %></br></br><b>email: </b><%= @user.email %></br><% end %>
 
-<div class="col-sm-12 row">
-	<p class="col-sm-9"><%= @user.body %></p>
-	<% if can? :manage, :all %>
-		<p class="col-sm-9"><b>email: </b><%= @user.email %></p>
+	<% if @user.mindlogs.any? %>
+		<h3>Latest Mindlogs
+			<%= link_to "Show All", mindlogs_user_path(@user) , class:"btn btn-default pull-right" %>
+		</h3>
+		<table class="table table-striped">
+			<th>Title</th>
+			<th>When?</th>
+			<% @mindlogs.each do |m| %>
+				<tr>
+				<td><%= link_to m.title, m %></td>
+				<td><%= distance_of_time_in_words(Time.now,m.created_at,true,highest_measure_only:true) %> ago</td>
+				</tr>
+			<% end %>
+		</table>
+	<% else %>
+		<h4>User never posted a mindlog</h4>
 	<% end %>
-</div>
-
-
-<div class="pull-left text-center pad-10 mar-10 bg-dark">
-	<h1 class="big-number">
-		<%= link_to @user.mindlogs.count , mindlogs_user_path(@user) %>
-	</h1> mindlogs
-</div>
-
-<div class="pull-left text-center pad-10 mar-10 bg-dark">
-	<h1 class="big-number">
-		<%= @user.responses.count %>
-	</h1> responses
 </div>

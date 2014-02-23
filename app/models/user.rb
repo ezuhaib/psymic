@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
-
 ################################
 # ATTRIBUTES
 ################################
-attr_accessible :username, :email, :password, :password_confirmation, :remember_me , :gender , :dob , :body , :country, :login,:testing_key #temporary... restricts signups
-attr_accessor :login,:testing_key #temporary... restricts signups
+attr_accessible :username, :email, :password, :password_confirmation, :remember_me , :gender , :dob , :body , :country, :login,:avatar
+attr_accessor :login,:testing_key
+attr_accessible :avatar_original_w, :avatar_original_h, :avatar_box_w, :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h, :avatar_aspect
 
 ################################
 # RELATIONS
@@ -20,13 +20,13 @@ has_many :likes, :dependent => :destroy
 has_many :mindlogs, :through => :likes, :source => :likeable, :source_type => 'Mindlog'
 
 ################################
-# INTEGRATIONS
+# FUNCTIONS: LOCAL
 ################################
-devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
-acts_as_reader
-extend FriendlyId
-friendly_id :username
+
+# Add logic for male/female avatar or random avatars below
+def self.set_default_avatar
+  "avatars/:style/avatar_default.png"
+end
 
 def self.find_first_by_auth_conditions(warden_conditions)
   conditions = warden_conditions.dup
@@ -38,12 +38,35 @@ def self.find_first_by_auth_conditions(warden_conditions)
 end
 
 ################################
+# FUNCTIONS: INSTANCE METHODS
+################################
+def role?(role)
+  self.roles.pluck(:title).include?(role.to_s)
+end
+
+################################
+# INTEGRATIONS
+################################
+devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+acts_as_reader
+extend FriendlyId
+friendly_id :username
+has_attached_file :avatar,
+  :styles => { :standard => "300x300>", :thumb => "130x130>" },
+  :default_url => set_default_avatar
+crop_attached_file :avatar
+
+################################
 # VALIDATIONS
 ################################
 
 validates :username, :uniqueness => {:case_sensitive => false}
 validates_presence_of :username , :gender , :dob , :country
 validates_size_of :body , in: 40...1000
+validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+validates_attachment_size :avatar, in: 0..2000.kilobytes
+validates :avatar, :dimensions => { :width => 300, :height => 300 }
 
 ################################
 # CALLBACKS
@@ -52,13 +75,6 @@ validates_size_of :body , in: 40...1000
 # Override Devise::Confirmable#after_confirmation
 def after_confirmation
 UserMailer.registration_confirmation(self).deliver
-end
-
-################################
-# INSTANCE METHODS
-################################
-def role?(role)
-  self.roles.pluck(:title).include?(role.to_s)
 end
 
 ################################

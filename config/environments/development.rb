@@ -35,4 +35,7 @@ Psymic::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  # ImageMagick path for Paperclip
+  Paperclip.options[:command_path] = "C:/ImageMagick"
+
 end
