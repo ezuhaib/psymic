@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140221185336) do
+ActiveRecord::Schema.define(:version => 20140223094808) do
 
   create_table "cargo_wiki_articles", :force => true do |t|
     t.string   "title"
@@ -197,6 +197,10 @@ ActiveRecord::Schema.define(:version => 20140221185336) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.text     "options"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

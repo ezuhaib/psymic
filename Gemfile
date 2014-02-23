@@ -13,6 +13,8 @@ gem 'rack-mini-profiler'
 gem 'google-analytics-rails'
 gem 'exception_notification'
 gem 'logglier'
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem "papercrop", git: "https://github.com/rsantamaria/papercrop.git"
 
 # Unix-only gems
 platforms :ruby do
