@@ -35,6 +35,4 @@ Psymic::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  # Text editor linked to Better_errors gem
-  BetterErrors.editor = :sublime
 end
