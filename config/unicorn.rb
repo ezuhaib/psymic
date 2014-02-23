@@ -4,7 +4,9 @@ env = ENV["RAILS_ENV"] || "development"
 
 # See http://unicorn.bogomips.org/Unicorn/Configurator.html for complete
 # documentation.
-worker_processes 4
+
+# The rule of thumb is to use 1 worker per processor core available
+worker_processes 1
 
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
