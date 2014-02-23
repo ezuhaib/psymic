@@ -1,3 +1,22 @@
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: ed0bc8de5b8545541483bf3eeb6ad89451a908af
+  specs:
+    paperclip (4.1.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
+
+GIT
+  remote: https://github.com/rsantamaria/papercrop.git
+  revision: 636aa1313ffd2b2606a23ff8d568f1e5cc73033f
+  specs:
+    papercrop (0.1.1)
+      jquery-rails
+      paperclip (>= 3.4)
+      rails (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -55,6 +74,10 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -242,6 +265,8 @@ DEPENDENCIES
   liquid
   logglier
   meta_request
+  paperclip!
+  papercrop!
   pg
   quiet_assets
   rack-mini-profiler

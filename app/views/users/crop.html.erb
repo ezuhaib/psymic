@@ -1,0 +1,14 @@
+<div class="head"><h2>Editing Avatar</h2></div>
+<div class="alert alert-info">
+Please note that the original image shall be retained as such so that you may choose to crop it differently in future.</div>
+
+<%= form_for @user, :url => update_avatar_url(do: :crop) do |f| %>
+  <div class="center"><%= f.cropbox :avatar , width: 700 %></div></br>
+  <div class='well col-xs-12'>
+  	<div class="col-sm-3"><%= f.crop_preview :avatar , width: 140 %></div>
+  	<div class="col-sm-9">
+  		<b>Save if you're satisfied</b></br></br>
+  		<%= f.submit 'Save' , class:"btn btn-success btn-lg" %>
+  	</div>
+  </div>
+<% end %>

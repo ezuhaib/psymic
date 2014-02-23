@@ -1,18 +1,28 @@
 <div class="head">
-	<h2>Editing Profile<span class="pull-right"><%= link_to "Back" , :back , class:"btn btn-primary" %></span></h2>
+	<h2>Editing Profile<span class="pull-right"><%= link_to "Back" , profile_path , class:"btn btn-primary" %></span></h2>
 </div>
 
-<%= bootstrap_form_for(@user, style: :horizontal , left: "col-lg-3" , right: "col-lg-9")  do |f| %>
+<%= bootstrap_form_for @user , html:{class:"col-sm-9"} do |f| %>
 
-<%= f.text_field :username , disabled:true , help: "Usernames can be changed." %>
-<%= f.select :gender , {'Male'=>'male','Female'=>'female'} %>
-<%= f.text_field :dob , "data-behaviour"=>"datepicker"  %>
+	<%= f.text_field :username , disabled:true , help: "Usernames cannot be changed." %>
+	<%= f.select :gender , {'Male'=>'male','Female'=>'female'} %>
+	<%= f.text_field :dob , "data-behaviour"=>"datepicker"  %>
 
-<div class="form-group">
-<%= f.label :country , class: "control-label col-lg-3" %>
-<div class="col-lg-9"><%= f.country_select :country , nil , {}, class:"form-control"  %></div></div>
-
-<%= f.text_area :body , label: "Introduction", placeholder:"Write what best describes your profession and primary skills." , size: "24x4"  %>
-<%= f.form_group do %><%= f.submit "Update" , class:"btn btn-success" %><% end %>
+	<div class="form-group">
+		<%= f.label :country , class: "control-label" %>
+		<div>
+			<%= f.country_select :country , nil , {}, class:"form-control"  %>
+		</div>
+	</div>
+	<%= f.text_area :body , label: "Introduction", placeholder:"Write what best describes your profession and primary skills." , size: "24x6"  %>
+	<%= f.form_group do %><%= f.submit "Update" , class:"btn btn-success" %><% end %>
 
 <% end %>
+
+<div class="col-sm-3" id="avatar_box">
+	<div class="avatar">
+		<%= link_to (image_tag @user.avatar(:thumb)), edit_avatar_path %>
+	</div>
+	<%= link_to 'UPLOAD NEW', edit_avatar_path %></br>
+	<%= link_to 'MODIFY CROP', crop_avatar_path %>
+</div>

@@ -55,6 +55,7 @@ class Ability
         u.try(:id) == user.id
       end
       can :create , [Mindlog,Response,Comment,Feedback]
+      can :authenticate , :psymic #checks if user logged in
     end
 
     # all users authenticted an anonymous:
