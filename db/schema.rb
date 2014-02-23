@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140220081751) do
+ActiveRecord::Schema.define(:version => 20140221185336) do
 
   create_table "cargo_wiki_articles", :force => true do |t|
     t.string   "title"
@@ -82,13 +82,6 @@ ActiveRecord::Schema.define(:version => 20140220081751) do
     t.string   "text"
     t.string   "tag"
     t.string   "scope"
-  end
-
-  create_table "offers", :force => true do |t|
-    t.integer  "user_id"
-    t.text     "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "read_marks", :force => true do |t|
