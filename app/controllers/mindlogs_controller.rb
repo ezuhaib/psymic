@@ -48,9 +48,17 @@ class MindlogsController < ApplicationController
     elsif params[:only] == "stories"
       @responses = @mindlog.responses.where(nature:"story").order("rating DESC")
     else
-	   @responses = @mindlog.responses.order("created_at DESC")
-   end
+      if params[:do] == "toggle_feature"
+        authorize! :moderate , @mindlog
+        flash[:notice] = "Featuring action successful" if @mindlog.toggle_feature(current_user.id)
+      elsif params[:do] == "toggle_publish"
+        @mindlog.published? ? @mindlog.unpublish! : @mindlog.publish!
+        flash[:notice] = "Publishing action successful"
+      end
+	     @responses = @mindlog.responses.order("created_at DESC")
+    end
    @responses = @responses.page(params[:page]).per(10)
+   redirect_to action: :show if params[:do] #to get rid of args in url
   end
 
   # GET /mindlogs/new
@@ -76,15 +84,11 @@ class MindlogsController < ApplicationController
     @mindlog = Mindlog.new(params[:mindlog])
     @mindlog.user = current_user
     authorize! :create , @mindlog
-
-    respond_to do |format|
-      if @mindlog.save
-        format.html { redirect_to @mindlog, notice: 'Mindlog was successfully created.' }
-        format.json { render json: @mindlog, status: :created, location: @mindlog }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @mindlog.errors, status: :unprocessable_entity }
-      end
+    if @mindlog.save
+      params[:submit_only] ? @mindlog.submit! : @mindlog.publish!
+      redirect_to @mindlog, notice: 'Mindlog was successfully created.'
+    else
+      render action: "new"
     end
   end
 
@@ -93,15 +97,12 @@ class MindlogsController < ApplicationController
   def update
     @mindlog = Mindlog.find(params[:id])
     authorize! :update , @mindlog
-    respond_to do |format|
       if @mindlog.update_attributes(params[:mindlog])
-        format.html { redirect_to @mindlog, notice: 'Mindlog was successfully updated.' }
-        format.json { head :no_content }
+       @mindlog.publish! unless @mindlog.published? and params[:publish]
+       redirect_to @mindlog, notice: 'Mindlog was successfully updated.'
       else
-        format.html { render action: "edit" }
-        format.json { render json: @mindlog.errors, status: :unprocessable_entity }
+        render action: "edit"
       end
-    end
   end
 
   # DELETE /mindlogs/1
@@ -132,32 +133,25 @@ class MindlogsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to @mindlog and return}
         format.js #added
-      end 
-
+      end
     end
-
-      respond_to do |format|
-        format.html #added
-        format.js #added
-      end   
-
   end
 
   def reports
   end
-  
 
-    def subscribe
-    @mindlog = Mindlog.find(params[:id])
-    authorize! :subscribe , @mindlog
-    @subscription = Subscription.new
-    @subscription.subscribable = @mindlog
-    @subscription.user_id = current_user.id
-      if @subscription.save
-        redirect_to @mindlog , flash: {success:"Subscribed successfully"}
-      else
-        redirect_to @mindlog , flash: {error: "Couldn't Subscribe"}
-      end
+
+  def subscribe
+  @mindlog = Mindlog.find(params[:id])
+  authorize! :subscribe , @mindlog
+  @subscription = Subscription.new
+  @subscription.subscribable = @mindlog
+  @subscription.user_id = current_user.id
+    if @subscription.save
+      redirect_to @mindlog , flash: {success:"Subscribed successfully"}
+    else
+      redirect_to @mindlog , flash: {error: "Couldn't Subscribe"}
+    end
   end
 
   def unsubscribe
@@ -213,6 +207,10 @@ def tags
   respond_to do |format|
     format.json { render :json => @tags.map{|t| {:id => t.name, :name => t.name }}}
   end
+end
+
+def moderation_queue
+  @mindlogs = Mindlog.where(workflow_state: ['awaiting_review','unpublished'])
 end
 
 

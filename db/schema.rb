@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140228105032) do
+ActiveRecord::Schema.define(:version => 20140228143428) do
 
   create_table "badges_sashes", :force => true do |t|
     t.integer  "badge_id"
@@ -65,6 +65,13 @@ ActiveRecord::Schema.define(:version => 20140228105032) do
   end
 
   add_index "comments", ["commentable_type", "commentable_id"], :name => "index_comments_on_commentable_type_and_commentable_id"
+
+  create_table "featured_mindlogs", :force => true do |t|
+    t.integer  "mindlog_id"
+    t.integer  "moderator_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "feedbacks", :force => true do |t|
     t.integer  "user_id"
@@ -128,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20140228105032) do
     t.integer  "user_id"
     t.text     "status"
     t.integer  "reports_counter"
+    t.string   "workflow_state"
   end
 
   create_table "notifications", :force => true do |t|
