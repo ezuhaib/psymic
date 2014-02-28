@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140223094808) do
+ActiveRecord::Schema.define(:version => 20140225192419) do
 
   create_table "cargo_wiki_articles", :force => true do |t|
     t.string   "title"
@@ -29,6 +29,19 @@ ActiveRecord::Schema.define(:version => 20140223094808) do
     t.datetime "updated_at",      :null => false
     t.string   "auth_token"
     t.string   "role"
+  end
+
+  create_table "channels", :force => true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "body"
+    t.string   "query"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
   end
 
   create_table "comments", :force => true do |t|

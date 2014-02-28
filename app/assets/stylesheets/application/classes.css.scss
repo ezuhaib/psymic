@@ -28,7 +28,7 @@ Todo: Remove Orphaned
 .link-inverted a{ color: #fff;background-color: #999;padding: 1px 5px;}
 .link-inverted a:hover{color: #fff;background-color: #666;}
 .link-alt, .link-alt a{color: #555;&:hover{color: #000}}
-.link-boxed{background: #eee;padding-top: 10px;padding-bottom: 10px;font-weight:700;color: #000;}
+.link-boxed{background: #eee;padding-top: 10px;padding-bottom: 10px;font-weight:700;color: #000;border: 1px solid #ddd;}
 .link-boxed:hover{background: $theme-color-med;color: #000;}
 
 /* Lists */

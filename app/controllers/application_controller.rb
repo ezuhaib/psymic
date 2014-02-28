@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   	redirect_to root_url
   end
 
+  def not_found()
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
 	def authorize_mini_profiler
 		if can? :monitor , :all
   		Rack::MiniProfiler.authorize_request

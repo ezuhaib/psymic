@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
 ################################
 attr_accessible :username, :email, :password, :password_confirmation, :remember_me , :gender , :dob , :body , :country, :login,:avatar
 attr_accessor :login,:testing_key
-attr_accessible :avatar_original_w, :avatar_original_h, :avatar_box_w, :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h, :avatar_aspect
 
 ################################
 # RELATIONS
@@ -55,7 +54,7 @@ friendly_id :username
 has_attached_file :avatar,
   :styles => { :standard => "300x300>", :thumb => "130x130>" },
   :default_url => set_default_avatar
-crop_attached_file :avatar
+crop_attached_file :avatar , min_size: "300x300"
 
 ################################
 # VALIDATIONS

@@ -40,12 +40,13 @@
 		<li><%= link_to "Login/Join" , new_user_session_path %></li>
 	<% end %>
 	<li><%= link_to "Mindlogs" , mindlogs_path %></li>
-	<% if can? :backstage , Feedback%><li><%= link_to "Backstage" , admin_backstage_path %></li><% end %>
-	<% if can? :read , Feedback%><li><%= link_to "Meta" , meta_feedbacks_path %></li><% end %>
+	<li><%= link_to "Channels" , channels_path %></li>
 </ul>
 
 <%# Secondary %>
-<ul class="bottom-links pull-right">
+<ul class="bottom-links text-right pull-right">
+	<% if can? :read , Feedback%><li><%= link_to "Meta" , meta_feedbacks_path %></li><% end %>
+	<% if can? :backstage , Feedback%><li><%= link_to "Backstage" , admin_backstage_path %></li><% end %>
 	<li><%= link_to "Help Center" , wiki_page_path(:help) %></li>
 </ul>
 

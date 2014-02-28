@@ -1,0 +1,15 @@
+<div class="head">
+  <%= image_tag 'channels.png' , class:"pull-left mar-r-10" %>
+  <h1>
+    CHANNELS
+    <%= link_to('New', new_channel_path , class:"btn btn-success pull-right") if can? :create, Channel %>
+  </h1>
+</div>
+
+<div class="col-sm-12">
+  <p>Channels are like tags in that these help group similar content together. However, these differ from tags in that content in them is moderated and these have dedicated moderators and editors. Channels have clearly defined targets and campaigns for mining mindlogs. Rule of the thumb is that if a channel for something of your interest exists, use it rather than the tag.</p>
+  <h3><%= @channels.count %> channels so far</h3>
+  <% @channels.each do |c| %>
+    <%= link_to c.title , c , class:"link-boxed col-md-4 col-xs-6 col-sm-6" %>
+  <% end %>
+</div>
