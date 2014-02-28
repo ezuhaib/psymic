@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :fetch_user , only: [:show,:edit,:update,:mindlogs]
+  before_filter :fetch_user , only: [:show,:edit,:update,:mindlogs,:activity]
   before_filter :fetch_profile , only: [:avatar,:crop,:profile_edit,:update_avatar]
 
   def fetch_user
@@ -75,6 +75,9 @@ class UsersController < ApplicationController
 
   def profile_edit
     render :edit
+  end
+
+  def activity
   end
 
 end
