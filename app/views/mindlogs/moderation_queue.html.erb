@@ -1,0 +1,22 @@
+<div class="head">
+	<h2>Mindlogs Moderation Queue</h2>
+</div>
+
+<% if @mindlogs.any? %>
+	<p><%= @mindlogs.count %> entries await moderation.</p>
+	<table class="table table-striped">
+	<th>Title</th>
+	<th>Posted</th>
+	<th>Issue</th>
+	<% @mindlogs.each do |m| %>
+		<tr>
+		<td><%= link_to m.title, m %></td>
+		<td><%= distance_of_time_in_words(Time.now,m.created_at,true,highest_measure_only:true) %> ago
+		</td>
+		<td><%= m.workflow_state %></td>
+		</tr>
+	<% end %>
+	</table>
+<% else %>
+	<h3>Wow! All entries clear</h3>
+<% end %>
