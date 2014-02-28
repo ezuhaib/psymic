@@ -1,0 +1,39 @@
+@import 'theme';
+
+#psymic_list li{
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+#banner{
+    width: 100%;
+    padding: 0 15px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    float: left;
+}
+
+#banner img{
+    background-color: $theme-color;
+    border: 2px #fff solid;
+}
+
+#mascot{
+    float: right;
+    padding: 0px;
+}
+
+#counter{
+    margin: 20px auto;
+    font-size: 120%;
+    text-align: center;
+    color: #888;
+}
+
+#counter span{
+    color: $theme-color;
+    font-weight: 300;
+    font-size: 280%;
+    line-height: 1;
+}

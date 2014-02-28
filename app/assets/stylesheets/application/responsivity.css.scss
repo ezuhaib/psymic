@@ -1,0 +1,100 @@
+/****************************************
+MEDIA QUERIES AND RESPONSIVE DESIGN
+Todo: Integrate Mixins and variables
+****************************************/
+
+@import "theme";
+@import "bootstrap/variables";
+
+/****************************************
+MEDIA QUERIES AND RESPONSIVE DESIGN
+Todo: Integrate Mixins and variables
+****************************************/
+/* xs */
+@media (max-width: $screen-xs-max) {
+    .pull-left-xs {
+        float: left;
+    }
+    .pull-right-xs {
+        float: right;
+    }
+    *[class*='col-xs-inv-']{
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+    }
+    .col-xs-inv-3{width: 25%;}
+    .col-xs-inv-4{width: 33.4%;}
+    .col-xs-inv-5{width: 41.7%;}
+    .col-xs-inv-6{width: 50%;}
+    .center-xs{float: none;margin-left: auto;margin-right: auto;display: table;}
+}
+
+/* sm */
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    .pull-left-sm {
+        float: left;
+    }
+    .pull-right-sm {
+        float: right;
+    }
+}
+
+/* xs , sm */
+@media (max-width: $screen-sm-max) {
+    *[class*='col-sm-inv-'] {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+    }
+
+    /* CLASSES */
+    h1{font-size: 30px}
+    .text-md{font-size: 115%}
+    .container{padding: 0}
+    .center-xsm{text-align: center;}
+    .col-sm-inv-3{width: 25%;}
+    .col-sm-inv-4{width: 33.4%;}
+    .col-sm-inv-5{width: 41.7%;}
+    .col-sm-inv-6{width: 50%;}
+    .col-sm-inv-6r{width:49%;margin-right:1%;}
+
+    /* DIVS */
+    #tag_list li {display: inline; margin-right: 4px;}
+    #footer_b{height: auto;width:100%;left: 0px;position: fixed;z-index: 10000;margin:0;}
+    #content{padding-bottom: 0}
+    .sidebar-right{margin: 0;text-align:center;padding-bottom: 60px}
+}
+
+/* md */
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+
+    #footer_b , #mindlogs_header{width:597px;position: fixed;z-index: 10000;}
+    .sidebar{width:156.65px;position: fixed;z-index: 20000;}
+}
+
+/* lg */
+@media (min-width: $screen-lg-min) {
+
+    #footer_b , #mindlogs_header{width:730px;position: fixed;z-index: 10000;}
+    .sidebar{width:190px;position: fixed;z-index: 20000;}
+}
+
+/* md, lg */
+@media (min-width: $screen-md-min){
+    
+    .pad-x2-md{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .pad-x4-md{
+        padding-left: 60px;
+        padding-right: 60px;   
+    }
+}
+

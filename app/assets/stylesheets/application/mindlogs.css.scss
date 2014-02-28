@@ -1,0 +1,169 @@
+/******************************
+MINDLOGS and RESPONSES
+*******************************/
+@import 'theme';
+
+#mindlog_responses{
+    width:100%;
+}
+
+#mindlogs_search{margin-top: -10px;margin-bottom: 5px;}
+#sort_options{margin-bottom: 10px}
+#mindlogs_header{
+    height: 60px;
+    background-color: #222;
+    border-bottom: 4px solid $theme-color;
+}
+
+#mindlogs_header_text {color: #fff;font-size: 35px;text-transform: uppercase;letter-spacing: 7px;line-height: 60px;}
+#mindlogs_header_text:hover{color: #999;}
+#mindlogs_header .btn {font-size: 18px;margin-top: 8px;}
+
+
+#mindlog_box{
+    padding: 5px 30px 15px 30px;
+}
+
+.mindlog_body{
+    padding-top: 12px !important;
+}
+
+.mindlog_stats{
+    font-size: 35px;
+    color: #339900;
+}
+
+.mindlog_responses_count{
+    color: #999999;
+    font-size: 20px;
+    margin-top: -10px;
+}
+
+.mindlog_tag_list{
+    list-style: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.mindlog_tag_list li{
+    display: inline;
+    margin-right: 5px;
+}
+
+.mindlog_bottom_line{
+    font-size: 16px;
+    margin-top: -4px;
+    margin-bottom: 4px;
+}
+
+.mindlog_responses_count span{
+    font-size: 14px;
+}
+
+#responses_count{
+    font-size: 250%;
+    margin-bottom: -10px;
+}
+
+#responses_count span{
+    font-size: 100%;
+}
+
+#responses_links{
+    border-right: 1px solid #eee;
+}
+
+/*list1 on use on mindlogs show page in right sidebar */
+#list1 { }
+#list1 ul { list-style:none; padding:10px 0; }
+#list1 ul li { font-size:80%; text-transform:uppercase; }
+#list1 ul li a { text-decoration:none; color:#888; }
+#list1 ul li a:hover { color: $theme-color; }
+
+#status_box {
+    color: #fff;
+    background: $theme-color;
+    padding: 4px 30px 4px 30px;
+}
+
+#mindlog_links{
+    list-style: none;
+    margin-top: 10px;
+}
+
+#mindlog_links a{
+    color: #aaa;
+}
+
+#mindlog_links a:hover{
+    color: $theme-color;
+}
+
+.rating{
+    width: 40px;
+    height: 75px;
+    vertical-align: top;
+    text-align: center;
+    position: absolute;
+    left: -40px;
+    top: -2px;
+}
+
+.rating_number {
+    font-size: 25px;
+    line-height: 0.8;
+    font-weight: bold;
+    color: #333;
+}
+
+.delete_button img{
+    height: 18px;
+    vertical-align: middle;
+}
+
+.type-explanation , .type-solution , .type-critique{
+    padding-top: 20px;
+    margin-top: 10px;
+    &:before{
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    padding: 2px 6px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    }
+}
+
+.type-explanation{background-color: #FFFFB3;border: 1px solid #CC9900;}
+.type-explanation:before{content:"explanation";background: #CC9900;}
+.type-explanation{.text-light,.text-light a{color:#CC9900;}}
+
+.type-solution{background-color: #CED6FF;border: 1px solid #3399CC;}
+.type-solution:before{content:"solution";background: #3399CC;}
+.type-solution{.text-light,.text-light a{color:#3399CC;}}
+
+.type-critique{background-color: #FFB9CB;border: 1px solid #990033;}
+.type-critique:before{content:"critique";background: #990033;}
+.type-critique{.text-light,.text-light a{color:#990033;}}
+
+.response-entry{
+    padding: 8px 15px 8px 15px;
+    margin-bottom: 17px;
+    margin-left: 55px;
+    position: relative;
+    a{font-weight: bold;}
+}
+
+#experience_count{
+    display: inline;
+    font-size:50px;
+    line-height:0.8;
+}
+
+#experience_box{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: right;
+    border-right: 1px solid #eee;
+}

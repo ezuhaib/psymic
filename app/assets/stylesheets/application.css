@@ -9,8 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  * IMPORTANT: DO NOT REQUIRE TREE
  *
- *= require_tree .
+ *= require fonts
+ *= require_tree ./application
  *= require_self
  */
-
-/*this will take cae of the page-shift problem */
