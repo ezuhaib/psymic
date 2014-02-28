@@ -14,7 +14,7 @@ gem 'google-analytics-rails'
 gem 'exception_notification'
 gem 'logglier'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
-gem "papercrop", git: "https://github.com/rsantamaria/papercrop.git"
+gem "papercrop", git: "https://github.com/ezuhaib/papercrop.git"
 gem 'searchkick'
 
 # Unix-only gems
@@ -36,6 +36,7 @@ group :development do
 	gem 'binding_of_caller'
 	gem 'meta_request' #For Rails Panel
 	gem 'quiet_assets'
+	gem 'sextant'
 end
 
 # Gems used only for assets and not required

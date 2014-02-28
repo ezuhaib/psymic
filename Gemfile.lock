@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/thoughtbot/paperclip.git
-  revision: ed0bc8de5b8545541483bf3eeb6ad89451a908af
+  revision: b57208ab843b08f47b95b50b4a1f9175d9a35d98
   specs:
     paperclip (4.1.1)
       activemodel (>= 3.0.0)
@@ -9,8 +9,8 @@ GIT
       mime-types
 
 GIT
-  remote: https://github.com/rsantamaria/papercrop.git
-  revision: 636aa1313ffd2b2606a23ff8d568f1e5cc73033f
+  remote: https://github.com/ezuhaib/papercrop.git
+  revision: eab3ac836cf36506c47eb867ac162c2c1f26a1c0
   specs:
     papercrop (0.1.1)
       jquery-rails
@@ -51,18 +51,22 @@ GEM
       rails (>= 3, < 5)
     ansi (1.4.3)
     arel (3.0.3)
-    atomic (1.1.14)
-    bcrypt-ruby (3.1.2)
-    bcrypt-ruby (3.1.2-x64-mingw32)
-    bcrypt-ruby (3.1.2-x86-mingw32)
+    atomic (1.1.15)
+    bcrypt (3.1.7)
+    bcrypt (3.1.7-x64-mingw32)
+    bcrypt (3.1.7-x86-mingw32)
+    bcrypt-ruby (3.1.5)
+      bcrypt (>= 3.1.3)
+    bcrypt-ruby (3.1.5-x64-mingw32)
+      bcrypt (>= 3.1.3)
+    bcrypt-ruby (3.1.5-x86-mingw32)
+      bcrypt (>= 3.1.3)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-datepicker-rails (1.3.0.1)
-      railties (>= 3.0)
-    bootstrap-sass (3.1.0.2)
+    bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     bootstrap_form (2.0.1)
     builder (3.0.4)
@@ -92,7 +96,7 @@ GEM
       countries (= 0.9.3)
     currencies (0.4.2)
     debug_inspector (0.0.2)
-    devise (3.2.2)
+    devise (3.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -112,15 +116,13 @@ GEM
     highline (1.6.20)
     hike (1.2.3)
     i18n (0.6.9)
-    jbuilder (2.0.2)
+    jbuilder (2.0.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     journey (1.0.4)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.1.1)
-      railties (>= 3.1.0)
     json (1.8.1)
     kaminari (0.15.1)
       actionpack (>= 3.0.0)
@@ -128,7 +130,7 @@ GEM
     kaminari-bootstrap (3.0.1)
       kaminari (>= 0.13.0)
       rails
-    kgio (2.9.1)
+    kgio (2.9.2)
     liquid (2.6.1)
     logglier (0.2.11)
     mail (2.5.4)
@@ -151,7 +153,7 @@ GEM
     pg (0.17.1)
     pg (0.17.1-x64-mingw32)
     pg (0.17.1-x86-mingw32)
-    polyglot (0.3.3)
+    polyglot (0.3.4)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.4.5)
@@ -180,7 +182,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    raindrops (0.12.0)
+    raindrops (0.13.0)
     rake (10.1.1)
     rdoc (3.12.2)
       json (~> 1.4)
@@ -191,20 +193,22 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    searchkick (0.5.0)
+    searchkick (0.5.3)
       tire
       tire-contrib
+    sextant (0.2.4)
+      rails (>= 3.2)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.8)
-    sqlite3 (1.3.8-x64-mingw32)
-    sqlite3 (1.3.8-x86-mingw32)
+    sqlite3 (1.3.9)
+    sqlite3 (1.3.9-x64-mingw32)
+    sqlite3 (1.3.9-x86-mingw32)
     thor (0.18.1)
-    thread_safe (0.1.3)
-      atomic
+    thread_safe (0.2.0)
+      atomic (>= 1.1.7, < 2)
     tilt (1.4.1)
     tire (0.6.2)
       activemodel (>= 3.0)
@@ -232,7 +236,6 @@ GEM
     warden (1.2.3)
       rack (>= 1.0)
     webrick (1.3.1)
-    win32console (1.3.2)
     win32console (1.3.2-x86-mingw32)
     yaml_db (0.2.3)
 
@@ -245,8 +248,7 @@ DEPENDENCIES
   acts-as-taggable-on
   better_errors
   binding_of_caller
-  bootstrap-datepicker-rails
-  bootstrap-sass
+  bootstrap-sass (~> 3.1.1.0)
   bootstrap_form
   cancan
   capistrano (~> 2.15.5)
@@ -258,8 +260,6 @@ DEPENDENCIES
   friendly_id (~> 4.0.10.1)
   google-analytics-rails
   jbuilder
-  jquery-rails
-  jquery-ui-rails
   kaminari
   kaminari-bootstrap (~> 3.0.1)
   liquid
@@ -274,6 +274,7 @@ DEPENDENCIES
   rake
   sass-rails
   searchkick
+  sextant
   sqlite3
   uglifier
   unicorn

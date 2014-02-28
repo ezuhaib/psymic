@@ -40,7 +40,7 @@
 <% content_for :r2 do %>
 <ul id="mindlog_links">
 	<li class="text-dark">By <%= link_to @mindlog.user.username , @mindlog.user %></li>
-	<li class="text-small text-dark"><%= @mindlog.created_at.strftime("%d %B %Y") %></li>
+	<li class="text-sm text-dark"><%= @mindlog.created_at.strftime("%d %B %Y") %></li>
 	<li class="divider"></li>
 	<% if can? :update , @mindlog %><li><%= link_to 'Edit', edit_mindlog_path(@mindlog)%></li><% end %>
 	<% if can? :destroy , @mindlog %><li><%= link_to 'Delete', @mindlog , :method=> :delete, :confirm=> 'Are you sure?'%></li><% end %>

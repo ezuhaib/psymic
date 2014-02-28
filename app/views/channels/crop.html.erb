@@ -1,0 +1,17 @@
+<%= javascript_include_tag 'papercrop', 'jquery.jcrop' %>
+<%= stylesheet_link_tag 'jquery.jcrop' %>
+
+<div class="head"><h2>Editing Channel Cover</h2></div>
+<div class="alert alert-info">
+Ideally the image must be made of resolution 730x200 by hand.</div>
+
+<%= form_for @channel do |f| %>
+  <div class="center">
+  	<%= f.cropbox :cover , width: 700 %></div></br>
+  	<div class='well col-xs-12'>
+  		<%= f.crop_preview :cover , width: 650 %>
+  			<b>Save if you're satisfied</b></br></br>
+  			<%= f.submit 'Save' , class:"btn btn-success btn-lg" %>
+
+  	</div>
+<% end %>
