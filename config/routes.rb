@@ -57,6 +57,7 @@ Psymic::Application.routes.draw do
   resources :users do
     member do
       get 'mindlogs'
+      get 'activity'
     end
   end
 

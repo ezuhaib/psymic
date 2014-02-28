@@ -45,8 +45,12 @@ dd , dt{margin-top: 10px;}
 .box-light{background-color: #aaa;color: #000;}
 .bg-dark{background-color: #333333;color: #ffffff;}
 .bg-dark a{color: #fff;}
-.widget {text-align: center;display: block;padding:15px;font-weight:300;border: 1px solid #ccc;.lg, .lg a {font-weight: 700;font-size: 40px;}}
+.bg-light{background-color: #eee;color: #333;}
+.bg-light a{color: #333;}
+.widget {text-align: center;padding:10px;font-weight:300;border: 1px solid #ccc;.lg, .lg a {font-weight: 700;font-size: 40px;}}
 .clear{clear: both}
+
+
 /* Head */
 .head{padding: 5px 30px;margin: 0 -15px 20px -15px;background-color: $theme-color;color: #fff;}
 .head a:not(.btn){color: $theme-color-med;}

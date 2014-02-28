@@ -1,0 +1,43 @@
+<%# HEAD %>
+<div class="head">
+	<h1>activity:<%= link_to @user.username , @user %>
+	</h1>
+</div>
+
+<div class="alert alert-danger">
+This activity page is in it's very primitive stages. Detailed activity log and statistics
+shall be added in a later milestone
+</div>
+
+<%# MAIN %>
+<div class="col-sm-3">
+	<div class="widget bg-light">
+		<div class="lg"><%= @user.points %></div>
+			KARMA
+	</div>
+</div>
+
+<div class="col-sm-3">
+	<div class="widget bg-light">
+		<div class="lg"><%= @user.mindlogs.count %></div>
+			MINDLOGS
+	</div>
+</div>
+
+<div class="col-sm-3">
+	<div class="widget bg-light">
+		<div class="lg"><%= @user.responses.count %></div>
+			RESPONSES
+	</div>
+</div>
+
+<div class="col-sm-3">
+	<div class="widget bg-light">
+		<div class="lg"><%= @user.comments.count %></div>
+			COMMENTS
+	</div>
+</div>
+
+<div class="well mar-t-20 col-sm-12">
+<%= link_to "What is karma?", wiki_page_path("karma") , class:"link-alt" %>
+</div>
