@@ -7,6 +7,7 @@ gem 'rails', '3.2.16'
 gem 'rake'
 gem 'jbuilder'
 gem 'pg'
+gem 'workflow'
 
 # Search and analytics
 gem 'rack-mini-profiler'
@@ -37,6 +38,7 @@ group :development do
 	gem 'meta_request' #For Rails Panel
 	gem 'quiet_assets'
 	gem 'sextant'
+	gem 'rails-web-console'
 end
 
 # Gems used only for assets and not required

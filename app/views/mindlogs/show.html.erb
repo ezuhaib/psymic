@@ -1,3 +1,4 @@
+<% @mindlog.reset_watch(current_user.id) %>
 <%# Body of Mindlog %>
 <div id="mindlog_box" class="row bg-dark">
 	<div id="magic"></div>
@@ -42,14 +43,7 @@
 	<li class="text-dark">By <%= link_to @mindlog.user.username , @mindlog.user %></li>
 	<li class="text-sm text-dark"><%= @mindlog.created_at.strftime("%d %B %Y") %></li>
 	<li class="divider"></li>
-	<% if can? :update , @mindlog %><li><%= link_to 'Edit', edit_mindlog_path(@mindlog)%></li><% end %>
-	<% if can? :destroy , @mindlog %><li><%= link_to 'Delete', @mindlog , :method=> :delete, :confirm=> 'Are you sure?'%></li><% end %>
-	<% if can? :report , @mindlog %><li><%= link_to 'Report', report_mindlog_path(@mindlog) , remote: true %></li><% end %>
-	<% if current_user && @mindlog.subscriptions.pluck(:user_id).include?(current_user.id) %>
-		<% if can? :unsubscribe , @mindlog %><li><%= link_to 'Unwatch', unsubscribe_mindlog_path(@mindlog)%></li><% end %>
-	<% else %>
-		 <% if can? :subscribe , @mindlog %><li><%= link_to 'Watch', subscribe_mindlog_path(@mindlog)%></li><% end %>
-	<% end %>
+	<%= render "links" %>
 </ul>
 
 <ul id="tag_list">

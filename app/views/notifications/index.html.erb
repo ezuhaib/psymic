@@ -1,15 +1,6 @@
-<h1>Notifications</h1>
-<%= content_for :r2 do %>
-<table id="subscriptions_list">
- 	 <h4><%= link_to "Subscriptions Updates" , subscriptions_path %></h4>
-<% @subscriptions.each do |s| %> 
- 	 <tr>
- 	 <td><span class="badge mar-5"><%= s.counter %></span></td>
- 	 <td><%= link_to s.subscribable.title , polymorphic_path(s.subscribable) %></td>
-	</tr>
-<% end %>
-</table>
-<% end %>
+<div class="head">
+	<h1>Notifications</h1>
+</div>
 
 <table class="table table-striped">
 <% @notifications.each do |n| %> 

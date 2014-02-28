@@ -1,6 +1,7 @@
 class Admin::PagesController < ApplicationController
   def index
     authorize! :manage, :all
+    @mindlogs_count = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
   end
 
   def backstage

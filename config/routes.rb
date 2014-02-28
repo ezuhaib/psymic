@@ -66,9 +66,10 @@ Psymic::Application.routes.draw do
 
   resources :mindlogs do
     collection do
-      post :import
-      get :autocomplete # <= add this line
-      get :autocomplete_tags
+      post 'import'
+      get 'autocomplete' # <= add this line
+      get 'autocomplete_tags'
+      get 'moderation_queue'
     end
 
     member do
