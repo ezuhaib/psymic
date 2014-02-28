@@ -1,0 +1,40 @@
+<%# HEADER %>
+<div id="cover" class="row mar-b-20">
+	<div class="head-overlay alt">
+		channel:<%= link_to @channel.title , @channel %>
+		<% if can? :update , Channel %>
+			<%= link_to 'Edit', edit_channel_path(@channel) , class:"pull-right text-std" %>
+		<% end %>
+	</div>
+</div>
+
+<%# LEFT AREA %>
+<div class="col-sm-9">
+	<h3 class="mar-nil">Showing Mindlogs</h3>
+	<div class="mar-b-10">Page <%= params[:page] || 1 %></div>
+	<table class="table table-striped link-alt">
+		<th>Title</th>
+		<th>When?</th>
+		<% @mindlogs.each do |m| %>
+			<tr>
+			<td><%= link_to m.title, m %></td>
+			<td><%= distance_of_time_in_words(Time.now,m.created_at,true,highest_measure_only:true) %> ago</td>
+			</tr>
+		<% end %>
+	</table>
+	<%= paginate @mindlogs %>
+
+</div>
+
+
+<%# RIGHT AREA %>
+<div class="col-sm-2 col-sm-offset-1">
+	<div class="facets">
+	<h4 class="pull-right">Tags</h4>
+	<% @mindlogs.facets['tags_name']['terms'].each do |tag| %>
+		<% unless @channel.all_of_these.include? tag['term'] %>
+			<%= link_to "##{tag['term']} <b>(#{tag['count']})</b>".html_safe, tag_path(tag['term']) %></br>
+		<% end %>
+	<% end %>
+	</div>
+</div>

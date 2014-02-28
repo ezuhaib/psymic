@@ -1,5 +1,13 @@
 Psymic::Application.routes.draw do
 
+  resources :channels do
+    member do
+      get 'mindlogs'
+    end
+  end
+  get 'channels/:id/edit/crop', to: 'channels#crop' , as: "crop_cover"
+
+
   resources :wiki_pages,:path => :wiki
   get 'confirm_email' , to: 'pages#confirm_email'
   root :to=> 'pages#root'
@@ -12,7 +20,7 @@ Psymic::Application.routes.draw do
     post '/' , to: 'feedbacks#create' , as:"feedbacks"
   end
 
-  get 'tags/:tag' , to: 'mindlogs#index' , as: :tag
+  get 'tag::tag' , to: 'mindlogs#index' , as: :tag
   get "mindlogs/tags" => "mindlogs#tags", :as => :tags #returns json
   get 'profile' => "users#profile" , as: :profile
   get 'profile/edit' => "users#profile_edit" , as: :edit_profile

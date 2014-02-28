@@ -1,0 +1,50 @@
+<%# HEADER %>
+<div id="cover" class="row mar-b-20">
+	<div class="head-overlay <%= "alt" if @channel.cover.blank? %>" >
+		channel: <%= link_to @channel.title , @channel %>
+		<% if can? :update , Channel %>
+			<%= link_to 'Edit', edit_channel_path(@channel) , class:"pull-right text-std" %>
+		<% end %>
+	</div>
+	<% if @channel.cover.present? %>
+	<%= image_tag @channel.cover(:standard) %>
+	<% end %>
+</div>
+
+<%# LEFT AREA %>
+<div class="col-sm-9">
+	<%= simple_format @channel.body %>
+	<br>
+	<% if @mindlogs.any? %>
+		<h4>Top Mindlogs</h4>
+		<table class="table table-striped link-alt">
+			<% @mindlogs.each do |m| %>
+				<tr>
+				<td><%= link_to m.title, m %></td>
+				</tr>
+			<% end %>
+		</table>
+	<% else %>
+		<h4>No Mindlogs yet :(</h4>
+	<% end %>
+</div>
+
+<%# RIGHT AREA %>
+<div class="col-sm-3">
+	<div class="row">
+		<div class="widget bg-dark pull-right">
+			<div class="lg"><%= "%02d" % @mindlogs.count %></div>
+			<div class="suffix">mindlogs</div>
+		</div>
+	</div>
+
+	<div class="facets mar-t-10">
+	<% @mindlogs.facets['tags_name']['terms'].each do |tag| %>
+		<% unless @channel.all_of_these.include? tag['term'] %>
+			<div class="clear">
+				<%= link_to "##{tag['term']} <b>(#{tag['count']})</b>".html_safe, tag_path(tag['term']) %>
+			</div></br>
+		<% end %>
+	<% end %>
+	</div>
+</div>
