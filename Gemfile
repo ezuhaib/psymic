@@ -54,6 +54,7 @@ gem 'cancan'
 # Gems introducing new Models
 gem 'acts-as-taggable-on'
 gem 'unread'
+gem 'merit'
 
 # Usability and UI
 gem 'liquid'
