@@ -1,0 +1,39 @@
+/*******************************************
+Only this file includes the entire bootstrap
+********************************************/
+@import "theme";
+@import "bootstrap";
+
+/****************************
+BOOTSTRAP HACKS
+*****************************/
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+img{vertical-align: inherit}
+a{transition: all 0.3s linear;-moz-transition: all 0.3s linear;-webkit-transition: all 0.3s linear;-o-transition: all 0.3s linear;}
+a:active,a:link,a:hover,a:visited,a:focus{text-decoration: none;outline: none;}
+p{margin-bottom: 5px;word-wrap:break-word;}
+.btn-themed {@include button-variant(#fff, $theme-color , $theme-color);}
+input[type="file"]{height: auto;}
+input[type="file"]:focus{outline: none;}
+.green-focus *:focus {
+  border-color: #5CB85C;
+  outline: 0;
+  outline: thin dotted \9;
+  /* IE6-9 */
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #5CB85C;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #5CB85C;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #5CB85C;
+}
+
+ul{margin-bottom: 0;}
+.container:before, .container:after{content:none;} /* Bootstrap's Clearfix on container being problemtic
+
+/* Calling following on default containers has no effect. Only augments positioning for fixed ones */
+.pull-right{right: 0;}
+.pull-left{left: 0;}

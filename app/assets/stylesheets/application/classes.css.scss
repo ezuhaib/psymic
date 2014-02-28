@@ -1,0 +1,102 @@
+/****************************
+CLASSES
+Todo: Remove Orphaned
+*****************************/
+
+@import 'theme';
+
+/* Text */
+.text-justify{text-align: justify;}
+.text-sm {font-size: 80%;}
+.text-md{font-size:140%;}
+.text-lg{font-size: 28px;}
+.text-std{font-size: 100% !important;}
+.text-300{font-weight: 300;}
+.text-red, .text-red a{color: #c03;}
+.text-middle{vertical-align: middle;}
+.text-themed {color: $theme-color}
+.text-red a:hover{color: #c09;}
+.text-light {color: #aaa;}
+.text-light a {color: #888;}
+.text-light a:hover{color: #000;}
+.text-dark, .text-dark a{color: #555;}
+.text-dark a:hover{color: $theme-color;}
+.text-center{text-align: center;}
+
+/* Links */
+.link-black,.link-black a{color: #000;}
+.link-inverted a{ color: #fff;background-color: #999;padding: 1px 5px;}
+.link-inverted a:hover{color: #fff;background-color: #666;}
+.link-alt, .link-alt a{color: #555;&:hover{color: #000}}
+.link-boxed{background: #eee;padding-top: 10px;padding-bottom: 10px;font-weight:700;color: #000;}
+.link-boxed:hover{background: $theme-color-med;color: #000;}
+
+/* Lists */
+.ol {counter-reset: my-badass-counter;}
+.ol-themed dt {position: relative;font-size: 18px;padding: 4px 0 10px 0;counter-increment: my-badass-counter;}
+.ol-themed dt:before {content: counter(my-badass-counter);position: absolute;left: 0;top: 0;font: bold 50px/1 Sans-Serif;color: $theme-color;}
+.ol-themed dd {margin: 0 0 20px 0;}
+.ol-themed dt, .ol-themed dd {padding-left: 50px;}
+dd , dt{margin-top: 10px;}
+
+/* Boxes */
+.bg-white{background-color: #fff;}
+.bg-red{background-color: red;}
+.box-light{background-color: #aaa;color: #000;}
+.bg-dark{background-color: #333333;color: #ffffff;}
+.bg-dark a{color: #fff;}
+.widget {text-align: center;display: block;padding:15px;font-weight:300;border: 1px solid #ccc;.lg, .lg a {font-weight: 700;font-size: 40px;}}
+.clear{clear: both}
+/* Head */
+.head{padding: 5px 30px;margin: 0 -15px 20px -15px;background-color: $theme-color;color: #fff;}
+.head a:not(.btn){color: $theme-color-med;}
+.head a:hover{color: #fff;}
+.head{h1,h2,h3{margin-top: 11px;}}
+.head .text-light{color: $theme-color-light;}
+.head-dark{background-color: #333;}
+.head-dark a{color: $theme-color-med;}
+.head-dark a:hover{color: #fff;}
+.head-overlay{background: #000;opacity: 0.6;position: absolute;width: 100%;height: 40px;
+	font-size: 16px;line-height: 40px;color: #fff;padding: 0 15px;}
+.head-overlay a{font-weight: 700;color: #fff;font-size: 22px;}
+.head-overlay a:hover{color:#bbb;}
+.head-overlay.alt{position: relative;}
+
+/* Misc */
+.h-compact{line-height: 0.8;padding-bottom: 5px;}
+.border-light{border: thin solid #ccc;}
+.border-dark{border: 3px solid #444;}
+.label a{color: #fff;}
+.label a:hover{color: #ccc;}
+.divider{border-bottom: 1px solid #ccc;margin-top: 4px;margin-bottom: 4px;}
+.center{float: none; margin-left: auto; margin-right: auto; display: table;}
+.compact{margin-top: 8px} /* For use with h1,h2,h3 */
+.hidden {display: none;}
+.cursor-default {cursor:default;}
+h1,h2,h3,h4{.prefix{font-size: 70%;}}
+.suffix{margin-top: -10px;margin-bottom: 10px;display: block;}
+
+/* Padding */
+.pad-nil{padding: 0px;}
+.pad-lat-0{padding-left: 0px;padding-right: 0px;}
+.pad-10{padding: 10px;}
+.pad-vert-5{padding-top: 5px;padding-bottom: 5px;}
+.pad-top-20{padding-top: 20px;}
+.pad-top-5{padding-top: 5px;}
+.pad-extra{padding-left: 30px;padding-right: 30px;}
+
+/* Margin */
+.mar-nil{margin:0;}
+.mar-t-10{margin-top: 10px;}
+.mar-t-20{margin-top: 20px;}
+.margin-top-20{margin-top: 20px;}
+.margin-top-30{margin-top: 30px;}
+.mar-top-0{margin-top: 0px;}
+.mar-b-10{margin-bottom: 10px;}
+.mar-b-20{margin-bottom: 20px}
+.mar-vert-10{margin-top: 10px;margin-bottom: 10px;}
+.mar-vert-20{margin-top: 20px;margin-bottom: 20px;}
+.mar-vert-5{margin-top: 5px;margin-bottom: 5px;}
+.mar-5{margin: 5px;}
+.mar-10{margin: 10px;}
+.mar-r-10{margin-right: 10px;}

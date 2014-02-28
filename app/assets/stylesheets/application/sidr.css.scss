@@ -1,0 +1,46 @@
+/*********************************
+SIDR Related Styles
+todo reduce reliance on !important
+**********************************/
+
+@import 'theme';
+
+.sidr ul li span.sidr-class-badge{
+    @extend .badge;
+}
+
+.sidr ul li a#sidr-id-welcome_line{
+    font-size: 110%;
+    text-transform: uppercase;
+}
+
+.bg-themed,.sidr-class-bg-themed {
+    background-color: $theme-color !important;
+    color: #fff;
+}
+
+.bg-themed-light{
+    background-color: $theme-color-light !important;
+}
+
+.sidr-class-divider{
+    display: none !important;
+}
+
+.sidr-class-btn{
+    display: none;
+}
+
+.sidr ul li a{
+    font-size: 90%;
+    color: $theme-color;
+}
+
+.sidr-class-hide{
+    display: none !important;
+}
+
+.sidr ul.sidr-class-dropdown-menu li a{
+    text-transform: uppercase;
+    color: #fff;
+}
