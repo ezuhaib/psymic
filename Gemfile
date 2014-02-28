@@ -8,13 +8,14 @@ gem 'rake'
 gem 'jbuilder'
 gem 'pg'
 
-# Analytics
+# Search and analytics
 gem 'rack-mini-profiler'
 gem 'google-analytics-rails'
 gem 'exception_notification'
 gem 'logglier'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem "papercrop", git: "https://github.com/rsantamaria/papercrop.git"
+gem 'searchkick'
 
 # Unix-only gems
 platforms :ruby do
@@ -45,13 +46,6 @@ group :assets do
   gem 'uglifier'
 end
 
-# Simple CSS and JS includes
-gem 'jquery-rails'
-gem 'bootstrap_form'
-gem 'jquery-ui-rails'
-gem 'bootstrap-sass'
-gem 'bootstrap-datepicker-rails'
-
 # Authentication and Authorization
 gem 'devise'
 gem 'cancan'
@@ -67,6 +61,5 @@ gem 'country_select'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'friendly_id', '~> 4.0.10.1'
-
-# Search engine
-gem 'searchkick'
+gem 'bootstrap_form'
+gem 'bootstrap-sass', "~> 3.1.1.0"
