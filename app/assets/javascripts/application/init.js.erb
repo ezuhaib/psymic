@@ -1,0 +1,7 @@
+$( document ).ready(function(){
+	$('.selectpicker').selectpicker();
+	$('#menu_link').sidr({source: '#links_wrapper'});
+});
+
+$(document).on("click",".pagination a", function(){
+	$(".pagination").html("<%= Helper.escape_js(image_tag "loading_mini.gif") %>")})
