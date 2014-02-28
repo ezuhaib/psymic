@@ -1,3 +1,6 @@
+<%= javascript_include_tag 'selectize.min','mindlog_edit_selectize' %>
+<%= stylesheet_link_tag 'selectize.psymic' %>
+
 <%= bootstrap_form_for @mindlog , style: :horizontal do |f| %>
 <%= f.text_field :title , placeholder: "Better be a statement than phrase"%>
 <%= f.text_area :description , label: :Details ,size:'24x4' , placeholder:"Minimum 40 characters." %>

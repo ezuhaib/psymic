@@ -1,3 +1,6 @@
+<%= javascript_include_tag 'typeahead.bundle.min','mindlogs_typeahead' %>
+<%= stylesheet_link_tag 'bootstrapped-typeahead' %>
+
 <%# HEADER %>
 <div id="mindlogs_header" class="row col-xs-12">
 	<%= link_to mindlogs_path , id:"mindlogs_header_text" do %>
@@ -42,36 +45,3 @@
 		<% end %>
 	</ul>
 <% end %>
-
-<%# SEARCH AUTOCOMPLETE SCRIPT %>
-<script>
-var mindlogs = new Bloodhound({
-  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.title); },
-  queryTokenizer: Bloodhound.tokenizers.whitespace,
-  remote: "/mindlogs/autocomplete?query=%QUERY"
-});
-var tags = new Bloodhound({
-  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
-  queryTokenizer: Bloodhound.tokenizers.whitespace,
-  remote: "/mindlogs/autocomplete_tags?query=%QUERY"
-});
-
-mindlogs.initialize();
-tags.initialize();
-
-
-
-	$("#mindlog_search").typeahead({
-		minLength: 2,
-		highlight: true,
-		autoselect: true
-	},{
-		name: "mindlog",
-		displayKey: "title",
-		source: mindlogs.ttAdapter()
-	},{
-		name: "tags",
-		displayKey: "name",
-		source: tags.ttAdapter(),
-	});
-</script>
