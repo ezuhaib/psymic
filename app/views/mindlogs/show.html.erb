@@ -1,4 +1,4 @@
-<% @mindlog.reset_watch(current_user.id) %>
+<% @mindlog.reset_watch(current_user.id) if current_user %>
 <%# Body of Mindlog %>
 <div id="mindlog_box" class="row bg-dark">
 	<div id="magic"></div>
@@ -52,3 +52,8 @@
 	<% end %>
 </ul>
 <% end %>
+
+<script>
+$(document).on("click",".pagination a", function(){
+	$(".pagination").html("<%= Helper.escape_js(image_tag "loading_mini.gif") %>")})
+</script>
