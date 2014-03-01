@@ -20,8 +20,8 @@ class ChannelsController < ApplicationController
   # GET /channels/1
   # GET /channels/1.json
   def show
-    @mindlogs = Mindlog.search @channel.all_of_these, fields: [:tags_name], limit:5,
-                  facets: {tags_name: {limit:10}}
+    @mindlogs = Mindlog.search @channel.all_of_these, where:{workflow_state:"published"}, 
+                  fields: [:tags_name], limit:5, facets: {tags_name: {limit:10}}
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @channel }
@@ -79,7 +79,7 @@ class ChannelsController < ApplicationController
   end
 
   def mindlogs
-    @mindlogs = Mindlog.search @channel.all_of_these, fields: [:tags_name], page: params[:page], per_page:20,
+    @mindlogs = Mindlog.search @channel.all_of_these, where:{workflow_state:"published"}, fields: [:tags_name], page: params[:page], per_page:20,
                   facets: {tags_name: {limit:10}}
   end
 

@@ -5,7 +5,7 @@
 <% if can? :moderate , @mindlog %>
 
 	<li>
-		<%= link_to @mindlog.published? ? 'Unpublish' : 'Publish', mindlog_path(@mindlog,do: :toggle_publish)%>
+		<%= link_to @mindlog.state?(:published) ? 'Unpublish' : 'Publish', mindlog_path(@mindlog,do: :toggle_publish)%>
 	</li>
 
 	<li>

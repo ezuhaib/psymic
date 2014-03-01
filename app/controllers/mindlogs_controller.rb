@@ -6,30 +6,17 @@ class MindlogsController < ApplicationController
   def index
     authorize! :read , Mindlog
     if params[:query].present?
-      @mindlogs = Mindlog.search(params[:query], page: params[:page], fields: [:title] , highlight:{tag: "<strong>"})
+      @mindlogs = Mindlog.search(params[:query], where:{workflow_state:"published"}, page: params[:page], fields: [:title] , highlight:{tag: "<strong>"})
       @has_details = true
     elsif params[:tag]
-      @mindlogs = Mindlog.tagged_with(params[:tag])
+      @mindlogs = Mindlog.published.tagged_with(params[:tag])
     else
-      @mindlogs = Mindlog.search("*", page: params[:page] , per:20)
+      @mindlogs = Mindlog.search("*", where:{workflow_state:"published"}, page: params[:page] , per:20)
     end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @mindlogs }
     end
-  end
-
-  # Regex ensures strings starting with '#' are ignored
-  def autocomplete
-      unless /\A#.+/.match(params[:query])
-        @mindlogs = Mindlog.search(params[:query], fields: [:title,{title: :text_start}], limit: 10).as_json(only:[:title]) 
-      end
-    render json: @mindlogs
-  end
-
-  # Using Jbuilder, stripping leading #'s drom query strings
-  def autocomplete_tags
-    @tags = Mindlog.topic_counts.where('name LIKE ?',"#{params[:query].delete("#")}%")
   end
 
   # GET /mindlogs/1
@@ -38,7 +25,7 @@ class MindlogsController < ApplicationController
     @mindlog = Mindlog.find(params[:id])
     @mindlog.status = "None yet." if @mindlog.status.blank?
     authorize! :read , @mindlog
-		@response = @mindlog.responses.new
+
     if params[:only] == "explanations"
       @responses = @mindlog.responses.where(nature:"explanation").order("rating DESC")
     elsif params[:only] == "solutions"
@@ -52,13 +39,14 @@ class MindlogsController < ApplicationController
         authorize! :moderate , @mindlog
         flash[:notice] = "Featuring action successful" if @mindlog.toggle_feature(current_user.id)
       elsif params[:do] == "toggle_publish"
-        @mindlog.published? ? @mindlog.unpublish! : @mindlog.publish!
+        @mindlog.state?(:published) ? @mindlog.state(:unpublished) : @mindlog.state(:published)
         flash[:notice] = "Publishing action successful"
       end
 	     @responses = @mindlog.responses.order("created_at DESC")
     end
-   @responses = @responses.page(params[:page]).per(10)
-   redirect_to action: :show if params[:do] #to get rid of args in url
+    @response = @mindlog.responses.new
+    @responses = @responses.page(params[:page]).per(10)
+    redirect_to action: :show if params[:do] #to get rid of args in url
   end
 
   # GET /mindlogs/new
@@ -85,7 +73,7 @@ class MindlogsController < ApplicationController
     @mindlog.user = current_user
     authorize! :create , @mindlog
     if @mindlog.save
-      params[:submit_only] ? @mindlog.submit! : @mindlog.publish!
+      params[:submit_only] ? @mindlog.state(:awaiting_review) : @mindlog.state(:published)
       redirect_to @mindlog, notice: 'Mindlog was successfully created.'
     else
       render action: "new"
@@ -98,7 +86,7 @@ class MindlogsController < ApplicationController
     @mindlog = Mindlog.find(params[:id])
     authorize! :update , @mindlog
       if @mindlog.update_attributes(params[:mindlog])
-       @mindlog.publish! unless @mindlog.published? and params[:publish]
+       @mindlog.state(:published) if params[:publish]
        redirect_to @mindlog, notice: 'Mindlog was successfully updated.'
       else
         render action: "edit"
@@ -197,21 +185,22 @@ class MindlogsController < ApplicationController
     end
   end
 
-  #1. Define the tags path
-  #2. Searches ActsAsTaggable::Tag Model look for :name in the created table.
-  #3. it finds the tags.json path and whats on my form.
-  #4. it is detecting the attribute which is :name for your tags.
-
-def tags 
-  @tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%") 
-  respond_to do |format|
-    format.json { render :json => @tags.map{|t| {:id => t.name, :name => t.name }}}
-  end
-end
-
 def moderation_queue
-  @mindlogs = Mindlog.where(workflow_state: ['awaiting_review','unpublished'])
+  @mindlogs = Mindlog.queued
 end
+
+  # Regex ensures strings starting with '#' are ignored
+  def autocomplete
+      unless /\A#.+/.match(params[:query])
+        @mindlogs = Mindlog.search(params[:query], where:{workflow_state:"published"},fields: [:title,{title: :text_start}], limit: 10).as_json(only:[:title]) 
+      end
+    render json: @mindlogs
+  end
+
+  # Using Jbuilder, stripping leading #'s from query strings
+  def autocomplete_tags
+    @tags = Mindlog.published.topic_counts.where('name LIKE ?',"#{params[:query].delete("#")}%")
+  end
 
 
 end
