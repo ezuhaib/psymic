@@ -121,40 +121,6 @@ MINDLOGS and RESPONSES
     vertical-align: middle;
 }
 
-.type-explanation , .type-solution , .type-critique{
-    padding-top: 20px;
-    margin-top: 10px;
-    &:before{
-    position: absolute;
-    left: 10px;
-    top: -10px;
-    padding: 2px 6px;
-    font-weight: 700;
-    font-size: 14px;
-    color: #fff;
-    }
-}
-
-.type-explanation{background-color: #FFFFB3;border: 1px solid #CC9900;}
-.type-explanation:before{content:"explanation";background: #CC9900;}
-.type-explanation{.text-light,.text-light a{color:#CC9900;}}
-
-.type-solution{background-color: #CED6FF;border: 1px solid #3399CC;}
-.type-solution:before{content:"solution";background: #3399CC;}
-.type-solution{.text-light,.text-light a{color:#3399CC;}}
-
-.type-critique{background-color: #FFB9CB;border: 1px solid #990033;}
-.type-critique:before{content:"critique";background: #990033;}
-.type-critique{.text-light,.text-light a{color:#990033;}}
-
-.response-entry{
-    padding: 8px 15px 8px 15px;
-    margin-bottom: 17px;
-    margin-left: 55px;
-    position: relative;
-    a{font-weight: bold;}
-}
-
 #experience_count{
     display: inline;
     font-size:50px;
