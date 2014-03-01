@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def show
     authorize! :read , @user
-    @mindlogs = @user.mindlogs.limit(5)
+    @mindlogs = @user.mindlogs.published.limit(5)
   end
 
   def index
@@ -63,13 +63,13 @@ class UsersController < ApplicationController
   end
 
   def mindlogs
-    @mindlogs = @user.mindlogs
+    @mindlogs = @user.mindlogs.published
   end
 
   def profile
     authorize! :authenticate, :psymic
     @user = current_user
-    @mindlogs = @user.mindlogs.limit(5)
+    @mindlogs = @user.mindlogs.published.limit(5)
     render :show
   end
 

@@ -35,7 +35,7 @@
 		<%= render 'list' %>
 	<% end %>
 </table>
-
+<%= paginate @mindlogs %>
 <%# RIGHT SIDEBAR %>
 <%= content_for :r2 do %>
 	<b>trending tags</b>

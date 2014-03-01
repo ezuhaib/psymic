@@ -9,11 +9,13 @@ has_many :users, :through => :likes
 has_many :responses , :dependent => :destroy
 has_many :reports , :as=> :reportable , :dependent=> :destroy
 has_many :subscriptions , :as=> :subscribable , :dependent =>:destroy
+scope :published, where(workflow_state: "published")
+scope :queued, -> { where(workflow_state: ["unpublished","awaiting_review"]) }
 
 #############################
 # ATTRIBUTES
 #############################
-attr_accessible :description, :title , :topic_list , :status
+attr_accessible :description, :title , :topic_list , :status, :workflow_state
 
 #############################
 # VALIDATIONS
@@ -25,31 +27,23 @@ validates_presence_of :user_id
 #############################
 # WORKFLOW
 #############################
-include Workflow
+def state(state_name)
+	self.update_attributes!(workflow_state:state_name)
+end
 
-workflow do
-	state :new do
-	  event :publish, transitions_to: :published
-	  event :submit_for_review, transitions_to: :awaiting_review
-	end
-	state :awaiting_review do
-	  event :publish, transitions_to: :published
-	end
-	state :published do
-	  event :unpublish, transitions_to: :unpublished
-	end
-	state :unpublished do
-		event :publish, transitions_to: :published
-	end
+def state?(state_name)
+	self.workflow_state == state_name.to_s
 end
 #############################
 # SEARCHKICK INTEGRATION
 #############################
+
 searchkick text_start: [:title]
 
 def search_data
-	attributes.merge(tags_name: self.topics.map(&:name))
+	attributes.merge tags_name: self.topics.map(&:name)
 end
+
 
 #############################
 # OTHER INTEGRATIONS
