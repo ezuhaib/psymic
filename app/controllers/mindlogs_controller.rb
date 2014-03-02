@@ -11,7 +11,7 @@ class MindlogsController < ApplicationController
     elsif params[:tag]
       @mindlogs = Mindlog.published.tagged_with(params[:tag])
     else
-      @mindlogs = Mindlog.search("*", where:{workflow_state:"published"}, page: params[:page] , per:20)
+      @mindlogs = Mindlog.search("*", where:{workflow_state:"published"}, page: params[:page] , per_page:20)
     end
     respond_to do |format|
       format.html # index.html.erb

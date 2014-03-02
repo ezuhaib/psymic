@@ -20,7 +20,7 @@
 
 <%# RIGHT: MAIN CONTENT %>
 <div class="col-sm-9 row">
-	<b class="text-light suffix">
+	<b class="text-lighter suffix">
 		<%= distance_of_time_in_words(Time.now,@user.dob, true,{:highest_measure_only=>true}) %> old <%= @user.gender %> from <%= @user.country %>
 	</b>
 	<%= @user.body %>

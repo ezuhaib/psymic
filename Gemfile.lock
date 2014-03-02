@@ -284,7 +284,6 @@ GEM
       rack (>= 1.0)
     webrick (1.3.1)
     win32console (1.3.2-x86-mingw32)
-    workflow (1.1.0)
     yaml_db (0.2.3)
 
 PLATFORMS
@@ -332,5 +331,4 @@ DEPENDENCIES
   unread
   webrick
   win32console
-  workflow
   yaml_db
