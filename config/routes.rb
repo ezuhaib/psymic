@@ -22,7 +22,6 @@ Psymic::Application.routes.draw do
   end
 
   get 'tag::tag' , to: 'mindlogs#index' , as: :tag
-  get "mindlogs/tags" => "mindlogs#tags", :as => :tags #returns json
   get 'profile' => "users#profile" , as: :profile
   get 'profile/edit' => "users#profile_edit" , as: :edit_profile
   get 'profile/edit/avatar' => "users#avatar" , as: :edit_avatar
@@ -47,7 +46,6 @@ Psymic::Application.routes.draw do
   resources :offers
   get "reports/index"
   match "reports/:reportable_type/:reportable_id", :to=> 'reports#show', :as=> :report
-  match "math" , :to=> 'pages#math'
   root to: 'pages#index'
   end
 

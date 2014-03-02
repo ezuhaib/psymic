@@ -1,3 +1,4 @@
+<% @title = "Single Response" %>
 <div class="col-xs-12">
 <h1>Response to <%= link_to @response.mindlog.title , @response.mindlog %></h1>
 <%= render partial:'response', object:@response , locals:{preload_comments:true} %>

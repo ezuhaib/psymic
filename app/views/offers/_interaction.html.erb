@@ -1,6 +1,0 @@
-<p class="lead text-lighter"><%= @offer.body %><span class="text-sm"><%= link_to 'Edit' , edit_offer_path(@offer) %></p></p>
-
-<div id="commentable-<%= @offer.id %>">
-<% @commentable = @offer %>
-<%= render template: "comments/show" %>
-</div>
