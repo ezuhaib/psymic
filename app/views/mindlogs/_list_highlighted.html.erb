@@ -11,7 +11,7 @@
 			<%= if details.any? then details[:highlight][:title].html_safe else m.title end %>
 			<% end %>
 			
-			<div class="mindlog_bottom_line text-light">
+			<div class="mindlog_bottom_line text-lighter">
 				<%= distance_of_time_in_words(Time.now,m.created_at, true, :highest_measure_only=> true) %>
 				by <%= link_to m.user.username , m.user %>
 			</div>

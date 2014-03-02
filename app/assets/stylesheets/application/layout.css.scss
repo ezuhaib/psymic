@@ -63,22 +63,9 @@ body,html,.container , #semi_container{
     height: 100px;
 }
 
-.sidebar {height:100%;}
-.sidebar_container{padding: 10px 0;}
-
-
-#primary_links a:hover{
-    color: $theme-color;
-}
-
-
-#logo img{
-    margin-bottom: 10px;
-}
-
-#primary_links{
-    margin-right: 4px;
-}
+/******************************
+FOOTERS
+*******************************/
 
 #footer{
     position: fixed;
@@ -118,7 +105,43 @@ body,html,.container , #semi_container{
     opacity: 1.0;
 }
 
+/******************************
+SIDEBARS AND EVERYTHING WITHIN
+*******************************/
 #notifics{
     margin-right: 3px;
     margin-top: 9px;
+}
+
+#primary_links a{
+    color: #666;
+    font-size: 24px;
+    float: right;
+    clear: both;
+}
+
+.bottom-links{
+    position: absolute;
+    bottom: 65px;
+    list-style: none;
+    display: block;
+    font-weight: 700;
+    a{font-size: 18px;line-height: 1.4;}
+}
+
+.sidebar {height:100%;}
+.sidebar_container{padding: 10px 0;}
+.sidebar-bottom{position: absolute;bottom: 65px;}
+
+#primary_links a:hover{
+    color: $theme-color;
+}
+
+
+#logo img{
+    margin-bottom: 10px;
+}
+
+#primary_links{
+    margin-right: 4px;
 }

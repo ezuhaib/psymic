@@ -16,9 +16,8 @@ Todo: Remove Orphaned
 .text-middle{vertical-align: middle;}
 .text-themed {color: $theme-color}
 .text-red a:hover{color: #c09;}
-.text-light {color: #aaa;}
-.text-light a {color: #888;}
-.text-light a:hover{color: #000;}
+.text-lighter {color: #aaa;a{color: #888;};a:hover{color: #000;}}
+.text-light {color: #666;a{color: #888;};a:hover{color: #000;}}
 .text-dark, .text-dark a{color: #555;}
 .text-dark a:hover{color: $theme-color;}
 .text-center{text-align: center;}
