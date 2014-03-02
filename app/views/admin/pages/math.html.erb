@@ -1,4 +1,0 @@
-<h1>Rough Page</h1>
-<% @response = Response.first %>
-<% @a = "{{count}} new responses to {{ '#{@response.mindlog.title}' | link: 'mindlogs/#{@response.mindlog.id}' }}" %>
-<%= Liquid::Template.parse(@a).render() %>

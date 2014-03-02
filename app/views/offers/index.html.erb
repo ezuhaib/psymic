@@ -1,9 +1,0 @@
-<h1>Contribution offers</h1>
-<p>The following users have shown interest in helping psymic. Unread offers are highlighted.</p>
-<br>
-
-<ul class="list-inline list-unstyled">
-<% @offers.each do |o| %>
-<li <%= "class=link-inverted" if o.unread?(current_user)%>><%= link_to o.user.username , o %></li>
-<% end %>
-</ul>

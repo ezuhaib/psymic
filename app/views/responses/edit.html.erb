@@ -1,2 +1,3 @@
-<h1>Editing an example from Mindlog <b>#<%= params[:mindlog_id] %></b></h1>
+<% @title = "Edit Response" %>
+<h1>Editing a response from Mindlog <b>#<%= params[:mindlog_id] %></b></h1>
 <%= render :partial=>'form' , :locals=>{:options=>{:remote=> "false"}}%>

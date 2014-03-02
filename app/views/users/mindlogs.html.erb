@@ -1,3 +1,4 @@
+<% @title = "#{@user.username}'s mindlogs" %>
 <div class="head">
 	<h1>user:<%= link_to @user.username , @user %>
 		<% if can? :update , @user %>
