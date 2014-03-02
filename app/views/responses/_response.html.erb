@@ -9,7 +9,7 @@
 
 		<div>
 			<%= response.body %>
-			<div class="text-light">
+			<div class="text-lighter">
 				by <%= link_to response.user.username,response.user%>
 
 				<% if can? :update , response %>

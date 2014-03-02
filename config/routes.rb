@@ -3,6 +3,7 @@ Psymic::Application.routes.draw do
   resources :channels do
     member do
       get 'mindlogs'
+      get 'mindlogs/page/:page', :action => :mindlogs
     end
   end
   get 'channels/:id/edit/crop', to: 'channels#crop' , as: "crop_cover"
@@ -70,6 +71,7 @@ Psymic::Application.routes.draw do
       get 'autocomplete' # <= add this line
       get 'autocomplete_tags'
       get 'moderation_queue'
+      get 'page/:page', :action => :index # for friendly pagination urls
     end
 
     member do
@@ -83,6 +85,7 @@ Psymic::Application.routes.draw do
       post 'like'
       get 'unlike'
       post 'unlike'
+      get 'page/:page', :action => :show
     end
 		resources :responses do
       member do
