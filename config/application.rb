@@ -61,7 +61,7 @@ module Psymic
 
     # For defining custom error through routes.rb
     config.exceptions_app = self.routes
-
+    config.assets.precompile += %w( papercrop.js jquery.jcrop.js jquery.jcrop.css )
     config.assets.precompile << Proc.new { |path|
       if path =~ /\.(css|js)\z/
         full_path = Rails.application.assets.resolve(path).to_path
@@ -79,5 +79,6 @@ module Psymic
       end
     }
   end
+
 end
 
