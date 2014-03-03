@@ -215,9 +215,19 @@ end
   end
 
   # Using Jbuilder, stripping leading #'s from query strings
+  # Query with 'q' for vanilla queries that have noyhing to do with #'s
   def autocomplete_tags
-    @tags = Mindlog.published.topic_counts.where('name LIKE ?',"#{params[:query].delete("#")}%")
+    if params[:query]
+      @tags = Mindlog.published.topic_counts.where('name LIKE ?',"#{params[:query].delete("#")}%")
+    end
   end
 
+  # For selctize. Using seperate function because we donot need to strip or append #'s
+  def tags
+    @tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%") 
+    respond_to do |format|
+      format.json { render :json => @tags.map{|t| {:id => t.name, :name => t.name }}}
+    end
+  end
 
 end

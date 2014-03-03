@@ -7,4 +7,10 @@ class PagesController < ApplicationController
   def confirm_email
   end
 
+  def not_found
+  end
+
+  def error
+  end
+
 end
