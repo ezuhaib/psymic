@@ -1,4 +1,5 @@
 <% preload_comments ||= false #pass in locals %>
+<% require "rinku" %>
 
 <div id="commentable-<%= response.id %>" class="row">
 
@@ -8,7 +9,7 @@
 		</div>
 
 		<div>
-			<%= response.body %>
+			<%= Rinku.auto_link(response.body).html_safe %>
 			<div class="text-lighter">
 				by <%= link_to response.user.username,response.user%>
 

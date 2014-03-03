@@ -1,10 +1,11 @@
 <% @title = "Mindlog: #{@mindlog.title}" %>
+<% require "rinku" %>
 <% @mindlog.reset_watch(current_user.id) if current_user %>
 <%# Body of Mindlog %>
 <div id="mindlog_box" class="row bg-dark">
 	<div id="magic"></div>
 	<h2 class="compact"><%= @mindlog.title %></h2>
-	<p><%= @mindlog.description %></p>
+	<p><%= Rinku.auto_link(@mindlog.description).html_safe %></p>
 </div>
 <div id="status_box" class="row"><b>Status: </b><%= @mindlog.status %></div>
 
