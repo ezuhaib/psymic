@@ -16,7 +16,7 @@ class WikiPagesController < ApplicationController
   # GET /wiki_pages/1
   # GET /wiki_pages/1.json
   def show
-    @title = params[:id]
+    @wiki_title = params[:id]
     authorize! :read , WikiPage
     render template:"wiki_pages/new_landing" if @wiki_page.blank?
   end
