@@ -58,6 +58,9 @@ module Psymic
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 	config.autoload_paths += %W(#{config.root}/lib)
+
+    # For defining custom error through routes.rb
+    config.exceptions_app = self.routes
   end
 end
 

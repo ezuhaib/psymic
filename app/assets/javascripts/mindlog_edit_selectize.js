@@ -13,7 +13,7 @@ $(function() {
     load: function(query, callback) {
         if (!query.length) return callback();
         $.ajax({
-            url: '/mindlogs/tags.json?q=' + encodeURIComponent(query),
+            url: '/mindlogs/tags?q=' + encodeURIComponent(query),
             type: 'GET',
             error: function() {
                 callback();

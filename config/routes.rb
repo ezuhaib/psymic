@@ -22,6 +22,7 @@ Psymic::Application.routes.draw do
   end
 
   get 'tag::tag' , to: 'mindlogs#index' , as: :tag
+  get "mindlogs/tags" => "mindlogs#tags", :as => :tags #returns json
   get 'profile' => "users#profile" , as: :profile
   get 'profile/edit' => "users#profile_edit" , as: :edit_profile
   get 'profile/edit/avatar' => "users#avatar" , as: :edit_avatar
@@ -94,6 +95,8 @@ Psymic::Application.routes.draw do
 	end
 
 	match 'mindlogs/tag/:tag' => 'mindlogs#tag'
+  match "/404", :to => "pages#not_found"
+  match "/500", :to => "pages#error"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

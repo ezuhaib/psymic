@@ -7,11 +7,11 @@
 <%= f.text_field :topic_list , label: :Tags %>
 <% if can? :moderate , @mindlog %><%= f.text_field :status %><% end %>
 <%= f.form_group do %>
-	<%= f.submit (@mindlog.new? ? :Publish : :Update) , class:"btn btn-themed" %>
-	<% if @mindlog.new? %>
+	<%= f.submit (@mindlog.new_record? ? :Publish : :Update) , class:"btn btn-themed" %>
+	<% if @mindlog.new_record? %>
 		<%= f.submit "Submit for review" , name:"submit_only", class:"btn btn-themed" %>
 	<% end %>
-	<% if @mindlog.unpublished? or @mindlog.awaiting_review? %>
+	<% unless @mindlog.state?(:published) and @mindlog.new_record? %>
 	<%= f.submit "Update and Publish" , name:"publish", class:"btn btn-themed" %>
 	<% end %>
 <% end %>
