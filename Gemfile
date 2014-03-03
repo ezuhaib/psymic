@@ -15,7 +15,7 @@ gem 'exception_notification'
 gem 'logglier'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem "papercrop", git: "https://github.com/ezuhaib/papercrop.git"
-gem 'searchkick'
+gem 'searchkick', git: "https://github.com/ankane/searchkick.git"
 
 # Unix-only gems
 platforms :ruby do

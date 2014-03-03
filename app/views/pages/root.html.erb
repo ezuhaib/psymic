@@ -6,12 +6,12 @@
 		<p class="text-md text-300">Psymic is a global support group and an online compilation of human behaviours and their analyses, termed as “mindlogs”.</p>
 	</div>
 	<div id="counter" class="col-md-3 hidden-xs hidden-sm">So far</br>
-	<span><%= @mindlogs.count %></span>
+	<span><%= link_to @mindlogs.count , mindlogs_path %></span>
 	</br>entries</div>
 </div>
 
 <div id="banner">
-	<%= image_tag 'observations.png'  , class:"col-md-3 col-sm-6 col-xs-8 center-xs"%>
+	<%= image_tag 'observations.png', class:"col-md-3 col-sm-6 col-xs-8 center-xs" %>
 	<%= image_tag 'hypotheses.png', class:"col-md-3 col-sm-6 col-xs-8 center-xs"%>
 	<%= image_tag 'think.png' , class:"col-md-3 col-sm-6 col-xs-8 center-xs"%>
 	<%= image_tag 'cope.png' , class:"col-md-3 col-sm-6 col-xs-8 center-xs" %>
@@ -35,22 +35,5 @@
 </div>
 
 <%= content_for :r2 do %>
-
-<ul class="list-unstyled pull-left hidden-xs hidden-sm">
-	<li><%= link_to "What is it?" , wiki_page_path("introduction") %></li>
-	<li><%= link_to "How can I help?" , wiki_page_path("contribute") %></li>
-	<li><%= link_to "Can you help me?" , wiki_page_path("get_helped") %></li>
-	<li><%= link_to "Frequently Asked Q's" , wiki_page_path('faqs') %></li>
-</ul>
-
-<div class="sidebar-bottom text-light">
-	<b>Think of psymic as</b>
-	<ul id="psymic_list" class="list-unstyled">
-		<li>Global Support Group</li>
-		<li>Collaborative coping platform</li>
-		<li>Human behaviors repository</li>
-		<li>Your feelings log</li>
-	</ul>
-</div>
-
+<%= render "shared/rightbar" %>
 <% end %>

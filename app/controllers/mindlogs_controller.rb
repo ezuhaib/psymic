@@ -5,17 +5,31 @@ class MindlogsController < ApplicationController
 
   def index
     authorize! :read , Mindlog
+
+    if params[:sort] == "date"
+      @order = {created_at: :desc}
+      @order_sql = "created_at DESC"
+    elsif params[:sort] == "popular"
+      @order = {likes_count: :desc}
+      @order_sql = "created_at DESC"
+    elsif params[:sort] == "lonely"
+      @order = {created_at: :desc}
+      @order_sql = "created_at DESC"
+    else
+    end
+
     if params[:query].present?
-      @mindlogs = Mindlog.search(params[:query], where:{workflow_state:"published"}, page: params[:page], fields: [:title] , highlight:{tag: "<strong>"})
+      @mindlogs = Mindlog.search(params[:query], where:{workflow_state:"published"}, order: @order , page: params[:page], fields: [:title] , highlight:{tag: "<strong>"})
       @has_details = true
       @title = "Searching mindlogs"
     elsif params[:tag]
-      @mindlogs = Mindlog.published.tagged_with(params[:tag]).page(params[:page])
+      @mindlogs = Mindlog.published.tagged_with(params[:tag]).order(@order_sql).page(params[:page])
       @title = "tag: ##{params[:tag]}"
     else
-      @mindlogs = Mindlog.search("*", where:{workflow_state:"published"}, page: params[:page] , per_page:20)
+      @mindlogs = Mindlog.search("*", where:{workflow_state:"published"}, order: @order, page: params[:page] , per_page:20)
       @title = "Mindlogs"
     end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @mindlogs }

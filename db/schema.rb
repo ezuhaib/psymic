@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140228143428) do
+ActiveRecord::Schema.define(:version => 20140303163845) do
 
   create_table "badges_sashes", :force => true do |t|
     t.integer  "badge_id"
@@ -130,12 +130,13 @@ ActiveRecord::Schema.define(:version => 20140228143428) do
   create_table "mindlogs", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "user_id"
     t.text     "status"
     t.integer  "reports_counter"
     t.string   "workflow_state"
+    t.integer  "likes_count",     :default => 0
   end
 
   create_table "notifications", :force => true do |t|
