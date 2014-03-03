@@ -68,6 +68,6 @@ Psymic::Application.configure do
   #Google Analytics
   GA.tracker = "UA-48107983-1"
 
-  #logglier.com
-  config.logger = Logglier.new("https://logs-01.loggly.com/inputs/7829ef88-a729-4fb1-9184-e58789c96cc5/tag/psymic/")
+  #logglier.com disabled because slowing down website
+  #config.logger = Logglier.new("https://logs-01.loggly.com/inputs/7829ef88-a729-4fb1-9184-e58789c96cc5/tag/psymic/")
 end
