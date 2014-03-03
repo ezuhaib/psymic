@@ -22,12 +22,13 @@
 
 <%# SORT OPTIONS %>
 <div id="sort_options" class="text-lighter">
-<span><%= link_to "Latest" , mindlogs_path(do: :sort_date) %></span> | 
-<span><%= link_to "Popular" , mindlogs_path(do: :sort_popular) %></span> | 
-<span><%= link_to "Lonely" , mindlogs_path(do: :sort_lonely) %></span>
+<span><%= link_to "Latest" , url_for(params.merge(sort: :date)) %></span> |
+<span><%= link_to "Popular" , url_for(params.merge(sort: :popular)) %></span> |
+<span><%= link_to "Lonely" , url_for(params.merge(sort: :lonely)) %></span>
 </div>
 
 <%# THE ENTRIES %>
+<%= page_entries_info @mindlogs %>
 <table class="table table-striped">
 	<% if @has_details %>
 		<%= render 'list_highlighted' %>

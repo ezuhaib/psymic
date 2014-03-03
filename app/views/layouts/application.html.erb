@@ -31,7 +31,15 @@
 	</div>
 
 	<%# Right Sidebar %>
-	<div class="col-md-2 col-xs-12 sidebar_container"><div class="sidebar sidebar-right"><%= yield :r2 %></div></div>
+	<div class="col-md-2 col-xs-12 sidebar_container">
+		<div class="sidebar sidebar-right">
+			<% if content_for?(:r2) %>
+			<%= yield :r2 %>
+			<% else %>
+			<%= render "shared/rightbar" %>
+			<% end %>
+		</div>
+	</div>
 </div>
 
 <%# Footer %>

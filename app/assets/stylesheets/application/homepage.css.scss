@@ -7,7 +7,6 @@
 
 #banner{
     width: 100%;
-    padding: 0 15px;
     text-align: center;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -15,8 +14,12 @@
 }
 
 #banner img{
+    border: 1px #fff solid;
     background-color: $theme-color;
-    border: 2px #fff solid;
+}
+
+#banner img:hover{
+    background-color: #444;
 }
 
 #mascot{
@@ -37,3 +40,47 @@
     font-size: 280%;
     line-height: 1;
 }
+
+/* entire container, keeps perspective */
+.flip-container img{
+    width: 100%;
+    height: auto;
+}
+
+.flip-container {
+    perspective: 1000;
+    float: left;
+}
+
+/* flip the pane when hovered */
+.flip-container:hover .flipper, .flip-container.hover .flipper {
+    transform: rotateY(180deg);
+}
+
+/* flip speed goes here */
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    backface-visibility: hidden;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+    transform: rotateY(180deg);
+}
+
+.back img{background-color: #ccc !important;}
