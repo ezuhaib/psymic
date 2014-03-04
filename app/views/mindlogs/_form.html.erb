@@ -11,7 +11,7 @@
 	<% if @mindlog.new_record? %>
 		<%= f.submit "Submit for review" , name:"submit_only", class:"btn btn-themed" %>
 	<% end %>
-	<% unless @mindlog.state?(:published) and @mindlog.new_record? %>
+	<% unless @mindlog.state?(:published) or @mindlog.new_record? %>
 	<%= f.submit "Update and Publish" , name:"publish", class:"btn btn-themed" %>
 	<% end %>
 <% end %>

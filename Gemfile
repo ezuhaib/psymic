@@ -7,12 +7,12 @@ gem 'rails', '3.2.16'
 gem 'rake'
 gem 'jbuilder'
 gem 'pg'
+gem 'whenever'
 
 # Search and analytics
 gem 'rack-mini-profiler'
 gem 'google-analytics-rails'
 gem 'exception_notification'
-gem 'logglier'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem "papercrop", git: "https://github.com/ezuhaib/papercrop.git"
 gem 'searchkick', git: "https://github.com/ankane/searchkick.git"
