@@ -1,156 +1,42 @@
-# config/deploy.rb
+# config valid only for Capistrano 3.1
+lock '3.1.0'
 
-# Uncomment next line if need bundler. Requires capistrano-bundler
-require "bundler/capistrano"
-set :application,     "psymic"
-set :scm,             :git
-set :repository,      "git@bitbucket.org:ezuhaib/psymic.git"
-set :branch,          "origin/master"
+set :application, 'psymic'
+set :repo_url, 'git@bitbucket.org:ezuhaib/psymic.git'
+
+set :linked_files, %w{config/database.yml}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :rails_env,       "production"
+
 set :migrate_target,  :current
 set :ssh_options,     { forward_agent: true , port:62062}
-set :rails_env,       "production"
-set :deploy_to,       "/home/ezuhaib/apps/psymic"
-set :deploy_via,	  :remote_cache
-set :normalize_asset_timestamps, false
 
-set :user,            "ezuhaib"
-#set :group,           "staff"
-set :use_sudo,        false
+set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:application)}"
+set :deploy_via,      :remote_cache
+set :deploy_user,     "ezuhaib"
 
-role :web,    "107.150.7.215"
-role :app,    "107.150.7.215"
-role :db,     "107.150.7.215", primary: true
-
-set(:latest_release)  { fetch(:current_path) }
-set(:release_path)    { fetch(:current_path) }
-set(:current_release) { fetch(:current_path) }
-
-set(:current_revision)  { capture("cd #{current_path}; git rev-parse --short HEAD").strip }
-set(:latest_revision)   { capture("cd #{current_path}; git rev-parse --short HEAD").strip }
-set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEAD@{1}").strip }
-
-#default_environment["RAILS_ENV"] = 'production'
-
-# Use our ruby-1.9.3-p0@psymic gemset
-#default_environment["PATH"]         = "--"
-#default_environment["GEM_HOME"]     = "--"
-#default_environment["GEM_PATH"]     = "--"
-ENV["BUNDLE_GEMFILE"] = "#{current_path}/Gemfile"
-
-default_run_options[:shell] = 'bash'
+set :unicorn_pid, "/tmp/unicorn.psymic.pid"
 
 namespace :deploy do
-  desc "Deploy your application"
-  task :default do
-    update
-    restart
-  end
 
-  desc "Setup your git-based deployment app"
-  task :setup, except: { no_release: true } do
-    dirs = [deploy_to, shared_path]
-    dirs += shared_children.map { |d| File.join(shared_path, d) }
-    run "#{try_sudo} mkdir -p #{dirs.join(' ')} && #{try_sudo} chmod g+w #{dirs.join(' ')}"
-    run "git clone #{repository} #{current_path}"
-  end
-
-  task :cold do
-    update
-    migrate
-  end
-
-  task :update do
-    transaction do
-      update_code
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      # execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 
-  desc "Update the deployed code."
-  task :update_code, except: { no_release: true } do
-    run "cd #{current_path}; git fetch origin; git reset --hard #{branch}"
-    finalize_update
-  end
+  after :publishing, :restart
 
-  desc "Reindex Seachkick"
-  task :reindex, except: { no_release: true } do
-    run "cd #{latest_release};bundle exec rake searchkick:reindex CLASS=Mindlog"
-  end
-
-  desc "Update the database (overwritten to avoid symlink)"
-  task :migrations do
-    transaction do
-      update_code
-    end
-    migrate
-    restart
-  end
-
-  task :finalize_update, except: { no_release: true } do
-    run "chmod -R g+w #{latest_release}" if fetch(:group_writable, true)
-
-    # mkdir -p is making sure that the directories are there for some SCM's that don't
-    # save empty folders
-    run <<-CMD
-      rm -rf #{latest_release}/log #{latest_release}/public/system #{latest_release}/tmp/pids &&
-      mkdir -p #{latest_release}/public &&
-      mkdir -p #{latest_release}/tmp &&
-      ln -s #{shared_path}/log #{latest_release}/log &&
-      ln -s #{shared_path}/system #{latest_release}/public/system &&
-      ln -s #{shared_path}/pids #{latest_release}/tmp/pids &&
-      ln -sf #{shared_path}/config/database.yml #{latest_release}/config/database.yml
-    CMD
-
-    #precompile the assets
-    run "cd #{latest_release}; bundle exec rake assets:precompile"
-
-    if fetch(:normalize_asset_timestamps, true)
-      stamp = Time.now.utc.strftime("%Y%m%d%H%M.%S")
-      asset_paths = fetch(:public_children, %w(images stylesheets javascripts)).map { |p| "#{latest_release}/public/#{p}" }.join(" ")
-      run "find #{asset_paths} -exec touch -t #{stamp} {} ';'; true", env: { "TZ" => "UTC" }
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
     end
   end
 
-  desc "Zero-downtime restart of Unicorn"
-  task :restart, except: { no_release: true } do
-    run "kill -s USR2 `cat /tmp/unicorn.psymic.pid`"
-  end
-
-  desc "Start unicorn"
-  task :start, except: { no_release: true } do
-    run "cd #{current_path} ; bundle exec unicorn_rails -c config/unicorn.rb -D"
-  end
-
-  desc "Stop unicorn"
-  task :stop, except: { no_release: true } do
-    run "kill -s QUIT `cat /tmp/unicorn.psymic.pid`"
-    run "cd #{current_path} ;rm tmp/pids" #to be more sure
-  end
-
-  desc "Clean"
-  task :clean do
-    run "cd #{current_path} ;rm tmp/pids" #to be more sure
-  end
-
-  namespace :rollback do
-    desc "Moves the repo back to the previous version of HEAD"
-    task :repo, except: { no_release: true } do
-      set :branch, "HEAD@{1}"
-      deploy.default
-    end
-
-    desc "Rewrite reflog so HEAD@{1} will continue to point to at the next previous release."
-    task :cleanup, except: { no_release: true } do
-      run "cd #{current_path}; git reflog delete --rewrite HEAD@{1}; git reflog delete --rewrite HEAD@{1}"
-    end
-
-    desc "Rolls back to the previously deployed version."
-    task :default do
-      rollback.repo
-      rollback.cleanup
-    end
-  end
-end
-
-def run_rake(cmd)
-  run "cd #{current_path}; #{rake} #{cmd}"
 end

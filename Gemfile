@@ -31,7 +31,7 @@ group :development do
 	gem 'webrick'
 	gem 'sqlite3'
 	gem 'yaml_db'
-	gem 'capistrano', '~> 2.15.5'
+	gem 'capistrano-rails'
 	gem 'better_errors'
 	gem 'binding_of_caller'
 	gem 'meta_request' #For Rails Panel
@@ -39,6 +39,7 @@ group :development do
 	gem 'sextant'
 	gem 'rails-web-console'
 	gem 'progress_bar'
+	gem 'sepastian-capistrano3-unicorn', :require => false
 end
 
 # Gems used only for assets and not required
