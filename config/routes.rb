@@ -53,7 +53,7 @@ Psymic::Application.routes.draw do
   resources :comments
   get 'comments/:type/:id' , to: 'comments#show' , as: "ajax_comments"
 
-  devise_for :user, :path => 'account', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" },:controllers => { :registrations => "registrations" }
+  devise_for :user, :path => 'account', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
   resources :users do
     member do
       get 'mindlogs'

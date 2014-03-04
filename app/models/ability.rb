@@ -54,7 +54,9 @@ class Ability
       end
       can :create , [Mindlog,Response,Comment,Feedback]
       can :authenticate , :psymic #checks if user logged in
-    elsif user.role? "moderator"
+    end
+
+    if user.role? "moderator"
       can :admin , :all #access to admin/ pages
       can :moderate , Mindlog #allows featuring,publishing/unpublishing and setting status
       can :read , Report
@@ -62,8 +64,11 @@ class Ability
       can :destroy, :all
       can :backstage, Feedback
       can :manage , WikiPage
-    elsif user.role? "admin"
+    end
+
+    if user.role? "admin"
       can :manage, :all
     end
+
   end
 end
