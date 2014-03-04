@@ -32,19 +32,10 @@ class Ability
 
     user ||= User.new # guest user (not logged in)
 
-    # Special admin roles being used:
-    # :monitor(for searchkick)
-    if user.role? "admin"
-      can :manage, :all
-    elsif user.role? "moderator"
-      can :admin , :all #access to admin/ pages
-      can :moderate , Mindlog #allows featuring,publishing/unpublishing and setting status
-      can :read , Report
-      can :update , :all
-      can :destroy, :all
-      can :backstage, Feedback
-      can :manage , WikiPage
-    elsif user.username # authenticated users
+    # all users
+    can :read , [Mindlog,Response,Comment,User,Feedback,WikiPage,Channel]
+
+    if user.username # authenticated users
       can :respond , Mindlog
       can [:report,:subscribe,:unsubscribe] , Mindlog do |x|
         x.try(:user) != user
@@ -63,9 +54,16 @@ class Ability
       end
       can :create , [Mindlog,Response,Comment,Feedback]
       can :authenticate , :psymic #checks if user logged in
-    else
-      # all users authenticted an anonymous:
-      can :read , [Mindlog,Response,Comment,User,Feedback,WikiPage]
+    elsif user.role? "moderator"
+      can :admin , :all #access to admin/ pages
+      can :moderate , Mindlog #allows featuring,publishing/unpublishing and setting status
+      can :read , Report
+      can :update , :all
+      can :destroy, :all
+      can :backstage, Feedback
+      can :manage , WikiPage
+    elsif user.role? "admin"
+      can :manage, :all
     end
   end
 end
