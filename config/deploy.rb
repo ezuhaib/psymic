@@ -5,18 +5,12 @@ set :application, 'psymic'
 set :repo_url, 'git@bitbucket.org:ezuhaib/psymic.git'
 
 set :linked_files, %w{config/database.yml}
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
 set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :rails_env,       "production"
 
 set :migrate_target,  :current
 set :ssh_options,     { forward_agent: true , port:62062}
-
-set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:application)}"
-set :deploy_via,      :remote_cache
-set :deploy_user,     "ezuhaib"
-
-set :unicorn_pid, "/tmp/unicorn.psymic.pid"
 
 namespace :deploy do
 
