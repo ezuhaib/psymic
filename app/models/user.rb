@@ -50,6 +50,7 @@ end
 devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 acts_as_reader
+acts_as_readable :on => :created_at
 extend FriendlyId
 friendly_id :username
 has_attached_file :avatar,
@@ -103,6 +104,4 @@ def self.options_attr_accessor()
 end
 
 options_attr_accessor
-
-
 end

@@ -42,6 +42,10 @@ class MindlogsController < ApplicationController
     @mindlog = Mindlog.find(params[:id])
     @mindlog.status = "None yet." if @mindlog.status.blank?
     authorize! :read , @mindlog
+    if params[:response]
+      @response = Response.find(params[:response])
+      render "single_response"
+    end
 
     if params[:only] == "explanations"
       @responses = @mindlog.responses.where(nature:"explanation").order("rating DESC")

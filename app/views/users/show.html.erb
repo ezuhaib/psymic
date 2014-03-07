@@ -1,4 +1,6 @@
 <% @title = "USER: #{@user.username}" %>
+<% @user.mark_as_read! :for => current_user %>
+
 <%# HEAD %>
 <div class="head">
 	<h1>user:<%= link_to @user.username , @user %>

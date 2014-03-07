@@ -13,7 +13,7 @@ validates_presence_of :query
 validates_size_of :body , in: 140...1000
 validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
 validates_attachment_size :cover, in: 0..5000.kilobytes
-validates :cover, :dimensions => { :width => 700, :height => 200 }
+validates :cover, :dimensions => { :width => 730, :height => 200 }
 
 ##############################################
 # QUERY

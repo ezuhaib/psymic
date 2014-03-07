@@ -3,12 +3,12 @@
 
 <div id="commentable-<%= response.id %>" class="row">
 
-	<div class="response-entry type-<%= response.nature %>">
+	<div class="response-entry">
 		<div class="rating">
 			<%= render partial: "responses/rating" , locals: {:response => response} %>
 		</div>
 
-		<div>
+		<div class="response-entry-body type-<%= response.nature %>">
 			<%= Rinku.auto_link(response.body).html_safe %>
 			<div class="text-lighter">
 				by <%= link_to response.user.username,response.user%>
@@ -21,15 +21,17 @@
 					<%= link_to '', [response.mindlog, response] ,:method=> :delete, class:"glyphicon glyphicon-trash" , :confirm=> 'Are you sure?'  %>
 				<% end %>
 
-				<% if can? :read , Comment %>
+				<% if can? :read , Comment and !preload_comments %>
 					<%= link_to '' , get_comments(response) , :remote=> true , class:"glyphicon glyphicon-comment" %> <%= response.comments.count %>
 				<% end %>
 
-			</div>
+			</div></div>
 
 			<div class="comments-js">
-				<%= render template: "comments/show" , locals: {commentable: @response} if preload_comments == true %>
-			</div>
+			<% if preload_comments == true %>
+					<%= render template: "comments/show",
+					locals: {commentable: @response} %>
+			<% end %>
 		</div>
 	</div>
 </div>

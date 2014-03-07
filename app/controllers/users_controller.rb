@@ -21,7 +21,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    if params[:do] and params[:do] == "mark_read"
+      User.mark_as_read! :all, :for => current_user
+      redirect_to users_path
+    end
+    authorize! :update , User
+    @users = User.with_read_marks_for(current_user).order('created_at desc').page(params[:page])
   end
 
   def edit
