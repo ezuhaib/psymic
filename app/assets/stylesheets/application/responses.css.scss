@@ -13,10 +13,13 @@
 .type-general , .type-story{background-color: #F2F2F2;}
 
 .response-entry{
-    padding: 8px 15px 8px 15px;
     margin-bottom: 17px;
     margin-left: 55px;
     position: relative;
+}
+
+.response-entry-body{
+    padding: 8px 15px 8px 15px;
     border: 1px solid #bbb;
     a{font-weight: bold;}
 }

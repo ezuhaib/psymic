@@ -32,10 +32,9 @@ def create
 
 	def show
 	@response = Response.find(params[:id])
-	@show_comments = true
 
 	respond_to do |format|
-		format.html
+		format.html {redirect_to mindlog_path(@response.mindlog,response:@response.id)}
 		format.js
 	end
 	end
@@ -45,7 +44,7 @@ def create
 		# if voted already, clicking either up or down would cancel the vote
 		if cannot? :vote , @response
 			respond_to do |format|
-			format.html { redirect_to :back }
+			format.html { redirect_to @response.mindlog }
 			format.js {render partial: 'shared/no_interact.js.erb'}
 			end
 		else
@@ -72,7 +71,7 @@ def create
 		end
 
 		respond_to do |format|
-			format.html { redirect_to :back }
+			format.html { redirect_to @response.mindlog }
 			format.js #added
 			end
 		end

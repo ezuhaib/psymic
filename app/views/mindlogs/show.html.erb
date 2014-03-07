@@ -1,13 +1,8 @@
 <% @title = "Mindlog: #{@mindlog.title}" %>
-<% require "rinku" %>
 <% @mindlog.reset_watch(current_user.id) if current_user %>
-<%# Body of Mindlog %>
-<div id="mindlog_box" class="row bg-dark">
-	<div id="magic"></div>
-	<h2 class="compact"><%= @mindlog.title %></h2>
-	<p><%= Rinku.auto_link(@mindlog.description).html_safe %></p>
-</div>
-<div id="status_box" class="row"><b>Status: </b><%= @mindlog.status %></div>
+
+<%# Main body %>
+<%= render 'mindlog_body' %>
 
 <%# Like box and Response Form %>
 <div id="like_and_respond">
@@ -40,20 +35,7 @@
 <% end %>
 
 <%# Rightbar Content %>
-<% content_for :r2 do %>
-<ul id="mindlog_links">
-	<li class="text-dark">By <%= link_to @mindlog.user.username , @mindlog.user %></li>
-	<li class="text-sm text-dark"><%= @mindlog.created_at.strftime("%d %B %Y") %></li>
-	<li class="divider"></li>
-	<%= render "links" %>
-</ul>
-
-<ul id="tag_list">
-	<% @mindlog.topic_list.each do |t| %>
-	<li><%= link_to "##{t}" , tag_path(t) %></li>
-	<% end %>
-</ul>
-<% end %>
+<%= render 'mindlog_rightbar' %>
 
 <script>
 $(document).on("click",".pagination a", function(){

@@ -1,0 +1,14 @@
+<% content_for :r2 do %>
+<ul id="mindlog_links">
+	<li class="text-dark">By <%= link_to @mindlog.user.username , @mindlog.user %></li>
+	<li class="text-sm text-dark"><%= @mindlog.created_at.strftime("%d %B %Y") %></li>
+	<li class="divider"></li>
+	<%= render "links" %>
+</ul>
+
+<ul id="tag_list">
+	<% @mindlog.topic_list.each do |t| %>
+	<li><%= link_to "##{t}" , tag_path(t) %></li>
+	<% end %>
+</ul>
+<% end %>
