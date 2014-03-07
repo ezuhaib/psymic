@@ -1,0 +1,15 @@
+<% @title = "Mindlog: Showing single response to: #{@mindlog.title}" %>
+
+<%# Main body %>
+<%= render 'mindlog_body' %>
+
+<%# The response %>
+<div class="col-xs-12">
+<h3>Single Response
+<span class="pull-right text-light text-sm"><%= pluralize(@response.comments.count,'Comment') %></span>
+</h3>
+<%= render partial:'responses/response', object:@response , locals:{preload_comments:true} %>
+</div>
+
+<%# Rightbar Content %>
+<%= render 'mindlog_rightbar' %>

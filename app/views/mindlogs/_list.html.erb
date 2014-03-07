@@ -9,7 +9,7 @@
 		<td class="text-lg mindlog_body">
 			<%= link_to m.title , m , class:"link-black"%>
 			<div class="mindlog_bottom_line text-lighter">
-				<%= distance_of_time_in_words(Time.now,m.created_at, true, :highest_measure_only=> true) %>
+				<%= distance_of_time_in_words(Time.now,m.created_at, true, :highest_measure_only=> true) %> ago 
 				by <%= link_to m.user.username , m.user %>
 			</div>
 			<ul class="mindlog_tag_list link-inverted">

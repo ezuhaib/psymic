@@ -1,0 +1,21 @@
+.comment_box {
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.comment_box a{
+    color: #444;
+}
+
+#new_comment{
+    margin-bottom: 15px;
+}
+
+.comment {
+    padding-bottom: 8px;
+    color: #999;
+    margin-top: 5px;
+}
+
+.comment:not(:last-child){border-bottom: solid 1px #ddd;}
