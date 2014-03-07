@@ -8,29 +8,53 @@
 
 <div id="links_wrapper">
 
-	
-	<% if current_user %>
-		<%   @notifications_count = Notification.where(:user_id=>current_user.id).pluck(:counter).sum %>
-		<% @subscriptions_count = current_user.subscriptions.where(counter:1).count %>
-		<div id="btn_container" class="pull-right">
-		  			<%= link_to notifications_path do %><span id="notifics" class="badge <%= "bg-red" if @notifications_count > 0%>"><%= @notifications_count %></span><% end %>
-		<div id="collapsing_button" class="pull-right pull-right-xs">
-		<div class="dropdown center">
-  			<button class="btn dropdown-toggle btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown">
-    		@<%= current_user.username %><span class="caret"></span>
-  			</button>
- 			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-	    	<li class="hidden"><%= link_to "Welcome #{current_user.username}",current_user, class:"welcome_line" %></li>
 
-	    	<li role="presentation">
-	      	<%= link_to subscriptions_path do %>Watchlist <span class="badge bg-themed"><%= @subscriptions_count %></span><% end %>
-	    	</li>
-	    	<li role="presentation" class="divider"></span></li>
-	    	<li role="presentation"><%= link_to "Profile" , current_user %></li>
-	    	<li role="presentation"><%= link_to 'Settings' , edit_user_registration_path %></li>
-	    	<% if can? :admin , :all %><li role="presentation"><%= link_to "Admin", admin_root_path %></li><% end %>
-	    	<li role="presentation"><%= link_to "Logout", destroy_user_session_path , :method=>:delete %></li>
-  		</ul></div>
+	<% if current_user %>
+		<div id="btn_container" class="pull-right">
+			<%= link_to notifications_path do %>
+				<span id="notifics" class="badge <%= "bg-red" if notifications_count %>"><%= notifications_count %></span><% end %>
+
+		<div id="collapsing_button" class="pull-right pull-right-xs">
+
+		<div class="dropdown center">
+
+  			<button class="btn dropdown-toggle btn-default" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    			@<%= current_user.username %><span class="caret"></span>
+  			</button>
+
+	 			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+
+		    	<li class="hidden">
+		    		<%= link_to "Welcome #{current_user.username}",current_user, class:"welcome_line" %>
+	    		</li>
+
+		    	<li role="presentation">
+		      	<%= link_to subscriptions_path do %>
+		      		Watchlist <%= content_tag :span, subscriptions_count, class: 'badge bg-themed' %>
+		      	<% end %>
+		    	</li>
+
+		    	<li role="presentation" class="divider"></span></li>
+
+		    	<li role="presentation">
+		    		<%= link_to "Profile" , current_user %>
+	    		</li>
+
+		    	<li role="presentation">
+		    		<%= link_to 'Settings' , edit_user_registration_path %>
+	    		</li>
+
+		    	<% if can? :admin , :all %>
+		    		<li role="presentation">
+			    		<%= link_to admin_root_path do %>
+			    			Admin <%= content_tag :span, admin_notifications_count ,class:'badge bg-themed' %>
+			    		<% end %>
+		    		</li>
+	    		<% end %>
+
+		    	<li role="presentation"><%= link_to "Logout", destroy_user_session_path , :method=>:delete %></li>
+	  		</ul>
+  		</div>
 		</div>
 	</div><% end %>
 
