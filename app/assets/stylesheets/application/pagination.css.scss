@@ -1,0 +1,18 @@
+/****************************************
+Currently holds pagination styles
+But in future merge tables and lists styles
+in this too, if any.
+*****************************************/
+
+@import "theme";
+
+/* For kaminari pagination */
+#pagination{margin-top: 22px;margin-bottom: 22px;}
+
+.pagination > li > a, .pagination > li > span {
+color: #000;
+background-color: #eee;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+    background-color: $theme-color;border:1px solid $theme-color-light;}

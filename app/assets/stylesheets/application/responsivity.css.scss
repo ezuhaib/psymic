@@ -1,15 +1,11 @@
 /****************************************
 MEDIA QUERIES AND RESPONSIVE DESIGN
-Todo: Integrate Mixins and variables
+Todo: Sassify this more
 ****************************************/
 
 @import "theme";
 @import "bootstrap/variables";
 
-/****************************************
-MEDIA QUERIES AND RESPONSIVE DESIGN
-Todo: Integrate Mixins and variables
-****************************************/
 /* xs */
 @media (max-width: $screen-xs-max) {
     .pull-left-xs {
@@ -86,7 +82,7 @@ Todo: Integrate Mixins and variables
 
 /* md, lg */
 @media (min-width: $screen-md-min){
-    
+
     .pad-x2-md{
         padding-left: 30px;
         padding-right: 30px;
@@ -94,7 +90,7 @@ Todo: Integrate Mixins and variables
 
     .pad-x4-md{
         padding-left: 60px;
-        padding-right: 60px;   
+        padding-right: 60px;
     }
 }
 
