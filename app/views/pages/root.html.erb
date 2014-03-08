@@ -1,5 +1,8 @@
 <% @title = "Homepage" %>
+<% if !current_user %>
 <div class="hidden-xs row"><%= image_tag 'header.jpg', width:"730" %></div>
+<% end %>
+
 <div class="bg-light row pull-left">
 	<div class="col-md-9 pad-extra center-xsm">
 		<h2>Welcome to Psymic </h2>
