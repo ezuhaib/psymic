@@ -22,7 +22,7 @@ def admin_notifications_count
 	m = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
 	u = @users_count = User.unread_by(current_user).count
 	count = m+u
-	return nil if count == 0
+	count == 0 ? nil : count
 end
 
 def notifications_count
