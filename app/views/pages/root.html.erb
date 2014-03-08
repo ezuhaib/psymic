@@ -1,6 +1,9 @@
 <% @title = "Homepage" %>
+<% if !current_user %>
 <div class="hidden-xs row"><%= image_tag 'header.jpg', width:"730" %></div>
-<div class="bg-light row pull-left">
+<% end %>
+
+<div class="row pull-left">
 	<div class="col-md-9 pad-extra center-xsm">
 		<h2>Welcome to Psymic </h2>
 		<p class="text-md text-300">Psymic is a global support group and an online compilation of human behaviours and their analyses, termed as “mindlogs”.</p>
