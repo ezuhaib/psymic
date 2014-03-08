@@ -1,5 +1,5 @@
 /****************************
-CLASSES
+BROAD CLASSES
 Todo: Remove Orphaned
 *****************************/
 
@@ -7,20 +7,17 @@ Todo: Remove Orphaned
 
 /* Text */
 .text-justify{text-align: justify;}
+.text-center{text-align: center;}
 .text-sm {font-size: 80%;}
 .text-md{font-size:140%;}
 .text-lg{font-size: 28px;}
 .text-std{font-size: 100% !important;}
 .text-300{font-weight: 300;}
-.text-red, .text-red a{color: #c03;}
-.text-middle{vertical-align: middle;}
 .text-themed {color: $theme-color}
-.text-red a:hover{color: #c09;}
 .text-lighter {color: #aaa;a{color: #888;};a:hover{color: #000;}}
 .text-light {color: #666;a{color: #888;};a:hover{color: #000;}}
 .text-dark, .text-dark a{color: #555;}
 .text-dark a:hover{color: $theme-color;}
-.text-center{text-align: center;}
 
 /* Links */
 .link-black,.link-black a{color: #000;}
@@ -39,11 +36,9 @@ Todo: Remove Orphaned
 dd , dt{margin-top: 10px;}
 
 /* Boxes */
-.bg-white{background-color: #fff;}
-.bg-red{background-color: red;}
-.box-light{background-color: #aaa;color: #000;}
-.bg-dark{background-color: #333333;color: #ffffff;}
-.bg-dark a{color: #fff;}
+.bg-white{background-color: #fff;color: #333;}
+.bg-red{background-color: red;color: #fff;}
+.bg-dark{background-color: #333333;color: #ffffff;a{color: #fff;}}
 .bg-light{background-color: #eee;color: #333;}
 .widget {text-align: center;padding:10px;font-weight:300;border: 1px solid #ccc;.lg, .lg a {font-weight: 700;font-size: 40px;}}
 .clear{clear: both}
@@ -52,13 +47,10 @@ dd , dt{margin-top: 10px;}
 
 /* Head */
 .head{padding: 5px 30px;margin: 0 -15px 20px -15px;background-color: $theme-color;color: #fff;}
-.head a:not(.btn){color: $theme-color-med;}
-.head a:hover{color: #fff;}
+.head a:not(.btn){color: $theme-color-med;&:hover{color: #fff;}}
 .head{h1,h2,h3{margin-top: 11px;}}
 .head .text-light{color: $theme-color-light;}
-.head-dark{background-color: #333;}
-.head-dark a{color: $theme-color-med;}
-.head-dark a:hover{color: #fff;}
+.head-dark{background-color: #333;a{color: $theme-color-med; &:hover{color: #fff;}}}
 .head-overlay{background: #000;opacity: 0.6;position: absolute;width: 100%;height: 40px;
 	font-size: 16px;line-height: 40px;color: #fff;padding: 0 15px;}
 .head-overlay a{font-weight: 700;color: #fff;font-size: 22px;}
@@ -81,25 +73,22 @@ h1,h2,h3,h4{.prefix{font-size: 70%;}}
 
 /* Padding */
 .pad-nil{padding: 0px;}
-.pad-lat-0{padding-left: 0px;padding-right: 0px;}
 .pad-10{padding: 10px;}
+.pad-extra{padding-left: 30px;padding-right: 30px;} /* 'Extra' in context of bootstrap */
+.pad-lat-0{padding-left: 0px;padding-right: 0px;}
 .pad-vert-5{padding-top: 5px;padding-bottom: 5px;}
-.pad-top-20{padding-top: 20px;}
-.pad-top-5{padding-top: 5px;}
-.pad-extra{padding-left: 30px;padding-right: 30px;}
+.pad-t-20{padding-top: 20px;}
+
 
 /* Margin */
 .mar-nil{margin:0;}
-.mar-t-10{margin-top: 10px;}
-.mar-t-20{margin-top: 20px;}
-.margin-top-20{margin-top: 20px;}
-.margin-top-30{margin-top: 30px;}
-.mar-top-0{margin-top: 0px;}
-.mar-b-10{margin-bottom: 10px;}
-.mar-b-20{margin-bottom: 20px}
-.mar-vert-10{margin-top: 10px;margin-bottom: 10px;}
-.mar-vert-20{margin-top: 20px;margin-bottom: 20px;}
-.mar-vert-5{margin-top: 5px;margin-bottom: 5px;}
 .mar-5{margin: 5px;}
 .mar-10{margin: 10px;}
+.mar-t-0{margin-top: 0px;}
+.mar-t-10{margin-top: 10px;}
+.mar-t-20{margin-top: 20px;}
+.mar-b-10{margin-bottom: 10px;}
+.mar-b-20{margin-bottom: 20px}
+.mar-v-10{margin-top: 10px;margin-bottom: 10px;}
+.mar-v-15{margin-top: 15px;margin-bottom: 15px;}
 .mar-r-10{margin-right: 10px;}
