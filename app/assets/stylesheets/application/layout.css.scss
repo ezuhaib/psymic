@@ -68,14 +68,9 @@ body,html,.container , #semi_container{height: 100%;}
     margin-top: 9px;
 }
 
-#primary_links{list-style: none;margin-right: 4px;}
-#primary_links a{
-    color: #666;
-    font-size: 24px;
-    float: right;
-    clear: both;
-}
-#primary_links a:hover{color: $theme-color;}
+#primary_links{list-style: none;margin-right: 4px;float: right;}
+#primary_links a:not(.btn){color: #666;font-size: 24px;clear: both;}
+#primary_links a:not(.btn):hover{color: $theme-color;}
 
 .bottom-links{
     position: absolute;

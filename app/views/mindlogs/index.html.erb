@@ -17,7 +17,7 @@
 </br>
 
 <%# Form %>
-<%= render 'mindlogs/form_minimal' %>
+<%= render 'mindlogs/form_minimal' if can? :create , Mindlog %>
 
 <%# THE ENTRIES %>
 <%= page_entries_info @mindlogs %>

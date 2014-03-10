@@ -61,7 +61,7 @@
 <%# Primary Links %>
 <ul id="primary_links">
 	<% if !current_user %>
-		<li><%= link_to "Login/Join" , new_user_session_path %></li>
+		<li><%= link_to "Login/Join" , new_user_session_path , class:"btn btn-themed" %></li>
 	<% end %>
 	<li><%= link_to "Channels" , channels_path %></li>
 </ul>
