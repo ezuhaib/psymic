@@ -21,19 +21,20 @@
 
 <%# THE ENTRIES %>
 <%= page_entries_info @mindlogs %>
-<% if @has_details %>
-	<%= render 'mindlogs/list_highlighted' %>
-<% else %>
-	<%= render 'mindlogs/list' %>
-<% end %>
+<%= render 'mindlogs/list' %>
 <%= paginate @mindlogs %>
 
 <%# RIGHT SIDEBAR %>
 <%= content_for :r2 do %>
+
 <%# SORT OPTIONS %>
 <ul class="list-unstyled sort-options">
+<% if params[:query] %>
+<li><%= link_to "Relevant first" , url_for(params.merge(sort: :relevance)) ,
+		class:"#{'active' if !params[:sort] and params[:query]}" %></li>
+<% end %>
 <li><%= link_to "Latest first" , url_for(params.merge(sort: :date)) ,
-		class:"#{'active' if !params[:sort] or params[:sort]=='date'}" %></li>
+		class:"#{'active' if (!params[:sort] and !params[:query]) or params[:sort]=='date'}" %></li>
 <li><%= link_to "Popular first" , url_for(params.merge(sort: :popular)),
 		class:"#{'active' if params[:sort]=='popular'}" %></li>
 <li><%= link_to "Unresponded" , url_for(params.merge(sort: :lonely)),

@@ -4,7 +4,35 @@ class MindlogsController < ApplicationController
   # GET /mindlogs/1.json
 
   def index
-    raise ActionController::RoutingError.new('Not Found')
+    authorize! :read , Mindlog
+    if params[:sort] == "popular"
+      @order = {likes_count: :desc}
+      @order_sql = "created_at DESC"
+    elsif params[:sort] == "lonely"
+      @order = {created_at: :desc}
+      @order_sql = "created_at DESC"
+    else
+    end
+
+    if params[:query].present?
+      @order = {_score: :desc} if !params[:sort] or params[:sort] == "date"
+      @mindlogs = Mindlog.search(params[:query], where:{workflow_state:"published"}, order: @order , page: params[:page], fields: [:title,:tags_name] , highlight:{tag: "<strong>"})
+      @has_details = true
+      @title = "Searching mindlogs"
+    elsif params[:tag]
+      @order_sql = "created_at DESC" if !params[:sort] or params[:sort] == "date"
+      @mindlogs = Mindlog.published.tagged_with(params[:tag]).order(@order_sql).page(params[:page])
+      @title = "tag: ##{params[:tag]}"
+    else
+      @order = {created_at: :desc} if !params[:sort] or params[:sort] == "date"
+      @mindlogs = Mindlog.search("*", where:{workflow_state:"published"}, order: @order, page: params[:page] , per_page:20)
+      @title = "Mindlogs"
+    end
+    @mindlog = flash[:mindlog] ? Mindlog.create(flash[:mindlog]) : Mindlog.new
+    respond_to do |format|
+      format.html { render 'mindlogs/index'}
+      format.json { render json: @mindlogs }
+    end
   end
 
   def show
@@ -64,9 +92,11 @@ class MindlogsController < ApplicationController
     authorize! :create , @mindlog
     if @mindlog.save
       (params[:submit_only]||params[:mindlog][:review] == '1') ? @mindlog.state(:awaiting_review) : @mindlog.state(:published)
-      redirect_to @mindlog, notice: 'Mindlog was successfully created.'
+      redirect_to mindlogs_path, notice: 'Mindlog was successfully created.'
     else
-      render action: "new"
+      flash[:error] = @mindlog.errors.full_messages.join('</br>').html_safe
+      flash[:mindlog] = params[:mindlog]
+      redirect_to :back
     end
   end
 

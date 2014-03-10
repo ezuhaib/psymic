@@ -1,4 +1,5 @@
-<% @mindlogs.each do |m| %> 
+<% m = @has_details ? @mindlogs.with_details : @mindlogs %>
+<% m.each do |m,details| %>
 	<div class="mindlog">
 		<div class="mindlog_body">
 			<div class="avatar">
@@ -8,10 +9,16 @@
 				<%= link_to m.user.username , m.user %> posted 
 				<%= distance_of_time_in_words(Time.now,m.created_at, true, :highest_measure_only=> true) %> ago 
 			</div>
-			<h4><%= link_to m.title , m , class:"suffix link-black"%></h4>
+			<%= link_to m , class:"suffix link-black" do %>
+				<h4>
+					<%= (details and details[:highlight][:title]) ? details[:highlight][:title].html_safe : m.title %>
+				</h4>
+			<% end %>
 			<ul class="mindlog_tag_list link-inverted">
 				<% m.topics.limit(5).each do |t| %>
-					<li><%= link_to "##{t}" , mindlogs_path(tag: t.name) %></li>
+					<li <%= "class=active" if t.to_s == params[:query] %>>
+						<%= link_to "##{t}" , mindlogs_path(tag: t.name) %>
+					</li>
 				<% end %>
 			</ul>
 		</div>

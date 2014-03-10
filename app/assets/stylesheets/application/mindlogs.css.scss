@@ -50,6 +50,10 @@ MINDLOGS and RESPONSES
     margin-right: 5px;
 }
 
+.mindlog_tag_list li.active a{
+    background-color: #000;
+}
+
 .tag{font-weight: 700; font-size: 90%;}
 #tag_list{list-style: none;}
 
