@@ -17,7 +17,7 @@
 			<ul class="mindlog_tag_list link-inverted">
 				<% m.topics.limit(5).each do |t| %>
 					<li <%= "class=active" if t.to_s == params[:query] %>>
-						<%= link_to "##{t}" , mindlogs_path(tag: t.name) %>
+						<%= link_to "##{t}" , tag_path(t.name) %>
 					</li>
 				<% end %>
 			</ul>
