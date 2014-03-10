@@ -2,7 +2,7 @@
 <%= stylesheet_link_tag 'selectize.psymic' %>
 
 <%= bootstrap_form_for @mindlog , style: :horizontal do |f| %>
-<%= f.text_field :title , placeholder: "Better be a statement than phrase"%>
+<%= f.text_field :title , maxlength: 85, placeholder: "Better be a statement than phrase"%>
 <%= f.text_area :description , label: :Details ,size:'24x4' , placeholder:"Minimum 40 characters." %>
 <%= f.text_field :topic_list , label: :Tags %>
 <% if can? :moderate , @mindlog %><%= f.text_field :status %><% end %>
