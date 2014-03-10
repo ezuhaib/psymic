@@ -54,7 +54,7 @@ acts_as_readable :on => :created_at
 extend FriendlyId
 friendly_id :username
 has_attached_file :avatar,
-  :styles => { :standard => "300x300>", :thumb => "130x130>" },
+  :styles => { :thumb => "130x130#", :mini => "60x60#" },
   :default_url => set_default_avatar
 crop_attached_file :avatar , min_size: "300x300"
 

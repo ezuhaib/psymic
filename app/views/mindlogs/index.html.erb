@@ -1,49 +1,47 @@
-<%= javascript_include_tag 'typeahead.bundle.min','mindlogs_typeahead' %>
-<%= stylesheet_link_tag 'bootstrapped-typeahead' %>
-
 <%# HEADER %>
-<div id="mindlogs_header" class="row col-xs-12">
-	<%= link_to mindlogs_path , id:"mindlogs_header_text" do %>
+<div id="mindlogs_header">
+	<div id="mindlogs_header_text">
 	<span class="glyphicon glyphicon-leaf"></span>
-	 Mindlogs
-	 <%= link_to "W R I T E" , new_mindlog_path , class:"btn btn-success btn-sm pull-right" %>
+	<span class="hidden-xs">Mindlogs</span>
+	</div>
+	<%# SEARCH BOX %>
+	<%= form_tag mindlogs_path , method: :get , id:"mindlogs_search", class:"pull-right" do %>
+		<div class="input-group">
+			<%= text_field_tag :query, params[:query], class: "form-control col-xs-12" , id:"mindlog_search" , placeholder:"type to search" %>
+			<span class= "input-group-btn">
+			<%= button_tag "<span class='glyphicon glyphicon-search'></span>".html_safe , class:"btn btn-themed" %></span>
+		</div>
 	<% end %>
 </div>
-<div class="spacer-60"></div>
+<div class="spacer-50 hidden-sm hidden-xs"></div>
 </br>
 
-<%# SEARCH BOX %>
-<%= form_tag mindlogs_path , method: :get , id:"mindlogs_search" do %>
-	<div class="input-group">
-		<%= text_field_tag :query, params[:query], class: "form-control col-xs-12" , id:"mindlog_search" , placeholder:"type to search" %>
-		<span class= "input-group-btn"><%= submit_tag "Search" , class:"btn btn-themed" %></span>
-	</div>
-<% end %>
-
-<%# SORT OPTIONS %>
-<div id="sort_options" class="text-lighter">
-<span><%= link_to "Latest" , url_for(params.merge(sort: :date)) %></span> |
-<span><%= link_to "Popular" , url_for(params.merge(sort: :popular)) %></span> |
-<span><%= link_to "Lonely" , url_for(params.merge(sort: :lonely)) %></span>
-</div>
+<%# Form %>
+<%= render 'mindlogs/form_minimal' %>
 
 <%# THE ENTRIES %>
 <%= page_entries_info @mindlogs %>
-<table class="table table-striped">
-	<% if @has_details %>
-		<%= render 'list_highlighted' %>
-	<% else %>
-		<%= render 'list' %>
-	<% end %>
-</table>
+<% if @has_details %>
+	<%= render 'mindlogs/list_highlighted' %>
+<% else %>
+	<%= render 'mindlogs/list' %>
+<% end %>
 <%= paginate @mindlogs %>
 
 <%# RIGHT SIDEBAR %>
 <%= content_for :r2 do %>
-	<b>trending tags</b>
-	<ul id="tag_list">
-		<% ActsAsTaggableOn::Tag.all.each do |tag| %>
-			<li><%= link_to "##{tag.name}" , tag_path(tag.name) , class:"tag" %></li>
-		<% end %>
-	</ul>
+<%# SORT OPTIONS %>
+<ul class="list-unstyled sort-options">
+<li><%= link_to "Latest first" , url_for(params.merge(sort: :date)) ,
+		class:"#{'active' if !params[:sort] or params[:sort]=='date'}" %></li>
+<li><%= link_to "Popular first" , url_for(params.merge(sort: :popular)),
+		class:"#{'active' if params[:sort]=='popular'}" %></li>
+<li><%= link_to "Unresponded" , url_for(params.merge(sort: :lonely)),
+		class:"#{'active' if params[:sort]=='lonely'}" %></li>
+</ul>
+
 <% end %>
+
+<%# The includes %>
+<%= javascript_include_tag 'typeahead.bundle.min','mindlogs_typeahead' %>
+<%= stylesheet_link_tag 'bootstrapped-typeahead' %>

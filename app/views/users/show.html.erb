@@ -14,7 +14,7 @@
 <%# LEFT: AVATAR AND KARMA %>
 <div class="col-sm-3 text-center">
 	<div class="avatar mar-b-10">
-		<%= link_to (image_tag @user.avatar(:thumb)), edit_avatar_path %>
+		<%= link_to (image_tag @user.avatar(:mini)), edit_avatar_path %>
 	</div>
 	<% if can? :update , @user %>
 		<%= link_to 'Edit' , (@user == current_user ? edit_profile_path : edit_profile_path(username:@user.username)) , class: "btn btn-default" %>

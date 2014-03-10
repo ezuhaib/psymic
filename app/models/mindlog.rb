@@ -15,7 +15,8 @@ scope :queued, -> { where(workflow_state: ["unpublished","awaiting_review"]) }
 #############################
 # ATTRIBUTES
 #############################
-attr_accessible :description, :title , :topic_list , :status, :workflow_state
+attr_accessible :description, :title , :topic_list , :status, :workflow_state, :review
+attr_accessor :review
 
 #############################
 # VALIDATIONS

@@ -3,7 +3,7 @@ attr_accessible :body, :slug, :query, :title, :cover
 extend FriendlyId
 friendly_id :title , use: :slugged
 
-has_attached_file :cover, styles:{standard: "730x200"}
+has_attached_file :cover, styles:{standard: "730x200#"}
 crop_attached_file :cover , aspect: '730:200' , min_size:'730x200'
 
 ##############################################

@@ -1,0 +1,29 @@
+<%= javascript_include_tag 'selectize.min','mindlog_form_functions','jquery.autosize.min' %>
+<%= stylesheet_link_tag 'selectize.minimalistic','form_minimal' %>
+
+<%= form_for @mindlog , html:{class:"minimalistic"} do |f| %>
+<div id="form_box">
+
+	<div id="head">
+	Write Mindlog
+	</div>
+
+	<div id="title">
+	<%= f.text_field :title , placeholder: "Title (better be a statement than phrase)"%>
+	</div>
+
+	<div id="description">
+	<%= f.text_area :description , label: :Details ,size:'24x1' , placeholder:"The Mindlog" %>
+	</div>
+
+	<div id="topic_list">
+	<%= f.text_field :topic_list , label: :Tags ,placeholder: "Tags" %>
+	</div>
+
+	<div id="foot" >
+		<%= f.check_box :review %>
+		<%= f.label :review , 'Get reviewed first' %>
+		<%= f.submit :Post , class:"btn pull-right" %>
+	</div>
+</div>
+<% end %>

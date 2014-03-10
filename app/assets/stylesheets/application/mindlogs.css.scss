@@ -13,11 +13,11 @@ MINDLOGS and RESPONSES
     height: 60px;
     background-color: #222;
     border-bottom: 4px solid $theme-color;
+    margin: 0 -15px;
+    padding: 0 15px;
 }
 
-#mindlogs_header_text {color: #fff;font-size: 35px;text-transform: uppercase;letter-spacing: 7px;line-height: 60px;}
-#mindlogs_header_text:hover{color: #999;}
-#mindlogs_header .btn {font-size: 18px;margin-top: 8px;}
+#mindlogs_header_text {color: #fff;font-size: 35px;text-transform: uppercase;letter-spacing: 7px;line-height: 60px;display: inline;}
 
 
 #mindlog_box{
@@ -135,4 +135,29 @@ MINDLOGS and RESPONSES
     padding-top: 20px;
     text-align: right;
     border-right: 1px solid #eee;
+}
+
+#mindlogs_search{
+    margin-top: 10px;
+}
+
+/* Some typeahead tweaks */
+.tt-suggestion{font-size: 14px;padding: 3px 8px !important;}
+
+ul.sort-options{
+margin-left: 10px;
+li a{color: #888;}
+li {margin-bottom: 4px;}
+.active{
+    font-weight: 700;
+    color: #000;
+    &:before{content:'<';font-size:16px;position: absolute;left:-5px;}
+    }
+}
+
+.mindlog_body{display: inline-block;margin-left: 10px;}
+.mindlog{position:relative;border-bottom: 1px solid #bbb;padding: 10px 0;margin-right: 15px;margin-left: 70px;}
+.mindlog .avatar{
+    position: absolute;
+    left: -70px;
 }

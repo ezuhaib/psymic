@@ -1,43 +1,12 @@
 class MindlogsController < ApplicationController
 
-  # GET /mindlogs
-  # GET /mindlogs.json
-
-  def index
-    authorize! :read , Mindlog
-
-    if params[:sort] == "date"
-      @order = {created_at: :desc}
-      @order_sql = "created_at DESC"
-    elsif params[:sort] == "popular"
-      @order = {likes_count: :desc}
-      @order_sql = "created_at DESC"
-    elsif params[:sort] == "lonely"
-      @order = {created_at: :desc}
-      @order_sql = "created_at DESC"
-    else
-    end
-
-    if params[:query].present?
-      @mindlogs = Mindlog.search(params[:query], where:{workflow_state:"published"}, order: @order , page: params[:page], fields: [:title] , highlight:{tag: "<strong>"})
-      @has_details = true
-      @title = "Searching mindlogs"
-    elsif params[:tag]
-      @mindlogs = Mindlog.published.tagged_with(params[:tag]).order(@order_sql).page(params[:page])
-      @title = "tag: ##{params[:tag]}"
-    else
-      @mindlogs = Mindlog.search("*", where:{workflow_state:"published"}, order: @order, page: params[:page] , per_page:20)
-      @title = "Mindlogs"
-    end
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @mindlogs }
-    end
-  end
-
   # GET /mindlogs/1
   # GET /mindlogs/1.json
+
+  def index
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
   def show
     @mindlog = Mindlog.find(params[:id])
     @mindlog.status = "None yet." if @mindlog.status.blank?
@@ -94,7 +63,7 @@ class MindlogsController < ApplicationController
     @mindlog.user = current_user
     authorize! :create , @mindlog
     if @mindlog.save
-      params[:submit_only] ? @mindlog.state(:awaiting_review) : @mindlog.state(:published)
+      (params[:submit_only]||params[:mindlog][:review] == '1') ? @mindlog.state(:awaiting_review) : @mindlog.state(:published)
       redirect_to @mindlog, notice: 'Mindlog was successfully created.'
     else
       render action: "new"
@@ -228,6 +197,7 @@ end
 
   # For selctize. Using seperate function because we donot need to strip or append #'s
   def tags
+    return false if params[:q].size < 3
     @tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%") 
     respond_to do |format|
       format.json { render :json => @tags.map{|t| {:id => t.name, :name => t.name }}}

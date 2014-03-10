@@ -1,23 +1,29 @@
 <% @mindlogs.each do |m| %> 
-	<tr>
-
-		<td class="mindlog_stats text-center cursor-default">
-			<span title="Users who said they have experienced this"><%= "%02d" % m.likes_count %></span>
-			<div class="mindlog_responses_count" title="Responses to this Mindlog"><%= m.responses.count %> <span class="glyphicon glyphicon-comment"></span></div>
-		</td>
-
-		<td class="text-lg mindlog_body">
-			<%= link_to m.title , m , class:"link-black"%>
-			<div class="mindlog_bottom_line text-lighter">
-				<%= distance_of_time_in_words(Time.now,m.created_at, true, :highest_measure_only=> true) %> ago 
-				by <%= link_to m.user.username , m.user %>
+	<div class="mindlog">
+		<div class="mindlog_body">
+			<div class="avatar">
+				<%= link_to (image_tag m.user.avatar(:mini)), m.user %>
 			</div>
+			<div class="mindlog_bottom_line text-lighter">
+				<%= link_to m.user.username , m.user %> posted 
+				<%= distance_of_time_in_words(Time.now,m.created_at, true, :highest_measure_only=> true) %> ago 
+			</div>
+			<h4><%= link_to m.title , m , class:"suffix link-black"%></h4>
 			<ul class="mindlog_tag_list link-inverted">
 				<% m.topics.limit(5).each do |t| %>
 					<li><%= link_to "##{t}" , mindlogs_path(tag: t.name) %></li>
 				<% end %>
 			</ul>
-		</td>
+		</div>
 
-	</tr>
+		<div class="pull-right mindlog_stats text-center cursor-default hidden-xs">
+			<span data-toggle="tooltip" data-placement="left" title="Users who said they have experienced this"><%= "%02d" % m.likes_count %></span>
+			<div class="mindlog_responses_count" data-toggle="tooltip" data-placement="left" title="Responses to this Mindlog"><%= m.responses.count %> <span class="glyphicon glyphicon-comment"></span></div>
+		</div>
+
+	</div>
 	<% end %>
+
+<script>
+$(function () { $("[data-toggle='tooltip']").tooltip(); });
+</script>

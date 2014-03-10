@@ -88,7 +88,7 @@ body,html,.container , #semi_container{height: 100%;}
 
 .sidebar {height:100%;}
 .sidebar_container{padding: 10px 0;}
-.sidebar-bottom{position: absolute;bottom: 65px;}
+.sidebar-bottom{position: absolute;bottom: 65px;font-weight: 700;a{color:$theme-color}}
 #logo img{margin-bottom: 10px;}
 
 #user_button{

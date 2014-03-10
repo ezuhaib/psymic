@@ -64,7 +64,7 @@ Psymic::Application.routes.draw do
   match '/users/:id', :to => 'users#show', :as => :user
 
 
-  resources :mindlogs do
+  resources :mindlogs , except: :index do
     collection do
       post 'import'
       get 'autocomplete' # <= add this line

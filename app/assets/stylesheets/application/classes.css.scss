@@ -10,7 +10,7 @@ Todo: Remove Orphaned
 .text-center{text-align: center;}
 .text-sm {font-size: 80%;}
 .text-md{font-size:140%;}
-.text-lg{font-size: 28px;}
+.text-lg{font-size: 180%;}
 .text-std{font-size: 100% !important;}
 .text-300{font-weight: 300;}
 .text-themed {color: $theme-color}
@@ -42,7 +42,7 @@ dd , dt{margin-top: 10px;}
 .bg-light{background-color: #eee;color: #333;}
 .widget {text-align: center;padding:10px;font-weight:300;border: 1px solid #ccc;.lg, .lg a {font-weight: 700;font-size: 40px;}}
 .clear{clear: both}
-.spacer-60{margin-top: 60px;}
+.spacer-50{margin-top: 50px;}
 
 
 /* Head */
@@ -67,6 +67,7 @@ dd , dt{margin-top: 10px;}
 .center{float: none; margin-left: auto; margin-right: auto; display: table;}
 .compact{margin-top: 8px} /* For use with h1,h2,h3 */
 .hidden {display: none;}
+.inline-block{display: inline-block;}
 .cursor-default {cursor:default;}
 h1,h2,h3,h4{.prefix{font-size: 70%;}}
 .suffix{margin-top: -10px;margin-bottom: 10px;display: block;}
