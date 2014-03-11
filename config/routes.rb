@@ -63,7 +63,6 @@ Psymic::Application.routes.draw do
 
   match '/users/:id', :to => 'users#show', :as => :user
 
-
   resources :mindlogs , except: :index do
     collection do
       post 'import'

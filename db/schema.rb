@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140303163845) do
+ActiveRecord::Schema.define(:version => 20140311153707) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "key"
+    t.text     "parameters"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "activities", ["owner_id", "owner_type"], :name => "index_activities_on_owner_id_and_owner_type"
+  add_index "activities", ["recipient_id", "recipient_type"], :name => "index_activities_on_recipient_id_and_recipient_type"
+  add_index "activities", ["trackable_id", "trackable_type"], :name => "index_activities_on_trackable_id_and_trackable_type"
 
   create_table "badges_sashes", :force => true do |t|
     t.integer  "badge_id"
@@ -139,20 +156,10 @@ ActiveRecord::Schema.define(:version => 20140303163845) do
     t.integer  "likes_count",     :default => 0
   end
 
-  create_table "notifications", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "counter"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "text"
-    t.string   "tag"
-    t.string   "scope"
-  end
-
   create_table "read_marks", :force => true do |t|
     t.integer  "readable_id"
-    t.integer  "user_id",                     :null => false
-    t.string   "readable_type", :limit => 20, :null => false
+    t.integer  "user_id",       :null => false
+    t.string   "readable_type", :null => false
     t.datetime "timestamp"
   end
 

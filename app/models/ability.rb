@@ -64,6 +64,7 @@ class Ability
       can :destroy, :all
       can :backstage, Feedback
       can :manage , WikiPage
+      can :publish , Mindlog
     end
 
     if user.role? "admin"

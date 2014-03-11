@@ -3,6 +3,7 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable , :polymorphic => true
   belongs_to :user
   validates_presence_of :user_id , :body ,:commentable_id, :commentable_type
+  include PublicActivity::Common
 
 # To enable comments for a model:
 # 1. MODEL: has_many :comments , as: :commentable

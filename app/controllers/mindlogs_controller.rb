@@ -13,7 +13,6 @@ class MindlogsController < ApplicationController
       @order_sql = "created_at DESC"
     else
     end
-
     if params[:query].present?
       @order = {_score: :desc} if !params[:sort] or params[:sort] == "date"
       @mindlogs = Mindlog.search(params[:query], where:{workflow_state:"published"}, order: @order , page: params[:page], fields: [:title,:tags_name] , highlight:{tag: "<strong>"})
@@ -92,6 +91,7 @@ class MindlogsController < ApplicationController
     authorize! :create , @mindlog
     if @mindlog.save
       (params[:submit_only]||params[:mindlog][:review] == '1') ? @mindlog.state(:awaiting_review) : @mindlog.state(:published)
+      Mindlog.searchkick_index.refresh
       redirect_to mindlogs_path, notice: 'Mindlog was successfully created.'
     else
       flash[:error] = @mindlog.errors.full_messages.join('</br>').html_safe
@@ -105,20 +105,37 @@ class MindlogsController < ApplicationController
   def update
     @mindlog = Mindlog.find(params[:id])
     authorize! :update , @mindlog
-      if @mindlog.update_attributes(params[:mindlog])
-       @mindlog.state(:published) if params[:publish]
-       redirect_to @mindlog, notice: 'Mindlog was successfully updated.'
-      else
-        render action: "edit"
+    @mindlog.assign_attributes(params[:mindlog])
+    @changed = @mindlog.changed?
+    if @mindlog.save
+
+      # Publish
+      if params[:publish]
+        authorize! :publish , @mindlog
+        @prev_state = @mindlog.workflow_state
+        @mindlog.state(:published)
       end
+
+      # add appropriate activity/notification
+      @key = :update if @changed and @mindlog.state?(:published)
+      @key = :publish if @prev_state == 'awaiting_review'
+      @key = :update_and_publish if @changed and @prev_state == 'awaiting_review'
+      if @key
+        @mindlog.create_activity @key , recipient: @mindlog.user , owner: current_user
+      end
+      redirect_to @mindlog, notice: 'Mindlog was successfully updated.'
+    else
+      render action: "edit"
+    end
   end
 
   # DELETE /mindlogs/1
   # DELETE /mindlogs/1.json
   def destroy
     @mindlog = Mindlog.find(params[:id])
-    @mindlog.destroy
     authorize! :destroy , @mindlog
+    @mindlog.destroy
+    Mindlog.searchkick_index.refresh
     respond_to do |format|
       format.html { redirect_to mindlogs_url }
       format.json { head :no_content }

@@ -2,17 +2,16 @@
 <div class="head">
 	<h1>Notifications</h1>
 </div>
-
-<table class="table table-striped">
-<% @notifications.each do |n| %> 
+<p class="text-md">You have <%= pluralize(@notifications_count,'new notification') %></p>
+<table class="table table-striped mar-t-10">
+<% @activities.each do |a| %>
  	 <tr>
-		<td <%= "class= danger" if n.counter >= 1 %> ><%= n.text.html_safe %>
-		<span class="text-sm text-lighter"><%= distance_of_time_in_words(Time.now, n.updated_at , true, {:highest_measure_only => true}) %> ago</span></td>
+		<td <%= "class= danger" if a.unread?(current_user) %> >
+			<%= render_activity(a) %>
+		<span class="text-sm text-lighter"><%= distance_of_time_in_words(Time.now, a.created_at , true, {:highest_measure_only => true}) %> ago</span></td>
 	</tr>
+	<% a.mark_as_read! for:current_user %>
 <% end %>
 </table>
 
-<% @notifications.each do |n| %>
-	<% n.counter = 0 %>
-	<% n.save %>
-	<% end %>
+<%= paginate @activities %>

@@ -26,7 +26,7 @@ def admin_notifications_count
 end
 
 def notifications_count
-	count = Notification.where(:user_id=>current_user.id).pluck(:counter).sum
+	count = PublicActivity::Activity.where(:recipient_id => current_user.id).unread_by(current_user).count
 end
 
 def subscriptions_count

@@ -12,7 +12,7 @@
 	<% if current_user %>
 		<div id="btn_container" class="pull-right">
 			<%= link_to notifications_path do %>
-				<span id="notifics" class="badge <%= "bg-red" if notifications_count %>"><%= notifications_count %></span><% end %>
+				<span id="notifics" class="badge <%= "bg-red" if notifications_count > 0 %>"><%= notifications_count %></span><% end %>
 
 		<div id="collapsing_button" class="pull-right pull-right-xs">
 

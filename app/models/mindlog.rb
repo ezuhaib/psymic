@@ -50,6 +50,7 @@ end
 # OTHER INTEGRATIONS
 #############################
 acts_as_taggable_on :topics
+include PublicActivity::Common
 
 #############################
 # INSTANCE METHODS

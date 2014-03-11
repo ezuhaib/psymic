@@ -59,6 +59,7 @@ gem 'cancan'
 gem 'acts-as-taggable-on'
 gem 'unread'
 gem 'merit'
+gem 'public_activity'
 
 # Usability and UI
 gem 'liquid'

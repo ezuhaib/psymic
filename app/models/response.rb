@@ -1,6 +1,6 @@
 class Response < ActiveRecord::Base
 
-  include Wire
+  include PublicActivity::Common
 
 	belongs_to :mindlog
   attr_accessible :body, :mindlog_id , :user_id , :rating, :nature
@@ -20,14 +20,6 @@ class Response < ActiveRecord::Base
       s.counter += 1
       s.save
     end
-
-    # Notify Mindlog Author
-    target = self.mindlog.user_id
-    txt = "New response to {{ '#{self.mindlog.title}' | link: 'mindlogs/#{self.mindlog.id}' }}"
-    tag = 'new_response'
-    scope = "mindlogs/#{self.mindlog_id}"
-    alt = "{{count}} new responses to {{ '#{self.mindlog.title}' | link: 'mindlogs/#{self.mindlog.id}' }}"
-    notify(target,txt,tag,scope,:alt=>alt)
 
     # Email Mindlog Author
     if self.mindlog.user.email_on_new_response == true

@@ -1,0 +1,8 @@
+<%= link_to a.owner.username , a.owner %> 
+commented on to your response 
+
+<% if !a.trackable or !a.trackable.commentable %>
+	<span class="text-lighter">(now removed)</span>
+<% else %>
+	<%= link_to truncate(a.trackable.commentable.body, length:80, separator: ' ') , mindlog_path(a.trackable.commentable.mindlog, response: a.trackable.commentable_id) %>
+<% end %>
