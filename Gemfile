@@ -8,6 +8,7 @@ gem 'rake'
 gem 'jbuilder'
 gem 'pg'
 gem 'whenever'
+gem 'sitemap_generator'
 
 # Search and analytics
 gem 'rack-mini-profiler'

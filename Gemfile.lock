@@ -258,6 +258,8 @@ GEM
       capistrano (~> 3.0)
     sextant (0.2.4)
       rails (>= 3.2)
+    sitemap_generator (5.0.1)
+      builder
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -354,6 +356,7 @@ DEPENDENCIES
   searchkick!
   sepastian-capistrano3-unicorn
   sextant
+  sitemap_generator
   sqlite3
   turbo-sprockets-rails3
   uglifier
