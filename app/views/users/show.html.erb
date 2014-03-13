@@ -5,7 +5,7 @@
 <div class="head">
 	<h1>user:<%= link_to @user.username , @user %>
 		<%= link_to activity_user_path , class: "pull-right" do %>
-			<%= @user.points %>
+			<%= @user.points.round %>
 			<span class="glyphicon glyphicon-fire glyphicon-fix"></span>
 		<% end %>
 	</h1>

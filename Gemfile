@@ -59,7 +59,6 @@ gem 'cancan'
 # Gems introducing new Models
 gem 'acts-as-taggable-on'
 gem 'unread'
-gem 'merit'
 gem 'public_activity'
 
 # Usability and UI

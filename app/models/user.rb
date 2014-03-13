@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  has_merit
 
 ################################
 # ATTRIBUTES
@@ -42,6 +41,17 @@ end
 ################################
 def role?(role)
   self.roles.pluck(:title).include?(role.to_s)
+end
+
+def points_computed
+  mindlog_karma = self.mindlogs.published.count * 2
+  response_karma = self.responses.count * 1
+  comment_karma = self.comments.count * 0.2
+  karma = mindlog_karma + response_karma + comment_karma
+end
+
+def update_points
+  self.update_attributes(points: self.points_computed)
 end
 
 ################################
