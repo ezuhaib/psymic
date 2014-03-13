@@ -9,7 +9,7 @@ def create
 	@response = Response.new(params[:response])
 	@response.user = current_user
 	if @response.save
-		@response.create_activity :create , recipient: @response.mindlog.user , owner: current_user
+		@response.create_activity :create , recipient: @response.mindlog.user , owner: current_user unless @response.user == current_user
 	  respond_to do |format|
 		format.html { redirect_to @response.mindlog}
 		format.json { render json: @response, status: :created, location: @response }
