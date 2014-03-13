@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140311153707) do
+ActiveRecord::Schema.define(:version => 20140313071739) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -40,24 +40,6 @@ ActiveRecord::Schema.define(:version => 20140311153707) do
   add_index "badges_sashes", ["badge_id", "sash_id"], :name => "index_badges_sashes_on_badge_id_and_sash_id"
   add_index "badges_sashes", ["badge_id"], :name => "index_badges_sashes_on_badge_id"
   add_index "badges_sashes", ["sash_id"], :name => "index_badges_sashes_on_sash_id"
-
-  create_table "cargo_wiki_articles", :force => true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.integer  "author_id"
-    t.boolean  "published",  :default => true
-  end
-
-  create_table "cargo_wiki_users", :force => true do |t|
-    t.string   "username"
-    t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.string   "auth_token"
-    t.string   "role"
-  end
 
   create_table "channels", :force => true do |t|
     t.string   "title"
@@ -201,29 +183,6 @@ ActiveRecord::Schema.define(:version => 20140311153707) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "searchjoy_searches", :force => true do |t|
-    t.string   "search_type"
-    t.string   "query"
-    t.string   "normalized_query"
-    t.integer  "results_count"
-    t.datetime "created_at"
-    t.integer  "convertable_id"
-    t.string   "convertable_type"
-    t.datetime "converted_at"
-  end
-
-  add_index "searchjoy_searches", ["convertable_id", "convertable_type"], :name => "index_searchjoy_searches_on_convertable_id_and_convertable_type"
-  add_index "searchjoy_searches", ["created_at"], :name => "index_searchjoy_searches_on_created_at"
-  add_index "searchjoy_searches", ["search_type", "created_at"], :name => "index_searchjoy_searches_on_search_type_and_created_at"
-  add_index "searchjoy_searches", ["search_type", "normalized_query", "created_at"], :name => "index_searchjoy_searches_on_search_type_and_normalized_query_an"
-
-  create_table "stasus", :force => true do |t|
-    t.string   "title"
-    t.string   "colour"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
     t.string   "subscribable_type"
@@ -280,6 +239,7 @@ ActiveRecord::Schema.define(:version => 20140311153707) do
     t.datetime "avatar_updated_at"
     t.integer  "sash_id"
     t.integer  "level",                                :default => 0
+    t.integer  "points"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

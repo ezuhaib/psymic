@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 ################################
 # ATTRIBUTES
 ################################
-attr_accessible :username, :email, :password, :password_confirmation, :remember_me , :gender , :dob , :body , :country, :login,:avatar
+attr_accessible :username, :email, :password, :password_confirmation, :remember_me , :gender , :dob , :body , :country, :login,:avatar, :points
 attr_accessor :login,:testing_key
 
 ################################

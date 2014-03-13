@@ -36,29 +36,29 @@ Psymic::Application.routes.draw do
   end
 
   resources :notifications do
-  collection do
-      get 'clear'
-  end
+    collection do
+        get 'clear'
+    end
   end
 
   namespace :admin do
-
-  get 'backstage' , to: 'pages#backstage' , as: :backstage
-  resources :offers
-  get "reports/index"
-  match "reports/:reportable_type/:reportable_id", :to=> 'reports#show', :as=> :report
-  root to: 'pages#index'
+    get 'users', to: 'pages#users' , as: :users
+    get 'backstage' , to: 'pages#backstage' , as: :backstage
+    resources :offers
+    get "reports/index"
+    match "reports/:reportable_type/:reportable_id", :to=> 'reports#show', :as=> :report
+    root to: 'pages#index'
   end
 
   resources :comments
-  get 'comments/:type/:id' , to: 'comments#show' , as: "ajax_comments"
+    get 'comments/:type/:id' , to: 'comments#show' , as: "ajax_comments"
 
-  devise_for :user, :path => 'account', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
-  resources :users do
-    member do
-      get 'mindlogs'
-      get 'activity'
-    end
+    devise_for :user, :path => 'account', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
+    resources :users do
+      member do
+        get 'mindlogs'
+        get 'activity'
+      end
   end
 
   match '/users/:id', :to => 'users#show', :as => :user

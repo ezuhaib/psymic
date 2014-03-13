@@ -14,9 +14,13 @@ module Merit
 
     def initialize
 
-    score 0.2, on: 'comments#create', category: 'social_activity'
-    score 1, on: 'responses#create', category: 'main'
-    score 2, on: 'mindlogs#create', category: 'main'
+    score 1, on: 'comments#create', category: 'social_activity'
+    score 5, on: 'responses#create', category: 'main'
+    score 10, on: 'mindlogs#create', category: 'main'
+
+    score -1, on: 'comments#destroy', category: 'social_activity'
+    score -5, on: 'responses#destroy', category: 'main'
+    score -10, on: 'mindlogs#destroy', category: 'main'
 
       # score 10, :on => 'users#update' do
       #   user.name.present?
