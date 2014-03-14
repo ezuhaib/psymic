@@ -2,6 +2,7 @@ Psymic::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
+
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
@@ -9,7 +10,7 @@ Psymic::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_assets = ENV["SERVE_ASSETS"]
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -66,8 +67,18 @@ Psymic::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   #Google Analytics
-  GA.tracker = "UA-48107983-1"
+  GA.tracker = ENV["GA_KEY"]
 
-  #logglier.com disabled because slowing down website
-  #config.logger = Logglier.new("https://logs-01.loggly.com/inputs/7829ef88-a729-4fb1-9184-e58789c96cc5/tag/psymic/")
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = {host: "www.psymic.com"}
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.zoho.com",
+    :port                 => 465,
+    :user_name            => ENV["MAILER_USER"],
+    :password             => ENV["MAILER_PWD"],
+    :ssl                  => true,
+    :tls                  => true,
+    :authentication       => :login,
+    :enable_starttls_auto => true
+  }
 end

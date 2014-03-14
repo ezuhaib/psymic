@@ -14,10 +14,10 @@
 /log/*.log
 /tmp
 
-#Database configuration
-/config/database.yml*
-
 #Precompiled assets
 /public/assets
 /public/system
 /public/sitemap.xml.gz
+
+#Settings
+/config/local_env.yml

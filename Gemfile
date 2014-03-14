@@ -41,6 +41,7 @@ group :development do
 	gem 'rails-web-console'
 	gem 'progress_bar'
 	gem 'sepastian-capistrano3-unicorn', :require => false
+	gem "letter_opener"
 end
 
 # Gems used only for assets and not required

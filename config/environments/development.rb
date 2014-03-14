@@ -16,6 +16,10 @@ Psymic::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
+  # Open mails in browser rather than delivering
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.default_url_options = {host: "127.0.0.1:3000"}
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 

@@ -22,7 +22,7 @@ class Response < ActiveRecord::Base
     end
 
     # Email Mindlog Author
-    if self.mindlog.user.email_on_new_response == true
+    if self.mindlog.user.email_on_new_response == "1"
       UserMailer.new_response_on_mindlog(self).deliver
     end
 

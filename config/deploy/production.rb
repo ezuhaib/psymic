@@ -1,9 +1,9 @@
-role :web,    "107.150.7.215"
-role :app,    "107.150.7.215"
-role :db,     "107.150.7.215"
-server '107.150.7.215', user: 'ezuhaib', roles: %w{web app db}, primary: true
+role :web,    ENV["REMOTE_IP"]
+role :app,    ENV["REMOTE_IP"]
+role :db,     ENV["REMOTE_IP"]
+server ENV["REMOTE_IP"], user: ENV["REMOTE_USER"] , roles: %w{web app db}, primary: true
 
-set :deploy_user,     "ezuhaib"
+set :deploy_user,     ENV["REMOTE_USER"]
 set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:application)}"
 set :deploy_via,      :remote_cache
 

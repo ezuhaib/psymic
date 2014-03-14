@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
   	end
 
 	def new_response_on_mindlog(response)
-		@response = response
+	@response = response
   	@mindlog = @response.mindlog
   	address = @mindlog.user.email
   	mail(:to => address, :subject => "New response over your mindlog: #{@mindlog.title}")
