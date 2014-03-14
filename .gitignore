@@ -17,6 +17,11 @@
 #Database configuration
 /config/database.yml*
 
+#email configuration
+/config/initializers/setup_mail.rb
+
 #Precompiled assets
 /public/assets
 /public/system
+
+/config/initializers/secret_token.rb
