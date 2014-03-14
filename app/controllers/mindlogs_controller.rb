@@ -28,6 +28,7 @@ class MindlogsController < ApplicationController
       @title = "Mindlogs"
     end
     @mindlog = flash[:mindlog] ? Mindlog.create(flash[:mindlog]) : Mindlog.new
+    @top_users = User.order('points desc').limit(5)
     respond_to do |format|
       format.html { render 'mindlogs/index'}
       format.json { render json: @mindlogs }

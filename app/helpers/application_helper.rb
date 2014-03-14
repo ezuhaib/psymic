@@ -34,4 +34,8 @@ def subscriptions_count
 	return nil if count == 0
 end
 
+def get_rank(user)
+	(User.order('points desc').index(user)+1).ordinalize
+end
+
 end

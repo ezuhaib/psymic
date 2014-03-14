@@ -29,18 +29,43 @@
 
 <%# SORT OPTIONS %>
 <ul class="list-unstyled sort-options">
-<% if params[:query] %>
-<li><%= link_to "Relevant first" , url_for(params.merge(sort: :relevance)) ,
-		class:"#{'active' if !params[:sort] and params[:query]}" %></li>
-<% end %>
-<li><%= link_to "Latest first" , url_for(params.merge(sort: :date)) ,
-		class:"#{'active' if (!params[:sort] and !params[:query]) or params[:sort]=='date'}" %></li>
-<li><%= link_to "Popular first" , url_for(params.merge(sort: :popular)),
-		class:"#{'active' if params[:sort]=='popular'}" %></li>
-<li><%= link_to "Unresponded" , url_for(params.merge(sort: :lonely)),
-		class:"#{'active' if params[:sort]=='lonely'}" %></li>
+
+	<% if params[:query] %>
+		<li>
+			<%= link_to "Relevant first" , url_for(params.merge(sort: :relevance)) ,
+			class:"#{'active' if !params[:sort] and params[:query]}" %>
+		</li>
+	<% end %>
+
+	<li>
+		<%= link_to "Latest first" , url_for(params.merge(sort: :date)) ,
+			class:"#{'active' if (!params[:sort] and !params[:query]) or params[:sort]=='date'}" %>
+	</li>
+
+	<li>
+		<%= link_to "Popular first" , url_for(params.merge(sort: :popular)),
+			class:"#{'active' if params[:sort]=='popular'}" %>
+	</li>
+
+	<li>
+	<%= link_to "Unresponded" , url_for(params.merge(sort: :lonely)),
+			class:"#{'active' if params[:sort]=='lonely'}" %>
+	</li>
 </ul>
 
+<div id="user_rank" class="mar-t-30">
+	<h4>Your Rank</h4>
+	<h2 class="suffix">
+		<%= link_to get_rank(current_user), activity_user_path(current_user) %>
+	</h2>
+</div>
+
+<div id="top_users" class="mar-t-30">
+<h4><%= link_to "Top Psymies", users_path , class:"link-black" %></h4>
+<% @top_users.each_with_index do |u,n| %>
+<p><%= (n+1) %> <%= link_to u.username , u %></p>
+<% end %>
+</div>
 <% end %>
 
 <%# The includes %>

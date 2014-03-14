@@ -44,3 +44,10 @@ Homepage Styles
     font-size: 280%;
     line-height: 1;
 }
+
+#top_users p{
+    font-size: 20px;
+    font-weight: 300;
+    a{color: #666;}
+    a:hover{color: $theme-color}
+}
