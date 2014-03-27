@@ -9,7 +9,7 @@
 		</div>
 
 		<div class="response-entry-body type-<%= response.nature %>">
-			<%= Rinku.auto_link(response.body).html_safe %>
+			<%= render_mentions(Rinku.auto_link(response.body)).html_safe %>
 			<div class="text-lighter">
 				by <%= link_to response.user.username,response.user%>
 

@@ -1,5 +1,5 @@
 <% @title = "USER: #{@user.username}" %>
-<% @user.mark_as_read! :for => current_user if current_user %>
+<% @user.mark_as_read! :for => current_user if (current_user and current_user.role? "admin")  %>
 
 <%# HEAD %>
 <div class="head">

@@ -17,4 +17,10 @@ def self.get_commentable(type, id)
   type.capitalize.constantize.find(id)
 end
 
+def notify_mentions(mentions)
+	mentions.each do |m|
+	  self.create_activity "mention_on_#{self.commentable_type.downcase}" , recipient: User.find(m) , owner: self.user
+	end
+end
+
 end

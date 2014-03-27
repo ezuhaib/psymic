@@ -1,6 +1,6 @@
 <% @title = "Mindlog: #{@mindlog.title}" %>
 <% @mindlog.reset_watch(current_user.id) if current_user %>
-
+<%= image_tag "loading_mini.gif" , class:"hidden" %>
 <%# Main body %>
 <%= render 'mindlog_body' %>
 
@@ -36,8 +36,10 @@
 
 <%# Rightbar Content %>
 <%= render 'mindlog_rightbar' %>
+<%= javascript_include_tag 'jquery.textcomplete.min','textcomplete_init' %>
 
 <script>
 $(document).on("click",".pagination a", function(){
 	$(".pagination").html("<%= Helper.escape_js(image_tag "loading_mini.gif") %>")})
+
 </script>

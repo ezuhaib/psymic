@@ -1,0 +1,8 @@
+<%= link_to a.owner.username , a.owner %> 
+mentioned you in his comment 
+
+<% if !a.trackable or !a.trackable.commentable %>
+	which has since been deleted
+<% else %>
+	on <%= link_to truncate(a.trackable.commentable.body, length:80, separator: ' ') , mindlog_path(a.trackable.commentable.mindlog, response: a.trackable.commentable.id) %>
+<% end %>

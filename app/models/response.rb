@@ -13,19 +13,18 @@ class Response < ActiveRecord::Base
   validates_presence_of :body , :mindlog_id , :user_id , :nature
 
   def dispatcher()
-
     # Notify Subscribers
     self.mindlog.subscriptions.each do |s|
       s.counter || s.counter = 0
       s.counter += 1
       s.save
     end
+  end
 
-    # Email Mindlog Author
-    if self.mindlog.user.email_on_new_response == "1"
-      UserMailer.new_response_on_mindlog(self).deliver
+  def notify_mentions(mentions)
+    mentions.each do |m|
+      self.create_activity :mention , recipient: User.find(m) , owner: self.user
     end
-
   end
 
 end

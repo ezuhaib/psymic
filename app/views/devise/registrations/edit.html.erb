@@ -13,8 +13,8 @@
   <%= f.password_field :password_confirmation %>
   <%= f.password_field :current_password , placeholder: "Required to confirm your changes" %>
   <%= f.form_group :email_options ,label: { text: "Email options" } do %>
-      <%= f.check_box :email_on_new_response %>
-      <%= f.check_box :email_on_response_comment %></br>
+      <%= f.check_box :email_unread_notifications %>
+      <%= f.check_box :email_site_updates %></br>
       <%= f.submit :Update , class:"btn btn-success" %>
   <% end %>
 <% end %>

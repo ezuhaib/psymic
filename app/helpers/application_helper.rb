@@ -18,15 +18,20 @@ def wikify( text )
 	text.gsub(r){link_to $2||$1,wiki_page_path($1)}
 end
 
+def render_mentions( text )
+	r = /(^|\s)@(\w*)(\s|\z|$)/
+	text.gsub(r){$1+(User.find_by_username($2) ? (link_to "@#{$2}",user_path($2)) : "@#{$2}" )+$3}
+end
+
 def admin_notifications_count
-	m = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
-	u = @users_count = User.unread_by(current_user).count
-	count = m+u
+	mindlogs_count = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
+	users_count = User.unread_by(current_user).count
+	count = mindlogs_count+users_count
 	count == 0 ? nil : count
 end
 
 def notifications_count
-	count = PublicActivity::Activity.where(:recipient_id => current_user.id).unread_by(current_user).count
+	count = PublicActivity::Activity.where(:recipient_id => current_user.id,read: false).count
 end
 
 def subscriptions_count

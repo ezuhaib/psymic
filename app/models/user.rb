@@ -55,12 +55,24 @@ def update_points
 end
 
 ################################
+# FUNCTIONS: CLASS METHODS
+################################
+
+# emails unread notifications to users
+def self.send_notifications
+  @user_ids = PublicActivity::Activity.where(read:false,mailed:false).pluck(:recipient_id).uniq
+  @user_ids.each do |u|
+    UserMailer.unread_notifications(u).deliver if User.find(u).email_unread_notifications
+  end
+end
+
+################################
 # INTEGRATIONS
 ################################
 devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-acts_as_reader
 acts_as_readable :on => :created_at
+acts_as_reader
 extend FriendlyId
 friendly_id :username
 has_attached_file :avatar,
@@ -93,8 +105,8 @@ end
 ################################
 serialize :options
 Options = {
-  email_on_new_response:true ,
-  email_on_response_comment:true
+  email_unread_notifications:true ,
+  email_site_updates:true
 }
 
 def self.options_attr_accessor()
@@ -102,11 +114,21 @@ def self.options_attr_accessor()
     eval "
       def #{method_name}
         self.options ||= {}
-        self.options[:#{method_name}] || Options[:#{method_name}]
+        if self.options[:#{method_name}].nil?
+          return Options[:#{method_name}]
+        else
+          return self.options[:#{method_name}]
+        end
       end
       def #{method_name}=(value)
         self.options ||= {}
-        self.options[:#{method_name}] = value
+        if value == '1'
+          self.options[:#{method_name}] = true
+        elsif value == '0'
+          self.options[:#{method_name}] = false
+        else
+          self.options[:#{method_name}] = value
+        end
       end
       attr_accessible :#{method_name}
     "

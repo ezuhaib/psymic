@@ -1,7 +1,7 @@
 class NotificationsController < ApplicationController
   def index
   	@subscriptions = Subscription.find(:all, :conditions=>["user_id=? AND counter>= ?",current_user.id,1])
-    @activities = PublicActivity::Activity.where(:recipient_id => current_user.id).page(params[:page])
+    @activities = PublicActivity::Activity.where(:recipient_id => current_user.id).order('created_at desc').page(params[:page])
   end
 
   def clear
