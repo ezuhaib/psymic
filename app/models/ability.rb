@@ -36,16 +36,16 @@ class Ability
     can :read , [Mindlog,Response,Comment,User,Feedback,WikiPage,Channel]
 
     if user.username # authenticated users
-      can :respond , Mindlog
+      can [:respond,:rate] , Mindlog
       can [:report,:subscribe,:unsubscribe] , Mindlog do |x|
         x.try(:user) != user
       end
       can :vote , Response
       # for some reason if :all is used below, it authorizes update/destroy on wikipages for all users
-      can [:update] , [Mindlog,Response,Comment,Feedback] do |x|
+      can :update , [Mindlog,Response,Comment,Feedback] do |x|
           x.try(:user) == user
       end
-      can [:destroy] , [Mindlog,Response,Comment,Feedback] do |x|
+      can :destroy , [Mindlog,Response,Comment,Feedback] do |x|
           x.try(:user) == user
           x.created_at > 15.minutes.ago
       end

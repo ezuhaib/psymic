@@ -16,7 +16,8 @@ has_many :subscriptions
 has_many :feedbacks
 has_many :wiki_pages
 has_and_belongs_to_many :roles
-has_many :likes, :dependent => :destroy
+has_many :likes, dependent: :destroy
+has_many :mindlog_ratings, dependent: :destroy
 
 ################################
 # FUNCTIONS: LOCAL

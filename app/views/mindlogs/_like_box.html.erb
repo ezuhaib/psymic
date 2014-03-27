@@ -1,9 +1,0 @@
-<div id="like_box">
-	<% if @mindlog.users.include?(current_user) %>
-		<div id ="experience_count" style="color:#333333;"><%= @mindlog.likes_count %></div>
-		<%= link_to (image_tag "circle_check_active.png" , :title=>"users who have experienced this", :id=>"experience_button") , unlike_mindlog_path(@mindlog) , :remote=> true %>
-	<% else %>
-		<div id ="experience_count" style="color:#CCCCCC;"><%= @mindlog.likes_count %></div>
-		<%= link_to (image_tag "circle_check_inactive.png" , :title=>"users who have experienced this", :id=>"experience_button") , like_mindlog_path(@mindlog) , :remote=> true %>
-	<% end %>
-</div>

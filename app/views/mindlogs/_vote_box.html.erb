@@ -1,0 +1,61 @@
+<div id="rating_summary" <%= "style=display:none" unless @mindlog.rated_by?(current_user) %>>
+	<b><%= @mindlog.calc_rating_percent %>%</b> experienced this
+	<%= link_to rate_mindlog_path(@mindlog) , id: "show_links" do %>
+		<span class="pull-right glyphicon glyphicon-flash glyphicon-fix"
+			title="Edit your rating on this"
+			data-toggle="tooltip"
+			data-placement="bottom">
+		</span>
+	<% end %>
+</div>
+
+
+<%# RATING LINKS %>
+<div id="rating_links" <%= "style=display:none" if @mindlog.rated_by?(current_user) %>>
+	<%= link_to rate_mindlog_path(@mindlog) , id: 'show_rating' do %>
+		<span 	class="pull-right glyphicon glyphicon-question-sign glyphicon-fix"
+				title="How often have you experienced this?"
+				data-toggle="tooltip"
+				data-placement="bottom">
+		</span>
+	<% end %>
+
+	<% if can? :rate , Mindlog %>
+	<ul class="list-unstyled list-inline mindlog-rating">
+
+		<li>
+			<%= link_to 'Never', rate_mindlog_path(@mindlog,value:0) ,remote: true, class: active_if_rating(0)  %>
+		</li>
+
+		<li>
+			<%= link_to 'Rarely', rate_mindlog_path(@mindlog,value:1) ,remote: true, class: active_if_rating(1) %>
+		</li>
+
+		<li>
+			<%= link_to 'Sometimes', rate_mindlog_path(@mindlog,value:2) ,remote: true, class: active_if_rating(2) %>
+		</li>
+
+		<li>
+			<%= link_to 'Often', rate_mindlog_path(@mindlog,value:3) ,remote: true, class: active_if_rating(3) %>
+		</li>
+
+		<li>
+			<%= link_to 'Always', rate_mindlog_path(@mindlog,value:4) ,remote: true, class: active_if_rating(4) %>
+		</li>
+	</ul>
+	<% else %>
+		Please <%= link_to "login" , new_user_session_path %> to share your own experience on this
+	<% end %>
+</div>
+
+<script>
+$(document).on("click","#show_rating", function(e){
+	e.preventDefault();
+	$('#rating_links').fadeOut(300,function(){ $('#rating_summary').fadeIn(300); })
+})
+
+$(document).on("click","#show_links", function(e){
+	e.preventDefault();
+	$('#rating_summary').fadeOut(300,function(){ $('#rating_links').fadeIn(300); })
+})
+</script>

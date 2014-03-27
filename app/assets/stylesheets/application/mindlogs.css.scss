@@ -77,21 +77,25 @@ MINDLOGS and RESPONSES
 }
 
 #responses_links{
-    border-right: 1px solid #eee;
+    border-right: 1px solid #ccc;
 }
 
-/*list1 on use on mindlogs show page in right sidebar */
-#list1 { }
-#list1 ul { list-style:none; padding:10px 0; }
-#list1 ul li { font-size:80%; text-transform:uppercase; }
-#list1 ul li a { text-decoration:none; color:#888; }
-#list1 ul li a:hover { color: $theme-color; }
-
+#response_filters {
+ul { list-style:none; padding:10px 0; li { font-size:12px; text-transform:uppercase; } }
+a { text-decoration:none; color:#aaa; &:hover,&.active { color: #000} }
+a.active:after{
+    content: '>';
+    position: absolute;
+    right: 5px;
+    font-weight: 700;
+}
+}
 #status_box {
     color: #fff;
     background: $theme-color;
     padding: 4px 30px 4px 30px;
 }
+
 
 #mindlog_links{
     list-style: none;
@@ -164,4 +168,19 @@ li {margin-bottom: 4px;}
 .mindlog .avatar{
     position: absolute;
     left: -70px;
+}
+
+#vote_box {
+    color: #fff;
+    background: #111;
+    padding: 7px 30px 7px 30px;
+}
+
+.mindlog-rating li{
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 15px;
+    padding:0 2px;
+    a{color: $theme-color-light;padding:1px 3px;}
+    a:hover,a.active{background-color: $theme-color;}
 }

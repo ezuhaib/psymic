@@ -53,12 +53,14 @@
 	</li>
 </ul>
 
+<% if current_user %>
 <div id="user_rank" class="mar-t-30">
 	<h4>Your Rank</h4>
 	<h2 class="suffix">
 		<%= link_to get_rank(current_user), activity_user_path(current_user) %>
 	</h2>
 </div>
+<% end %>
 
 <div id="top_users" class="mar-t-30">
 <h4><%= link_to "Top Psymies", users_path , class:"link-black" %></h4>

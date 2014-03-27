@@ -4,32 +4,26 @@
 <%# Main body %>
 <%= render 'mindlog_body' %>
 
-<%# Like box and Response Form %>
-<div id="like_and_respond">
-<div id="experience_box" class="col-md-2 mar-v-10 col-sm-inv-6r"><%= render 'like_box' %></div>
-<div id="response_box" class="mar-v-10 border-light text-center visible-sm visible-xs col-xs-6"><%= render 'response_box' %></div>
-<div id="response_form" class="col-md-10"><%= render 'responses/form' %></div>
-</div>
-
-<%# Responses Counters and sorters etc %>
 <% if @responses.empty? %>
 	<%= render 'no_responses' %>
 <% else %>
+	<%# Responses Counters and sorters etc %>
 	<div id="mindlog_responses" class="bg-white pull-left">
 	<div id="responses_links" class="col-md-2 text-right">
 		<div class="hidden-sm hidden-xs"><div id="responses_count"><%= @mindlog.responses.count %></div><span>Responses</span></div>
-		<div id="list1"><ul>
-			<li><%= link_to "All", mindlog_path %></li>
-			<li><%= link_to "Explanations", "#{mindlog_path}?only=explanations" %></li>
-			<li><%= link_to "Solutions", "#{mindlog_path}?only=solutions" %></li>
-			<li><%= link_to "Critiques", "#{mindlog_path}?only=critiques" %></li>
-			<li><%= link_to "Stories", "#{mindlog_path}?only=stories" %></li>
+		<div id="response_filters"><ul>
+			<li><%= link_to "All", mindlog_path , class: active_if_filter('all') %></li>
+			<li><%= link_to "Explanations", "#{mindlog_path}?filter=explanations" , class: active_if_filter('explanations') %></li>
+			<li><%= link_to "Solutions", "#{mindlog_path}?filter=solutions" , class: active_if_filter('solutions') %></li>
+			<li><%= link_to "Critiques", "#{mindlog_path}?filter=critiques" , class: active_if_filter('critiques') %></li>
+			<li><%= link_to "Stories", "#{mindlog_path}?filter=stories" , class: active_if_filter('stories') %></li>
 		</ul></div>
 	</div>
 
-	<%# THE Responses %>
-	<div class="row col-md-10">
-		<div id="responses" ><%= render 'responses' %></div>
+	<%# THE Responses and form %>
+	<div class="col-md-10">
+	<div id="response_form" class="row"><%= render 'responses/form' %></div>
+		<div id="responses" class="mar-l-m15"><%= render 'responses' %></div>
 	</div>
 	</div>
 <% end %>

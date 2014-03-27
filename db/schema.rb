@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140316051409) do
+ActiveRecord::Schema.define(:version => 20140327165901) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -86,6 +86,14 @@ ActiveRecord::Schema.define(:version => 20140316051409) do
     t.integer  "likeable_id"
   end
 
+  create_table "mindlog_ratings", :force => true do |t|
+    t.integer  "mindlog_id"
+    t.integer  "user_id"
+    t.integer  "rating"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "mindlogs", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -95,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20140316051409) do
     t.text     "status"
     t.integer  "reports_counter"
     t.string   "workflow_state"
-    t.integer  "likes_count",     :default => 0
+    t.integer  "rating_percent",  :default => 0
   end
 
   create_table "read_marks", :force => true do |t|

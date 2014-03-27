@@ -37,20 +37,19 @@ class MindlogsController < ApplicationController
 
   def show
     @mindlog = Mindlog.find(params[:id])
-    @mindlog.status = "None yet." if @mindlog.status.blank?
     authorize! :read , @mindlog
     if params[:response]
       @response = Response.find(params[:response])
       render "single_response"
     end
 
-    if params[:only] == "explanations"
+    if params[:filter] == "explanations"
       @responses = @mindlog.responses.where(nature:"explanation").order("rating DESC")
-    elsif params[:only] == "solutions"
+    elsif params[:filter] == "solutions"
       @responses = @mindlog.responses.where(nature:"solution").order("rating DESC")
-    elsif params[:only] == "critiques"
+    elsif params[:filter] == "critiques"
       @responses = @mindlog.responses.where(nature:"critique").order("rating DESC")
-    elsif params[:only] == "stories"
+    elsif params[:filter] == "stories"
       @responses = @mindlog.responses.where(nature:"story").order("rating DESC")
     else
       if params[:do] == "toggle_feature"
@@ -191,38 +190,6 @@ class MindlogsController < ApplicationController
       end
   end
 
-  def like
-    @mindlog = Mindlog.find(params[:id])
-    if can? :respond , @mindlog
-      @mindlog.users << current_user unless @mindlog.users.include? current_user
-      respond_to do |format|
-        format.html { redirect_to :back }
-        format.js #added
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to @mindlog , error:"Guests cannot Interact" }
-        format.js {render partial: 'shared/no_interact.js.erb'}
-      end
-    end
-  end
-
-    def unlike
-    @mindlog = Mindlog.find(params[:id])
-    if can? :respond , @mindlog
-      @mindlog.users.destroy(current_user)
-      respond_to do |format|
-        format.html { redirect_to :back }
-        format.js #added
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to @mindlog , error:"Guests cannot Interact" }
-        format.js {render partial: 'shared/no_interact.js.erb'}
-      end
-    end
-  end
-
 def moderation_queue
   @mindlogs = Mindlog.queued
 end
@@ -252,4 +219,18 @@ end
     end
   end
 
+  def rate
+    authorize! :rate , Mindlog
+    @mindlog = Mindlog.find(params[:id])
+    if params[:value]
+      @rating = params[:value]
+      @mindlog_rating = MindlogRating.where(mindlog_id: @mindlog.id, user_id: current_user.id).first_or_create
+      @mindlog_rating.update_attribute(:rating, @rating)
+      @updated = true
+    end
+    respond_to do |format|
+      format.js #added
+      format.html {redirect_to @mindlog}
+    end
+  end
 end

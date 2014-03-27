@@ -24,13 +24,9 @@
 		</div>
 
 		<div class="pull-right mindlog_stats text-center cursor-default hidden-xs">
-			<span data-toggle="tooltip" data-placement="left" title="Users who said they have experienced this"><%= "%02d" % m.likes_count %></span>
-			<div class="mindlog_responses_count" data-toggle="tooltip" data-placement="left" title="Responses to this Mindlog"><%= m.responses.count %> <span class="glyphicon glyphicon-comment"></span></div>
+			<span data-toggle="tooltip" data-placement="left" title="Responses to this Mindlog"><%= "%02d" % m.responses.count %></span>
+			<div class="mindlog_responses_count" data-toggle="tooltip" data-placement="left" title="Incidence of this behaviour in percent"><%= m.rating_percent %><span class="glyphicon glyphicon-flash"></span></div>
 		</div>
 
 	</div>
 	<% end %>
-
-<script>
-$(function () { $("[data-toggle='tooltip']").tooltip(); });
-</script>

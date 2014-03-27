@@ -84,11 +84,8 @@ Psymic::Application.routes.draw do
       post 'subscribe'
       get 'unsubscribe'
       post 'unsubscribe'
-      get 'like'
-      post 'like'
-      get 'unlike'
-      post 'unlike'
       get 'page/:page', :action => :show
+      get 'rate'
     end
 		resources :responses do
       member do
