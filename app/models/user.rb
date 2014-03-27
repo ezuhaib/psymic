@@ -24,7 +24,7 @@ has_many :likes, :dependent => :destroy
 
 # Add logic for male/female avatar or random avatars below
 def self.set_default_avatar
-  "avatars/:style/avatar_default.png"
+  "avatars/:style/avatar_default.jpg"
 end
 
 def self.find_first_by_auth_conditions(warden_conditions)
@@ -76,7 +76,7 @@ acts_as_reader
 extend FriendlyId
 friendly_id :username
 has_attached_file :avatar,
-  :styles => { :thumb => "130x130#", :mini => "60x60#" },
+  :styles => { :thumb => "130x130#", :mini => "60x60#" , :inline => "25x25#" },
   :default_url => set_default_avatar
 crop_attached_file :avatar , min_size: "300x300"
 

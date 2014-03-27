@@ -1,5 +1,9 @@
 <% content_for :r2 do %>
+
 <ul id="mindlog_links">
+	<div class="avatar">
+		<%= link_to (image_tag @mindlog.user.avatar(:mini)), @mindlog.user %>
+	</div>
 	<li class="text-dark">By <%= link_to @mindlog.user.username , @mindlog.user %></li>
 	<li class="text-sm text-dark"><%= @mindlog.created_at.strftime("%d %B %Y") %></li>
 	<li class="divider"></li>

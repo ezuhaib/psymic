@@ -18,3 +18,8 @@ border: 2px solid #aaa;
  -o-border-radius: 50%;
  border-radius: 50%;
 }
+
+.avatar-inline{
+display: inline-block;
+img{width:25px;border: none;vertical-align: middle;}
+}

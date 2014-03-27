@@ -5,7 +5,7 @@ class DimensionsValidator < ActiveModel::EachValidator
     width = options[:width]
     height = options[:height]
 
-    if dimensions.width < 50 && dimensions.height < 50
+    if dimensions.width < width && dimensions.height < height
       record.errors[attribute] << "Must be atleast #{width}x#{height}px"
     end
   end
