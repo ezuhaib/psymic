@@ -10,6 +10,7 @@ class ChannelsController < ApplicationController
 
   def index
     @channels = Channel.all
+    @page_title = "Channels"
     authorize! :read , Channel
     respond_to do |format|
       format.html # index.html.erb
@@ -21,6 +22,7 @@ class ChannelsController < ApplicationController
   # GET /channels/1.json
   def show
     authorize! :read , Channel
+    @page_title = "#{@channel.title} Channel"
     @mindlogs = Mindlog.search @channel.all_of_these, where:{workflow_state:"published"},
                   fields: [:tags_name], limit:5, facets: {tags_name: {limit:10}}
     respond_to do |format|
@@ -33,6 +35,7 @@ class ChannelsController < ApplicationController
   # GET /channels/new.json
   def new
     authorize! :create , Channel
+    @page_title = "New channel"
     @channel = Channel.new
 
     respond_to do |format|
@@ -44,6 +47,7 @@ class ChannelsController < ApplicationController
   # GET /channels/1/edit
   def edit
     authorize! :update , Channel
+    @page_title = "Edit Channel"
   end
 
   # POST /channels
@@ -75,6 +79,7 @@ class ChannelsController < ApplicationController
   end
 
   def crop
+    @page_title = "Edit Channel"
   end
 
   # DELETE /channels/1
@@ -86,6 +91,7 @@ class ChannelsController < ApplicationController
 
   def mindlogs
     authorize! :read , Channel
+    @page_title = "#{@channel.title} Channel > Mindlogs"
     @mindlogs = Mindlog.search @channel.all_of_these, where:{workflow_state:"published"}, fields: [:tags_name], page: params[:page], per_page:1,
                   facets: {tags_name: {limit:10}}
   end

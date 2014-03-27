@@ -17,11 +17,13 @@ class UsersController < ApplicationController
 
   def show
     authorize! :read , @user
+    @page_title = "USER: #{@user.username}"
     @mindlogs = @user.mindlogs.published.limit(5)
   end
 
   def index
     authorize! :read , User
+    @page_title = "Users"
     @users = User.order('points desc').page(params[:page])
   end
 
@@ -30,6 +32,7 @@ class UsersController < ApplicationController
   end
 
   def avatar
+    @page_title = "Edit avatar"
   end
 
   def update_avatar
@@ -61,10 +64,12 @@ class UsersController < ApplicationController
   end
 
   def crop
+    @page_title = "Crop Avatar"
   end
 
   def mindlogs
     @mindlogs = @user.mindlogs.published
+    @page_title = "#{@user.username}'s mindlogs"
   end
 
   def profile
@@ -79,6 +84,7 @@ class UsersController < ApplicationController
   end
 
   def activity
+    @page_title = "#{@user.username} activity"
   end
 
   def autocomplete

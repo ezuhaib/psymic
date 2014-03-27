@@ -24,6 +24,14 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
+  add channels_path
+  add wiki_pages_path
+  User.find_each do |content|
+    add user_path(content), :lastmod => content.updated_at
+  end
+  Channel.find_each do |content|
+    add channel_path(content), :lastmod => content.updated_at
+  end
   WikiPage.find_each do |content|
     add wiki_page_path(content), :lastmod => content.updated_at
   end

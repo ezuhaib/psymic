@@ -5,6 +5,9 @@ class MindlogsController < ApplicationController
 
   def index
     authorize! :read , Mindlog
+    @page_title       = 'Mindlogs' if !current_user
+    @page_title       = "Home" if current_user
+    @page_description = 'Mindlogs are logs of community-reported observations of human behavior.'
     if params[:sort] == "popular"
       @order = {likes_count: :desc}
       @order_sql = "created_at DESC"
@@ -37,9 +40,11 @@ class MindlogsController < ApplicationController
 
   def show
     @mindlog = Mindlog.find(params[:id])
+    @page_title = "Mindlog: #{@mindlog.title}"
     authorize! :read , @mindlog
     if params[:response]
       @response = Response.find(params[:response])
+      @page_title = "Mindlog: Single response to: #{@mindlog.title}"
       render "single_response"
     end
 
@@ -69,6 +74,7 @@ class MindlogsController < ApplicationController
   # GET /mindlogs/new
   # GET /mindlogs/new.json
   def new
+    @page_title = "New Mindlog"
     @mindlog = Mindlog.new
     authorize! :create , @mindlog
     respond_to do |format|
@@ -79,6 +85,7 @@ class MindlogsController < ApplicationController
 
   # GET /mindlogs/1/edit
   def edit
+    @page_title = "Editing mindlog"
     @mindlog = Mindlog.find(params[:id])
     authorize! :update , @mindlog
   end
@@ -145,6 +152,7 @@ class MindlogsController < ApplicationController
   def report
     @mindlog = Mindlog.find(params[:id])
     authorize! :report , @mindlog
+    @page_title = "Report"
     if params[:flag]
       @report = @mindlog.reports.new
       @report.user = current_user
@@ -163,6 +171,7 @@ class MindlogsController < ApplicationController
   end
 
   def reports
+    @page_title = "Report"
   end
 
 
@@ -192,6 +201,7 @@ class MindlogsController < ApplicationController
 
 def moderation_queue
   @mindlogs = Mindlog.queued
+  @page_title = "Mindlogs Queue"
 end
 
   # Regex ensures strings starting with '#' are ignored

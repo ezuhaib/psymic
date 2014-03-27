@@ -1,6 +1,7 @@
 class SubscriptionsController < ApplicationController
 
 def index
+  @page_title = "Watchlist"
 	@subscriptions = Subscription.where(:user_id=>current_user.id).order("counter desc")
 end
 

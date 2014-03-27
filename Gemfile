@@ -9,6 +9,7 @@ gem 'jbuilder'
 gem 'pg'
 gem 'whenever'
 gem 'sitemap_generator'
+gem 'meta-tags', :require => 'meta_tags'
 
 # Search and analytics
 gem 'rack-mini-profiler'

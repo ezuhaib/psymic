@@ -17,14 +17,19 @@ class WikiPagesController < ApplicationController
   # GET /wiki_pages/1.json
   def show
     @wiki_title = params[:id]
+    @page_title = @wiki_page.title
     authorize! :read , WikiPage
-    render template:"wiki_pages/new_landing" if @wiki_page.blank?
+    if @wiki_page.blank?
+      @page_title = "Wiki page not found"
+      render template:"wiki_pages/new_landing"
+    end
   end
 
   # GET /wiki_pages/new
   # GET /wiki_pages/new.json
   def new
     authorize! :create , WikiPage
+    @page_title = "New wiki page"
     @wiki_page = WikiPage.new
     @wiki_page.slug = params[:slug] if params[:slug]
 
@@ -37,6 +42,7 @@ class WikiPagesController < ApplicationController
   # GET /wiki_pages/1/edit
   def edit
   authorize! :update , WikiPage
+  @page_title = "Editing wiki page"
   end
 
   # POST /wiki_pages

@@ -2,6 +2,7 @@ class PagesController < ApplicationController
 
   def root
       if !current_user
+        @page_title = "Homepage"
         @mindlogs_count = Mindlog.published.count
       else
         redirect_to controller: 'mindlogs', action: 'index'

@@ -3,6 +3,7 @@ class ResponsesController < ApplicationController
 
 	def new
 		@mindlog = Mindlog.find_by_id(params[:mindlog_id])
+		@page_title = "New Response"
 		@response = @mindlog.responses.build
 	end
 
@@ -83,6 +84,7 @@ class ResponsesController < ApplicationController
 
   def edit
 	@response = Response.find(params[:id])
+	@page_title = "Edit Response"
 	@remote = "false"
   end
 

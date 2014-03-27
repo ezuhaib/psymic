@@ -1,17 +1,20 @@
 class Admin::PagesController < ApplicationController
   def index
     authorize! :manage, :all
+    @page_title = "Admin"
     @mindlogs_count = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
     @users_count = User.unread_by(current_user).count
   end
 
   def backstage
   	authorize! :backstage, Feedback
+    @page_title = "Backstage"
     @feedback = Feedback.new
     @feedbacks = Feedback.backstage.order("created_at DESC").page(params[:page])
   end
 
   def users
+    @page_title = "Users listing"
     if params[:do] and params[:do] == "mark_read"
       User.mark_as_read! :all, :for => current_user
       redirect_to users_path
