@@ -1,6 +1,3 @@
-<%= javascript_include_tag 'selectize.min','mindlog_form_functions','jquery.autosize.min' %>
-<%= stylesheet_link_tag 'selectize.minimalistic','form_minimal' %>
-
 <%= form_for @mindlog , html:{class:"minimalistic"} do |f| %>
 <div id="form_box">
 
@@ -13,7 +10,7 @@
 	</div>
 
 	<div id="description">
-	<%= f.text_area :description , label: :Details ,size:'24x1' , placeholder:"The Mindlog" %>
+	<%= f.text_area :description , label: :Details ,size:'24x1' , class:"autosize", placeholder:"The Mindlog" %>
 	</div>
 
 	<div id="topic_list">
@@ -27,3 +24,7 @@
 	</div>
 </div>
 <% end %>
+
+<%# The includes %>
+<%= javascript_include_tag 'selectize.min','mindlog_form_functions' %>
+<%= stylesheet_link_tag 'selectize.minimalistic','form_minimal' %>

@@ -1,0 +1,17 @@
+<div class="head">
+	<h2>
+	  <div class="prefix"><%= link_to "Updates >" , updates_path %></div>
+	  <%= @update.title %>
+	</h2>
+</div>
+
+<p class="text-light suffix">
+	Posted on <%= @update.created_at.day.ordinalize + " " + @update.created_at.strftime("%b %y") %>
+</p>
+
+<p>
+  <%= @update.body.html_safe %>
+</p>
+
+<%= link_to('Edit', edit_update_path(@update) , class:"btn btn-primary") if can? :update, Update %>
+<%= link_to('Delete', update_path(@update) , method: :delete , confirm: "Super sure?" , class:"btn btn-primary") if can? :destroy, Update %>

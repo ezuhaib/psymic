@@ -114,7 +114,7 @@ end
 serialize :options
 Options = {
   email_unread_notifications:true ,
-  email_site_updates:true,
+  email_site_updates:false,
   email_new_messages_count:true
 }
 

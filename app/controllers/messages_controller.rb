@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     #using subquery because we need to call order twice, once for selection and then for true sorting
+    @page_title  = "Messages"
     @message_ids = Message.select("DISTINCT ON(pairing) id")
                        .where("? IN (sender_id, recipient_id)", current_user.id)
                        .order("pairing, id DESC")
@@ -16,6 +17,7 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+    @page_title  = "Messaging with #{params[:username]}"
     @user = User.find_by_username(params[:username])
     @messages = Message.where(pairing: [current_user.id, @user.id].sort.join(","))
                        .page(params[:page])

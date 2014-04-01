@@ -19,4 +19,9 @@ class UserMailer < ActionMailer::Base
 		mail(:to => User.find(user_id).email, :subject => "You received #{@messages_count} new messages in the last 12 hours")
 	end
 
+	def sitewide_updates(update,email)
+		@update = update
+		mail(:to => email, :subject => "Update: #{update.title}")
+	end
+
 end

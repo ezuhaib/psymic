@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140401091845) do
+ActiveRecord::Schema.define(:version => 20140401133303) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -77,16 +77,6 @@ ActiveRecord::Schema.define(:version => 20140401091845) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "latest_messages", :force => true do |t|
-    t.integer  "message_id"
-    t.integer  "primary_id"
-    t.integer  "secondary_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "latest_messages", ["primary_id", "secondary_id"], :name => "index_latest_messages_on_primary_id_and_secondary_id"
 
   create_table "likes", :force => true do |t|
     t.integer  "user_id"
@@ -197,6 +187,14 @@ ActiveRecord::Schema.define(:version => 20140401091845) do
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
+
+  create_table "updates", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                               :null => false

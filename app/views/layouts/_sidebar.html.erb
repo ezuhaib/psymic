@@ -75,6 +75,7 @@
 <%# Secondary %>
 <ul class="bottom-links text-right pull-right">
 	<% if can? :read , Feedback%><li><%= link_to "Meta" , meta_feedbacks_path %></li><% end %>
+	<%= link_to "Updates" , updates_path %>
 	<% if can? :backstage , Feedback%><li><%= link_to "Backstage" , admin_backstage_path %></li><% end %>
 	<li><%= link_to "Help Center" , wiki_page_path(:help) %></li>
 </ul>

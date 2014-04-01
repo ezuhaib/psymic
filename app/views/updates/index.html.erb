@@ -1,0 +1,19 @@
+<div class="head">
+  <h1>Psymic Updates
+  <%= link_to('New', new_update_path , class:"btn btn-default pull-right") if can? :create, Update %>
+  </h1>
+</div>
+
+<table class="table table-striped">
+  <tr>
+    <th>Title</th>
+    <th>Dated</th>
+  </tr>
+
+<% @updates.each do |update| %>
+  <tr>
+    <td class="col-sm-10"><%= link_to update.title , update %></td>
+    <td class="col-sm-2"><%= update.created_at.day.ordinalize + " " + update.created_at.strftime("%b %y") %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,5 +1,4 @@
 $(function() {
-    $('textarea').autosize();
     $('#mindlog_topic_list').selectize({
     create: true,
     hideSelected: true,

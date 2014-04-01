@@ -1,5 +1,8 @@
 Psymic::Application.routes.draw do
 
+  resources :updates
+
+
   resources :messages , except: :show do
     get 'user/:username', action: :show , on: :collection , as: :user
   end

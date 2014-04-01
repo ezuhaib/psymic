@@ -1,0 +1,12 @@
+<%= bootstrap_form_for(@update) do |f| %>
+    <%= f.text_field :title %>
+    <%= f.text_area :body , size: "24x5" , class:"autosize" , placeholder:"Please preview before publishing" %>
+    <%= f.submit :Post , class:"btn btn-danger"%>
+    <%= f.submit :Preview , class:"btn btn-default" %>
+<% end %>
+
+<% if params[:commit] == "Preview" %>
+  <div class="preview mar-t-20">
+    <%= @update.body.html_safe %>
+  </div>
+<% end %>
