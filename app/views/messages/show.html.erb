@@ -1,0 +1,41 @@
+<div class="head">
+  <h2>Messaging with <%= link_to @user.username, @user %></h2>
+  <div class="bg-themed-med row">
+    <%= page_entries_info @messages %>
+  </div>
+</div>
+
+<%= link_to_previous_page @messages, '< Older', class:"btn btn-themed btn-sm" %>
+<table class="table-inner-borders mar-b-20 mar-t-10">
+<% @messages.each do |m| %>
+<%# Find if message sent vs recieved %>
+<% m.recipient_id == current_user.id ? status = "received" : status = "sent" %>
+<% m.recipient_id == current_user.id ? user = @user : user = current_user %>
+<%# Set status as "read" %>
+<% m.update_attribute(:read, true) unless m.sender_id == current_user.id %>
+
+<tr class="message message-<%= status %>">
+  <td style="width: 50px">
+    <div class="avatar avatar-40">
+      <%= link_to (image_tag user.avatar(:mini)) , user %>
+    </div>
+  </td>
+
+  <td>
+    <%= m.body %></br>
+    <div class="text-light text-sm">
+      <%= status.capitalize + " " + dotiw(m.created_at) + " ago"%>
+    </div>
+  </td>
+
+  </tr>
+<% end %>
+</table>
+<%= link_to_next_page @messages, 'Later >', class:"btn btn-themed btn-sm" %>
+<% if @messages.last_page? %>
+  <%= bootstrap_form_for @message do |f| %>
+  <%= f.text_area :body , hide_label: true , size: "25x3" %>
+  <%= f.hidden_field :recipient_id , value: @user.id %>
+  <%= f.submit :Send %>
+  <% end %>
+<% end %>

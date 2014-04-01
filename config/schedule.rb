@@ -25,4 +25,5 @@ end
 
 every 12.hours do
 	runner "User.send_notifications"
+	runner "User.send_messages"
 end

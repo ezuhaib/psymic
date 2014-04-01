@@ -31,4 +31,8 @@ class ApplicationController < ActionController::Base
     ids.blank? ? false : ids
   end
 
+  def uname(id)
+    User.select(:username).find(id)
+  end
+
 end

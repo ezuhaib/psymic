@@ -15,6 +15,7 @@
 	<div class="avatar mar-b-10">
 		<%= link_to (image_tag @user.avatar(:thumb)), edit_avatar_path %>
 	</div>
+	<%= link_to 'Message' , user_messages_path(@user.username) , class:"btn btn-themed mar-b-10" unless @user == current_user %>
 	<% if can? :update , @user %>
 		<%= link_to 'Edit' , (@user == current_user ? edit_profile_path : edit_profile_path(username:@user.username)) , class: "btn btn-default" %>
 	<% end %>

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MlexplanationTest < ActiveSupport::TestCase
+class MessagingUserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

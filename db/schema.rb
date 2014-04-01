@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140327165901) do
+ActiveRecord::Schema.define(:version => 20140401091845) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -78,6 +78,16 @@ ActiveRecord::Schema.define(:version => 20140327165901) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "latest_messages", :force => true do |t|
+    t.integer  "message_id"
+    t.integer  "primary_id"
+    t.integer  "secondary_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "latest_messages", ["primary_id", "secondary_id"], :name => "index_latest_messages_on_primary_id_and_secondary_id"
+
   create_table "likes", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at",    :null => false
@@ -85,6 +95,21 @@ ActiveRecord::Schema.define(:version => 20140327165901) do
     t.string   "likeable_type"
     t.integer  "likeable_id"
   end
+
+  create_table "messages", :force => true do |t|
+    t.text     "body"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.boolean  "read"
+    t.boolean  "mailed"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "pairing"
+  end
+
+  add_index "messages", ["pairing"], :name => "index_messages_on_pairing"
+  add_index "messages", ["read", "mailed"], :name => "index_messages_on_read_and_mailed"
+  add_index "messages", ["sender_id", "recipient_id"], :name => "index_messages_on_sender_id_and_recipient_id"
 
   create_table "mindlog_ratings", :force => true do |t|
     t.integer  "mindlog_id"

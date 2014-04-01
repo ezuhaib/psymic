@@ -39,8 +39,16 @@ def subscriptions_count
 	return nil if count == 0
 end
 
+def messages_count
+	Message.where(recipient_id: current_user.id, read: nil).count
+end
+
 def get_rank(user)
 	(User.order('points desc').index(user)+1).ordinalize
+end
+
+def dotiw(time)
+	distance_of_time_in_words(Time.now, time, true, { :highest_measure_only => true })
 end
 
 end

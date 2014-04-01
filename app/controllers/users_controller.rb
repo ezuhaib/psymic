@@ -88,9 +88,10 @@ class UsersController < ApplicationController
   end
 
   def autocomplete
-    if (params[:q] and params[:q].size < 1) or !params[:q]
-      @users = ""
-    else
+    @users = ""
+    if params[:qb]
+      @users = User.where("users.username LIKE ?", "#{params[:qb]}%").limit(4).map{|t| {:id => t.id, :username => t.username }}
+    elsif params[:q] and params[:q].size > 1
       @users = User.where("users.username LIKE ?", "#{params[:q]}%").limit(4).pluck(:username)
     end
     render json: @users

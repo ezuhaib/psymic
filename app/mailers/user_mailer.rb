@@ -9,7 +9,14 @@ class UserMailer < ActionMailer::Base
 
 	def unread_notifications(user_id)
 		@activities = PublicActivity::Activity.where(recipient_id: user_id, read: false, mailed: false).all
-		mail(:to => User.find(user_id).email, :subject => "You received #{@activities.count} new responses and/or comments")
+		mail(:to => User.find(user_id).email, :subject => "You received #{@activities.count} new notifications in the last 12 hours")
+	end
+
+	def unread_messages(user_id)
+		@messages = Message.where(recipient_id: user_id, read:nil, mailed:nil)
+		@messages_count = @messages.count
+		@messages.update_all(mailed: true)
+		mail(:to => User.find(user_id).email, :subject => "You received #{@messages_count} new messages in the last 12 hours")
 	end
 
 end

@@ -67,6 +67,13 @@ def self.send_notifications
   end
 end
 
+def self.send_messages
+  @user_ids = Message.where(read:nil,mailed:nil).pluck(:recipient_id).uniq
+  @user_ids.each do |u|
+    UserMailer.unread_messages(u).deliver if User.find(u).email_new_messages_count
+  end
+end
+
 ################################
 # INTEGRATIONS
 ################################
@@ -107,7 +114,8 @@ end
 serialize :options
 Options = {
   email_unread_notifications:true ,
-  email_site_updates:true
+  email_site_updates:true,
+  email_new_messages_count:true
 }
 
 def self.options_attr_accessor()

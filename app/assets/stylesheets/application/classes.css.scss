@@ -40,6 +40,9 @@ dd , dt{margin-top: 10px;}
 .bg-red{background-color: red;color: #fff;}
 .bg-dark{background-color: #333333;color: #ffffff;a{color: #fff;}}
 .bg-light{background-color: #eee;color: #333;}
+.bg-themed{background-color: $theme-color, color #fff;a{color: $theme-color-light !important}}
+.bg-themed-med{background-color: $theme-color-med; color: #fff;a{color: #fff !important};a:hover{color: #000 !important}}
+.bg-themed-light{background-color: $theme-color-light !important;}
 .widget {text-align: center;padding:10px;font-weight:300;border: 1px solid #ccc;.lg, .lg a {font-weight: 700;font-size: 40px;}}
 .clear{clear: both}
 .spacer-50{margin-top: 50px;}
@@ -56,6 +59,8 @@ dd , dt{margin-top: 10px;}
 .head-overlay a{font-weight: 700;color: #fff;font-size: 22px;}
 .head-overlay a:hover{color:#bbb;}
 .head-overlay.alt{position: relative;}
+.head .row{margin: 0 -30px -5px -30px; padding: 3px 30px;}
+.head .btn{margin-top: 5px;}
 
 /* Misc */
 .h-compact{line-height: 0.8;padding-bottom: 5px;}
@@ -71,6 +76,7 @@ dd , dt{margin-top: 10px;}
 .cursor-default {cursor:default;}
 h1,h2,h3,h4{.prefix{font-size: 70%;}}
 .suffix{margin-top: -10px;margin-bottom: 10px;display: block;}
+
 
 /* Padding */
 .pad-nil{padding: 0px;}
@@ -95,3 +101,6 @@ h1,h2,h3,h4{.prefix{font-size: 70%;}}
 .mar-v-15{margin-top: 15px;margin-bottom: 15px;}
 .mar-r-10{margin-right: 10px;}
 .mar-l-m15{margin-left: -15px;}
+
+/* Tables */
+.table-inner-borders {width:100%;tr:not(:last-child){border-bottom: 1px solid #ccc};td{padding: 5px}}

@@ -29,12 +29,18 @@
 	    		</li>
 
 		    	<li role="presentation">
+			      	<%= link_to messages_path do %>
+		      			Messages <%= content_tag :span, messages_count, class: 'badge bg-themed' %>
+		      		<% end %>
+	    		</li>
+
+	    		<li role="presentation" class="divider"></span></li>
+
+		    	<li role="presentation">
 		      	<%= link_to subscriptions_path do %>
 		      		Watchlist <%= content_tag :span, subscriptions_count, class: 'badge bg-themed' %>
 		      	<% end %>
 		    	</li>
-
-		    	<li role="presentation" class="divider"></span></li>
 
 		    	<li role="presentation">
 		    		<%= link_to "Profile" , current_user %>

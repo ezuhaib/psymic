@@ -1,5 +1,9 @@
 Psymic::Application.routes.draw do
 
+  resources :messages , except: :show do
+    get 'user/:username', action: :show , on: :collection , as: :user
+  end
+
   resources :channels do
     member do
       get 'mindlogs'
