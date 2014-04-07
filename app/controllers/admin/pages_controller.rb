@@ -4,6 +4,7 @@ class Admin::PagesController < ApplicationController
     @page_title = "Admin"
     @mindlogs_count = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
     @users_count = User.unread_by(current_user).count
+    @comics_count = Comic.where("status != ?",'published').count
   end
 
   def backstage
@@ -21,6 +22,12 @@ class Admin::PagesController < ApplicationController
     end
     authorize! :update , User
     @users = User.with_read_marks_for(current_user).order('created_at desc').page(params[:page])
+  end
+
+  def comics
+    @page_title = "Comics Moderation"
+    authorize! :moderate , Comic
+    @comics = Comic.where("status != ?",'published')
   end
 
 end

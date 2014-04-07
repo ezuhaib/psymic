@@ -207,7 +207,7 @@ end
   # Regex ensures strings starting with '#' are ignored
   def autocomplete
       unless /\A#.+/.match(params[:query])
-        @mindlogs = Mindlog.search(params[:query], where:{workflow_state:"published"},fields: [:title,{title: :text_start}], limit: 10).as_json(only:[:title]) 
+        @mindlogs = Mindlog.search(params[:query], where:{workflow_state:"published"},fields: [:title,{title: :text_start}], limit: 10).as_json(only:[:id,:title]) 
       end
     render json: @mindlogs
   end

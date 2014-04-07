@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140401133303) do
+ActiveRecord::Schema.define(:version => 20140407143300) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -44,6 +44,20 @@ ActiveRecord::Schema.define(:version => 20140401133303) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+  end
+
+  create_table "comics", :force => true do |t|
+    t.string   "caption"
+    t.string   "mindlog_id"
+    t.integer  "user_id"
+    t.integer  "likes_count",        :default => 0
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.string   "comic_file_name"
+    t.string   "comic_content_type"
+    t.integer  "comic_file_size"
+    t.datetime "comic_updated_at"
+    t.string   "status",             :default => "unapproved"
   end
 
   create_table "comments", :force => true do |t|

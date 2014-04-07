@@ -1,0 +1,25 @@
+<div class="head">
+  <h2>Psymic Originals
+	<%= link_to 'Edit', edit_comic_path(@comic) , class:"btn btn-default pull-right" if can? :update , @comic %>
+	</h2>
+	<div class="row bg-themed-med"><b><%= @comic.caption %></b>
+	<span class="pull-right">
+  by <%= link_to @comic.user.username , user_path(@comic.user) %>
+</span></div>
+</div>
+
+<%= image_tag @comic.comic(:standard) %>
+
+<div class="col-xs-12">
+	<span class="pull-left">
+	  <b>Based on:</b></br>
+	  Mindlog: <%= link_to @comic.mindlog.title , @comic.mindlog %>
+	  </br></br>
+	  <b>Uploaded:</b></br>
+	  <%= @comic.created_at.strftime("%d %B %Y") %>
+	</span>
+
+	<div id="like_box" class='pull-right widget bg-light mar-t-10'>
+	  <div class="lg"><%= link_to "%02d" % @comic.likes_count , like_comic_path , remote: true %></div>LIKES
+	</div>
+</div>

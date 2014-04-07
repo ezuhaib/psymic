@@ -33,7 +33,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     # all users
-    can :read , [Mindlog,Response,Comment,User,Feedback,WikiPage,Channel]
+    can :read , [Mindlog,Response,Comment,User,Feedback,WikiPage,Channel,Comic]
 
     if user.username # authenticated users
       can [:respond,:rate] , Mindlog
@@ -45,20 +45,20 @@ class Ability
       can :update , [Mindlog,Response,Comment,Feedback] do |x|
           x.try(:user) == user
       end
-      can :destroy , [Mindlog,Response,Comment,Feedback] do |x|
+      can :destroy , [Mindlog,Response,Comment,Feedback,Comic] do |x|
           x.try(:user) == user
           x.created_at > 15.minutes.ago
       end
       can :update , User do |u|
         u.try(:id) == user.id
       end
-      can :create , [Mindlog,Response,Comment,Feedback]
+      can :create , [Mindlog,Response,Comment,Feedback,Comic]
       can :authenticate , :psymic #checks if user logged in
     end
 
     if user.role? "moderator"
       can :admin , :all #access to admin/ pages
-      can :moderate , Mindlog #allows featuring,publishing/unpublishing and setting status
+      can :moderate , [Mindlog, Comic] #allows featuring,publishing/unpublishing and setting status
       can :read , Report
       can :update , :all
       can :destroy, :all

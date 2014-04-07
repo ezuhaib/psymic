@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  caption: MyString
+  mindlog_id: MyString
+  user_id: 1
+  likes_count: 1
+
+two:
+  caption: MyString
+  mindlog_id: MyString
+  user_id: 1
+  likes_count: 1

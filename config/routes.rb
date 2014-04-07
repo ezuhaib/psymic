@@ -1,5 +1,10 @@
 Psymic::Application.routes.draw do
 
+  resources :comics do
+    get 'like' , on: :member , as: :like
+  end
+
+
   resources :updates
 
 
@@ -49,11 +54,12 @@ Psymic::Application.routes.draw do
   end
 
   namespace :admin do
-    get 'users', to: 'pages#users' , as: :users
-    get 'backstage' , to: 'pages#backstage' , as: :backstage
-    resources :offers
+    get 'users'=> 'pages#users' , as: :users
+    get 'backstage' => 'pages#backstage' , as: :backstage
+    get 'comics' => 'pages#comics' , as: :comics
     get "reports/index"
-    match "reports/:reportable_type/:reportable_id", :to=> 'reports#show', :as=> :report
+    get "reports/:reportable_type/:reportable_id" => 'reports#show', :as=> :report
+    resources :offers
     root to: 'pages#index'
   end
 

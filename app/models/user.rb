@@ -95,7 +95,7 @@ crop_attached_file :avatar , min_size: "300x300"
 validates :username, :uniqueness => {:case_sensitive => false}
 validates_presence_of :username , :gender , :dob , :country
 validates_size_of :body , in: 40...1000
-validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 validates_attachment_size :avatar, in: 0..2000.kilobytes
 validates :avatar, :dimensions => { :width => 300, :height => 300 }
 

@@ -68,7 +68,7 @@ body,html,.container , #semi_container{height: 100%;}
     margin-top: 9px;
 }
 
-#primary_links{list-style: none;margin-right: 4px;float: right;}
+#primary_links{list-style: none;margin-right: 4px;float: right;text-align: right;}
 #primary_links a:not(.btn){color: #666;font-size: 24px;clear: both;}
 #primary_links a:not(.btn):hover{color: $theme-color;}
 
