@@ -1,13 +1,21 @@
 <% content_for :r2 do %>
 
-<ul id="mindlog_links">
-	<div class="avatar">
+<ul id="mindlog_links" class="row">
+
+	<div class="avatar col-sm-6">
 		<%= link_to (image_tag @mindlog.user.avatar(:mini)), @mindlog.user %>
 	</div>
-	<li class="text-dark">By <%= link_to @mindlog.user.username , @mindlog.user %></li>
-	<li class="text-sm text-dark"><%= @mindlog.created_at.strftime("%d %B %Y") %></li>
-	<li class="divider"></li>
-	<%= render "links" %>
+
+	<div class="col-sm-6">
+		<%= like_button 772050616139093 , layout: :button_count %>
+	</div>
+
+	<div class="col-xs-12">
+		<li class="text-dark">By <%= link_to @mindlog.user.username , @mindlog.user %></li>
+		<li class="text-sm text-dark"><%= @mindlog.created_at.strftime("%d %B %Y") %></li>
+		<li class="divider"></li>
+		<%= render "links" %>
+	</div>
 </ul>
 
 <ul id="tag_list">
