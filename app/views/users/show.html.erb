@@ -7,6 +7,13 @@
 			<%= @user.points.round %>
 			<span class="glyphicon glyphicon-fire glyphicon-fix"></span>
 		<% end %>
+		<% if @user.role?(:admin) or @user.role?(:moderator) %>
+			<span 	class="glyphicon glyphicon-star glyphicon-fix text-themed-light cursor-default"
+					title="User is a Moderator"
+					data-toggle="tooltip"
+					data-placement="bottom">
+			</span>
+		<% end %>
 	</h1>
 </div>
 
