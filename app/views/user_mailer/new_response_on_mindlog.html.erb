@@ -1,9 +1,0 @@
-<p><b><%= link_to @response.user.username , user_url(@response.user) , style:"text-decoration:none;color:#FF285F;" %></b> responded to your mindlog <%= link_to @mindlog.title, mindlog_url(@mindlog,host:"www.psymic.com") , style:"text-decoration:none;color:#FF285F;"%></p>
-
-<div style="background: #FFECF1;padding:25px;">
-	<%= @response.body %>
-</div>
-
-<p><%= link_to "Click here" , mindlog_response_url(@mindlog,@response), style:"text-decoration:none;color:#FF285F;" %>  to view and comment.</p>
-
-<p style="font-size:80%;color:#888">You may opt-out of email notifications <%= link_to "here", edit_user_registration_url %>.</p>
