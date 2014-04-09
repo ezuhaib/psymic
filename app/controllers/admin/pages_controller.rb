@@ -2,6 +2,7 @@ class Admin::PagesController < ApplicationController
   def index
     authorize! :manage, :all
     @page_title = "Admin"
+    @reports_count = Report.where(reportable_type: "Mindlog").count('reportable_id',distinct: true)
     @mindlogs_count = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
     @users_count = User.unread_by(current_user).count
     @comics_count = Comic.where("status != ?",'published').count

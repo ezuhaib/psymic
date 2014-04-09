@@ -6,10 +6,18 @@
   </h1>
 </div>
 
-<div class="col-sm-12">
-  <p>Channels are like tags in that these help group similar content together. However, these differ from tags in that content in them is moderated and these have dedicated moderators and editors. Channels have clearly defined targets and campaigns for mining mindlogs. Rule of the thumb is that if a channel for something of your interest exists, use it rather than the tag.</p>
-  <h3><%= @channels.count %> channels so far</h3>
+  <div class="col-sm-3">
+    <div class="widget bg-dark">
+      <p class="lg"><%= @channels.count %></p>
+      channels so far
+    </div>
+  </div>
+  <div class="col-sm-9">
   <% @channels.each do |c| %>
     <%= link_to c.title , c , class:"link-boxed col-md-4 col-xs-6 col-sm-6" %>
   <% end %>
 </div>
+
+<% content_for :r2 do %>
+  <p class="text-300 col-sm-9 mar-l-m15">Channels are moderated collections of mindlogs and other content. These have clearly defined targets and campaigns for mining mindlogs.</p>
+<% end %>

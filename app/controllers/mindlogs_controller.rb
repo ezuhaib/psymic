@@ -162,7 +162,7 @@ class MindlogsController < ApplicationController
       if @report.save
         flash[:success] = "Content successfully reported"
       else
-        flash[:error] = "Content couldn't be reported"
+        flash[:error] = @report.errors.full_messages.first
       end
 
       respond_to do |format|
@@ -248,6 +248,18 @@ end
 
   def channel_selection
     @mindlog = Mindlog.find(params[:id])
+  end
+
+  def resolve
+    @mindlog = Mindlog.find(params[:id])
+    if @mindlog.reports.destroy_all
+      flash[:success] = "Issues resolved"
+      redirect_to admin_reports_index_path
+    else
+      flash[:error] = "An error occured. Webmasters have been notified"
+      @back = request.env["HTTP_REFERER"] || admin_report_path('mindlog',@mindlog.id)
+      redirect_to @back
+    end
   end
 
 end

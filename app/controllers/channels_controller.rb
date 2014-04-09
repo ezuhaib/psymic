@@ -9,7 +9,7 @@ class ChannelsController < ApplicationController
   end
 
   def index
-    @channels = Channel.all
+    @channels = Channel.order(:title).all
     @page_title = "Channels"
     authorize! :read , Channel
     respond_to do |format|

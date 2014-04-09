@@ -25,10 +25,11 @@ end
 
 def admin_notifications_count
 	mindlogs_count = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
+	reports_count = Report.where(reportable_type: "Mindlog").count('reportable_id',distinct: true)
 	users_count = User.unread_by(current_user).count
 	comics_count = Comic.where("status != ?",'published').count
     channel_items_count = ChannelItem.where(item_type:"Mindlog", status:"pending").count
-	count = mindlogs_count+users_count+comics_count+channel_items_count
+	count = mindlogs_count+users_count+comics_count+channel_items_count+reports_count
 	count == 0 ? nil : count
 end
 

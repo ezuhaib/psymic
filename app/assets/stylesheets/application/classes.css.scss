@@ -79,7 +79,7 @@ dd , dt{margin-top: 10px;}
 .cursor-default {cursor:default;}
 h1,h2,h3,h4{.prefix{font-size: 70%;}}
 .suffix{margin-top: -10px;margin-bottom: 10px;display: block;}
-h1,h2,h3,h4.prefix{margin-bottom: 3px;display: block;}
+h1,h2,h3,h4{&.prefix{margin-bottom: 3px;display: block;}}
 
 
 /* Padding */

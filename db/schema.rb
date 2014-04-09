@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140408121024) do
+ActiveRecord::Schema.define(:version => 20140409104541) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(:version => 20140408121024) do
     t.string   "item_type"
     t.integer  "item_id"
     t.integer  "channel_id"
-    t.string   "status"
+    t.string   "status",       :default => "pending"
     t.integer  "submitter_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
   add_index "channel_items", ["channel_id"], :name => "index_channel_items_on_channel_id"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20140408121024) do
   end
 
   create_table "comics", :force => true do |t|
-    t.string   "caption"
+    t.string   "title"
     t.integer  "user_id"
     t.integer  "likes_count",        :default => 0
     t.datetime "created_at",                                   :null => false
@@ -143,13 +143,12 @@ ActiveRecord::Schema.define(:version => 20140408121024) do
   create_table "mindlogs", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "user_id"
     t.text     "status"
-    t.integer  "reports_counter"
     t.string   "workflow_state"
-    t.integer  "rating_percent",  :default => 0
+    t.integer  "rating_percent", :default => 0
   end
 
   create_table "read_marks", :force => true do |t|
