@@ -71,8 +71,12 @@ module Psymic
       end if File.exists?(env_file)
     end
 
+    # Faster precompilation, plus allows us to use env variables inside database.yml
+    config.assets.initialize_on_precompile = false
+
     # Precompile all assets
     config.assets.precompile += %w( papercrop.js jquery.jcrop.js jquery.jcrop.css )
+    config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif]
     config.assets.precompile << Proc.new { |path|
       if path =~ /\.(css|js)\z/
         full_path = Rails.application.assets.resolve(path).to_path
