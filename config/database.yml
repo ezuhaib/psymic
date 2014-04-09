@@ -21,11 +21,20 @@ test:
   password: postgres
   host: localhost
 
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: psymic_development
+  pool: 5
+  username: postgres
+  password: postgres
+  host: localhost
+
 production:
   adapter: postgresql
   encoding: unicode
-  database: ENV["DB_NAME"]
+  database: <%= ENV["DB_NAME"] %>
   pool: 5
-  username: ENV["DB_USER"]
-  password: ENV["DB_PWD"]
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PWD"] %>
   template: template0

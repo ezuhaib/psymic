@@ -10,7 +10,7 @@ Psymic::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -67,18 +67,8 @@ Psymic::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   #Google Analytics
-  GA.tracker = ENV["GA_KEY"]
+  #GA.tracker = ENV["GA_KEY"]
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = {host: "www.psymic.com"}
-  config.action_mailer.smtp_settings = {
-    :address              => "smtp.zoho.com",
-    :port                 => 465,
-    :user_name            => ENV["MAILER_USER"],
-    :password             => ENV["MAILER_PWD"],
-    :ssl                  => true,
-    :tls                  => true,
-    :authentication       => :login,
-    :enable_starttls_auto => true
-  }
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.default_url_options = {host: "127.0.0.1:3000"}
 end
