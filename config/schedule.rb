@@ -22,3 +22,8 @@
 every 1.day, at: '4:30 am' do
   command "backup perform -t psymic_backup"
 end
+
+every 12.hours do
+	runner "User.send_notifications"
+	runner "User.send_messages"
+end

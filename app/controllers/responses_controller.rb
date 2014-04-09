@@ -1,23 +1,28 @@
 class ResponsesController < ApplicationController
 
-def new
-@mindlog = Mindlog.find_by_id(params[:mindlog_id])
-@response = @mindlog.responses.build
-end
 
-def create
-	@response = Response.new(params[:response])
-	@response.user = current_user
-	if @response.save
-	  respond_to do |format|
-		format.html { redirect_to @response.mindlog}
-		format.json { render json: @response, status: :created, location: @response }
-		format.js #added
-		end
-	else
-		flash[:notice] = "Could not submit response."
-		redirect_to @response.mindlog
+	def new
+		@mindlog = Mindlog.find_by_id(params[:mindlog_id])
+		@page_title = "New Response"
+		@response = @mindlog.responses.build
 	end
+
+	def create
+		@response = Response.new(params[:response])
+		@response.user = current_user
+		@mentions = extract_mentions( @response.body )
+		if @response.save
+			@response.create_activity :create , recipient: @response.mindlog.user , owner: current_user unless @response.mindlog.user == current_user
+			@response.notify_mentions(@mentions) if @mentions
+		  respond_to do |format|
+			format.html { redirect_to @response.mindlog}
+			format.json { render json: @response, status: :created, location: @response }
+			format.js #added
+			end
+		else
+			flash[:notice] = "Could not submit response."
+			redirect_to @response.mindlog
+		end
 	end
 
   def destroy
@@ -79,6 +84,7 @@ def create
 
   def edit
 	@response = Response.find(params[:id])
+	@page_title = "Edit Response"
 	@remote = "false"
   end
 

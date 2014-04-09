@@ -1,0 +1,16 @@
+<p>You have <b><%= @activities.count %></b> unread notifications at <%= link_to "Psymic", root_path %>. Note that there may be other unread notifications too that you might have been notified previously</p>
+
+<table class="striped">
+<% @activities.each do |a| %>
+<tr><td>
+<%= render_activity(a) %>
+<% a.update_attribute(:mailed, true) %>
+</td></tr>
+<% end %>
+</table>
+
+<p class="text-foot">
+	You may opt-out of email notifications <%= link_to "here", edit_user_registration_url %>.
+</p>
+
+<%= stylesheet_link_tag "mail/common" %>

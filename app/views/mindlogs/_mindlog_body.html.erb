@@ -6,4 +6,11 @@
 	<h2 class="compact"><%= link_to @mindlog.title , @mindlog %></h2>
 	<p><%= Rinku.auto_link(@mindlog.description).html_safe %></p>
 </div>
+
+<% if !@mindlog.status.blank? %>
 <div id="status_box" class="row"><b>Status: </b><%= @mindlog.status %></div>
+<% end %>
+
+<div id="vote_box" class="row position-relative">
+<div id="vote_box_inner"><%= render "vote_box" %></div>
+</div>

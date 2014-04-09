@@ -1,0 +1,9 @@
+@import 'application/theme';
+a{color:$theme-color;text-decoration:none}
+.pad-25{padding: 25px}
+.pad-15{padding: 15px}
+.bg-themed-light{background: $theme-color-light}
+.text-foot{font-size: 80%;color:#888}
+p,td,h1,h2,h3,h4{font-family: Tahoma, Geneva, sans-serif}
+.striped tr:nth-child(odd){background: $theme-color-light}
+td{padding: 10px;}

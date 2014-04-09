@@ -17,16 +17,16 @@ class UsersController < ApplicationController
 
   def show
     authorize! :read , @user
+    @page_title = "USER: #{@user.username}"
     @mindlogs = @user.mindlogs.published.limit(5)
+    @pending_mindlogs = @user.mindlogs.queued
+    @pending_comics = @user.comics.queued
   end
 
   def index
-    if params[:do] and params[:do] == "mark_read"
-      User.mark_as_read! :all, :for => current_user
-      redirect_to users_path
-    end
-    authorize! :update , User
-    @users = User.with_read_marks_for(current_user).order('created_at desc').page(params[:page])
+    authorize! :read , User
+    @page_title = "Users"
+    @users = User.order('points desc').page(params[:page])
   end
 
   def edit
@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   end
 
   def avatar
+    @page_title = "Edit avatar"
   end
 
   def update_avatar
@@ -65,10 +66,12 @@ class UsersController < ApplicationController
   end
 
   def crop
+    @page_title = "Crop Avatar"
   end
 
   def mindlogs
     @mindlogs = @user.mindlogs.published
+    @page_title = "#{@user.username}'s mindlogs"
   end
 
   def profile
@@ -83,6 +86,17 @@ class UsersController < ApplicationController
   end
 
   def activity
+    @page_title = "#{@user.username} activity"
+  end
+
+  def autocomplete
+    @users = ""
+    if params[:qb]
+      @users = User.where("users.username LIKE ?", "#{params[:qb]}%").limit(4).map{|t| {:id => t.id, :username => t.username }}
+    elsif params[:q] and params[:q].size > 1
+      @users = User.where("users.username LIKE ?", "#{params[:q]}%").limit(4).pluck(:username)
+    end
+    render json: @users
   end
 
 end

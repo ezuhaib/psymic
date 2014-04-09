@@ -1,28 +1,33 @@
-<% @title = "Community Reports" %>
-<h1>Community Report</h1>
-<b class='col-lg-1'>Type</b>
-<span class='col-lg-11'>Mindlog</span>
+<div class="head">
+	<h2>Community Reports</h2>
+	<div class="row bg-dark">Mindlog: <%= link_to @reportable.title , @reportable %></div>
+</div>
 
-<b class='col-lg-1'>Title</b>
-<span class='col-lg-11'><%= @reportable.title %></span>
 
-<table class="table">
+<% if @reportable.reports.any? %>
+	<table class="table table-striped">
 
-<tr>
-	<th class="col-lg-5">Issue</th>
-	<th class="col-lg-7">Incidences</th>
-</tr>
+		<tr>
+			<th class="col-lg-9">Issue</th>
+			<th class="col-lg-3 text-center">Incidences</th>
+		</tr>
 
-<% Flag.all.each do |flag| %>
+		<% Flag.all.each do |flag| %>
 
-<% @incidences = @reportable.reports.where("flag_id = ?",flag.id).count %>
-<% if @incidences > 0 %>
+		<% @incidences = @reportable.reports.where("flag_id = ?",flag.id).count %>
+		<% if @incidences > 0 %>
 
-<tr>
-	<td><%= flag.title %></td>
-	<td><%= @incidences %></td>
-</tr>
+		<tr>
+			<td><%= flag.title %></td>
+			<td class="text-center"><span class="badge"><%= @incidences %></span></td>
+		</tr>
 
+		<% end end %>
+	</table>
+
+	<%= link_to "Edit Content" , edit_polymorphic_path(@reportable) , class:"btn btn-default" %>
+	<%= link_to "Mark as resolved" , resolve_mindlog_path(@reportable) , class:"btn btn-success" %>
+
+<% else %>
+	<p class="well">No reports over this entity</p>
 <% end %>
-<% end %>
-</table>

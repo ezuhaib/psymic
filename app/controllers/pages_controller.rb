@@ -1,8 +1,13 @@
 class PagesController < ApplicationController
 
   def root
-      @mindlogs = Mindlog.published.limit(6).all
-      @mindlogs_count = Mindlog.published.count
+      if !current_user
+        @page_title = "Homepage"
+        @mindlogs_count = Mindlog.published.count
+      else
+        flash[error] = flash.now[:error]
+        redirect_to mindlogs_path
+      end
   end
 
   def confirm_email

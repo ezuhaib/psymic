@@ -1,0 +1,38 @@
+<div class="head">
+    <h1>Messages
+        <%= link_to 'New', new_message_path, class:"btn btn-default pull-right" %>
+    </h1>
+</div>
+
+<table class="table table-striped">
+<% @messages.each do |m| %>
+    <tr <%= "class=warning" unless (m.sender_id == current_user.id or m.read) %>>
+    <%# Fetch the user which isn't the current user %>
+    <% m.recipient_id == current_user.id ? uid = m.sender_id : uid = m.recipient_id %>
+    <% u = User.select('id, username, avatar_file_name, avatar_updated_at').find(uid) %>
+
+    <%# Avatar %>
+    <td style="width: 50px">
+        <div class="avatar avatar-40"><%= link_to (image_tag u.avatar(:mini)), u %></div>
+    </td>
+
+    <%# Message Body %>
+    <td class="text-left">
+        <b><%= link_to u.username, u %></b>
+        <span class=" text-sm text-light"> <%= dotiw(m.created_at) %> ago</span></br>
+        <% if m.sender_id == current_user.id %>
+            <span   class="glyphicon glyphicon-share-alt text-lighter cursor-default"
+                    title="You sent this message"
+                    data-toggle="tooltip"
+                    data-placement="bottom">
+            </span>
+        <% end %>
+        <%= link_to truncate(m.body, length:70, separator: ' '), user_messages_path(u.username) %>
+    </td>
+</tr><% end %>
+</table>
+
+<% if @messages.blank? %>
+    <h1>:(</h1>
+    <h3>You never received any messages<h3>
+<% end %>

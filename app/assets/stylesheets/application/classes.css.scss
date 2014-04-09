@@ -10,10 +10,11 @@ Todo: Remove Orphaned
 .text-center{text-align: center;}
 .text-sm {font-size: 80%;}
 .text-md{font-size:140%;}
-.text-lg{font-size: 28px;}
-.text-std{font-size: 100% !important;}
+.text-lg{font-size: 180%;}
+.text-std,.text-std a{font-size: 100% !important;}
 .text-300{font-weight: 300;}
 .text-themed {color: $theme-color}
+.text-themed-light {color: $theme-color-light}
 .text-lighter {color: #aaa;a{color: #888;};a:hover{color: #000;}}
 .text-light {color: #666;a{color: #888;};a:hover{color: #000;}}
 .text-dark, .text-dark a{color: #555;}
@@ -38,12 +39,17 @@ dd , dt{margin-top: 10px;}
 /* Boxes */
 .bg-white{background-color: #fff;color: #333;}
 .bg-red{background-color: red;color: #fff;}
+.bg-brown{background-color: #900;color: #fff;}
+.bg-blue{background-color: #069; color: #fff}
 .bg-dark{background-color: #333333;color: #ffffff;a{color: #fff;}}
 .bg-light{background-color: #eee;color: #333;}
+.bg-themed{background-color: $theme-color, color #fff;a{color: $theme-color-light !important}}
+.bg-themed-med{background-color: $theme-color-med; color: #fff;a{color: #fff !important};a:hover{color: #000 !important}}
+.bg-themed-light{background-color: $theme-color-light !important;}
 .widget {text-align: center;padding:10px;font-weight:300;border: 1px solid #ccc;.lg, .lg a {font-weight: 700;font-size: 40px;}}
 .clear{clear: both}
-.spacer-60{margin-top: 60px;}
-
+.spacer-50{margin-top: 50px;}
+.preview{background: #eee;border: 1px solid #ccc; padding: 5px;}
 
 /* Head */
 .head{padding: 5px 30px;margin: 0 -15px 20px -15px;background-color: $theme-color;color: #fff;}
@@ -56,6 +62,8 @@ dd , dt{margin-top: 10px;}
 .head-overlay a{font-weight: 700;color: #fff;font-size: 22px;}
 .head-overlay a:hover{color:#bbb;}
 .head-overlay.alt{position: relative;}
+.head .row{margin: 0 -30px -5px -30px; padding: 3px 30px;}
+.head .btn{margin-top: 5px;}
 
 /* Misc */
 .h-compact{line-height: 0.8;padding-bottom: 5px;}
@@ -67,9 +75,12 @@ dd , dt{margin-top: 10px;}
 .center{float: none; margin-left: auto; margin-right: auto; display: table;}
 .compact{margin-top: 8px} /* For use with h1,h2,h3 */
 .hidden {display: none;}
+.inline-block{display: inline-block;}
 .cursor-default {cursor:default;}
 h1,h2,h3,h4{.prefix{font-size: 70%;}}
 .suffix{margin-top: -10px;margin-bottom: 10px;display: block;}
+h1,h2,h3,h4{&.prefix{margin-bottom: 3px;display: block;}}
+
 
 /* Padding */
 .pad-nil{padding: 0px;}
@@ -87,8 +98,14 @@ h1,h2,h3,h4{.prefix{font-size: 70%;}}
 .mar-t-0{margin-top: 0px;}
 .mar-t-10{margin-top: 10px;}
 .mar-t-20{margin-top: 20px;}
+.mar-t-30{margin-top: 30px;}
 .mar-b-10{margin-bottom: 10px;}
+.mar-b-15{margin-bottom: 15px;}
 .mar-b-20{margin-bottom: 20px}
 .mar-v-10{margin-top: 10px;margin-bottom: 10px;}
 .mar-v-15{margin-top: 15px;margin-bottom: 15px;}
 .mar-r-10{margin-right: 10px;}
+.mar-l-m15{margin-left: -15px;}
+
+/* Tables */
+.table-inner-borders {width:100%;tr:not(:last-child){border-bottom: 1px solid #ccc};td{padding: 5px}}

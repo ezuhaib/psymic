@@ -1,0 +1,15 @@
+<div class="head">
+<h2>Comics Moderation</h2>
+</div>
+
+<table class="table table-striped">
+<th>Caption</th>
+<th>Uploaded</th>
+<th>Status</th>
+
+<% @comics.each do |c| %><tr>
+<td class="col-sm-7"><%= link_to c.title , c %></td>
+<td><%= dotiw(c.created_at) %> ago</td>
+<td><%= c.status %></td>
+</tr><% end %>
+</table>

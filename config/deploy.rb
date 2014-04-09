@@ -2,9 +2,9 @@
 lock '3.1.0'
 
 set :application, 'psymic'
-set :repo_url, 'git@bitbucket.org:ezuhaib/psymic.git'
+set :repo_url, 'git@github.com:ezuhaib/psymic.git'
 
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/local_env.yml config/unicorn.rb}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
 set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :rails_env,       "production"

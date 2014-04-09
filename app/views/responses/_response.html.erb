@@ -9,9 +9,12 @@
 		</div>
 
 		<div class="response-entry-body type-<%= response.nature %>">
-			<%= Rinku.auto_link(response.body).html_safe %>
+			<%= render_mentions(Rinku.auto_link(response.body)).html_safe %>
 			<div class="text-lighter">
-				by <%= link_to response.user.username,response.user%>
+				<%= link_to response.user do %>
+				<div class="avatar avatar-inline"><%= image_tag response.user.avatar(:inline) %> 
+				<%= response.user.username %></div>
+				<% end %>
 
 				<% if can? :update , response %>
 					<%= link_to '', edit_mindlog_response_path(response.mindlog,response) , class:"glyphicon glyphicon-pencil" %>

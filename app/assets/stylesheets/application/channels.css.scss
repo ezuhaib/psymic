@@ -5,3 +5,10 @@ Channels Styles
 @import 'theme';
 .facets{margin-right: -8px;}
 .facets a{color: #000;font-size: 14px;float: right;&:hover{color: $theme-color}}
+
+#channel_body{font-weight: 300;color: #555;font-size: 15px;margin-top: 15px;}
+
+#channel_links {
+	a{font-size: 100% !important;}
+	a:not(:first-child):before{content: " | "}
+}

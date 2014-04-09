@@ -16,6 +16,7 @@ class Meta::FeedbacksController < ApplicationController
   # GET /feedbacks/1.json
   def show
     @feedback = Feedback.find(params[:id])
+    @page_title = "Single Feedback"
     authorize! :read , @feedback
     respond_to do |format|
       format.html # show.html.erb
@@ -27,6 +28,7 @@ class Meta::FeedbacksController < ApplicationController
   # GET /feedbacks/new.json
   def new
     authorize! :create , Feedback
+    @page_title = "New feedback"
     @feedback = Feedback.new
 
     respond_to do |format|
@@ -38,6 +40,7 @@ class Meta::FeedbacksController < ApplicationController
   # GET /feedbacks/1/edit
   def edit
     @feedback = Feedback.find(params[:id])
+    @page_title = "Editing feedback"
     authorize! :update , @feedback
   end
 

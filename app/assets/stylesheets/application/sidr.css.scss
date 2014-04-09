@@ -14,14 +14,12 @@ todo reduce reliance on !important
     text-transform: uppercase;
 }
 
-.bg-themed,.sidr-class-bg-themed {
+.sidr-class-bg-themed {
     background-color: $theme-color !important;
     color: #fff;
 }
 
-.bg-themed-light{
-    background-color: $theme-color-light !important;
-}
+
 
 .sidr-class-divider{
     display: none !important;

@@ -1,0 +1,11 @@
+<p>You have <b><%= @messages_count %></b> unread messages at <%= link_to "Psymic", root_path %>.</p>
+
+<p class="pad-15 bg-themed-light">
+	<%= link_to "Read them", messages_url %>
+</p>
+
+<p class="text-foot">
+	You may opt-out of email notifications <%= link_to "here", edit_user_registration_url %>.
+</p>
+
+<%= stylesheet_link_tag "mail/common" %>

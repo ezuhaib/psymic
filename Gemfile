@@ -8,6 +8,8 @@ gem 'rake'
 gem 'jbuilder'
 gem 'pg'
 gem 'whenever'
+gem 'sitemap_generator'
+gem 'meta-tags', :require => 'meta_tags'
 
 # Search and analytics
 gem 'rack-mini-profiler'
@@ -40,6 +42,7 @@ group :development do
 	gem 'rails-web-console'
 	gem 'progress_bar'
 	gem 'sepastian-capistrano3-unicorn', :require => false
+	gem "letter_opener"
 end
 
 # Gems used only for assets and not required
@@ -58,11 +61,11 @@ gem 'cancan'
 # Gems introducing new Models
 gem 'acts-as-taggable-on'
 gem 'unread'
-gem 'merit'
+gem 'public_activity'
 
 # Usability and UI
 gem 'liquid'
-gem 'dotiw'
+#gem 'dotiw'
 gem 'country_select'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
@@ -70,3 +73,6 @@ gem 'friendly_id', '~> 4.0.10.1'
 gem 'bootstrap_form'
 gem 'bootstrap-sass', "~> 3.1.1.0"
 gem 'rinku'
+gem 'premailer-rails'
+gem 'nokogiri'
+gem "social-buttons", '~> 0.3'

@@ -18,20 +18,44 @@ def wikify( text )
 	text.gsub(r){link_to $2||$1,wiki_page_path($1)}
 end
 
+def render_mentions( text )
+	r = /(^|\s)@(\w*)(\s|\z|$)/
+	text.gsub(r){$1+(User.find_by_username($2) ? (link_to "@#{$2}",user_path($2)) : "@#{$2}" )+$3}
+end
+
 def admin_notifications_count
-	m = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
-	u = @users_count = User.unread_by(current_user).count
-	count = m+u
+	mindlogs_count = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
+	reports_count = Report.where(reportable_type: "Mindlog").count('reportable_id',distinct: true)
+	users_count = User.unread_by(current_user).count
+	comics_count = Comic.where("status != ?",'published').count
+    channel_items_count = ChannelItem.where(item_type:"Mindlog", status:"pending").count
+	count = mindlogs_count+users_count+comics_count+channel_items_count+reports_count
 	count == 0 ? nil : count
 end
 
 def notifications_count
-	count = Notification.where(:user_id=>current_user.id).pluck(:counter).sum
+	count = PublicActivity::Activity.where(:recipient_id => current_user.id,read: false).count
 end
 
 def subscriptions_count
 	count = current_user.subscriptions.where(counter:1).count
 	return nil if count == 0
+end
+
+def messages_count
+	Message.where(recipient_id: current_user.id, read: nil).count
+end
+
+def get_rank(user)
+	(User.order('points desc').index(user)+1).ordinalize
+end
+
+def dotiw(time)
+	distance_of_time_in_words(Time.now, time, true, { :highest_measure_only => true })
+end
+
+def time_ago time, append = ' ago'
+  return time_ago_in_words(time).gsub(/about|less than|almost|over/, '').strip.capitalize << append
 end
 
 end

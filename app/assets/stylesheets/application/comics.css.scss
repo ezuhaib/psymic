@@ -1,0 +1,16 @@
+@import 'theme';
+
+.comic span{
+	position: absolute;
+	left: 30px;
+	top: 10px;
+	width: 190px;
+	text-align: center;
+	font-size: 20px;
+}
+
+.comic img{ opacity: 0.8; transition: opacity 0.4s ease-out;}
+.comic img:hover{
+	opacity: 1;
+	filter: saturate(20%);
+}

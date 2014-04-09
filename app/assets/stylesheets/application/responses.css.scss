@@ -1,14 +1,14 @@
 .type-explanation{background-color: #FFFFB3;}
 .type-explanation:before{content:"explanation";background: #CC9900;}
-.type-explanation{.text-light,.text-light a{color:#CC9900;}}
+.type-explanation{.text-lighter,.text-lighter a{color:#CC9900;}}
 
 .type-solution{background-color: #CED6FF;}
 .type-solution:before{content:"solution";background: #3399CC;}
-.type-solution{.text-light,.text-light a{color:#3399CC;}}
+.type-solution{.text-lighter,.text-lighter a{color:#3399CC;}}
 
 .type-critique{background-color: #FFE6E6;}
 .type-critique:before{content:"critique";background: #990033;}
-.type-critique{.text-light,.text-light a{color:#990033;}}
+.type-critique{.text-lighter,.text-lighter a{color:#990033;}}
 
 .type-general , .type-story{background-color: #F2F2F2;}
 

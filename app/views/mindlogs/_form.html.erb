@@ -1,10 +1,9 @@
-<%= javascript_include_tag 'selectize.min','mindlog_edit_selectize' %>
-<%= stylesheet_link_tag 'selectize.psymic' %>
-
 <%= bootstrap_form_for @mindlog , style: :horizontal do |f| %>
-<%= f.text_field :title , placeholder: "Better be a statement than phrase"%>
+<%= f.text_field :title , maxlength: 85, placeholder: "Better be a statement than phrase"%>
 <%= f.text_area :description , label: :Details ,size:'24x4' , placeholder:"Minimum 40 characters." %>
 <%= f.text_field :topic_list , label: :Tags %>
+<%= f.hidden_field :channel_id , value: params[:channel] %>
+
 <% if can? :moderate , @mindlog %><%= f.text_field :status %><% end %>
 <%= f.form_group do %>
 	<%= f.submit (@mindlog.new_record? ? :Publish : :Update) , class:"btn btn-themed" %>
@@ -17,3 +16,6 @@
 <% end %>
 <% end %>
 
+<%# The Includes %>
+<%= javascript_include_tag 'selectize.min','mindlog_form_functions' %>
+<%= stylesheet_link_tag 'selectize.psymic' %>

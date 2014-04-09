@@ -1,0 +1,13 @@
+<h2 class="pad-15 bg-themed-light">
+	<%= link_to @update.title, update_url(@update) %>
+</h2>
+
+<p>
+<%= @update.body.html_safe %>
+</p>
+
+<p class="text-foot">
+	You may opt-out of email notifications <%= link_to "here", edit_user_registration_url %>.
+</p>
+
+<%= stylesheet_link_tag "mail/common" %>

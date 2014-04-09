@@ -5,8 +5,8 @@
 
     <%= f.text_field :title %>
     <%= f.text_area :body , size:"25x6" %>
-    <%= f.text_field :all_of_these , label: "Tags" , help: "Content tagged with all of above shall be selected" %>
     <%= f.file_field :cover , help: "Must be atleast 730x200px and less than 5MB" %>
+    <%= f.file_field :icon , help: "Must be atleast 128x128px and pre-cropped" %>
     <%= f.form_group do %>
     	<%= f.submit :Submit , class:"btn btn-themed" %>
     	<% unless @channel.cover.blank? || @channel.new_record?%>

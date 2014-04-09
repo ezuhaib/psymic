@@ -1,0 +1,13 @@
+<div class="head"><h3>Add this mindlog to a channel</h3></div>
+
+<p>Select the channel you wish to add this mindlog to. Please note that content is not immediately added, rather awaits moderator approval before going public on channels.</p></br>
+<%= form_tag controller: :channels , action: :add_item do %>
+	<%= hidden_field_tag :item_type , "Mindlog" %>
+	<%= hidden_field_tag :item_id , @mindlog.id %>
+	<%= text_field_tag :channel_id , nil, placeholder:"Search for channel" , class:"form-control" %></br>
+	<%= submit_tag :Submit , class:"btn btn-success" %>
+<% end %>
+
+<%# The Includes %>
+<%= javascript_include_tag 'selectize.min','channels_selectize' %>
+<%= stylesheet_link_tag 'selectize.psymic' %>

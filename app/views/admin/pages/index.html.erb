@@ -1,18 +1,20 @@
-<% @title = "Admin" %>
-<h1>Welcome to Psymic Admin</h1>
-<p>Contact the sysadmin if you need specifid tasks done which cannot be handled using this front-end.</p>
+<div class="head head-dark">
+<h1>Psymic Admin</h1>
+</div>
+
+<p>Contact the sysadmin if you need specific tasks done which cannot be handled using this front-end.</p>
 
 <table class="table table-striped">
 
 <tr>
-<td></td>
+<td><span class="badge bg-themed"><%= @reports_count %></td>
 <td class='col-lg-3'><%= link_to 'Reports' , admin_reports_index_path %></td>
 <td class='col-lg-9'>Community reports over quality of posted content</td>
 </tr>
 
 <tr>
 <td><span class="badge bg-themed"><%= @users_count %></td>
-<td><%= link_to 'Users' , users_path %></td>
+<td><%= link_to 'Users' , admin_users_path %></td>
 <td>List of all current Psymic Users</td>
 </tr>
 
@@ -20,6 +22,18 @@
 <td><span class="badge bg-themed"><%= @mindlogs_count %></span></td>
 <td><%= link_to 'Mindlogs' , moderation_queue_mindlogs_path %></td>
 <td>Mindlogs awaiting moderation</td>
+</tr>
+
+<tr>
+<td><span class="badge bg-themed"><%= @comics_count %></span></td>
+<td><%= link_to 'Comics' , admin_comics_path %></td>
+<td>Comics awaiting moderation</td>
+</tr>
+
+<tr>
+<td><span class="badge bg-themed"><%= @channel_items_count %></span></td>
+<td><%= link_to 'Channel Items' , admin_channel_items_path %></td>
+<td>Pending submissions for channels</td>
 </tr>
 
 </table>

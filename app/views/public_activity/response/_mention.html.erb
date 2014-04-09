@@ -1,0 +1,8 @@
+<%= link_to a.owner.username , a.owner %> 
+mentioned you in his response 
+
+<% if !a.trackable or !a.trackable.mindlog %>
+	which has since been deleted
+<% else %>
+	at <%= link_to a.trackable.mindlog.title , mindlog_path(a.trackable.mindlog,response: a.trackable.id) %>
+<% end %>

@@ -11,36 +11,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140303163845) do
+ActiveRecord::Schema.define(:version => 20140409104541) do
 
-  create_table "badges_sashes", :force => true do |t|
-    t.integer  "badge_id"
-    t.integer  "sash_id"
-    t.boolean  "notified_user", :default => false
-    t.datetime "created_at"
+  create_table "activities", :force => true do |t|
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "key"
+    t.text     "parameters"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "mailed",         :default => false
+    t.boolean  "read",           :default => false
   end
 
-  add_index "badges_sashes", ["badge_id", "sash_id"], :name => "index_badges_sashes_on_badge_id_and_sash_id"
-  add_index "badges_sashes", ["badge_id"], :name => "index_badges_sashes_on_badge_id"
-  add_index "badges_sashes", ["sash_id"], :name => "index_badges_sashes_on_sash_id"
+  add_index "activities", ["owner_id", "owner_type"], :name => "index_activities_on_owner_id_and_owner_type"
+  add_index "activities", ["read", "mailed"], :name => "index_activities_on_read_and_mailed"
+  add_index "activities", ["recipient_id", "recipient_type"], :name => "index_activities_on_recipient_id_and_recipient_type"
+  add_index "activities", ["trackable_id", "trackable_type"], :name => "index_activities_on_trackable_id_and_trackable_type"
 
-  create_table "cargo_wiki_articles", :force => true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.integer  "author_id"
-    t.boolean  "published",  :default => true
+  create_table "channel_items", :force => true do |t|
+    t.string   "item_type"
+    t.integer  "item_id"
+    t.integer  "channel_id"
+    t.string   "status",       :default => "pending"
+    t.integer  "submitter_id"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
-  create_table "cargo_wiki_users", :force => true do |t|
-    t.string   "username"
-    t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.string   "auth_token"
-    t.string   "role"
-  end
+  add_index "channel_items", ["channel_id"], :name => "index_channel_items_on_channel_id"
+  add_index "channel_items", ["item_type", "item_id"], :name => "index_channel_items_on_item_type_and_item_id"
 
   create_table "channels", :force => true do |t|
     t.string   "title"
@@ -53,6 +57,24 @@ ActiveRecord::Schema.define(:version => 20140303163845) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
+  end
+
+  create_table "comics", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.integer  "likes_count",        :default => 0
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.string   "comic_file_name"
+    t.string   "comic_content_type"
+    t.integer  "comic_file_size"
+    t.datetime "comic_updated_at"
+    t.string   "status",             :default => "unapproved"
+    t.integer  "mindlog_id"
   end
 
   create_table "comments", :force => true do |t|
@@ -95,64 +117,44 @@ ActiveRecord::Schema.define(:version => 20140303163845) do
     t.integer  "likeable_id"
   end
 
-  create_table "merit_actions", :force => true do |t|
+  create_table "messages", :force => true do |t|
+    t.text     "body"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.boolean  "read"
+    t.boolean  "mailed"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "pairing"
+  end
+
+  add_index "messages", ["pairing"], :name => "index_messages_on_pairing"
+  add_index "messages", ["read", "mailed"], :name => "index_messages_on_read_and_mailed"
+  add_index "messages", ["sender_id", "recipient_id"], :name => "index_messages_on_sender_id_and_recipient_id"
+
+  create_table "mindlog_ratings", :force => true do |t|
+    t.integer  "mindlog_id"
     t.integer  "user_id"
-    t.string   "action_method"
-    t.integer  "action_value"
-    t.boolean  "had_errors",    :default => false
-    t.string   "target_model"
-    t.integer  "target_id"
-    t.boolean  "processed",     :default => false
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-  end
-
-  create_table "merit_activity_logs", :force => true do |t|
-    t.integer  "action_id"
-    t.string   "related_change_type"
-    t.integer  "related_change_id"
-    t.string   "description"
-    t.datetime "created_at"
-  end
-
-  create_table "merit_score_points", :force => true do |t|
-    t.integer  "score_id"
-    t.integer  "num_points", :default => 0
-    t.string   "log"
-    t.datetime "created_at"
-  end
-
-  create_table "merit_scores", :force => true do |t|
-    t.integer "sash_id"
-    t.string  "category", :default => "default"
+    t.integer  "rating"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "mindlogs", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "user_id"
     t.text     "status"
-    t.integer  "reports_counter"
     t.string   "workflow_state"
-    t.integer  "likes_count",     :default => 0
-  end
-
-  create_table "notifications", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "counter"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "text"
-    t.string   "tag"
-    t.string   "scope"
+    t.integer  "rating_percent", :default => 0
   end
 
   create_table "read_marks", :force => true do |t|
     t.integer  "readable_id"
-    t.integer  "user_id",                     :null => false
-    t.string   "readable_type", :limit => 20, :null => false
+    t.integer  "user_id",       :null => false
+    t.string   "readable_type", :null => false
     t.datetime "timestamp"
   end
 
@@ -189,34 +191,6 @@ ActiveRecord::Schema.define(:version => 20140303163845) do
     t.integer "user_id"
   end
 
-  create_table "sashes", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "searchjoy_searches", :force => true do |t|
-    t.string   "search_type"
-    t.string   "query"
-    t.string   "normalized_query"
-    t.integer  "results_count"
-    t.datetime "created_at"
-    t.integer  "convertable_id"
-    t.string   "convertable_type"
-    t.datetime "converted_at"
-  end
-
-  add_index "searchjoy_searches", ["convertable_id", "convertable_type"], :name => "index_searchjoy_searches_on_convertable_id_and_convertable_type"
-  add_index "searchjoy_searches", ["created_at"], :name => "index_searchjoy_searches_on_created_at"
-  add_index "searchjoy_searches", ["search_type", "created_at"], :name => "index_searchjoy_searches_on_search_type_and_created_at"
-  add_index "searchjoy_searches", ["search_type", "normalized_query", "created_at"], :name => "index_searchjoy_searches_on_search_type_and_normalized_query_an"
-
-  create_table "stasus", :force => true do |t|
-    t.string   "title"
-    t.string   "colour"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
     t.string   "subscribable_type"
@@ -243,6 +217,14 @@ ActiveRecord::Schema.define(:version => 20140303163845) do
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
+
+  create_table "updates", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                               :null => false
@@ -271,8 +253,8 @@ ActiveRecord::Schema.define(:version => 20140303163845) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "sash_id"
-    t.integer  "level",                                :default => 0
+    t.float    "points"
+    t.datetime "last_active_at"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

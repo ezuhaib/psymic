@@ -45,11 +45,14 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
+    authorize! :create , @commentable => Comment
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
-    authorize! :create , @commentable => Comment
+    @mentions = extract_mentions( @comment.body )
     respond_to do |format|
       if @comment.save
+        @comment.create_activity :create_on_response , recipient: @comment.commentable.user , owner: current_user unless @comment.commentable.user == current_user
+        @comment.notify_mentions(@mentions) if @mentions
         format.html { redirect_to :back, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
         format.js #added

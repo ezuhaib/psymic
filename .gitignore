@@ -14,14 +14,13 @@
 /log/*.log
 /tmp
 
-#Database configuration
-/config/database.yml*
-
-#email configuration
-/config/initializers/setup_mail.rb
-
 #Precompiled assets
 /public/assets
 /public/system
+/public/sitemap.xml.gz
 
-/config/initializers/secret_token.rb
+#Settings
+/config/local_env.yml
+/config/deploy.rb
+/config/deploy/production.rb
+/config/unicorn.rb

@@ -12,7 +12,7 @@
 	<% if current_user %>
 		<div id="btn_container" class="pull-right">
 			<%= link_to notifications_path do %>
-				<span id="notifics" class="badge <%= "bg-red" if notifications_count %>"><%= notifications_count %></span><% end %>
+				<span id="notifics" class="badge <%= "bg-red" if notifications_count > 0 %>"><%= notifications_count %></span><% end %>
 
 		<div id="collapsing_button" class="pull-right pull-right-xs">
 
@@ -29,12 +29,18 @@
 	    		</li>
 
 		    	<li role="presentation">
+			      	<%= link_to messages_path do %>
+		      			Messages <%= content_tag :span, messages_count, class: 'badge bg-themed' %>
+		      		<% end %>
+	    		</li>
+
+	    		<li role="presentation" class="divider"></span></li>
+
+		    	<li role="presentation">
 		      	<%= link_to subscriptions_path do %>
 		      		Watchlist <%= content_tag :span, subscriptions_count, class: 'badge bg-themed' %>
 		      	<% end %>
 		    	</li>
-
-		    	<li role="presentation" class="divider"></span></li>
 
 		    	<li role="presentation">
 		    		<%= link_to "Profile" , current_user %>
@@ -61,15 +67,16 @@
 <%# Primary Links %>
 <ul id="primary_links">
 	<% if !current_user %>
-		<li><%= link_to "Login/Join" , new_user_session_path %></li>
+		<li><%= link_to "Login/Join" , new_user_session_path , class:"btn btn-themed" %></li>
 	<% end %>
-	<li><%= link_to "Mindlogs" , mindlogs_path %></li>
 	<li><%= link_to "Channels" , channels_path %></li>
+	<li><%= link_to "Comics" , comics_path %></li>
 </ul>
 
 <%# Secondary %>
 <ul class="bottom-links text-right pull-right">
 	<% if can? :read , Feedback%><li><%= link_to "Meta" , meta_feedbacks_path %></li><% end %>
+	<%= link_to "Updates" , updates_path %>
 	<% if can? :backstage , Feedback%><li><%= link_to "Backstage" , admin_backstage_path %></li><% end %>
 	<li><%= link_to "Help Center" , wiki_page_path(:help) %></li>
 </ul>
