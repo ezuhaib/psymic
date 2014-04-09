@@ -116,6 +116,10 @@ def after_confirmation
 UserMailer.registration_confirmation(self).deliver
 end
 
+def before_create
+  self.username = self.username.downcase
+end
+
 ################################
 # OPTIONS
 ################################

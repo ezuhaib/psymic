@@ -145,7 +145,8 @@ get 'tag::tag' , to: 'tags#show' , as: :tag
 devise_for :user,
 :path => 'account',
 :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
-resources :users do
+resources :users,
+  :constraints => { :id => /[^\/]+|[^\/]+/ } do
   collection do
     get 'autocomplete'
   end
