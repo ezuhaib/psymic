@@ -4,13 +4,13 @@ lock '3.1.0'
 set :application, 'psymic'
 set :repo_url, 'git@github.com:ezuhaib/psymic.git'
 
-set :linked_files, %w{config/local_env.yml}
+set :linked_files, %w{config/local_env.yml config/unicorn.rb}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
 set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :rails_env,       "production"
 
 set :migrate_target,  :current
-set :ssh_options,     { forward_agent: true , port:ENV["SSH_PORT"]}
+set :ssh_options,     { forward_agent: true , port:62062}
 
 namespace :deploy do
 
