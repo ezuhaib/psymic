@@ -5,7 +5,8 @@ class PagesController < ApplicationController
         @page_title = "Homepage"
         @mindlogs_count = Mindlog.published.count
       else
-        redirect_to controller: 'mindlogs', action: 'index'
+        flash[error] = flash.now[:error]
+        redirect_to mindlogs_path
       end
   end
 

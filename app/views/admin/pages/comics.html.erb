@@ -8,7 +8,7 @@
 <th>Status</th>
 
 <% @comics.each do |c| %><tr>
-<td class="col-sm-7"><%= link_to c.caption , c %></td>
+<td class="col-sm-7"><%= link_to c.title , c %></td>
 <td><%= dotiw(c.created_at) %> ago</td>
 <td><%= c.status %></td>
 </tr><% end %>

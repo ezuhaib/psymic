@@ -65,7 +65,7 @@ gem 'public_activity'
 
 # Usability and UI
 gem 'liquid'
-gem 'dotiw'
+#gem 'dotiw'
 gem 'country_select'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'

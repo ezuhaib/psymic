@@ -18,9 +18,18 @@
 	</div>
 </ul>
 
-<ul id="tag_list">
-	<% @mindlog.topic_list.each do |t| %>
-	<li><%= link_to "##{t}" , tag_path(t) %></li>
-	<% end %>
-</ul>
+<% if @channels.any? %>
+	<div id="channels">
+		<h4 class="prefix">Featured in</h4>
+		<% @channels.each do |c| %>
+			<%= link_to c , style:"line-height:20px" do %>
+				<%= image_tag c.icon(:mini) , class: "icon" %>
+				<%= c.title %></br>
+			<% end %>
+		<% end %>
+	</div>
+<% end %>
+
+<%= link_to "Add to Channel" , channels_mindlog_path , class:"btn btn-sm btn-default mar-t-10" %>
+
 <% end %>

@@ -1,0 +1,12 @@
+Your submitted mindlog 
+<% if a %>
+	<%= link_to a.trackable.title, a.trackable %> 
+<% else %>
+	<span class="text-lighter">(now removed)</span>
+<% end %>
+was accepted in the channel: 
+<% if a.owner %>
+	<%= link_to a.owner.title , a.owner %>
+<% else %>
+	<span class="text-lighter">(removed)</span>
+<% end %>

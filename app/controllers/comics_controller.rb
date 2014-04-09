@@ -9,7 +9,7 @@ class ComicsController < ApplicationController
   # GET /comics/1.json
   def show
     @comic = Comic.find(params[:id])
-
+    authorize! :read_unpublished , @comic if @comic.status != "published"
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @comic }
@@ -56,14 +56,13 @@ class ComicsController < ApplicationController
   def update
     @comic = Comic.find(params[:id])
     authorize! :update , @comic
-    respond_to do |format|
-      if @comic.update_attributes(params[:comic])
-        format.html { redirect_to @comic, notice: 'Comic was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @comic.errors, status: :unprocessable_entity }
-      end
+    @comic.assign_attributes(params[:comic])
+    @just_published = true if @comic.status_changed? and @comic.status == "published"
+    if @comic.save
+      @comic.create_activity :publish , recipient: @comic.user , owner: current_user if @just_published and @comic.user != current_user
+      redirect_to @comic, notice: 'Comic was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 

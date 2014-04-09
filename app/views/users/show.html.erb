@@ -34,7 +34,12 @@
 		<%= distance_of_time_in_words(Time.now,@user.dob, true,{:highest_measure_only=>true}) %> old <%= @user.gender %> from <%= @user.country %>
 	</b>
 	<%= @user.body %>
-	<% if can? :manage, :all %></br></br><b>email: </b><%= @user.email %></br><% end %>
+	<br></br><b>Last active: 
+		</b><%= @user.last_active_at ? time_ago(@user.last_active_at) : "Never" %></br>
+	<% if can? :admin, User %>
+		<b>email: </b><%= @user.email %></br>
+		<b>Signin Count : </b><%= @user.sign_in_count %></br>
+	<% end %>
 
 	<% if @user.mindlogs.any? %>
 		<h3>Latest Mindlogs
@@ -46,7 +51,7 @@
 			<% @mindlogs.each do |m| %>
 				<tr>
 				<td><%= link_to m.title, m %></td>
-				<td><%= distance_of_time_in_words(Time.now,m.created_at,true,highest_measure_only:true) %> ago</td>
+				<td><%= time_ago(m.created_at) %></td>
 				</tr>
 			<% end %>
 		</table>
@@ -54,4 +59,27 @@
 		<h4>User never posted a mindlog</h4>
 	<% end %>
 
+	<% if @user == current_user %>
+	<h3>Pending Content</h3>
+
+	<% if @pending_mindlogs.blank? and @pending_comics.blank? %>
+		<p class="well">None</p>
+	<% else %>
+		<table class="table table-striped">
+
+			<th>Title</th>
+			<th>Status</th>
+
+			<% @pending_mindlogs.each do |m| %><tr>
+				<td><span class="badge bg-brown">MINDLOG</span> <%= link_to m.title, m %></td>
+				<td><%= m.workflow_state %></td>
+			</tr><% end %>
+
+			<% @pending_comics.each do |c| %><tr>
+				<td><span class="badge bg-blue">COMIC</span> <%= link_to c.title, c %></td>
+				<td><%= c.status %></td>
+			</tr><% end %>
+
+		</table>
+	<% end end %>
 </div>

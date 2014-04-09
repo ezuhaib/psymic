@@ -5,6 +5,7 @@ class Admin::PagesController < ApplicationController
     @mindlogs_count = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
     @users_count = User.unread_by(current_user).count
     @comics_count = Comic.where("status != ?",'published').count
+    @channel_items_count = ChannelItem.where(item_type:"Mindlog", status:"pending").count
   end
 
   def backstage
@@ -28,6 +29,11 @@ class Admin::PagesController < ApplicationController
     @page_title = "Comics Moderation"
     authorize! :moderate , Comic
     @comics = Comic.where("status != ?",'published')
+  end
+
+  def channel_items
+    authorize! :moderate, Channel
+    @items = ChannelItem.where(item_type:"Mindlog", status:"pending").page(params[:page])
   end
 
 end

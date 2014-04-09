@@ -7,7 +7,7 @@
 <% @comics.each do |comic| %>
   <div class="col-sm-4 comic">
     <%= link_to (image_tag "psymi-thumbnail.jpg") , comic %>
-    <span><%= comic.caption %></span>
+    <span><%= comic.title %></span>
   </div>
 <% end %>
 

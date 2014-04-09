@@ -10,14 +10,16 @@ has_many :responses , :dependent => :destroy
 has_many :reports , :as=> :reportable , :dependent=> :destroy
 has_many :subscriptions , :as=> :subscribable , :dependent =>:destroy
 has_many :mindlog_ratings, dependent: :destroy
+has_many :channel_items , as: :item
+has_many :channels , through: :channel_items , conditions: ["channel_items.status = ?",'approved']
 scope :published, where(workflow_state: "published")
 scope :queued, -> { where(workflow_state: ["unpublished","awaiting_review"]) }
 
 #############################
 # ATTRIBUTES
 #############################
-attr_accessible :description, :title , :topic_list , :status, :workflow_state, :review , :rating_percent
-attr_accessor :review
+attr_accessible :description, :title , :topic_list , :status, :workflow_state, :review , :rating_percent , :channel_id
+attr_accessor :review , :channel_id
 
 #############################
 # VALIDATIONS
@@ -27,15 +29,16 @@ validates :description , :presence => 'true' , :length=> {:minimum=> 40}
 validates_presence_of :user_id
 
 #############################
-# WORKFLOW
+# CALLBACKS
 #############################
-def state(state_name)
-	self.update_attributes!(workflow_state:state_name)
+after_create :ping_channel
+
+def ping_channel
+	if self.channel_id && Channel.find(channel_id).present?
+		ChannelItem.create(channel_id: self.channel_id,item_type:"Mindlog",item_id:self.id,submitter_id:self.user_id)
+	end
 end
 
-def state?(state_name)
-	self.workflow_state == state_name.to_s
-end
 #############################
 # SEARCHKICK INTEGRATION
 #############################
@@ -56,6 +59,14 @@ include PublicActivity::Common
 #############################
 # INSTANCE METHODS
 #############################
+def state(state_name)
+	self.update_attributes!(workflow_state:state_name)
+end
+
+def state?(state_name)
+	self.workflow_state == state_name.to_s
+end
+
 def featured?
 	FeaturedMindlog.find_by_mindlog_id(self.id).present?
 end

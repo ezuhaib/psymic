@@ -27,7 +27,8 @@ def admin_notifications_count
 	mindlogs_count = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
 	users_count = User.unread_by(current_user).count
 	comics_count = Comic.where("status != ?",'published').count
-	count = mindlogs_count+users_count+comics_count
+    channel_items_count = ChannelItem.where(item_type:"Mindlog", status:"pending").count
+	count = mindlogs_count+users_count+comics_count+channel_items_count
 	count == 0 ? nil : count
 end
 
@@ -50,6 +51,10 @@ end
 
 def dotiw(time)
 	distance_of_time_in_words(Time.now, time, true, { :highest_measure_only => true })
+end
+
+def time_ago time, append = ' ago'
+  return time_ago_in_words(time).gsub(/about|less than|almost|over/, '').strip.capitalize << append
 end
 
 end

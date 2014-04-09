@@ -1,8 +1,8 @@
 <%= bootstrap_form_for @comic , style: :horizontal do |f| %>
     <%= f.file_field :comic %>
-    <%= f.text_field :caption , maxlength: 38 %>
+    <%= f.text_field :title , maxlength: 38 %>
     <%= f.select :mindlog_id , {@comic.mindlog.try(:title) => @comic.try(:mindlog_id)} %>
-    <%= f.form_group do %><%= f.check_box :published if can? :moderate , Comic %><% end %>
+    <%= if can? :moderate , Comic then f.form_group do %><%= f.check_box :published %><% end end %>
     <%= f.form_group do %><%= f.submit :submit %><% end %>
 <% end %>
 

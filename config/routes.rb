@@ -13,9 +13,14 @@ Psymic::Application.routes.draw do
   end
 
   resources :channels do
+    collection do
+      get 'autocomplete'
+    end
     member do
+      get 'queue/:item' , action: :item , as: :item
+      get 'queue'
       get 'mindlogs'
-      get 'mindlogs/page/:page', :action => :mindlogs
+      get 'mindlogs/page/:page', action: :mindlogs
     end
   end
   get 'channels/:id/edit/crop', to: 'channels#crop' , as: "crop_cover"
@@ -54,6 +59,7 @@ Psymic::Application.routes.draw do
   end
 
   namespace :admin do
+    get 'channel_items' => 'pages#channel_items' , as: :channel_items
     get 'users'=> 'pages#users' , as: :users
     get 'backstage' => 'pages#backstage' , as: :backstage
     get 'comics' => 'pages#comics' , as: :comics
@@ -84,13 +90,14 @@ Psymic::Application.routes.draw do
   resources :mindlogs , except: :index do
     collection do
       post 'import'
-      get 'autocomplete' # <= add this line
+      get 'autocomplete'
       get 'autocomplete_tags'
       get 'moderation_queue'
       get 'page/:page', :action => :index # for friendly pagination urls
     end
 
     member do
+      get 'channels/add' , action: 'channel_selection' , as: 'channels'
       get 'report'
       post 'report'
       get 'subscribe'

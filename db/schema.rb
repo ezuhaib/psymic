@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140407143300) do
+ActiveRecord::Schema.define(:version => 20140408121024) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -33,6 +33,19 @@ ActiveRecord::Schema.define(:version => 20140407143300) do
   add_index "activities", ["recipient_id", "recipient_type"], :name => "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], :name => "index_activities_on_trackable_id_and_trackable_type"
 
+  create_table "channel_items", :force => true do |t|
+    t.string   "item_type"
+    t.integer  "item_id"
+    t.integer  "channel_id"
+    t.string   "status"
+    t.integer  "submitter_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "channel_items", ["channel_id"], :name => "index_channel_items_on_channel_id"
+  add_index "channel_items", ["item_type", "item_id"], :name => "index_channel_items_on_item_type_and_item_id"
+
   create_table "channels", :force => true do |t|
     t.string   "title"
     t.string   "slug"
@@ -44,11 +57,14 @@ ActiveRecord::Schema.define(:version => 20140407143300) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
   end
 
   create_table "comics", :force => true do |t|
     t.string   "caption"
-    t.string   "mindlog_id"
     t.integer  "user_id"
     t.integer  "likes_count",        :default => 0
     t.datetime "created_at",                                   :null => false
@@ -58,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20140407143300) do
     t.integer  "comic_file_size"
     t.datetime "comic_updated_at"
     t.string   "status",             :default => "unapproved"
+    t.integer  "mindlog_id"
   end
 
   create_table "comments", :force => true do |t|
@@ -238,6 +255,7 @@ ActiveRecord::Schema.define(:version => 20140407143300) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.float    "points"
+    t.datetime "last_active_at"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

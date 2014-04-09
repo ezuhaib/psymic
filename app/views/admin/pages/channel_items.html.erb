@@ -1,0 +1,25 @@
+<div class="head"><h2>Pending Channel Items</h2></div>
+
+<p>Please note that currently only submitted mindlogs are being displayed. Support for other content types such as comics shall be added later.</p>
+
+<table class="table table-striped">
+
+	<th>Title</th>
+	<th>Channel</th>
+	<th></th>
+
+	<% @items.each do |i| %><tr>
+	<td><%= link_to i.item.title , i.item %></td>
+	<td><%= link_to i.channel.title , i.channel %></td>
+	<td>
+		<%= link_to item_channel_path(i.channel, item:i.id,do:"approve") do %>
+			<span class="glyphicon glyphicon-ok"></span>
+		<% end %>
+
+		<%= link_to item_channel_path(i.channel, item:i.id,do:"reject") do %>
+			<span class="glyphicon glyphicon-remove"></span>
+		<% end %>
+	</td>
+	</tr><% end %>
+
+</table>

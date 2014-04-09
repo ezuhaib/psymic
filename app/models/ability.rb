@@ -54,12 +54,16 @@ class Ability
       end
       can :create , [Mindlog,Response,Comment,Feedback,Comic]
       can :authenticate , :psymic #checks if user logged in
+      can :read_unpublished , [Mindlog,Comic] do |x|
+        x.try(:user) == user
+      end
     end
 
     if user.role? "moderator"
       can :admin , :all #access to admin/ pages
-      can :moderate , [Mindlog, Comic] #allows featuring,publishing/unpublishing and setting status
+      can :moderate , [Mindlog,Comic] #allows featuring,publishing/unpublishing and setting status
       can :read , Report
+      can :read_unpublished , [Mindlog,Comic]
       can :update , :all
       can :destroy, :all
       can :backstage, Feedback

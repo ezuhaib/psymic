@@ -3,13 +3,14 @@ class User < ActiveRecord::Base
 ################################
 # ATTRIBUTES
 ################################
-attr_accessible :username, :email, :password, :password_confirmation, :remember_me , :gender , :dob , :body , :country, :login,:avatar, :points
+attr_accessible :username, :email, :password, :password_confirmation, :remember_me , :gender , :dob , :body , :country, :login,:avatar, :points, :last_active_at
 attr_accessor :login,:testing_key
 
 ################################
 # RELATIONS
 ################################
 has_many :mindlogs
+has_many :comics
 has_many :responses
 has_many :comments
 has_many :subscriptions
@@ -25,7 +26,7 @@ has_many :mindlog_ratings, dependent: :destroy
 
 # Add logic for male/female avatar or random avatars below
 def self.set_default_avatar
-  "avatars/:style/avatar_default.jpg"
+  "paperclip_defaults/users/avatars/:style/avatar_default.jpg"
 end
 
 def self.find_first_by_auth_conditions(warden_conditions)
@@ -98,6 +99,13 @@ validates_size_of :body , in: 40...1000
 validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 validates_attachment_size :avatar, in: 0..2000.kilobytes
 validates :avatar, :dimensions => { :width => 300, :height => 300 }
+validate :username_sanity
+
+def username_sanity
+  unless self.username.match(/\A[a-zA-Z0-9.]+\Z/)
+    errors.add(:username, "No space or symbols allowed (except period)")
+  end
+end
 
 ################################
 # CALLBACKS

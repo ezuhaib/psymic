@@ -19,6 +19,8 @@ class UsersController < ApplicationController
     authorize! :read , @user
     @page_title = "USER: #{@user.username}"
     @mindlogs = @user.mindlogs.published.limit(5)
+    @pending_mindlogs = @user.mindlogs.queued
+    @pending_comics = @user.comics.queued
   end
 
   def index

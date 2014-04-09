@@ -41,7 +41,9 @@ class MindlogsController < ApplicationController
   def show
     @mindlog = Mindlog.find(params[:id])
     @page_title = "Mindlog: #{@mindlog.title}"
+    @channels = @mindlog.channels
     authorize! :read , @mindlog
+    authorize! :read_unpublished , @mindlog if @mindlog.workflow_state != "published"
     if params[:response]
       @response = Response.find(params[:response])
       @page_title = "Mindlog: Single response to: #{@mindlog.title}"
@@ -128,7 +130,7 @@ class MindlogsController < ApplicationController
       @key = :publish if @prev_state == 'awaiting_review'
       @key = :update_and_publish if @changed and @prev_state == 'awaiting_review'
       if @key
-        @mindlog.create_activity @key , recipient: @mindlog.user , owner: current_user
+        @mindlog.create_activity @key , recipient: @mindlog.user , owner: current_user unless @mindlog.user == current_user
       end
       redirect_to @mindlog, notice: 'Mindlog was successfully updated.'
     else
@@ -243,4 +245,9 @@ end
       format.html {redirect_to @mindlog}
     end
   end
+
+  def channel_selection
+    @mindlog = Mindlog.find(params[:id])
+  end
+
 end

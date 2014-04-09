@@ -1,5 +1,8 @@
-<h1>Welcome to Psymic Admin</h1>
-<p>Contact the sysadmin if you need specifid tasks done which cannot be handled using this front-end.</p>
+<div class="head head-dark">
+<h1>Psymic Admin</h1>
+</div>
+
+<p>Contact the sysadmin if you need specific tasks done which cannot be handled using this front-end.</p>
 
 <table class="table table-striped">
 
@@ -25,6 +28,12 @@
 <td><span class="badge bg-themed"><%= @comics_count %></span></td>
 <td><%= link_to 'Comics' , admin_comics_path %></td>
 <td>Comics awaiting moderation</td>
+</tr>
+
+<tr>
+<td><span class="badge bg-themed"><%= @channel_items_count %></span></td>
+<td><%= link_to 'Channel Items' , admin_channel_items_path %></td>
+<td>Pending submissions for channels</td>
 </tr>
 
 </table>

@@ -184,3 +184,8 @@ li {margin-bottom: 4px;}
     a{color: $theme-color-light;padding:1px 3px;}
     a:hover,a.active{background-color: $theme-color;}
 }
+
+.icon{
+display: inline-block;
+vertical-align: bottom;
+}

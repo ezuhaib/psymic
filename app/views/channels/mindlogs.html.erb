@@ -1,7 +1,7 @@
 <%# HEADER %>
 <div id="cover" class="row mar-b-20">
 	<div class="head-overlay alt">
-		channel:<%= link_to @channel.title , @channel %>
+		channel: <%= link_to @channel.title , @channel %>
 		<% if can? :update , Channel %>
 			<%= link_to 'Edit', edit_channel_path(@channel) , class:"pull-right text-std" %>
 		<% end %>
@@ -9,7 +9,7 @@
 </div>
 
 <%# LEFT AREA %>
-<div class="col-sm-9">
+<% if @mindlogs.any? %>
 	<h3 class="mar-nil">Showing Mindlogs</h3>
 	<div class="mar-b-10">Page <%= params[:page] || 1 %></div>
 	<table class="table table-striped link-alt">
@@ -24,17 +24,15 @@
 	</table>
 	<%= paginate @mindlogs %>
 
-</div>
+<% else %>
 
+	<h2>None yet :'(</h2>
 
-<%# RIGHT AREA %>
-<div class="col-sm-2 col-sm-offset-1">
-	<div class="facets">
-	<h4 class="pull-right">Tags</h4>
-	<% @mindlogs.facets['tags_name']['terms'].each do |tag| %>
-		<% unless @channel.all_of_these.include? tag['term'] %>
-			<%= link_to "##{tag['term']} <b>(#{tag['count']})</b>".html_safe, tag_path(tag['term']) %></br>
-		<% end %>
-	<% end %>
+<% end %>
+
+<% content_for :r2 do %>
+	<div class="widget bg-dark pull-left">
+		<div class="lg"><%= link_to ("%02d" % @channel.mindlogs.count), mindlogs_channel_path(@channel) %></div>
+		<div class="suffix">mindlogs</div>
 	</div>
-</div>
+<% end %>

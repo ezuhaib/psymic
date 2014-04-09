@@ -21,9 +21,17 @@
 
 	<%# THE Responses and form %>
 	<div class="col-md-10">
-	<div id="response_form" class="row"><%= render 'responses/form' %></div>
-		<div id="responses" class="mar-l-m15"><%= render 'responses' %></div>
+		<div id="response_form" class="row"><%= render 'responses/form' %></div>
+			<div id="responses" class="mar-l-m15"><%= render 'responses' %></div>
+		</div>
 	</div>
+
+	<div class="center text-center text-lighter">
+	--Tags-- <ul class="list-unstyled list-inline">
+		<% @mindlog.topic_list.each do |t| %>
+			<li><%= link_to "#{t}" , tag_path(t) , class:"text-300" %></li>
+		<% end %>
+	</ul>
 	</div>
 <% end %>
 

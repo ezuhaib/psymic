@@ -20,8 +20,9 @@
   <%= f.password_field :password , placeholder:"At least 8 characters" %>
   <%= f.password_field :password_confirmation , label: "Retype Password", placeholder:"Just to be sure" %>
   <%= f.form_group :email_options ,label: { text: "Email options" } do %>
-      <%= f.check_box :email_on_new_response %>
-      <%= f.check_box :email_on_response_comment %></br>
+      <%= f.check_box :email_unread_notifications , label: "New Notifications" %>
+      <%= f.check_box :email_new_messages_count, label: "New Messages" %>
+      <%= f.check_box :email_site_updates, label: "Sitewide updates" %></br>
       <%= f.submit "Sign up" , class:"btn btn-success" %>
   <% end %>
 
