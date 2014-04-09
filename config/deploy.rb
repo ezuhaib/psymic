@@ -10,7 +10,7 @@ set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :rails_env,       "production"
 
 set :migrate_target,  :current
-set :ssh_options,     { forward_agent: true , port:62062}
+set :ssh_options, { port:62062 }
 
 namespace :deploy do
 
