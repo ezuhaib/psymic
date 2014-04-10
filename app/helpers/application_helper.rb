@@ -58,4 +58,8 @@ def time_ago time, append = ' ago'
   return time_ago_in_words(time).gsub(/about|less than|almost|over/, '').strip.capitalize << append
 end
 
+def title(title)
+	@page_title = title
+end
+
 end

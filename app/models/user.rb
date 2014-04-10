@@ -79,7 +79,7 @@ end
 # INTEGRATIONS
 ################################
 devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable
 acts_as_readable :on => :created_at
 acts_as_reader
 extend FriendlyId

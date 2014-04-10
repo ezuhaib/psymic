@@ -1,5 +1,3 @@
-<%= csrf_meta_tags %>
-
 <title><%= @page_title || "Psymic" %></title>
 <% if !@page_description.blank? %>
 	<meta name="description" content= "<%= @page_description.tr(?", ?') %>">

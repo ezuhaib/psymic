@@ -26,6 +26,6 @@
 	<div class="avatar">
 		<%= link_to (image_tag @user.avatar(:thumb)), edit_avatar_path %>
 	</div>
-	<%= link_to 'UPLOAD NEW', edit_avatar_path %></br>
-	<%= link_to 'MODIFY CROP', crop_avatar_path %>
+	<%= link_to 'UPLOAD NEW', edit_avatar_path(username:@user.username) %></br>
+	<%= link_to 'MODIFY CROP', crop_avatar_path(username:@user.username) unless @user.avatar.blank? %>
 </div>

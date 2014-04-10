@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :fetch_user , only: [:show,:edit,:update,:mindlogs,:activity]
-  before_filter :fetch_profile , only: [:avatar,:crop,:profile_edit,:update_avatar]
+  before_filter :fetch_profile , only: [:avatar,:crop,:profile_edit]
 
   def fetch_user
     @user = User.find_by_username(params[:id])
@@ -35,16 +35,19 @@ class UsersController < ApplicationController
 
   def avatar
     @page_title = "Edit avatar"
+    authorize! :update , @user
   end
 
   def update_avatar
-    if !params[:user]
+    @user = User.find_by_username(params[:user][:username])
+    authorize! :update , @user
+    if params[:commit] == "Upload" and !params[:user][:avatar]
       flash[:alert] = 'Please select an image file first'
       render 'avatar'
     elsif params[:user][:avatar] && @user.update_attributes(params[:user])
-      redirect_to action: :crop
+      redirect_to crop_avatar_path(username: @user.username)
     elsif params[:do] == 'crop' && @user.update_attributes(params[:user])
-      redirect_to edit_profile_path , notice:"Avatar successfully updated"
+      redirect_to edit_profile_path(username: @user.username) , notice:"Avatar successfully updated"
     else
       flash[:alert] = 'Some error occured'
       render 'avatar'
@@ -67,6 +70,11 @@ class UsersController < ApplicationController
 
   def crop
     @page_title = "Crop Avatar"
+    authorize! :update , @user
+    if @user.avatar.blank?
+      flash[:error] = "No avatar uploaded. So cannot crop"
+      redirect_to edit_avatar_path
+    end
   end
 
   def mindlogs
@@ -82,6 +90,7 @@ class UsersController < ApplicationController
   end
 
   def profile_edit
+    @page_title = "Editing Profile"
     render :edit
   end
 

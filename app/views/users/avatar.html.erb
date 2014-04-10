@@ -1,8 +1,14 @@
 <div class="head"><h2>Editing Avatar</h2></div>
 <div class="alert alert-info">
-You may crop the uploaded avatar to your taste after it gets uploaded</div>
+	You may crop the uploaded avatar to your taste after it gets uploaded
+</div>
+
+<% if @user != current_user %>
+<p class="well">You are uploading avatar to <%= link_to @user.username , @user %>'s profile</p>
+<% end %>
 
 <%= bootstrap_form_for @user , :url => update_avatar_url, html:{class:"col-sm-9"} do |f| %>
   <%= f.file_field :avatar , help:"Must be atleast 300x300px and less than 2MB" , hide_label:true %>
+  <%= f.hidden_field :username , value: @user.username %>
   <%= f.submit 'Upload' , class:"btn btn-success" %>
 <% end %>
