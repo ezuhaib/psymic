@@ -172,8 +172,19 @@ li {margin-bottom: 4px;}
 
 #vote_box {
     color: #fff;
+    height: 40px;
     background: #111;
-    padding: 7px 30px 7px 30px;
+    padding: 8px 30px 8px 15px;
+    margin: 0 -30px 0 -15px;
+}
+
+#like_box{
+    height: 40px;
+    background: #000;
+    margin: 0 -16px 0 -30px;
+    padding: 8px 15px 8px 0;
+    line-height: 22px;
+    border-right: 1px solid #444;
 }
 
 .mindlog-rating li{

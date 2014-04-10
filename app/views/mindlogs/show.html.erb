@@ -9,6 +9,9 @@
 	<%# Responses Counters and sorters etc %>
 	<div id="mindlog_responses" class="bg-white pull-left">
 	<div id="responses_links" class="col-md-2 text-right">
+		<div id="like_box">
+			<%= like_button 772050616139093 , layout: :button %>
+		</div>
 		<div class="hidden-sm hidden-xs"><div id="responses_count"><%= @mindlog.responses.count %></div><span>Responses</span></div>
 		<div id="response_filters"><ul>
 			<li><%= link_to "All", mindlog_path , class: active_if_filter('all') %></li>
@@ -21,9 +24,15 @@
 
 	<%# THE Responses and form %>
 	<div class="col-md-10">
-		<div id="response_form" class="row"><%= render 'responses/form' %></div>
-			<div id="responses" class="mar-l-m15"><%= render 'responses' %></div>
+
+		<div id="vote_box" class="position-relative">
+			<div id="vote_box_inner">
+				<%= render "vote_box" %>
+			</div>
 		</div>
+
+		<div id="response_form" class="row"><%= render 'responses/form' %></div>
+		<div id="responses" class="mar-l-m15"><%= render 'responses' %></div>
 	</div>
 
 	<div class="center text-center text-lighter">
@@ -32,6 +41,7 @@
 			<li><%= link_to "#{t}" , tag_path(t) , class:"text-300" %></li>
 		<% end %>
 	</ul>
+	</div>
 	</div>
 <% end %>
 
@@ -44,3 +54,9 @@ $(document).on("click",".pagination a", function(){
 	$(".pagination").html("<%= Helper.escape_js(image_tag "loading_mini.gif") %>")})
 
 </script>
+
+<style>
+.fb_edge_widget_with_comment span.fb_edge_comment_widget {
+left: -700px !important;
+}
+</style>
