@@ -178,8 +178,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    meta-tags (1.5.0)
-      actionpack
     meta_request (0.2.8)
       callsite
       rack-contrib
@@ -350,7 +348,6 @@ DEPENDENCIES
   kaminari-bootstrap (~> 3.0.1)
   letter_opener
   liquid
-  meta-tags
   meta_request
   nokogiri
   paperclip!
