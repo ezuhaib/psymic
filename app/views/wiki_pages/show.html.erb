@@ -1,13 +1,18 @@
-<div class="col-sm-12">
+<div class="head">
+<div class="row row-top bg-dark"><%= link_to "PSYMIC WIKI" , wiki_pages_path %></div>
 <h2>
 	<%= @wiki_page.title %>
 	<% if can? :update, WikiPage %>
-		<span class="pull-right"><%= link_to 'Edit', edit_wiki_page_path(@wiki_page),class:"btn btn-default" %></span>
+		<%= link_to 'Edit', edit_wiki_page_path(@wiki_page), class:"btn btn-default pull-right" %>
 	<% end %>
 </h2>
+</div>
 
-<div class="mar-t-20">
+<div class="col-sm-12">
 <%= wikify(@wiki_page.body).html_safe %>
 </div>
 
-</div>
+<% content_for :r2 do %>
+<b>Last Edited</b></br>
+<%= @wiki_page.updated_at.strftime("%B %d, %Y") %>
+<% end %>
