@@ -3,6 +3,7 @@ class Meta::FeedbacksController < ApplicationController
   # GET /feedbacks
   # GET /feedbacks.json
   def index
+    @page_title = "Psymic Meta"
     authorize! :read , Feedback
     @feedbacks = Feedback.not_backstage.order("created_at DESC").page(params[:page])
 

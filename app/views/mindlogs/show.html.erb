@@ -3,15 +3,28 @@
 <%# Main body %>
 <%= render 'mindlog_body' %>
 
+<div class="col-md-2 text-right">
+	<div id="fb_like">
+		<%= like_button 772050616139093 , layout: :button %>
+	</div>
+</div>
+
+<div class="col-md-10">
+
+	<div id="vote_box" class="position-relative">
+		<div id="vote_box_inner">
+			<%= render "vote_box" %>
+		</div>
+	</div>
+
+</div>
+
 <% if @responses.empty? %>
 	<%= render 'no_responses' %>
 <% else %>
 	<%# Responses Counters and sorters etc %>
 	<div id="mindlog_responses" class="bg-white pull-left">
 	<div id="responses_links" class="col-md-2 text-right">
-		<div id="like_box">
-			<%= like_button 772050616139093 , layout: :button %>
-		</div>
 		<div class="hidden-sm hidden-xs"><div id="responses_count"><%= @mindlog.responses.count %></div><span>Responses</span></div>
 		<div id="response_filters"><ul>
 			<li><%= link_to "All", mindlog_path , class: active_if_filter('all') %></li>
@@ -24,13 +37,6 @@
 
 	<%# THE Responses and form %>
 	<div class="col-md-10">
-
-		<div id="vote_box" class="position-relative">
-			<div id="vote_box_inner">
-				<%= render "vote_box" %>
-			</div>
-		</div>
-
 		<div id="response_form" class="row"><%= render 'responses/form' %></div>
 		<div id="responses" class="mar-l-m15"><%= render 'responses' %></div>
 	</div>

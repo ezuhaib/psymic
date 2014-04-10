@@ -10,7 +10,7 @@ class ChannelsController < ApplicationController
 
   def index
     @channels = Channel.order(:title).all
-    @page_title = "Channels"
+    @page_title = "Psymic Channels"
     authorize! :read , Channel
     respond_to do |format|
       format.html # index.html.erb

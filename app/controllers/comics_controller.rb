@@ -3,12 +3,14 @@ class ComicsController < ApplicationController
   # GET /comics.json
   def index
     @comics = Comic.where(status: "published").order("created_at DESC").page(params[:page]).per(15)
+    @page_title = "Psymic Comics"
   end
 
   # GET /comics/1
   # GET /comics/1.json
   def show
     @comic = Comic.find(params[:id])
+    @page_title = @comic.title
     authorize! :read_unpublished , @comic if @comic.status != "published"
     respond_to do |format|
       format.html # show.html.erb

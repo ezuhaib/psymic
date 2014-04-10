@@ -15,7 +15,7 @@ class UpdatesController < ApplicationController
   # GET /updates/1.json
   def show
     @update = Update.find(params[:id])
-    @page_title = "Update: #{@update.title}"
+    @page_title = @update.title
 
     respond_to do |format|
       format.html # show.html.erb

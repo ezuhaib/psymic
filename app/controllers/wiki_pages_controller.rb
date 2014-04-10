@@ -17,11 +17,12 @@ class WikiPagesController < ApplicationController
   # GET /wiki_pages/1.json
   def show
     @wiki_title = params[:id]
-    @page_title = @wiki_title.capitalize
     authorize! :read , WikiPage
     if @wiki_page.blank?
       @page_title = "Wiki page not found"
       render template:"wiki_pages/new_landing"
+    else
+      @page_title = @wiki_page.title
     end
   end
 

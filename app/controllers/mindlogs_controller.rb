@@ -5,8 +5,7 @@ class MindlogsController < ApplicationController
 
   def index
     authorize! :read , Mindlog
-    @page_title       = 'Mindlogs' if !current_user
-    @page_title       = "Home" if current_user
+    @page_title       = 'Psymic Mindlogs'
     @page_description = 'Mindlogs are logs of community-reported observations of human behavior.'
     if params[:sort] == "popular"
       @order = {likes_count: :desc}
@@ -40,7 +39,8 @@ class MindlogsController < ApplicationController
 
   def show
     @mindlog = Mindlog.find(params[:id])
-    @page_title = "Mindlog: #{@mindlog.title}"
+    @page_title = @mindlog.title
+    @page_description = @mindlog.description
     @channels = @mindlog.channels
     authorize! :read , @mindlog
     authorize! :read_unpublished , @mindlog if @mindlog.workflow_state != "published"
@@ -87,8 +87,8 @@ class MindlogsController < ApplicationController
 
   # GET /mindlogs/1/edit
   def edit
-    @page_title = "Editing mindlog"
     @mindlog = Mindlog.find(params[:id])
+    @page_title = "Editing '#{@mindlog.title}'"
     authorize! :update , @mindlog
   end
 

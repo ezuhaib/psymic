@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%= display_meta_tags :site => 'Psymic' %>
 	<%= analytics_init if Rails.env.production? %>
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= favicon_link_tag 'psymicon.ico' %>
-  	<%= csrf_meta_tags %>
-  	<meta property="og:image" content= "<%= URI.join(root_url, image_path('psymic_logo_og.jpg')) %>" >
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<%= render 'shared/meta_tags' %>
 </head>
 
 <body>

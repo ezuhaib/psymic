@@ -1,7 +1,7 @@
 class Admin::PagesController < ApplicationController
   def index
     authorize! :manage, :all
-    @page_title = "Admin"
+    @page_title = "Psymic Admin"
     @reports_count = Report.where(reportable_type: "Mindlog").count('reportable_id',distinct: true)
     @mindlogs_count = Mindlog.where(workflow_state: ['awaiting_review','unpublished']).count
     @users_count = User.unread_by(current_user).count
@@ -11,7 +11,7 @@ class Admin::PagesController < ApplicationController
 
   def backstage
   	authorize! :backstage, Feedback
-    @page_title = "Backstage"
+    @page_title = "Psymic Backstage"
     @feedback = Feedback.new
     @feedbacks = Feedback.backstage.order("created_at DESC").page(params[:page])
   end
@@ -33,6 +33,7 @@ class Admin::PagesController < ApplicationController
   end
 
   def channel_items
+    @page_title = "Channel Items"
     authorize! :moderate, Channel
     @items = ChannelItem.where(item_type:"Mindlog", status:"pending").page(params[:page])
   end
