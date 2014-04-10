@@ -10,7 +10,7 @@
 <% n = 0 %>
 <% @users.each do |u| %>
 <% n = n+1 %>
-<tr <% if u.unread?(current_user) %>class="success"<% end %>>
+<tr>
 <td><%= n %></td>
 <td><%= link_to u.username, u %></td>
 <td><%= distance_of_time_in_words(Time.now,u.created_at,true,{highest_measure_only:true}) %> ago</td>

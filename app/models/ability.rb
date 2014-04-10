@@ -36,6 +36,7 @@ class Ability
     can :read , [Mindlog,Response,Comment,User,Feedback,WikiPage,Channel,Comic]
 
     if user.username # authenticated users
+      can :read , Message
       can [:respond,:rate] , Mindlog
       can [:report,:subscribe,:unsubscribe] , Mindlog do |x|
         x.try(:user) != user
@@ -52,7 +53,7 @@ class Ability
       can :update , User do |u|
         u.try(:id) == user.id
       end
-      can :create , [Mindlog,Response,Comment,Feedback,Comic]
+      can :create , [Mindlog,Response,Comment,Feedback,Comic,Message]
       can :authenticate , :psymic #checks if user logged in
       can :read_unpublished , [Mindlog,Comic] do |x|
         x.try(:user) == user
@@ -71,8 +72,11 @@ class Ability
       can :publish , Mindlog
     end
 
+    # although admin has all permissions, exclusive permissions are
+    # still enlisted for reference
     if user.role? "admin"
       can :manage, :all
+      can [:update,:destroy] , :message
     end
 
   end

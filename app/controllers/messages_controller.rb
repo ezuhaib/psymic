@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     #using subquery because we need to call order twice, once for selection and then for true sorting
+    authorize! :read , Message
     @page_title  = "Messages"
     @message_ids = Message.select("DISTINCT ON(pairing) id")
                        .where("? IN (sender_id, recipient_id)", current_user.id)
@@ -17,6 +18,7 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+    authorize! :read , Message
     @page_title  = "Messaging with #{params[:username]}"
     @user = User.find_by_username(params[:username])
     @messages = Message.where(pairing: [current_user.id, @user.id].sort.join(","))
@@ -29,8 +31,8 @@ class MessagesController < ApplicationController
   # GET /messages/new
   # GET /messages/new.json
   def new
+    authorize! :create , Message
     @message = Message.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @message }
@@ -62,8 +64,8 @@ class MessagesController < ApplicationController
   # PUT /messages/1
   # PUT /messages/1.json
   def update
+    authorize! :update , Message
     @message = Message.find(params[:id])
-
     respond_to do |format|
       if @message.update_attributes(params[:message])
         format.html { redirect_to @message, notice: 'Message was successfully updated.' }
@@ -79,6 +81,7 @@ class MessagesController < ApplicationController
   # DELETE /messages/1.json
   def destroy
     @message = Message.find(params[:id])
+    authorize :destroy , Message
     @message.destroy
 
     respond_to do |format|

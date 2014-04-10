@@ -27,3 +27,7 @@ every 12.hours do
 	runner "User.send_notifications"
 	runner "User.send_messages"
 end
+
+every 1.day, at: '4:00 am' do
+  rake "-s sitemap:refresh"
+end
