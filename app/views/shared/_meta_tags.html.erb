@@ -5,7 +5,7 @@
 <% end %>
 
 <% @og_image ||= 'psymic_logo_og.png' %>
-<meta property="og:image" content= "<%= URI.join(root_url, @og_image) %>" >
+<meta property="og:image" content= "<%= URI.join(root_url, image_path(@og_image)) %>" >
 <meta property="fb:admins" content= "1297845733" />
 <meta property="fb:app_id" content= "772050616139093" />
 <meta property="og:title" content= "<%= @page_title %>" />
