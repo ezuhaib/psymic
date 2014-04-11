@@ -4,9 +4,8 @@
 	<meta property="og:description" content= "<%= @page_description.tr(?", ?') %>" />
 <% end %>
 
-<meta property="og:image" content= "<%= URI.join(root_url, image_path('psymic_logo_og.jpg')) %>" >
-<meta property="og:image:width" content="600" />
-<meta property="og:image:height" content="600" />
+<% @og_image ||= 'psymic_logo_og.jpg' %>
+<meta property="og:image" content= "<%= URI.join(root_url, @og_image) %>" >
 <meta property="fb:admins" content= "1297845733" />
 <meta property="fb:app_id" content= "772050616139093" />
 <meta property="og:title" content= "<%= @page_title %>" />
