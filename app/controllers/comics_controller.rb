@@ -11,6 +11,7 @@ class ComicsController < ApplicationController
   def show
     @comic = Comic.find(params[:id])
     @page_title = @comic.title
+    @og_type = "image"
     authorize! :read_unpublished , @comic if @comic.status != "published"
     respond_to do |format|
       format.html # show.html.erb

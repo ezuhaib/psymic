@@ -48,7 +48,8 @@ get 'comments/:type/:id' , to: 'comments#show' , as: "ajax_comments"
 # MESSAGES
 #######################
 resources :messages , except: :show do
-  get 'user/:username', action: :show , on: :collection , as: :user
+  get 'user/:username', constraints: { username: /[^\/]+|[^\/]+/ } , 
+                        action: :show , on: :collection , as: :user
 end
 
 #######################
@@ -145,8 +146,7 @@ get 'tag::tag' , to: 'tags#show' , as: :tag
 devise_for :user,
 :path => 'account',
 :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
-resources :users,
-  :constraints => { :id => /[^\/]+|[^\/]+/ } do
+resources :users, constraints: { id: /[^\/]+|[^\/]+/ } do
   collection do
     get 'autocomplete'
   end
