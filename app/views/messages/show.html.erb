@@ -38,4 +38,11 @@
   <%= f.hidden_field :recipient_id , value: @user.id %>
   <%= f.submit :Send %>
   <% end %>
+
+  <script>
+    $(window).load(function() {
+      $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+    });
+  </script>
+
 <% end %>

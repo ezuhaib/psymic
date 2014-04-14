@@ -22,8 +22,9 @@ class MessagesController < ApplicationController
     @page_title  = "Messaging with #{params[:username]}"
     @user = User.find_by_username(params[:username])
     @messages = Message.where(pairing: [current_user.id, @user.id].sort.join(","))
+                       .order('created_at ASC')
                        .page(params[:page])
-                       .per(5)
+                       .per(20)
     @message = Message.new
     redirect_to user_messages_path(@user.username,page: @messages.total_pages) if !params[:page]
   end
