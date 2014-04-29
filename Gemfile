@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 # Baseline
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.17'
 gem 'rake'
 gem 'jbuilder'
 gem 'pg'
@@ -75,4 +75,3 @@ gem 'bootstrap-sass', "~> 3.1.1.0"
 gem 'rinku'
 gem 'premailer-rails'
 gem 'nokogiri'
-gem "social-buttons", '~> 0.3'

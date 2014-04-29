@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140409104541) do
+ActiveRecord::Schema.define(:version => 20140429113840) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -227,18 +227,18 @@ ActiveRecord::Schema.define(:version => 20140409104541) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                               :null => false
-    t.string   "encrypted_password",                                  :null => false
+    t.string   "email",                                                 :null => false
+    t.string   "encrypted_password",                                    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                        :default => 0, :null => false
+    t.integer  "sign_in_count",                        :default => 0,   :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.string   "username"
     t.string   "gender",                 :limit => 8
     t.date     "dob"
@@ -253,7 +253,7 @@ ActiveRecord::Schema.define(:version => 20140409104541) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.float    "points"
+    t.float    "points",                               :default => 0.0
     t.datetime "last_active_at"
   end
 

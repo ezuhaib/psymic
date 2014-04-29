@@ -3,12 +3,12 @@ class UsersController < ApplicationController
   before_filter :fetch_profile , only: [:avatar,:crop,:profile_edit]
 
   def fetch_user
-    @user = User.find_by_username(params[:id])
+    @user = User.find_by_username!(params[:id])
   end
 
   def fetch_profile
     if params[:username]
-      @user = User.find_by_username(params[:username])
+      @user = User.find_by_username!(params[:username])
     else
       @user = current_user
     end
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    authorize! :read , @user
+    authorize! :read , @user if @user
     @page_title = "USER: #{@user.username}"
     @mindlogs = @user.mindlogs.published.limit(5)
     @pending_mindlogs = @user.mindlogs.queued

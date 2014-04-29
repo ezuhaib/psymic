@@ -5,7 +5,8 @@
 
 <div class="col-md-2 text-right">
 	<div id="fb_like">
-		<%= like_button 772050616139093 , layout: :button %>
+		<div class="fb-like" data-action="like" data-colorscheme="light" data-font="arial" data-layout="button" data-send="false" data-show-faces="false" data-width="450">
+		</div>
 	</div>
 </div>
 
@@ -55,14 +56,10 @@
 <%= render 'mindlog_rightbar' %>
 <%= javascript_include_tag 'jquery.textcomplete.min','textcomplete_init' %>
 
+<script src=https://connect.facebook.net/en_US/all.js#xfbml=1&appId=772050616139093 type='text/javascript'></script>
+
 <script>
 $(document).on("click",".pagination a", function(){
 	$(".pagination").html("<%= Helper.escape_js(image_tag "loading_mini.gif") %>")})
 
 </script>
-
-<style>
-.fb_edge_widget_with_comment span.fb_edge_comment_widget {
-left: -700px !important;
-}
-</style>

@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
   def index
+    authorize! :read , :notification
     @page_title = "Notifications"
   	@subscriptions = Subscription.find(:all, :conditions=>["user_id=? AND counter>= ?",current_user.id,1])
     @activities = PublicActivity::Activity.where(:recipient_id => current_user.id).order('created_at desc').page(params[:page])

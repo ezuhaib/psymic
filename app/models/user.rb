@@ -53,7 +53,7 @@ def points_computed
 end
 
 def update_points
-  self.update_attributes(points: self.points_computed)
+  self.update_attribute(:points, self.points_computed)
 end
 
 ################################
@@ -80,8 +80,8 @@ end
 ################################
 devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-acts_as_readable :on => :created_at
 acts_as_reader
+acts_as_readable :on => :created_at
 extend FriendlyId
 friendly_id :username
 has_attached_file :avatar,
