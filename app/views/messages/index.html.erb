@@ -19,7 +19,7 @@
     <%# Message Body %>
     <td class="text-left">
         <b><%= link_to u.username, u %></b>
-        <span class=" text-sm text-light"> <%= dotiw(m.created_at) %> ago</span></br>
+        <span class=" text-sm text-light"> <%= time_ago(m.created_at) %></span></br>
         <% if m.sender_id == current_user.id %>
             <span   class="glyphicon glyphicon-share-alt text-lighter cursor-default"
                     title="You sent this message"

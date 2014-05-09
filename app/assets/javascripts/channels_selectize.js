@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('ready page:load', function() {
 
     $('#channel_id').selectize({
    	create: false,

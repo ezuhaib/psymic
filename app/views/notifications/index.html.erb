@@ -7,10 +7,9 @@
  	 <tr>
 		<td <%= "class= danger" if !a.read? %> >
 			<%= render_activity(a) %>
-		<span class="text-sm text-lighter"><%= distance_of_time_in_words(Time.now, a.created_at , true, {:highest_measure_only => true}) %> ago</span></td>
+		<span class="text-sm text-lighter"><%= time_ago(a.created_at) %></span></td>
 	</tr>
 	<% a.update_attribute(:read,true) %>
-	<% a.mark_as_read! for: current_user %>
 <% end %>
 </table>
 

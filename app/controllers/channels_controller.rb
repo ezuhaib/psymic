@@ -53,12 +53,12 @@ class ChannelsController < ApplicationController
   # POST /channels
   # POST /channels.json
   def create
-    @channel = Channel.new(params[:channel])
+    @channel = Channel.new(channel_params)
     authorize! :create , Channel
 
-      if params[:channel][:cover] && @channel.save
+      if params[:channel][:cover] && @channel.save!
         redirect_to crop_cover_path(@channel)
-      elsif @channel.save
+      elsif @channel.save!
         redirect_to @channel, notice: 'Channel was successfully created.'
       else
         render action: "new"
@@ -69,9 +69,9 @@ class ChannelsController < ApplicationController
   # PUT /channels/1.json
   def update
     authorize! :update , Channel
-      if params[:channel][:cover] && @channel.update_attributes(params[:channel])
+      if params[:channel][:cover] && @channel.update_attributes(channel_params)
           redirect_to action: :crop
-      elsif @channel.update_attributes(params[:channel])
+      elsif @channel.update_attributes(channel_params)
           redirect_to @channel, notice: 'Channel was successfully updated.'
       else
         render action: "edit"
@@ -143,4 +143,8 @@ class ChannelsController < ApplicationController
     end
   end
 
+ private
+    def channel_params
+      params.require(:channel).permit(:body, :slug, :query, :title, :cover, :icon, cropping_params(:cover))
+    end
 end

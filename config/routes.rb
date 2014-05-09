@@ -13,6 +13,7 @@ end
 resources :channels do
   collection do
     get 'autocomplete'
+    post 'add_item'
   end
   member do
     get 'queue/:item' , action: :item , as: :item
@@ -61,19 +62,18 @@ resources :wiki_pages,:path => :wiki
 # META
 #######################
 namespace :meta do
-  resources :feedbacks , except: :index do
+  resources :feedbacks do
     resources :comments
   end
-  get '/', to: 'feedbacks#index' , as: "feedbacks"
-  post '/' , to: 'feedbacks#create' , as:"feedbacks"
 end
 
 #######################
 # MINDLOGS
 #######################
-resources :mindlogs , except: :index do
+resources :mindlogs  do
   collection do
     post 'import'
+    get 'tags'
     get 'autocomplete'
     get 'autocomplete_tags'
     get 'moderation_queue'
@@ -100,7 +100,7 @@ resources :mindlogs , except: :index do
   end
 end
 get "mindlogs/tags" => "mindlogs#tags", :as => :tags #returns json
-match 'mindlogs/tag/:tag' => 'mindlogs#tag'
+get 'mindlogs/tag/:tag' => 'mindlogs#tag'
 
 #######################
 # NOTIFICATIONS
@@ -117,14 +117,14 @@ end
 get 'profile' => "users#profile" , as: :profile
 get 'profile/edit' => "users#profile_edit" , as: :edit_profile
 get 'profile/edit/avatar' => "users#avatar" , as: :edit_avatar
-put 'profile/edit/avatar' => "users#update_avatar" , as: :update_avatar
+post 'profile/edit/avatar' => "users#update_avatar" , as: :update_avatar
 get 'profile/edit/avatar/crop' => "users#crop" , as: :crop_avatar
 
 #######################
 # STATIC
 #######################
-match "/404", :to => "pages#not_found"
-match "/500", :to => "pages#error"
+get "/404", :to => "pages#not_found"
+get "/500", :to => "pages#error"
 
 #######################
 # SUBSCRIPTIONS
@@ -156,7 +156,6 @@ resources :users, constraints: { id: /[^\/]+|[^\/]+/ } do
   end
 end
 get 'confirm_email' , to: 'pages#confirm_email'
-match '/users/:id', :to => 'users#show', :as => :user
 
 #######################
 # UPDATES
@@ -167,5 +166,5 @@ resources :updates
 # :)
 #######################
 root :to=> 'pages#root'
-match ':controller(/:action(/:id))(.:format)'
+# get ':controller(/:action(/:id))(.:format)'
 end

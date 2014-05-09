@@ -48,7 +48,7 @@ class Meta::FeedbacksController < ApplicationController
   # POST /feedbacks
   # POST /feedbacks.json
   def create
-    @feedback = Feedback.new(params[:feedback])
+    @feedback = Feedback.new(feedback_params)
     @feedback.user_id = current_user.id
     authorize! :backstage , @feedback if @feedback.nature == "backstage"
     respond_to do |format|
@@ -76,7 +76,7 @@ class Meta::FeedbacksController < ApplicationController
     authorize! :update , @feedback
 
     respond_to do |format|
-      if @feedback.update_attributes(params[:feedback])
+      if @feedback.update_attributes(feedback_params)
         format.html { redirect_to @feedback, notice: 'Feedback was successfully updated.' }
         format.json { head :no_content }
       else
@@ -97,5 +97,10 @@ class Meta::FeedbacksController < ApplicationController
       format.html { redirect_to meta_feedbacks_path , notice: "Successfully deleted" }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def feedback_params
+    params.require(:feedback).permit(:body, :nature, :user_id)
   end
 end

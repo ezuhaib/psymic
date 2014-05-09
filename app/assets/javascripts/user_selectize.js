@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('ready page:load', function() {
 
     $('#message_recipient_id').selectize({
    	create: false,

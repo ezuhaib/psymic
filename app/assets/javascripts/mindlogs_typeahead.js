@@ -10,7 +10,7 @@ var tags = new Bloodhound({
   remote: "/mindlogs/autocomplete_tags?query=%QUERY"
 });
 
-$(document).ready(function(){
+$(document).on('ready page:load', function(){
 	mindlogs.initialize();
 	tags.initialize();
 

@@ -50,7 +50,7 @@ class WikiPagesController < ApplicationController
   # POST /wiki_pages.json
   def create
     authorize! :create , WikiPage
-    @wiki_page = WikiPage.new(params[:wiki_page])
+    @wiki_page = WikiPage.new(wiki_params)
     @wiki_page.user_id = current_user.id
 
     respond_to do |format|
@@ -69,7 +69,7 @@ class WikiPagesController < ApplicationController
   def update
     authorize! :update , WikiPage
     respond_to do |format|
-      if @wiki_page.update_attributes(params[:wiki_page])
+      if @wiki_page.update_attributes(wiki_params)
         format.html { redirect_to @wiki_page, notice: 'Wiki page was successfully updated.' }
         format.json { head :no_content }
       else
@@ -89,5 +89,10 @@ class WikiPagesController < ApplicationController
       format.html { redirect_to wiki_pages_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def wiki_params
+    params.require(:wiki_page).permit(:body, :title, :user_id , :slug)
   end
 end

@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
 ################################
 # ATTRIBUTES
 ################################
-attr_accessible :username, :email, :password, :password_confirmation, :remember_me , :gender , :dob , :body , :country, :login,:avatar, :points, :last_active_at
 attr_accessor :login,:testing_key
 
 ################################
@@ -75,14 +74,19 @@ def self.send_messages
   end
 end
 
+def self.profile_params
+  return [:username, :email, :gender , :dob , :body , :country, :avatar]
+end
+
 ################################
 # INTEGRATIONS
 ################################
-devise :database_authenticatable, :registerable, :confirmable,
+devise :database_authenticatable, :registerable, :confirmable, 
          :recoverable, :rememberable, :trackable, :validatable
 acts_as_reader
 acts_as_readable :on => :created_at
 extend FriendlyId
+include Optionable
 friendly_id :username
 has_attached_file :avatar,
   :styles => { :thumb => "130x130#", :mini => "60x60#" , :inline => "25x25#" },
@@ -123,38 +127,10 @@ end
 ################################
 # OPTIONS
 ################################
-serialize :options
-Options = {
-  email_unread_notifications:true ,
-  email_site_updates:false,
-  email_new_messages_count:true
-}
 
-def self.options_attr_accessor()
-  Options.keys.each do |method_name|
-    eval "
-      def #{method_name}
-        self.options ||= {}
-        if self.options[:#{method_name}].nil?
-          return Options[:#{method_name}]
-        else
-          return self.options[:#{method_name}]
-        end
-      end
-      def #{method_name}=(value)
-        self.options ||= {}
-        if value == '1'
-          self.options[:#{method_name}] = true
-        elsif value == '0'
-          self.options[:#{method_name}] = false
-        else
-          self.options[:#{method_name}] = value
-        end
-      end
-      attr_accessible :#{method_name}
-    "
-  end
-end
+options email_unread_notifications:true ,
+        email_site_updates:true,
+        email_new_messages_count:true
 
-options_attr_accessor
+
 end

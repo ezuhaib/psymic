@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     authorize! :create , @commentable => Comment
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new(comment_params)
     @comment.user = current_user
     @mentions = extract_mentions( @comment.body )
     respond_to do |format|
@@ -69,7 +69,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     authorize! :update, @commentable => Comment
     respond_to do |format|
-      if @comment.update_attributes(params[:comment])
+      if @comment.update_attributes(comment_params)
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
         format.json { head :no_content }
       else
@@ -90,5 +90,10 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
       format.js #added
     end
+  end
+
+  private
+  def comment_params
+    params.require(:comment).permit(:body, :commentable_id, :commentable_type, :user_id)
   end
 end

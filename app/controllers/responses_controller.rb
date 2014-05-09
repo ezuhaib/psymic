@@ -8,7 +8,7 @@ class ResponsesController < ApplicationController
 	end
 
 	def create
-		@response = Response.new(params[:response])
+		@response = Response.new(response_params)
 		@response.user = current_user
 		@mentions = extract_mentions( @response.body )
 		if @response.save
@@ -29,7 +29,7 @@ class ResponsesController < ApplicationController
 	@response = Response.find(params[:id])
   	@response.destroy
 	respond_to do |format|
-		format.html {redirect_to :controller=>'mindlogs' , :action=>'show' , :id=>@response.mindlog_id}
+		format.html {redirect_to @response.mindlog , notice: "Deleted Response successfully" }
 	  	format.json
 		format.js #added
 	end
@@ -90,9 +90,14 @@ class ResponsesController < ApplicationController
 
 	def update
 		@response = Response.find(params[:id])
-	  	if @response.update_attributes(params[:response])
+	  	if @response.update_attributes(response_params)
 	    	flash[:notice] = "Successfully updated example."
 	    	redirect_to @response.mindlog
 		end
+	end
+
+	private
+	def response_params
+		params.require(:response).permit(:body, :mindlog_id , :user_id , :rating, :nature)
 	end
 end

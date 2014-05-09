@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('ready page:load', function() {
     $('#mindlog_topic_list').selectize({
     create: true,
     hideSelected: true,

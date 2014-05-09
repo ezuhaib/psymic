@@ -3,21 +3,20 @@
 source 'https://rubygems.org'
 
 # Baseline
-gem 'rails', '3.2.17'
+gem 'rails' , '~>4.1.0'
 gem 'rake'
 gem 'jbuilder'
 gem 'pg'
 gem 'whenever'
 gem 'sitemap_generator'
-#gem 'meta-tags', :require => 'meta_tags'
 
 # Search and analytics
 gem 'rack-mini-profiler'
 gem 'google-analytics-rails'
 gem 'exception_notification'
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
-gem "papercrop", git: "https://github.com/ezuhaib/papercrop.git"
-gem 'searchkick', git: "https://github.com/ankane/searchkick.git"
+gem "paperclip"
+gem "papercrop", github: "ezuhaib/papercrop"
+gem 'searchkick'
 
 # Unix-only gems
 platforms :ruby do
@@ -47,16 +46,15 @@ end
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem 'turbo-sprockets-rails3'
-end
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+gem 'turbo-sprockets-rails3'
+gem 'jquery-rails'
 
 # Authentication and Authorization
 gem 'devise'
-gem 'cancan'
+gem 'cancancan'
 
 # Gems introducing new Models
 gem 'acts-as-taggable-on'
@@ -65,13 +63,16 @@ gem 'public_activity'
 
 # Usability and UI
 gem 'liquid'
-#gem 'dotiw'
 gem 'country_select'
 gem 'kaminari'
-gem 'kaminari-bootstrap', '~> 3.0.1'
-gem 'friendly_id', '~> 4.0.10.1'
+gem 'kaminari-bootstrap'
+gem 'friendly_id'
 gem 'bootstrap_form'
-gem 'bootstrap-sass', "~> 3.1.1.0"
+gem 'bootstrap-sass'
 gem 'rinku'
 gem 'premailer-rails'
-gem 'nokogiri'
+gem 'nokogiri' , '1.6.2.rc2' #for premailer-rails
+
+# For rails 4
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+gem 'turbolinks'

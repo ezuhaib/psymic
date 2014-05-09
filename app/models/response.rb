@@ -1,9 +1,9 @@
 class Response < ActiveRecord::Base
 
   include PublicActivity::Common
-
+  include Scorable
+  
 	belongs_to :mindlog
-  attr_accessible :body, :mindlog_id , :user_id , :rating, :nature
   has_many :votes
   has_many :users , :through=> :votes
   has_many :comments , :as=> :commentable , :dependent=> :destroy

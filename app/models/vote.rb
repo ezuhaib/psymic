@@ -1,6 +1,5 @@
 class Vote < ActiveRecord::Base
-
-attr_accessible :response_id, :user_id , :value
+	
 belongs_to :user
 belongs_to :response
 validates_presence_of :user_id

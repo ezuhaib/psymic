@@ -1,6 +1,5 @@
 class Comic < ActiveRecord::Base
   include PublicActivity::Common
-  attr_accessible :title, :likes_count, :mindlog_id, :user_id, :comic, :published
   has_attached_file :comic, :styles => { :standard => "700>" }
   belongs_to :user
   belongs_to :mindlog

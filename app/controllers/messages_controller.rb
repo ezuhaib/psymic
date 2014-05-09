@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
-  # GET /messages
-  # GET /messages.json
+
+  before_action :set_message, only: [:edit, :update, :destroy]
+
   def index
     #using subquery because we need to call order twice, once for selection and then for true sorting
     authorize! :read , Message
@@ -15,8 +16,7 @@ class MessagesController < ApplicationController
     end
   end
 
-  # GET /messages/1
-  # GET /messages/1.json
+
   def show
     authorize! :read , Message
     @page_title  = "Messaging with #{params[:username]}"
@@ -29,8 +29,6 @@ class MessagesController < ApplicationController
     redirect_to user_messages_path(@user.username,page: @messages.total_pages) if !params[:page]
   end
 
-  # GET /messages/new
-  # GET /messages/new.json
   def new
     authorize! :create , Message
     @message = Message.new
@@ -40,20 +38,18 @@ class MessagesController < ApplicationController
     end
   end
 
-  # GET /messages/1/edit
   def edit
     @message = Message.find(params[:id])
   end
 
-  # POST /messages
-  # POST /messages.json
   def create
-    @message = Message.new(params[:message])
+    @message = Message.new(message_params)
     @message.sender_id = current_user.id
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to user_messages_path(uname(@message.recipient_id)), notice: 'Message was successfully created.' }
+        flash[:success] = 'Message Sent.'
+        format.html { redirect_to user_messages_path(uname(@message.recipient_id)) }
         format.json { render json: @message, status: :created, location: @message }
       else
         format.html { render action: "new" }
@@ -62,13 +58,11 @@ class MessagesController < ApplicationController
     end
   end
 
-  # PUT /messages/1
-  # PUT /messages/1.json
   def update
     authorize! :update , Message
     @message = Message.find(params[:id])
     respond_to do |format|
-      if @message.update_attributes(params[:message])
+      if @message.update_attributes(message_params)
         format.html { redirect_to @message, notice: 'Message was successfully updated.' }
         format.json { head :no_content }
       else
@@ -78,8 +72,6 @@ class MessagesController < ApplicationController
     end
   end
 
-  # DELETE /messages/1
-  # DELETE /messages/1.json
   def destroy
     @message = Message.find(params[:id])
     authorize :destroy , Message
@@ -89,5 +81,15 @@ class MessagesController < ApplicationController
       format.html { redirect_to messages_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def set_message
+    @message = Message.find(params[:id])
+  end
+
+  def message_params
+    params.require(:message).permit(:body, :mailed, :read, :recipient_id, :sender_id)
   end
 end

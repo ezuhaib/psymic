@@ -20,7 +20,7 @@
 			</div>
 			<div class="mindlog_bottom_line text-lighter">
 				<%= link_to m.user.username , m.user %> posted 
-				<%= distance_of_time_in_words(Time.now,m.created_at, true, :highest_measure_only=> true) %> ago 
+				<%= time_ago(m.created_at) %>
 			</div>
 			<%= link_to m , class:"suffix link-black" do %>
 				<h4>

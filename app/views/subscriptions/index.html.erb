@@ -9,7 +9,7 @@
   <tr>
 		<td><% if s.counter >= 1 %><div class="badge"><%= s.counter %></div><% end %></td>
 		<td><%= link_to s.subscribable.title, polymorphic_path(s.subscribable)  %>
-		<span class="smalltext">Subscribed <%= distance_of_time_in_words(Time.now,s.created_at,true,{:highest_measure_only=>true}) %> ago</span>
+		<span class="smalltext">Subscribed <%= time_ago(s.created_at) %></span>
 		</td>
 		<td><% if can? :destroy , s %>
 		<%= button_to 'Unsubscribe', s , :method=> :delete, :confirm=> 'Are you sure?' , class:"btn btn-danger btn-sm" %><% end %></td>

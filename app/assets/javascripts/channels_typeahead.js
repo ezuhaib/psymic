@@ -4,7 +4,7 @@ var channels = new Bloodhound({
   remote: "/channels/autocomplete?query=%QUERY"
 });
 
-$(document).ready(function(){
+$(document).on('ready page:load', function(){
 	channels.initialize();
 
 	$("#channel_id").typeahead({

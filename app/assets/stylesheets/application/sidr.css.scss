@@ -6,7 +6,7 @@ todo reduce reliance on !important
 @import 'theme';
 
 .sidr ul li span.sidr-class-badge{
-    @extend .badge;
+    @extend .badge !optional;
 }
 
 .sidr ul li a#sidr-id-welcome_line{

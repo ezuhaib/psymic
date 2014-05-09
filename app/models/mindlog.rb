@@ -11,14 +11,13 @@ has_many :reports , :as=> :reportable , :dependent=> :destroy
 has_many :subscriptions , :as=> :subscribable , :dependent =>:destroy
 has_many :mindlog_ratings, dependent: :destroy
 has_many :channel_items , as: :item
-has_many :channels , through: :channel_items , conditions: ["channel_items.status = ?",'approved']
-scope :published, where(workflow_state: "published")
+has_many :channels , -> {where 'channel_items.status = ?','approved'} , through: :channel_items
+scope :published, -> { where(workflow_state: "published") }
 scope :queued, -> { where(workflow_state: ["unpublished","awaiting_review"]) }
 
 #############################
 # ATTRIBUTES
 #############################
-attr_accessible :description, :title , :topic_list , :status, :workflow_state, :review , :rating_percent , :channel_id
 attr_accessor :review , :channel_id
 
 #############################
@@ -55,6 +54,7 @@ end
 #############################
 acts_as_taggable_on :topics
 include PublicActivity::Common
+include Scorable
 
 #############################
 # INSTANCE METHODS

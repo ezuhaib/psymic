@@ -9,6 +9,7 @@
 //
 //= require jquery.min
 //= require jquery_ujs
+//= require turbolinks
 //= require jquery.sidr.min
 //= require bootstrap.min
 //= require bootstrap-select.min

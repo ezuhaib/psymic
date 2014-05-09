@@ -2,19 +2,6 @@ class UsersController < ApplicationController
   before_filter :fetch_user , only: [:show,:edit,:update,:mindlogs,:activity]
   before_filter :fetch_profile , only: [:avatar,:crop,:profile_edit]
 
-  def fetch_user
-    @user = User.find_by_username!(params[:id])
-  end
-
-  def fetch_profile
-    if params[:username]
-      @user = User.find_by_username!(params[:username])
-    else
-      @user = current_user
-    end
-    authorize! :update , @user
-  end
-
   def show
     authorize! :read , @user if @user
     @page_title = "USER: #{@user.username}"
@@ -44,11 +31,12 @@ class UsersController < ApplicationController
     if params[:commit] == "Upload" and !params[:user][:avatar]
       flash[:alert] = 'Please select an image file first'
       render 'avatar'
-    elsif params[:user][:avatar] && @user.update_attributes(params[:user])
+    elsif params[:user][:avatar] && @user.update_attributes(user_params)
       redirect_to crop_avatar_path(username: @user.username)
-    elsif params[:do] == 'crop' && @user.update_attributes(params[:user])
+    elsif params[:do] == 'crop' && @user.update_attributes(user_params)
       redirect_to edit_profile_path(username: @user.username) , notice:"Avatar successfully updated"
     else
+      raise 'fu'
       flash[:alert] = 'Some error occured'
       render 'avatar'
     end
@@ -57,7 +45,7 @@ class UsersController < ApplicationController
   def update
     authorize! :update , @user
 
-	  if @user.update_attributes(params[:user])
+	  if @user.update_attributes(user_params)
         if params[:user] && params[:user][:avatar]
           redirect_to action: :crop
         else
@@ -106,6 +94,25 @@ class UsersController < ApplicationController
       @users = User.where("users.username LIKE ?", "#{params[:q]}%").limit(4).pluck(:username)
     end
     render json: @users
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit( User.profile_params, cropping_params(:avatar) )
+  end
+
+  def fetch_user
+    @user = User.find_by_username!(params[:id])
+  end
+
+  def fetch_profile
+    if params[:username]
+      @user = User.find_by_username!(params[:username])
+    else
+      @user = current_user
+    end
+    authorize! :update , @user
   end
 
 end

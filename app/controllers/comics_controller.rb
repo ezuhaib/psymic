@@ -40,7 +40,7 @@ class ComicsController < ApplicationController
   # POST /comics.json
   def create
     authorize! :create , Comic
-    @comic = Comic.new(params[:comic])
+    @comic = Comic.new(comic_params)
     @comic.user_id = current_user.id
 
     respond_to do |format|
@@ -59,7 +59,7 @@ class ComicsController < ApplicationController
   def update
     @comic = Comic.find(params[:id])
     authorize! :update , @comic
-    @comic.assign_attributes(params[:comic])
+    @comic.assign_attributes(comic_params)
     @just_published = true if @comic.status_changed? and @comic.status == "published"
     if @comic.save
       @comic.create_activity :publish , recipient: @comic.user , owner: current_user if @just_published and @comic.user != current_user
@@ -95,4 +95,8 @@ class ComicsController < ApplicationController
     end
   end
 
+  private
+  def comic_params
+    params.require(:comic).permit(:title, :likes_count, :mindlog_id, :user_id, :comic, :published)
+  end
 end

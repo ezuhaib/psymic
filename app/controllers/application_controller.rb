@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :authorize_mini_profiler , :record_user_activity
+  before_action :authorize_mini_profiler , :record_user_activity
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
     if current_user
@@ -42,6 +43,11 @@ class ApplicationController < ActionController::Base
     if current_user
       current_user.touch :last_active_at
     end
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:account_update) << :email << User.option_params
+    devise_parameter_sanitizer.for(:sign_up) << User.profile_params
   end
 
 end

@@ -1,10 +1,9 @@
 class Feedback < ActiveRecord::Base
 	belongs_to :user
 	has_many :comments , as: :commentable
-  	attr_accessible :body, :nature, :user_id
-  	validates_presence_of :body , :nature , :user_id
-  	scope :not_backstage, where('nature not in (?)',"backstage")
-  	scope :backstage , where(nature:"backstage")
+	validates_presence_of :body , :nature , :user_id
+	scope :not_backstage, ->{where('nature not in (?)',"backstage")}
+	scope :backstage , ->{where(nature:"backstage")}
 
   def self.natures
   	@natures = {

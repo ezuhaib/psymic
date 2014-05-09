@@ -29,7 +29,7 @@ class MindlogsController < ApplicationController
       @mindlogs = Mindlog.search("*", where:{workflow_state:"published"}, order: @order, page: params[:page] , per_page:20)
       @title = "Mindlogs"
     end
-    @mindlog = flash[:mindlog] ? Mindlog.create(flash[:mindlog]) : Mindlog.new
+    @mindlog = flash[:mindlog] ? Mindlog.create(flash[:mindlog].permit(:description, :title , :topic_list, :review)) : Mindlog.new
     @top_users = User.order('points desc').limit(5)
     respond_to do |format|
       format.html { render 'mindlogs/index'}
@@ -95,7 +95,7 @@ class MindlogsController < ApplicationController
   # POST /mindlogs
   # POST /mindlogs.json
   def create
-    @mindlog = Mindlog.new(params[:mindlog])
+    @mindlog = Mindlog.new(mindlog_params)
     @mindlog.user = current_user
     authorize! :create , @mindlog
     if @mindlog.save
@@ -114,7 +114,7 @@ class MindlogsController < ApplicationController
   def update
     @mindlog = Mindlog.find(params[:id])
     authorize! :update , @mindlog
-    @mindlog.assign_attributes(params[:mindlog])
+    @mindlog.assign_attributes(mindlog_params)
     @changed = @mindlog.changed?
     if @mindlog.save
 
@@ -146,7 +146,7 @@ class MindlogsController < ApplicationController
     @mindlog.destroy
     Mindlog.searchkick_index.refresh
     respond_to do |format|
-      format.html { redirect_to mindlogs_url }
+      format.html { redirect_to mindlogs_url , notice: "Deleted Mindlog successfully" }
       format.json { head :no_content }
     end
   end
@@ -262,4 +262,8 @@ end
     end
   end
 
+  private
+  def mindlog_params
+    params.require(:mindlog).permit(:description, :title , :topic_list , :status, :workflow_state, :review , :rating_percent , :channel_id)
+  end
 end

@@ -5,7 +5,7 @@
 <div class="alert alert-info">
 Please note that the original image shall be retained as such so that you may choose to crop it differently in future.</div>
 
-<%= form_for @user, :url => update_avatar_url(do: :crop) do |f| %>
+<%= form_for @user, :url => update_avatar_url(do: :crop) , method: :post do |f| %>
 	<%= f.hidden_field :username , value: @user.username %>
   <div class="center"><%= f.cropbox :avatar , width: 700 %></div></br>
   <div class='well col-xs-12'>

@@ -6,7 +6,7 @@
   <h2>Join Psymic</h2>
 </div>
 
-<%= bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name) , style: :horizontal , left: "col-lg-3" , right: "col-lg-9" , html: {autocomplete: :off}) do |f| %>
+<%= bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name) , layout: :horizontal , label_col: "col-lg-3" , control_col: "col-lg-9" , html: {autocomplete: :off}) do |f| %>
   <%= f.text_field :username , class:"form-control", placeholder:"Usernames cannot be changed later" %>
   <%= f.select :gender , {'Female'=>'female','Male'=>'male'} , :prompt => "Select Gender" %>
   <%= f.text_field :dob , "data-behaviour"=>"datepicker" , label: "Birth Date" , placeholder: "yyyy/mm/dd" %>

@@ -50,12 +50,8 @@ def get_rank(user)
 	(User.order('points desc').index(user)+1).ordinalize
 end
 
-def dotiw(time)
-	distance_of_time_in_words(Time.now, time, true, { :highest_measure_only => true })
-end
-
-def time_ago time, append = ' ago'
-  return time_ago_in_words(time).gsub(/about|less than|almost|over/, '').strip.capitalize << append
+def time_ago time, append = 'ago'
+  return time_ago_in_words(time).gsub(/about|less than|almost|over/, '').strip.capitalize << " " + append
 end
 
 def title(title)

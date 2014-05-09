@@ -1,5 +1,4 @@
 class Channel < ActiveRecord::Base
-attr_accessible :body, :slug, :query, :title, :cover, :icon
 extend FriendlyId
 friendly_id :title , use: :slugged
 
@@ -12,12 +11,11 @@ crop_attached_file :cover , aspect: '730:200' , min_size:'730x200'
 # RELATIONSHIPS
 ##############################################
 has_many :items , class_name: "ChannelItem"
-has_many :mindlogs , through: :items , source: :item , source_type: 'Mindlog', conditions: ['channel_items.status = ?','approved']
+has_many :mindlogs , ->{where 'channel_items.status = ?','approved'} , through: :items , source: :item , source_type: 'Mindlog'
 
 ##############################################
 # VALIDATIONS
-###############################################
-validates_presence_of :query
+##############################################
 validates_size_of :body , in: 140...1000
 validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
 validates_attachment_size :cover, in: 0..5000.kilobytes
@@ -26,28 +24,4 @@ validates_attachment_content_type :icon, :content_type => /\Aimage\/.*\Z/
 validates_attachment_size :icon, in: 0..1500.kilobytes
 validates :cover, :dimensions => { :width => 128, :height => 128 }
 
-##############################################
-# QUERY
-# Using serialized queries so that complex
-# queries may easily be incorporated in future
-###############################################
-serialize :query
-Query = [:all_of_these]
-
-def self.query_attr_accessor()
-  Query.each do |method_name|
-    eval "
-      def #{method_name}
-        (self.query||{})[:#{method_name}]
-      end
-      def #{method_name}=(value)
-        self.query ||= {}
-        self.query[:#{method_name}] = value
-      end
-      attr_accessible :#{method_name}
-    "
-  end
-end
-
-query_attr_accessor
 end
