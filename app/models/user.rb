@@ -78,6 +78,10 @@ def self.profile_params
   return [:username, :email, :gender , :dob , :body , :country, :avatar]
 end
 
+def self.top(limit= 5)
+  User.order('points desc').limit(limit)
+end
+
 ################################
 # INTEGRATIONS
 ################################

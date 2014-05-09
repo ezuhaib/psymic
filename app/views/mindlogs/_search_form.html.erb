@@ -1,0 +1,11 @@
+<%= form_tag search_redirect_mindlogs_path , method: :post , id:"mindlogs_search", class:"pull-right" do %>
+	<div class="input-group">
+		<%= text_field_tag :query, params[:query], class: "form-control col-xs-12" , id:"mindlog_search" , placeholder:"type to search" %>
+		<span class= "input-group-btn">
+		<%= button_tag "<span class='glyphicon glyphicon-search'></span>".html_safe , class:"btn btn-themed" %></span>
+	</div>
+<% end %>
+
+<%# The includes %>
+<%= javascript_include_tag 'typeahead.bundle.min','mindlogs_typeahead' %>
+<%= stylesheet_link_tag 'bootstrapped-typeahead' %>

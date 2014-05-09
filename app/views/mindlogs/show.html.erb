@@ -29,10 +29,10 @@
 		<div class="hidden-sm hidden-xs"><div id="responses_count"><%= @mindlog.responses.count %></div><span>Responses</span></div>
 		<div id="response_filters"><ul>
 			<li><%= link_to "All", mindlog_path , class: active_if_filter('all') %></li>
-			<li><%= link_to "Explanations", "#{mindlog_path}?filter=explanations" , class: active_if_filter('explanations') %></li>
-			<li><%= link_to "Solutions", "#{mindlog_path}?filter=solutions" , class: active_if_filter('solutions') %></li>
-			<li><%= link_to "Critiques", "#{mindlog_path}?filter=critiques" , class: active_if_filter('critiques') %></li>
-			<li><%= link_to "Stories", "#{mindlog_path}?filter=stories" , class: active_if_filter('stories') %></li>
+			<li><%= link_to "Explanations", "#{mindlog_path}?only=explanation" , class: active_if_filter('explanations') %></li>
+			<li><%= link_to "Solutions", "#{mindlog_path}?only=solution" , class: active_if_filter('solutions') %></li>
+			<li><%= link_to "Critiques", "#{mindlog_path}?only=critique" , class: active_if_filter('critiques') %></li>
+			<li><%= link_to "Stories", "#{mindlog_path}?only=story" , class: active_if_filter('stories') %></li>
 		</ul></div>
 	</div>
 
@@ -45,7 +45,7 @@
 	<div class="center text-center text-lighter">
 	--Tags-- <ul class="list-unstyled list-inline">
 		<% @mindlog.topic_list.each do |t| %>
-			<li><%= link_to "#{t}" , tag_path(t) , class:"text-300" %></li>
+			<li><%= link_to "#{t}" , tag_mindlogs_path(t) , class:"text-300" %></li>
 		<% end %>
 	</ul>
 	</div>

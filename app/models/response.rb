@@ -3,7 +3,7 @@ class Response < ActiveRecord::Base
   include PublicActivity::Common
   include Scorable
   
-	belongs_to :mindlog
+	belongs_to :mindlog , counter_cache: true
   has_many :votes
   has_many :users , :through=> :votes
   has_many :comments , :as=> :commentable , :dependent=> :destroy

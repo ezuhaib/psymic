@@ -5,11 +5,11 @@
 <% if can? :moderate , @mindlog %>
 
 	<li>
-		<%= link_to @mindlog.state?(:published) ? 'Unpublish' : 'Publish', mindlog_path(@mindlog,do: :toggle_publish)%>
+		<%= link_to @mindlog.state?(:published) ? 'Unpublish' : 'Publish', moderate_mindlog_path(@mindlog, task: :toggle_publish)%>
 	</li>
 
 	<li>
-		<%= link_to @mindlog.featured? ? 'Unfeature' : 'Feature' , mindlog_path(@mindlog,do: :toggle_feature)%>
+		<%= link_to @mindlog.featured? ? 'Unfeature' : 'Feature' , moderate_mindlog_path(@mindlog, task: :toggle_feature)%>
 	</li>
 
 <% end %>

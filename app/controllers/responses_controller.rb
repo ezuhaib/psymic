@@ -1,6 +1,5 @@
 class ResponsesController < ApplicationController
 
-
 	def new
 		@mindlog = Mindlog.find_by_id(params[:mindlog_id])
 		@page_title = "New Response"
@@ -25,23 +24,19 @@ class ResponsesController < ApplicationController
 		end
 	end
 
-  def destroy
-	@response = Response.find(params[:id])
-  	@response.destroy
-	respond_to do |format|
-		format.html {redirect_to @response.mindlog , notice: "Deleted Response successfully" }
-	  	format.json
-		format.js #added
+	def destroy
+		@response = Response.find(params[:id])
+			@response.destroy
+		respond_to do |format|
+			format.html {redirect_to @response.mindlog , notice: "Deleted Response successfully" }
+		  	format.json
+			format.js #added
+		end
 	end
-  end
 
 	def show
-	@response = Response.find(params[:id])
-
-	respond_to do |format|
-		format.html {redirect_to mindlog_path(@response.mindlog,response:@response.id)}
-		format.js
-	end
+		@response = Response.find(params[:id])
+		redirect_to mindlog_path(@response.mindlog,response:@response.id)
 	end
 
 	def vote #todo add error messages
@@ -82,11 +77,11 @@ class ResponsesController < ApplicationController
 		end
 	end
 
-  def edit
-	@response = Response.find(params[:id])
-	@page_title = "Edit Response"
-	@remote = "false"
-  end
+	def edit
+		@response = Response.find(params[:id])
+		@page_title = "Edit Response"
+		@remote = "false"
+	end
 
 	def update
 		@response = Response.find(params[:id])

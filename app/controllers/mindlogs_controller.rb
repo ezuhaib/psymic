@@ -1,99 +1,69 @@
 class MindlogsController < ApplicationController
 
-  # GET /mindlogs/1
-  # GET /mindlogs/1.json
-
   def index
-    authorize! :read , Mindlog
+    authorize_and_sort_mindlogs
     @page_title       = 'Psymic Mindlogs'
     @page_description = 'Mindlogs are logs of community-reported observations of human behavior.'
-    if params[:sort] == "popular"
-      @order = {likes_count: :desc}
-      @order_sql = "created_at DESC"
-    elsif params[:sort] == "lonely"
-      @order = {created_at: :desc}
-      @order_sql = "created_at DESC"
-    else
-    end
-    if params[:query].present?
-      @order = {_score: :desc} if !params[:sort] or params[:sort] == "date"
-      @mindlogs = Mindlog.search(params[:query], where:{workflow_state:"published"}, order: @order , page: params[:page], fields: [:title,:tags_name] , highlight:{tag: "<strong>"})
-      @has_details = true
-      @title = "Searching mindlogs"
-    elsif params[:tag]
-      @order_sql = "created_at DESC" if !params[:sort] or params[:sort] == "date"
-      @mindlogs = Mindlog.published.tagged_with(params[:tag]).order(@order_sql).page(params[:page])
-      @title = "tag: ##{params[:tag]}"
-    else
-      @order = {created_at: :desc} if !params[:sort] or params[:sort] == "date"
-      @mindlogs = Mindlog.search("*", where:{workflow_state:"published"}, order: @order, page: params[:page] , per_page:20)
-      @title = "Mindlogs"
-    end
+    @mindlogs = Mindlog.search("*", where:{workflow_state:"published"}, order: @order, page: params[:page] , per_page:20)
     @mindlog = flash[:mindlog] ? Mindlog.create(flash[:mindlog].permit(:description, :title , :topic_list, :review)) : Mindlog.new
-    @top_users = User.order('points desc').limit(5)
-    respond_to do |format|
-      format.html { render 'mindlogs/index'}
-      format.json { render json: @mindlogs }
+  end
+
+  def search
+    authorize_and_sort_mindlogs(default_sort: :relevance)
+    @page_title = "Searching #{params[:query]} in mindlogs"
+    @mindlogs = Mindlog.search(params[:query], where:{workflow_state:"published"}, order: @order , page: params[:page], fields: [:title,:tags_name] , highlight:{tag: "<strong>"})
+    @has_details = true
+  end
+
+  def tag
+    authorize_and_sort_mindlogs
+    @page_title = "Mindlogs tagged ##{params[:tag]}"
+    @mindlogs = Mindlog.published.tagged_with(params[:tag]).order(@order).page(params[:page])
+  end
+
+  def search_redirect
+    if params[:query].present?
+      redirect_to search_mindlogs_path(query: params[:query])
     end
   end
 
   def show
     @mindlog = Mindlog.find(params[:id])
     @page_title = @mindlog.title
-    @page_description = @mindlog.description
+    @page_description = ActionController::Base.helpers.strip_tags(@mindlog.description)
     @channels = @mindlog.channels
+
     authorize! :read , @mindlog
     authorize! :read_unpublished , @mindlog if @mindlog.workflow_state != "published"
-    if params[:response]
-      @response = Response.find(params[:response])
-      @page_title = "Mindlog: Single response to: #{@mindlog.title}"
-      render "single_response"
-    end
 
-    if params[:filter] == "explanations"
-      @responses = @mindlog.responses.where(nature:"explanation").order("rating DESC")
-    elsif params[:filter] == "solutions"
-      @responses = @mindlog.responses.where(nature:"solution").order("rating DESC")
-    elsif params[:filter] == "critiques"
-      @responses = @mindlog.responses.where(nature:"critique").order("rating DESC")
-    elsif params[:filter] == "stories"
-      @responses = @mindlog.responses.where(nature:"story").order("rating DESC")
-    else
-      if params[:do] == "toggle_feature"
-        authorize! :moderate , @mindlog
-        flash[:notice] = "Featuring action successful" if @mindlog.toggle_feature(current_user.id)
-      elsif params[:do] == "toggle_publish"
-        @mindlog.state?(:published) ? @mindlog.state(:unpublished) : @mindlog.state(:published)
-        flash[:notice] = "Publishing action successful"
-      end
-	     @responses = @mindlog.responses.order("created_at DESC")
-    end
-    @response = @mindlog.responses.new
-    @responses = @responses.page(params[:page]).per(10)
-    redirect_to action: :show if params[:do] #to get rid of args in url
+    load_responses
   end
 
-  # GET /mindlogs/new
-  # GET /mindlogs/new.json
+  def moderate
+    @mindlog = Mindlog.find(params[:id])
+    authorize! :moderate , @mindlog
+    if params[:task] == "toggle_feature"
+      @mindlog.toggle_feature(current_user.id)
+      flash[:notice] = "Featuring action successful"
+    elsif params[:task] == "toggle_publish"
+      @mindlog.state?(:published) ? @mindlog.state(:unpublished) : @mindlog.state(:published)
+      flash[:notice] = "Publishing action successful"
+    end
+    redirect_to action: :show
+  end
+
   def new
     @page_title = "New Mindlog"
     @mindlog = Mindlog.new
     authorize! :create , @mindlog
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @mindlog }
-    end
   end
 
-  # GET /mindlogs/1/edit
   def edit
     @mindlog = Mindlog.find(params[:id])
     @page_title = "Editing '#{@mindlog.title}'"
     authorize! :update , @mindlog
   end
 
-  # POST /mindlogs
-  # POST /mindlogs.json
   def create
     @mindlog = Mindlog.new(mindlog_params)
     @mindlog.user = current_user
@@ -109,8 +79,6 @@ class MindlogsController < ApplicationController
     end
   end
 
-  # PUT /mindlogs/1
-  # PUT /mindlogs/1.json
   def update
     @mindlog = Mindlog.find(params[:id])
     authorize! :update , @mindlog
@@ -138,17 +106,12 @@ class MindlogsController < ApplicationController
     end
   end
 
-  # DELETE /mindlogs/1
-  # DELETE /mindlogs/1.json
   def destroy
     @mindlog = Mindlog.find(params[:id])
     authorize! :destroy , @mindlog
     @mindlog.destroy
     Mindlog.searchkick_index.refresh
-    respond_to do |format|
-      format.html { redirect_to mindlogs_url , notice: "Deleted Mindlog successfully" }
-      format.json { head :no_content }
-    end
+    redirect_to mindlogs_url , notice: "Deleted Mindlog successfully"
   end
 
   def report
@@ -224,7 +187,7 @@ end
 
   # For selctize. Using seperate function because we donot need to strip or append #'s
   def tags
-    return false if params[:q].size < 3
+    return false if params[:q] and params[:q].size < 3
     @tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%") 
     respond_to do |format|
       format.json { render :json => @tags.map{|t| {:id => t.name, :name => t.name }}}
@@ -263,7 +226,49 @@ end
   end
 
   private
+  
   def mindlog_params
-    params.require(:mindlog).permit(:description, :title , :topic_list , :status, :workflow_state, :review , :rating_percent , :channel_id)
+    params.require(:mindlog).permit(:description, :title , :topic_list , :status, :workflow_state, :review , :channel_id)
+  end
+  
+  def authorize_and_sort_mindlogs(options={})
+    authorize! :read , Mindlog
+
+    if params[:sort]
+      sort = params[:sort].to_sym
+    elsif options[:default_sort]
+      sort = options[:default_sort].to_sym
+    else
+      sort = :date
+    end
+
+    @order = case sort
+    when :date
+      {created_at: :desc}
+    when :popular
+      {responses_count: :desc}
+    when :lonely
+      {responses_count: :asc}
+    when :relevance
+      {_score: :desc}
+    end
+  end
+
+  def load_responses
+    if params[:response]
+      @response = Response.find(params[:response])
+      @page_title = "Mindlog: Single response to: #{@mindlog.title}"
+      render "single_response"
+    end
+
+    @responses = case params[:only].try(:to_sym)
+    when :explanation , :solution , :critique , :story
+      @mindlog.responses.where(nature: params[:only]).order("rating DESC")
+    else
+      @mindlog.responses.order("created_at DESC")
+    end
+
+    @response = @mindlog.responses.new
+    @responses = @responses.page(params[:page]).per(10)
   end
 end

@@ -1,0 +1,21 @@
+<%# HEADER %>
+<div id="mindlogs_header">
+	<div id="mindlogs_header_text">
+		<span class="glyphicon glyphicon-leaf"></span>
+		<span class="hidden-xs">Mindlogs</span>
+	</div>
+	<%= render 'mindlogs/search_form' %>
+	<div class="head"><%= @mindlogs.count %> mindlogs tagged with <b><%= params[:tag] %></div>
+</div>
+<div style='margin-top: 100px' class='hidden-sm hidden-xs'></div>
+
+<%# THE ENTRIES %>
+<%= render 'mindlogs/list' %>
+<%= paginate @mindlogs %>
+
+<%# RIGHT SIDEBAR %>
+<%= content_for :r2 do %>
+<%= render 'sort_links' %>
+<%= render 'shared/user_rank' if current_user %>
+<%= render 'shared/top_users' %>
+<% end %>

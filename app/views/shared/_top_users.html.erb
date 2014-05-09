@@ -1,0 +1,6 @@
+<div id="top_users" class="mar-t-30">
+	<h4><%= link_to "Top Psymies", users_path , class:"link-black" %></h4>
+	<% User.top(5).each_with_index do |u,n| %>
+		<p><%= (n+1) %> <%= link_to u.username , u %></p>
+	<% end %>
+</div>

@@ -72,12 +72,15 @@ end
 #######################
 resources :mindlogs  do
   collection do
+    get 'search/:query' , action: :search , as: :search
+    post 'search_redirect'
     post 'import'
     get 'tags'
+    get 'tag/:tag' , action: :tag , as: :tag
     get 'autocomplete'
     get 'autocomplete_tags'
     get 'moderation_queue'
-    get 'page/:page', :action => :index # for friendly pagination urls
+    get 'page/:page', action: :index # for friendly pagination urls
   end
 
   member do
@@ -88,10 +91,12 @@ resources :mindlogs  do
     post 'subscribe'
     get 'unsubscribe'
     post 'unsubscribe'
-    get 'page/:page', :action => :show
+    get 'page/:page', action: :show
     get 'rate'
     get 'resolve'
+    get 'moderate/:task' , action: :moderate , as: 'moderate'
   end
+
   resources :responses do
     member do
       get 'vote'
