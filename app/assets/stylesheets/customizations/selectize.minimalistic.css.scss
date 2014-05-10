@@ -1,0 +1,37 @@
+/**
+Selectize Minimalistic theme for Psymic for use with minimalistic forms, by ezuhaib
+ */
+
+form.minimalistic{
+.selectize-control { cursor:text; display: inline-block; width: 100%;padding: 5px;}
+
+.selectize-input {
+	.item{
+		float: left;
+		background: #ccc;
+		border-radius: 2px;
+		color: #333;
+		padding: 1px 6px;
+		margin:0 3px;
+		font-size: 14px;
+		cursor:default;}
+	> input { border:none !important;}
+}
+
+.selectize-dropdown {
+	position: absolute;
+	z-index: 10;
+	background: #555;
+	color: #fff;
+	margin: 5px 0 0 0;
+	border-top: 0 none;
+	width: 100%;
+	display: inline-block;
+	padding: 5px;
+	[data-selectable] {
+		.highlight {color:#aaa;font-weight: 700;} }
+	}
+	.option.active{background: #333;}
+	.option{ cursor: pointer;}
+
+}

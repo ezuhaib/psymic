@@ -5,7 +5,3 @@
     <%= if can? :moderate , Comic then f.form_group do %><%= f.check_box :published %><% end end %>
     <%= f.form_group do %><%= f.submit :submit %><% end %>
 <% end %>
-
-<%# The Includes %>
-<%= javascript_include_tag 'selectize.min','mindlog_selectize' %>
-<%= stylesheet_link_tag 'selectize.psymic' %>

@@ -1,18 +1,26 @@
-// Most js libraries are kept in vendors directory and are being used
-// without help of gems. So any updates will have to be done manually.
-// This shouldn't be an issue, except for bootstrap, because it's gem
-// is still being used for sass assets, but not for js because we are
-// using a minified version. Although bootstrap is currently locked at
-// 3.1.1 ... in case it is decided to update it, the minified js should
-// also be updated.
-//
-//
+// Not using minified scripts in favor of uglifier
+
 //= require jquery.min
 //= require jquery_ujs
+//= require jquery.autosize
+//= require jquery.sidr
+//= require jquery-textcomplete
+//= require jquery.jcrop.js
+//= require papercrop.js
+
 //= require turbolinks
-//= require jquery.sidr.min
-//= require bootstrap.min
-//= require bootstrap-select.min
-//= require jquery.autosize.min
-//= require_tree ../../../vendor/assets/javascripts/noty
-//= require_tree ./application
+//= require twitter/typeahead.min
+//= require selectize
+//= require noty/jquery.noty
+//= require noty/layouts/top
+//= require noty/themes/default
+
+//= require bootstrap/modal
+//= require bootstrap/dropdown
+//= require bootstrap/tooltip
+//= require bootstrap/alert
+//= require bootstrap-datepicker/core
+//= require bootstrap-select
+
+ 
+//= require_tree .

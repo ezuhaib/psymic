@@ -4,8 +4,9 @@ Selectize Theme for Psymic for use with bootstrap, by ezuhaib
 
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
-@import "application/theme";
+@import "theme";
 
+form:not(.minimalistic){
 $selectize-font-family: inherit;
 $selectize-font-size: 14px;
 $selectize-line-height: $line-height-computed;
@@ -378,4 +379,5 @@ $selectize-arrow-offset: $selectize-padding-x + 5px;
 
 .selectize-dropdown-content .highlight{
 	font-weight: bold;
+}
 }

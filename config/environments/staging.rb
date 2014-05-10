@@ -8,12 +8,10 @@ Psymic::Application.configure do
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  config.action_dispatch.show_exceptions = false # Do not set in production
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = true
-
-  # Compress JavaScripts and CSS
-  config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
@@ -32,7 +30,7 @@ Psymic::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags
   # config.log_tags = [ :subdomain, :uuid ]
@@ -69,5 +67,11 @@ Psymic::Application.configure do
   config.action_mailer.default_url_options = {host: "127.0.0.1:3000"}
 
   config.eager_load = true
+
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = ::Logger::Formatter.new
+
+  # Do not dump schema after migrations.
+  config.active_record.dump_schema_after_migration = false
 
 end

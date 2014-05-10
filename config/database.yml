@@ -2,7 +2,6 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  template: template0
 
 development: &development
   <<: *default
@@ -26,3 +25,4 @@ production:
   database: <%= ENV["DB_NAME"] %>
   username: <%= ENV["DB_USER"] %>
   password: <%= ENV["DB_PWD"] %>
+  template: template0

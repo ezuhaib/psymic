@@ -44,7 +44,7 @@ class UpdatesController < ApplicationController
   # POST /updates
   # POST /updates.json
   def create
-    @update = Update.new(params[:update])
+    @update = Update.new(update_params)
     @update.user_id = current_user.id
 
     respond_to do |format|
@@ -64,7 +64,7 @@ class UpdatesController < ApplicationController
     @update = Update.find(params[:id])
 
     respond_to do |format|
-      if @update.update_attributes(params[:update])
+      if @update.update_attributes(update_params)
         format.html { redirect_to @update, notice: 'Update was successfully updated.' }
         format.json { head :no_content }
       else
@@ -84,5 +84,10 @@ class UpdatesController < ApplicationController
       format.html { redirect_to updates_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def update_params
+    params.require(:update).permit(:body, :title, :user_id)
   end
 end

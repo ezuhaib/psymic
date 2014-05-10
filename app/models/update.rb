@@ -1,5 +1,4 @@
 class Update < ActiveRecord::Base
-  attr_accessible :body, :title, :user_id
   validates_presence_of :title , :body , :user_id
   after_create :send_mails
 

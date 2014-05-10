@@ -105,7 +105,6 @@ resources :mindlogs  do
   end
 end
 get "mindlogs/tags" => "mindlogs#tags", :as => :tags #returns json
-get 'mindlogs/tag/:tag' => 'mindlogs#tag'
 
 #######################
 # NOTIFICATIONS

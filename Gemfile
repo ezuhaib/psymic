@@ -14,13 +14,12 @@ gem 'sitemap_generator'
 gem 'rack-mini-profiler'
 gem 'google-analytics-rails'
 gem 'exception_notification'
-gem "paperclip"
-gem "papercrop", github: "ezuhaib/papercrop"
 gem 'searchkick'
 
 # Unix-only gems
 platforms :ruby do
 	gem 'unicorn'
+	gem 'flamegraph'
 end
 
 platforms :mswin, :mingw do
@@ -49,8 +48,6 @@ end
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'uglifier'
-gem 'turbo-sprockets-rails3'
-gem 'jquery-rails'
 
 # Authentication and Authorization
 gem 'devise'
@@ -68,11 +65,24 @@ gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'friendly_id'
 gem 'bootstrap_form'
-gem 'bootstrap-sass'
 gem 'rinku'
 gem 'premailer-rails'
 gem 'nokogiri' , '1.6.2.rc2' #for premailer-rails
+gem "paperclip"
+gem "papercrop", git: "https://github.com/ezuhaib/papercrop.git"
 
 # For rails 4
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'turbolinks'
+
+# Assets
+gem 'autosize-rails'
+gem 'bootstrap-select-rails'
+gem 'bootstrap-sass'
+gem 'bootstrap-datepicker-rails'
+gem 'jquery-rails'
+gem 'jquery-textcomplete-rails'
+gem 'noty-rails'
+gem 'sidr-rails'
+gem "selectize-rails"
+gem 'twitter-typeahead-rails'

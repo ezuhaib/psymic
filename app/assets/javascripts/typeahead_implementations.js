@@ -1,3 +1,9 @@
+var channels = new Bloodhound({
+  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.title); },
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  remote: "/channels/autocomplete?query=%QUERY"
+});
+
 var mindlogs = new Bloodhound({
   datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.title); },
   queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -13,6 +19,7 @@ var tags = new Bloodhound({
 $(document).on('ready page:load', function(){
 	mindlogs.initialize();
 	tags.initialize();
+	channels.initialize();
 
 	$("#mindlog_search").typeahead({
 		minLength: 2,
@@ -27,4 +34,14 @@ $(document).on('ready page:load', function(){
 		displayKey: "name",
 		source: tags.ttAdapter(),
 	});
+
+	$("#channel_id").typeahead({
+		minLength: 2,
+		highlight: true,
+		autoselect: true
+	},{
+		name: "channel",
+		displayKey: "title",
+		source: channels.ttAdapter()
+	})
 })
