@@ -1,6 +1,7 @@
 /*
  *= require bootstrap-datepicker3
  *= require jquery.jcrop.css
- *= require_tree .
+ *= require_directory .
+ *= require_directory ./customizations
  *= require_self
  */

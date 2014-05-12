@@ -9,24 +9,27 @@ module Optionable
 	module ClassMethods
 
 		def options(hash)
-			@options = hash
+			@@options = hash
 			serialize :options
 			options_attr_accessor
 		end
 
 		def options_attr_accessor
-		  @options.keys.each do |method_name|
+		  @@options.keys.each do |method_name|
 		    class_eval do
-
+		      # GETTER
 		      define_method method_name do
 		        self.options ||= {}
-		        if self.options[method_name].nil?
-		          return @options[method_name]
-		        else
+		        # Read option value from db if present
+		        if !self.options[method_name].nil?
 		          return self.options[method_name]
+		        # Read from defaults if not present
+		        else
+		          return @@options[method_name]
 		        end
 		      end
 
+		      # SETTER
 		      define_method "#{method_name}=" do |value|
 		        self.options ||= {}
 		        if value == '1'
@@ -43,7 +46,7 @@ module Optionable
 		end
 
 		def option_params
-  			@options.keys
+  			@@options.keys
 		end
 
 	end

@@ -20,6 +20,7 @@ gem 'searchkick'
 platforms :ruby do
 	gem 'unicorn'
 	gem 'flamegraph'
+	gem 'therubyracer'
 end
 
 platforms :mswin, :mingw do
