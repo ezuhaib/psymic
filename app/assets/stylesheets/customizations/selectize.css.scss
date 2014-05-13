@@ -6,7 +6,7 @@ Selectize Theme for Psymic for use with bootstrap, by ezuhaib
 @import "bootstrap/mixins";
 @import "theme";
 
-form:not(.minimalistic){
+form{
 $selectize-font-family: inherit;
 $selectize-font-size: 14px;
 $selectize-line-height: $line-height-computed;

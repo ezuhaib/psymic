@@ -10,7 +10,11 @@
 .type-critique:before{content:"critique";background: #990033;}
 .type-critique{.text-lighter,.text-lighter a{color:#990033;}}
 
-.type-general , .type-story{background-color: #F2F2F2;}
+.type-story{background-color: #F2F2F2;}
+.type-story:before{content:"story";background: #222;}
+.type-story{.text-lighter,.text-lighter a{color:#222;}}
+
+.type-general {background-color: #F2F2F2;}
 
 .response-entry{
     margin-bottom: 17px;
@@ -24,7 +28,7 @@
     a{font-weight: bold;}
 }
 
-.type-explanation , .type-solution , .type-critique{
+.type-explanation , .type-solution , .type-critique , .type-story{
     padding-top: 20px;
     margin-top: 10px;
     &:before{

@@ -5,7 +5,7 @@
 		<div class="pull-right mindlog_stats text-center cursor-default hidden-xs">
 
 			<span data-toggle="tooltip" data-placement="left" title="Responses to this Mindlog">
-				<%= "%02d" % m.responses_count %>
+				<%= "%02d" % (m.responses_count || 0 )%>
 			</span>
 
 			<div class="mindlog_responses_count" data-toggle="tooltip" data-placement="left" title="Incidence of this behaviour in percent">
