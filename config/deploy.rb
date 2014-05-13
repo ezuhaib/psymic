@@ -11,6 +11,7 @@ set :rails_env,       "production"
 
 set :migrate_target,  :current
 set :ssh_options, { port:62062 , :forward_agent => true }
+set :log_level, :info
 
 namespace :deploy do
 
