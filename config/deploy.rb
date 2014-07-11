@@ -1,37 +1,69 @@
-# config valid only for Capistrano 3.1
-lock '3.2.1'
+require 'mina/bundler'
+require 'mina/rails'
+require 'mina/git'
+require 'mina/rvm'
+require 'mina/unicorn'
 
-set :application, 'psymic'
-set :repo_url, 'git@github.com:ezuhaib/psymic.git'
+# Basic settings:
+#   domain       - The hostname to SSH to.
+#   deploy_to    - Path to deploy into.
+#   repository   - Git repo to clone from. (needed by mina/git)
+#   branch       - Branch name to deploy. (needed by mina/git)
 
-set :linked_files, %w{config/local_env.yml config/unicorn.rb public/sitemap.xml.gz}
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
-set :default_env, { path: "/opt/ruby/bin:$PATH" }
-set :rails_env,       "production"
+set :domain, '107.150.5.161'
+set :deploy_to, '/home/ezuhaib/apps/psymic'
+set :repository, 'git@github.com:ezuhaib/psymic.git'
+set :branch, 'master'
 
-set :migrate_target,  :current
-set :ssh_options, { port:62062 , :forward_agent => true }
-set :log_level, :info
+# Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
+# They will be linked in the 'deploy:link_shared_paths' step.
+set :shared_paths, %w{bin log tmp/pids tmp/cache tmp/sockets public/system public/assets config/local_env.yml config/unicorn.rb public/sitemap.xml.gz}
 
-namespace :deploy do
+# Optional settings:
+set :user, 'ezuhaib'    # Username in the server to SSH to.
+set :port, '62062'     # SSH port number.
 
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+# Unicorn settings
+set :unicorn_pid, "/tmp/unicorn.psymic.pid"
+
+# This task is the environment that is loaded for most commands, such as
+# `mina deploy` or `mina rake`.
+task :environment do
+  # If you're using rbenv, use this to load the rbenv environment.
+  # Be sure to commit your .rbenv-version to your repository.
+  # invoke :'rbenv:load'
+
+  # For those using RVM, use this to load an RVM version@gemset.
+invoke :'rvm:use[ruby-2.1.2@default]'
+end
+
+# Put any custom mkdir's in here for when `mina setup` is ran.
+# For Rails apps, we'll make some of the shared paths that are shared between
+# all releases.
+# task :setup => :environment do
+#   queue! %[mkdir -p "#{deploy_to}/shared/log"]
+#   queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/log"]
+# 
+#   queue! %[mkdir -p "#{deploy_to}/shared/config"]
+#   queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/config"]
+# 
+#   queue! %[touch "#{deploy_to}/shared/config/database.yml"]
+#   queue  %[echo "-----> Be sure to edit 'shared/config/database.yml'."]
+# end
+
+desc "Deploys the current version to the server."
+task :deploy => :environment do
+  deploy do
+    # Put things that will set up an empty directory into a fully set-up
+    # instance of your project.
+    invoke :'git:clone'
+    invoke :'deploy:link_shared_paths'
+    invoke :'bundle:install'
+    invoke :'rails:db_migrate'
+    invoke :'rails:assets_precompile'
+
+    to :launch do
+      queue "touch #{deploy_to}/tmp/restart.txt"
     end
   end
-
-  after :publishing, :restart
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
 end

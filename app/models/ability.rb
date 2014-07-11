@@ -38,7 +38,7 @@ class Ability
     if user.username # authenticated users
       can :read , [Message,:notification]
       can [:respond,:rate] , Mindlog
-      can [:report,:subscribe,:unsubscribe] , Mindlog do |x|
+      can [:report,:subscribe,:unsubscribe,:add_to_channel] , Mindlog do |x|
         x.try(:user) != user
       end
       can :vote , Response

@@ -185,7 +185,7 @@ end
     end
   end
 
-  # For selctize. Using seperate function because we donot need to strip or append #'s
+  # For seelctize. Using seperate function because we donot need to strip or append #'s
   def tags
     return false if params[:q] and params[:q].size < 3
     @tags = ActsAsTaggableOn::Tag.where("tags.name LIKE ?", "%#{params[:q]}%") 
@@ -211,6 +211,7 @@ end
 
   def channel_selection
     @mindlog = Mindlog.find(params[:id])
+    authorize! :add_to_channel , @mindlog
   end
 
   def resolve

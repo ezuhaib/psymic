@@ -70,6 +70,9 @@ GEM
     capistrano-rails (1.1.1)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.1)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -157,6 +160,7 @@ GEM
       rack-contrib
       railties
     mime-types (1.25.1)
+    mina-unicorn (0.0.1)
     mini_portile (0.5.3)
     minitest (5.3.3)
     multi_json (1.10.0)
@@ -319,6 +323,7 @@ DEPENDENCIES
   bootstrap_form
   cancancan
   capistrano-rails
+  capistrano-rvm
   coffee-rails
   country_select
   devise
@@ -334,6 +339,7 @@ DEPENDENCIES
   letter_opener
   liquid
   meta_request
+  mina-unicorn
   nokogiri (= 1.6.2.rc2)
   noty-rails
   paperclip

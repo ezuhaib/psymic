@@ -26,6 +26,8 @@
 	</div>
 <% end %>
 
+<% if can? :submit_to_channel , @mindlog %>
 <%= link_to "Add to Channel" , channels_mindlog_path , class:"btn btn-sm btn-default mar-t-10" %>
+<% end %>
 
 <% end %>
