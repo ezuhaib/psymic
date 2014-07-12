@@ -26,6 +26,7 @@ class UpdatesController < ApplicationController
   # GET /updates/new
   # GET /updates/new.json
   def new
+    authorize! :create , Update
     @update = Update.new
     @page_title = "New Update"
 
@@ -38,12 +39,14 @@ class UpdatesController < ApplicationController
   # GET /updates/1/edit
   def edit
     @update = Update.find(params[:id])
+    authorize! :destroy , @update
     @page_title = "Editing Update #{@update.title}"
   end
 
   # POST /updates
   # POST /updates.json
   def create
+    authorize! :create , Update
     @update = Update.new(update_params)
     @update.user_id = current_user.id
 
@@ -63,6 +66,7 @@ class UpdatesController < ApplicationController
   def update
     @update = Update.find(params[:id])
 
+    authorize! :update , @update
     respond_to do |format|
       if @update.update_attributes(update_params)
         format.html { redirect_to @update, notice: 'Update was successfully updated.' }
@@ -78,6 +82,7 @@ class UpdatesController < ApplicationController
   # DELETE /updates/1.json
   def destroy
     @update = Update.find(params[:id])
+    authorize! :destroy , @update
     @update.destroy
 
     respond_to do |format|
