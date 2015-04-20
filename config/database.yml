@@ -5,7 +5,7 @@ default: &default
 
 development: &development
   <<: *default
-  database: psymic_development
+  database: psymic_development_db
   username: postgres
   password: postgres
   host: localhost

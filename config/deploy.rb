@@ -10,7 +10,7 @@ require 'mina/unicorn'
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :domain, '107.150.5.161'
+set :domain, '192.3.20.17'
 set :deploy_to, '/home/ezuhaib/apps/psymic'
 set :repository, 'git@github.com:ezuhaib/psymic.git'
 set :branch, 'master'
