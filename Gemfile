@@ -30,10 +30,10 @@ end
 # Development tools
 group :development do
 	gem 'webrick'
-	gem 'sqlite3'
+	#gem 'sqlite3'
 	gem 'yaml_db'
-	gem 'capistrano-rails'
-	gem 'capistrano-rvm'
+	#gem 'capistrano-rails'
+	#gem 'capistrano-rvm'
 	gem 'better_errors'
 	gem 'binding_of_caller'
 	gem 'meta_request' #For Rails Panel
@@ -43,7 +43,7 @@ group :development do
 	gem 'progress_bar'
 	gem 'sepastian-capistrano3-unicorn', :require => false
 	gem "letter_opener"
-	gem 'mina-unicorn'
+	#gem 'mina-unicorn'
 end
 
 # Gems used only for assets and not required
