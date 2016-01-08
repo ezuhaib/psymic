@@ -19,7 +19,7 @@ gem 'searchkick'
 # Unix-only gems
 platforms :ruby do
 	gem 'unicorn'
-	gem 'flamegraph'
+	#gem 'flamegraph'
 	gem 'therubyracer'
 end
 

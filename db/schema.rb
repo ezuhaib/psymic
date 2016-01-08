@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509105507) do
+ActiveRecord::Schema.define(version: 20160108125802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "SQLITEADMIN_QUERIES", primary_key: "ID", force: true do |t|
+    t.string "NAME", limit: 100
+    t.text   "SQL"
+  end
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -156,12 +161,13 @@ ActiveRecord::Schema.define(version: 20140509105507) do
 
   create_table "read_marks", force: true do |t|
     t.integer  "readable_id"
-    t.integer  "user_id",       null: false
+    t.integer  "reader_id",     null: false
     t.string   "readable_type", null: false
     t.datetime "timestamp"
+    t.string   "reader_type"
   end
 
-  add_index "read_marks", ["user_id", "readable_type", "readable_id"], name: "index_read_marks_on_user_id_and_readable_type_and_readable_id", using: :btree
+  add_index "read_marks", ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", using: :btree
 
   create_table "reports", force: true do |t|
     t.integer  "flag_id"
